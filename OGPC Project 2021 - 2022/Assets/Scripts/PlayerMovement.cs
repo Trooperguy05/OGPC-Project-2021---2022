@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
 
+    public static bool playerAbleMove = true;
+
     // caching variables
     void Start()
     {
@@ -24,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
     // move the player
     void FixedUpdate() {
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        if (playerAbleMove) {
+            rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        }
     }
 }
