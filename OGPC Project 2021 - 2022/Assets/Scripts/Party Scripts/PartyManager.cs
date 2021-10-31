@@ -38,10 +38,10 @@ public class PartyManager : MonoBehaviour
     public Sprite character4SP; // character: Lyra
 
     // variables for tracking party member order
-    private int character1Order = 0;
-    private int character2Order = 1;
-    private int character3Order = 2;
-    private int character4Order = 3;
+    public static int character1Order = 0;
+    public static int character2Order = 1;
+    public static int character3Order = 2;
+    public static int character4Order = 3;
 
     // positions for the character visuals
     private Vector3 leadPosition;
@@ -68,6 +68,11 @@ public class PartyManager : MonoBehaviour
 
         // player sprite renderer
         playerSR = player.GetComponent<SpriteRenderer>();
+
+        // loading the party stats data
+        FindObjectOfType<PartyStats>().LoadData();
+        // loading the player progress data
+        FindObjectOfType<PlayerProgress>().loadPlayerData();
     }
     
     // checking for player input
@@ -129,13 +134,12 @@ public class PartyManager : MonoBehaviour
                 partyOrderChanged = true;
             }
 
-            // updating the wheel visual
-            updateWheel(character1RT, character1Order, "Astar");
-            updateWheel(character2RT, character2Order, "Gor");
-            updateWheel(character3RT, character3Order, "Gadriel");
-            updateWheel(character4RT, character4Order, "Lyra");
-
             if (partyOrderChanged) {
+                // updating the wheel visual
+                updateWheel(character1RT, character1Order, "Astar");
+                updateWheel(character2RT, character2Order, "Gor");
+                updateWheel(character3RT, character3Order, "Gadriel");
+                updateWheel(character4RT, character4Order, "Lyra");
                 updatePlayerSprite();
                 partyOrderChanged = false;
             }
@@ -143,7 +147,7 @@ public class PartyManager : MonoBehaviour
     }
     
     // updates the character visual on the wheel
-    void updateWheel(RectTransform characterRT, int order, string name) {
+    public void updateWheel(RectTransform characterRT, int order, string name) {
         if (order == 0) {
             characterRT.anchoredPosition = leadPosition;
         }
@@ -161,7 +165,7 @@ public class PartyManager : MonoBehaviour
     }
 
     // function that updates the player sprite to be that of the lead member's sprite
-    void updatePlayerSprite() {
+    public void updatePlayerSprite() {
         if (partyOrder[0] == "Astar") {
             playerSR.sprite = character1SP;
         }
@@ -174,5 +178,13 @@ public class PartyManager : MonoBehaviour
         else if (partyOrder[0] == "Lyra") {
             playerSR.sprite = character4SP;
         }
+    }
+
+    // updates the partyWheel after loading a save \\
+    public void updatePartyWheel() {
+        updateWheel(character1RT, character1Order, "Astar");
+        updateWheel(character2RT, character2Order, "Gor");
+        updateWheel(character3RT, character3Order, "Gadriel");
+        updateWheel(character4RT, character4Order, "Lyra");
     }
 }
