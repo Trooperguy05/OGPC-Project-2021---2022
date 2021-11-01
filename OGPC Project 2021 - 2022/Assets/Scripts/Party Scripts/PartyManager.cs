@@ -187,4 +187,10 @@ public class PartyManager : MonoBehaviour
         updateWheel(character3RT, character3Order, "Gadriel");
         updateWheel(character4RT, character4Order, "Lyra");
     }
+
+    // delets player and party save \\
+    public void deleteSave() {
+        Debug.Log("Deleting Save Data");
+        SaveSystem.deleteSaveData();
+    }
 }

@@ -65,4 +65,25 @@ public static class SaveSystem
             return null;
         }
     }
+
+    // delete save data \\
+    public static void deleteSaveData() {
+        string partyDataPath = Application.persistentDataPath + "/partyData.txt";
+        string playerDataPath = Application.persistentDataPath + "/playerData.txt";
+
+        // delete the party data
+        if (File.Exists(partyDataPath)) {
+            File.Delete(partyDataPath);
+        }
+        else {
+            Debug.LogError("File not found in " + partyDataPath);
+        }
+        // delete the player data
+        if (File.Exists(playerDataPath)) {
+            File.Delete(playerDataPath);
+        }
+        else {
+            Debug.LogError("File not found in " + playerDataPath);
+        }
+    }
 }
