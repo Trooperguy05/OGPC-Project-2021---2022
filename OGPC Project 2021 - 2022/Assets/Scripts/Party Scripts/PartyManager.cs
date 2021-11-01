@@ -79,9 +79,11 @@ public class PartyManager : MonoBehaviour
     void Update() {
         // if the player presses tab, open the party menu
         if (Input.GetKeyDown(KeyCode.Tab)) {
-            partyTabOpen = !partyTabOpen;
-            partyMenu.SetActive(partyTabOpen);
-            PlayerMovement.playerAbleMove = !partyTabOpen;
+            if (!FindObjectOfType<PauseMenu>().pauseMenuOpen) { // making sure the pause menu isn't open before opening party wheel
+                partyTabOpen = !partyTabOpen;
+                partyMenu.SetActive(partyTabOpen);
+                PlayerMovement.playerAbleMove = !partyTabOpen;
+            }
         }
 
         // if the party tab is open
