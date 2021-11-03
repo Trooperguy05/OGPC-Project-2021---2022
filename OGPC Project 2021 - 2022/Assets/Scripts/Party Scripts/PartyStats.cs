@@ -69,7 +69,7 @@ public class PartyStats : MonoBehaviour
         PartyManager.partyOrder[1] = data.partyOrder[1];
         PartyManager.partyOrder[2] = data.partyOrder[2];
         PartyManager.partyOrder[3] = data.partyOrder[3];
-        // update
+        // update the visuals based on the loaded data
         FindObjectOfType<PartyManager>().updatePlayerSprite();
         FindObjectOfType<PartyManager>().updatePartyWheel();
     }
