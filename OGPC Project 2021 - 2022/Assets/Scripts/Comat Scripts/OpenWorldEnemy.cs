@@ -11,6 +11,7 @@ public class OpenWorldEnemy : MonoBehaviour
         Debug.Log("Entering Combat");
         FindObjectOfType<PartyStats>().SaveData(); // save party stats
         FindObjectOfType<PlayerProgress>().savePlayerData(); // save player progress
+        FindObjectOfType<OpenWorldEnemyManager>().saveActiveEnemies(); // save active enemies
         SceneManager.LoadScene(1); // load the combat scene
     }
 }

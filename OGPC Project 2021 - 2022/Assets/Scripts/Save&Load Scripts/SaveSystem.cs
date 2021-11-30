@@ -66,10 +66,42 @@ public static class SaveSystem
         }
     }
 
+    // save active enemies \\
+    public static void SaveActiveEnemies(OpenWorldEnemyManager eM) {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/activeEnemies.txt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        OverworldEnemyData data = new OverworldEnemyData(eM);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    // load active enemies \\
+    public static OverworldEnemyData LoadActiveEnemies() {
+        string path = Application.persistentDataPath + "/activeEnemies.txt";
+
+        if (File.Exists(path)) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            OverworldEnemyData data = formatter.Deserialize(stream) as OverworldEnemyData;
+            stream.Close();
+
+            return data;
+        }
+        else {
+            Debug.LogError("Save File not found in " + path);
+            return null;
+        }
+    }
+
     // delete save data \\
     public static void deleteSaveData() {
         string partyDataPath = Application.persistentDataPath + "/partyData.txt";
         string playerDataPath = Application.persistentDataPath + "/playerData.txt";
+        string enemyDataPath = Application.persistentDataPath + "/activeEnemies.txt";
 
         // delete the party data
         if (File.Exists(partyDataPath)) {
@@ -84,6 +116,13 @@ public static class SaveSystem
         }
         else {
             Debug.LogError("File not found in " + playerDataPath);
+        }
+        // delete active enemy data
+        if (File.Exists(enemyDataPath)) {
+            File.Delete(enemyDataPath);
+        }
+        else {
+            Debug.LogError("File not found in " + enemyDataPath);
         }
     }
 }
