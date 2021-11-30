@@ -9,7 +9,7 @@ public class CombatManager : MonoBehaviour
 {
     // arrays for tracking initiative \\
     public GameObject[] initiativeNames;
-    public int[] initiativeCount = new int[8];
+    int[] initiativeCount = new int[8];
 
     // load the party stats when the player enters combat
     void Start() {
@@ -44,16 +44,12 @@ public class CombatManager : MonoBehaviour
     // method that "rolls" for combat initiative \\
     void startCombat() {
         // grabbing party stats
-        PartyStats stats = FindObjectOfType<PartyStats>();
+        //PartyStats stats = FindObjectOfType<PartyStats>();
 
-        initiativeCount[0] = Random.Range(1, 20);
-        initiativeCount[1] = Random.Range(1, 20);
-        initiativeCount[2] = Random.Range(1, 20);
-        initiativeCount[3] = Random.Range(1, 20);
-        initiativeCount[4] = Random.Range(1, 20);
-        initiativeCount[5] = Random.Range(1, 20);
-        initiativeCount[6] = Random.Range(1, 20);
-        initiativeCount[7] = Random.Range(1, 20);
+        for (int i = 0; i < initiativeCount.Length; i++) {
+            int num = Random.Range(1, 20);
+            initiativeCount[i] = num;
+        }
     }
 
     void sortThing(int[] arr) {
