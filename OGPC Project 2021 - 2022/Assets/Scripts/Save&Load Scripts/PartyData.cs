@@ -28,7 +28,7 @@ public class PartyData
     public string char4Name;
     public int char4HP;
     public int char4Mana;
-    public int char4Dexerity;
+    public int char4Dexterity;
 
     // party order
     public int char1Order;
@@ -58,7 +58,7 @@ public class PartyData
         char4Name = partyStats.char4Name;
         char4HP = partyStats.char4HP;
         char4Mana = partyStats.char4Mana;
-        char4Dexerity = partyStats.char4Dexerity;
+        char4Dexterity = partyStats.char4Dexterity;
 
         // data for party order
         char1Order = PartyManager.character1Order;

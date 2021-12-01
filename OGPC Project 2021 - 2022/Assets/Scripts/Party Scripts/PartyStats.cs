@@ -6,28 +6,28 @@ public class PartyStats : MonoBehaviour
 {
     // character stats \\
     [Header("Character 1")]
-    public string char1Name = "Astar";
-    public int char1HP = 80;
-    public int char1Mana = 100;
+    public string char1Name = "Razza";
+    public int char1HP = 85;
+    public int char1Mana = 45;
     public int char1Dexterity = 2;
 
     [Header("Character 2")]
-    public string char2Name = "Gor";
-    public int char2HP = 120;
+    public string char2Name = "Dorne";
+    public int char2HP = 100;
     public int char2Mana = 0;
-    public int char2Dexterity = 2;
+    public int char2Dexterity = 1;
 
     [Header("Character 3")]
-    public string char3Name = "Gadriel";
-    public int char3HP = 100;
+    public string char3Name = "Smithson";
+    public int char3HP = 75;
     public int char3Mana = 100;
-    public int char3Dexterity = 2;
+    public int char3Dexterity = 0;
 
     [Header("Character 4")]
-    public string char4Name = "Lyra";
-    public int char4HP = 90;
-    public int char4Mana = 100;
-    public int char4Dexerity = 2;
+    public string char4Name = "Zor";
+    public int char4HP = 100;
+    public int char4Mana = 35;
+    public int char4Dexterity = 1;
 
     // methods to save and load the party stats \\
     public void SaveData() {
@@ -58,7 +58,7 @@ public class PartyStats : MonoBehaviour
         char4Name = data.char4Name;
         char4HP = data.char4HP;
         char4Mana = data.char4Mana;
-        char4Dexerity = data.char4Dexerity;
+        char4Dexterity = data.char4Dexterity;
 
         // data for party order
         PartyManager.character1Order = data.char1Order;
