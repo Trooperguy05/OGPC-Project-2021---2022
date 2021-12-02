@@ -11,7 +11,7 @@ public class CombatManager : MonoBehaviour
     // arrays for tracking initiative \\
     private string[] initiativeNames = new string[8];
     private float[] initiativeCount = new float[8];
-    public object[] enemiesInCombat = new object[4];
+    public static object[] enemiesInCombat = new object[4];
     public static int initiativeIndex = 0;
 
     // enemies \\
