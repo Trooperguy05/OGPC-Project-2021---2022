@@ -6,7 +6,7 @@ public class PartyStats : MonoBehaviour
 {
     // character stats \\
     [Header("Character 1")]
-    public string char1Name = "Razza";
+    public string char1Name = "Raza";
     public int char1HP = 85;
     public int char1Mana = 45;
     public int char1Dexterity = 2;
