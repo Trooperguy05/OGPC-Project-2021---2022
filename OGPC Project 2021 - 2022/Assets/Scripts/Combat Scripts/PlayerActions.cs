@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    // targeting system variable
+    private TargetingSystem ts;
+
+    // create a new targeting system
+    void Start() {
+        ts = new TargetingSystem();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    ///   Character: Dorne's Actions   \\\
+    public void dorneStrike() {
+        // wait for target to return
+        // act on target
     }
 }

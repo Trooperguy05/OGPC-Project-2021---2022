@@ -9,36 +9,39 @@ using Random=UnityEngine.Random;
 public class CombatManager : MonoBehaviour
 {
     // arrays for tracking initiative \\
+    [Header("Initiative")]
     private string[] initiativeNames = new string[8];
     private float[] initiativeCount = new float[8];
-    public static object[] enemiesInCombat = new object[4];
-    public static int initiativeIndex = 0;
+    public object[] enemiesInCombat = new object[4];
+    public int initiativeIndex = 0;
 
     // enemies \\
-    private EnemyCreator enemy1;
-    private EnemyCreator enemy2;
-    private EnemyCreator enemy3 ;
-    private EnemyCreator enemy4;
+    [Header("Enemies")]
+    public GameObject enemy1;
+    public GameObject enemy2;
+    public GameObject enemy3 ;
+    public GameObject enemy4;
+    // enemycreator objects
+    public EnemyCreator e1;
+    public EnemyCreator e2;
+    public EnemyCreator e3;
+    public EnemyCreator e4;
 
     // load the party stats when the player enters combat
     void Start() {
         Debug.Log("Loading Party Stats");
         FindObjectOfType<PartyStats>().LoadData();
+
+        // grabbing the enemy objects
+        e1 = enemy1.GetComponent<CombatEnemy>().eOb;
+        e2 = enemy2.GetComponent<CombatEnemy>().eOb;
+        e3 = enemy3.GetComponent<CombatEnemy>().eOb;
+        e4 = enemy4.GetComponent<CombatEnemy>().eOb;
     }
 
     void Update() {
-        // return to the overworld scene from the combat scene
+        // prints turn order
         // will remove later
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            FindObjectOfType<PartyStats>().SaveData();
-
-            SceneManager.LoadScene(1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.U)) {
-            startCombat();
-        }
-
         if (Input.GetKeyDown(KeyCode.I)) {
             startCombat();
             sortInitiative(initiativeCount);
@@ -49,6 +52,20 @@ public class CombatManager : MonoBehaviour
             Debug.Log(str);
             Debug.Log(" ");
         }
+
+        ///   Turn-Based Combat   \\\
+        // if it is one of the player characters' turn
+        if (initiativeNames[initiativeIndex] == "Raza") {
+            // method for actions goes here
+        }
+
+        // passing the turn
+        initiativeIndex++;
+
+        // if initiativeIndex is greater than 7, reset
+        if (initiativeIndex > 7) {
+            initiativeIndex = 0;
+        }
     }
 
     // method that "rolls" for combat initiative \\
@@ -56,15 +73,16 @@ public class CombatManager : MonoBehaviour
         // grabbing party stats
         PartyStats stats = FindObjectOfType<PartyStats>();
 
+        // creating new objects
+        e1 = new EnemyCreator();
+        e2 = new EnemyCreator();
+        e3 = new EnemyCreator();
+        e4 = new EnemyCreator();
         // creating the enemy objects
-        enemy1 = new EnemyCreator();
-        enemy2 = new EnemyCreator();
-        enemy3 = new EnemyCreator();
-        enemy4 = new EnemyCreator();
-        enemiesInCombat[0] = enemy1;
-        enemiesInCombat[1] = enemy2;
-        enemiesInCombat[2] = enemy3;
-        enemiesInCombat[3] = enemy4;
+        enemiesInCombat[0] = e1;
+        enemiesInCombat[1] = e2;
+        enemiesInCombat[2] = e3;
+        enemiesInCombat[3] = e4;
 
         // (temporary) reset the arrays
         for (int i = 0; i < 8; i++) {
@@ -78,10 +96,10 @@ public class CombatManager : MonoBehaviour
         initiativeCount[2] = Random.Range(1, 20) + stats.char3Dexterity; //Smithson
         initiativeCount[3] = Random.Range(1, 20) + stats.char4Dexterity; //Zor
         // enemy initiatives
-        initiativeCount[4] = Random.Range(1, 20) + enemy1.dexterity;
-        initiativeCount[5] = Random.Range(1, 20) + enemy2.dexterity;
-        initiativeCount[6] = Random.Range(1, 20) + enemy3.dexterity;
-        initiativeCount[7] = Random.Range(1, 20) + enemy4.dexterity;
+        initiativeCount[4] = Random.Range(1, 20) + e1.dexterity;
+        initiativeCount[5] = Random.Range(1, 20) + e2.dexterity;
+        initiativeCount[6] = Random.Range(1, 20) + e3.dexterity;
+        initiativeCount[7] = Random.Range(1, 20) + e4.dexterity;
 
         string str = "";
         for (int i = 0; i < initiativeCount.Length; i++) {
@@ -135,16 +153,16 @@ public class CombatManager : MonoBehaviour
             }
             // if one of those inititaives is from the enemies
             if (highestNumIndex == 4) {
-                initiativeNames[j] = enemy1.name;
+                initiativeNames[j] = e1.name;
             }
             else if (highestNumIndex == 5) {
-                initiativeNames[j] = enemy2.name;
+                initiativeNames[j] = e2.name;
             }
             else if (highestNumIndex == 6) {
-                initiativeNames[j] = enemy3.name;
+                initiativeNames[j] = e3.name;
             }
             else if (highestNumIndex == 7) {
-                initiativeNames[j] = enemy4.name;
+                initiativeNames[j] = e4.name;
             }
 
             // reset variables
