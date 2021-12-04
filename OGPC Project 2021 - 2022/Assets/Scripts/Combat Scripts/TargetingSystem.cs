@@ -24,6 +24,10 @@ public class TargetingSystem
 
     // method that waits for the player to click \\
     public IEnumerator waitForClick(Action callback) {
+        if (target != null) {
+            target = null;
+        }
+        
         while (target == null) {
             if (Input.GetMouseButtonDown(0)) {
                 target = this.onClick();
@@ -32,6 +36,5 @@ public class TargetingSystem
             yield return null;
         }
         if (callback != null) callback();
-        target = null;
     }
 }

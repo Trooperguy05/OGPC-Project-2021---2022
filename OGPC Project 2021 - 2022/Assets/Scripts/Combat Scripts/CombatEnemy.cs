@@ -6,4 +6,6 @@ public class CombatEnemy : MonoBehaviour
 {
     // enemy object
     public EnemyCreator eOb;
+    // the sprite renderer of the enemy
+    public SpriteRenderer sr;
 }
