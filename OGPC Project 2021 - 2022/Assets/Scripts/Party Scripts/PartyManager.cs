@@ -32,10 +32,17 @@ public class PartyManager : MonoBehaviour
 
     // character sprites
     [Header("Party Member Sprites")]
-    public Sprite character1SP; // character: Astar
-    public Sprite character2SP; // character: Gor
-    public Sprite character3SP; // character: Gadriel
-    public Sprite character4SP; // character: Lyra
+    public Sprite character1SP; // character: Raza
+    public Sprite character2SP; // character: Dorne
+    public Sprite character3SP; // character: Smithson
+    public Sprite character4SP; // character: Zor
+
+    // animators for cool portraits \\
+    [Header("Portrait Animators")]
+    //public Animator char1Animator;
+    //public Animator char2Animator;
+    public Animator char3Animator;
+    //public Animator char4Animator;
 
     // variables for tracking party member order
     public static int character1Order = 0;
@@ -83,6 +90,8 @@ public class PartyManager : MonoBehaviour
                 partyTabOpen = !partyTabOpen;
                 partyMenu.SetActive(partyTabOpen);
                 PlayerMovement.playerAbleMove = !partyTabOpen;
+                // activate the animations for the portraits
+                char3Animator.SetBool("animationOn", !char3Animator.GetBool("animationOn"));
             }
         }
 
