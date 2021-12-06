@@ -27,6 +27,9 @@ public class CombatManager : MonoBehaviour
     public EnemyCreator e3;
     public EnemyCreator e4;
 
+    // action scripts to monitor who's done what \\
+    private PlayerActions playerActions;
+
     // load the party stats when the player enters combat
     void Start() {
         Debug.Log("Loading Party Stats");
@@ -37,6 +40,9 @@ public class CombatManager : MonoBehaviour
         e2 = enemy2.GetComponent<CombatEnemy>().eOb;
         e3 = enemy3.GetComponent<CombatEnemy>().eOb;
         e4 = enemy4.GetComponent<CombatEnemy>().eOb;
+
+        // grabbing the action scripts
+        playerActions = GameObject.Find("Action Manager").GetComponent<PlayerActions>();
     }
 
     void Update() {
@@ -55,12 +61,13 @@ public class CombatManager : MonoBehaviour
 
         ///   Turn-Based Combat   \\\
         // if it is one of the player characters' turn
-        if (initiativeNames[initiativeIndex] == "Raza") {
-            // method for actions goes here
+        if (initiativeNames[initiativeIndex] == "Dorne") {
+            // if the player is done, pass the turn
+            if (playerActions.charDone) {
+                playerActions.charDone = false;
+                initiativeIndex++;
+            }
         }
-
-        // passing the turn
-        initiativeIndex++;
 
         // if initiativeIndex is greater than 7, reset
         if (initiativeIndex > 7) {
