@@ -57,9 +57,9 @@ public class PlayerActions : MonoBehaviour
         EnemyCreator enemy = getEnemy(target.name);
         // act on target
         int chanceToMiss = Random.Range(1, 100);
-        if (chanceToMiss >= 20) {
+        if (chanceToMiss <= 90) {
             enemy.health -= 10;
-            Debug.Log("Health: " + enemy.health);
+            Debug.Log(enemy.name + " health: " + enemy.health);
         }
     }
 

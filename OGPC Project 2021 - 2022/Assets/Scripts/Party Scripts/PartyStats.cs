@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PartyStats : MonoBehaviour
 {
@@ -70,7 +71,9 @@ public class PartyStats : MonoBehaviour
         PartyManager.partyOrder[2] = data.partyOrder[2];
         PartyManager.partyOrder[3] = data.partyOrder[3];
         // update the visuals based on the loaded data
-        FindObjectOfType<PartyManager>().updatePlayerSprite();
-        FindObjectOfType<PartyManager>().updatePartyWheel();
+        if (SceneManager.GetActiveScene().name == "Template Project" || SceneManager.GetActiveScene().name == "OverworldScene") {
+            FindObjectOfType<PartyManager>().updatePlayerSprite();
+            FindObjectOfType<PartyManager>().updatePartyWheel();
+        }
     }
 }
