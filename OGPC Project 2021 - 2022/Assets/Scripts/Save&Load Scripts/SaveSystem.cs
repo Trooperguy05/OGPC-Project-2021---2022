@@ -97,6 +97,37 @@ public static class SaveSystem
         }
     }
 
+    // saving specified enemy \\
+    public static void SaveSpecifiedEnemy(OpenWorldEnemy oE) {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/specifiedEnemy.txt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        SpecifiedEnemyData data = new SpecifiedEnemyData(oE);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    // loading specified enemy \\
+    public static SpecifiedEnemyData LoadSpecifiedEnemy() {
+        string path = Application.persistentDataPath + "/specifiedEnemy.txt";
+
+        if (File.Exists(path)) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            SpecifiedEnemyData data = formatter.Deserialize(stream) as SpecifiedEnemyData;
+            stream.Close();
+
+            return data;
+        }
+        else {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
+
     // delete save data \\
     public static void deleteSaveData() {
         string partyDataPath = Application.persistentDataPath + "/partyData.txt";

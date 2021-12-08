@@ -11,7 +11,7 @@ public class CombatManager : MonoBehaviour
     // arrays for tracking initiative \\
     [Header("Initiative")]
     private string[] initiativeNames = new string[8];
-    private float[] initiativeCount = new float[8];
+    private int[] initiativeCount = new int[8];
     public object[] enemiesInCombat = new object[4];
     public int initiativeIndex = 0;
 
@@ -26,6 +26,10 @@ public class CombatManager : MonoBehaviour
     public EnemyCreator e2;
     public EnemyCreator e3;
     public EnemyCreator e4;
+    // enemy field slots
+    //private int enemySlotsLeft = 4;
+    // specified enemies
+    private int specifiedEnemy;
 
     // action scripts to monitor who's done what \\
     private PlayerActions playerActions;
@@ -34,6 +38,9 @@ public class CombatManager : MonoBehaviour
     void Start() {
         Debug.Log("Loading Party Stats");
         FindObjectOfType<PartyStats>().LoadData();
+
+        // load specified enemy
+        getSpecifiedEnemy();
 
         // grabbing the enemy objects
         e1 = enemy1.GetComponent<CombatEnemy>().eOb;
@@ -81,7 +88,7 @@ public class CombatManager : MonoBehaviour
         PartyStats stats = FindObjectOfType<PartyStats>();
 
         // creating new objects
-        e1 = new EnemyCreator();
+        e1 = new EnemyCreator(specifiedEnemy);
         e2 = new EnemyCreator();
         e3 = new EnemyCreator();
         e4 = new EnemyCreator();
@@ -91,10 +98,24 @@ public class CombatManager : MonoBehaviour
         enemiesInCombat[2] = e3;
         enemiesInCombat[3] = e4;
 
+        // prototyping size variable of enemies \\ (To be worked on)
+        /*
+        for (int i = 0; i < enemiesInCombat.Length; i++) {
+            if (enemySlotsLeft > 0) {
+                if (!enemiesInCombat.Contains(e1)) {
+                    e1 = new EnemyCreator();
+                }
+            }
+            else {
+                break;
+            }
+        }
+        */
+
         // (temporary) reset the arrays
         for (int i = 0; i < 8; i++) {
             initiativeNames[i] = "";
-            initiativeCount[i] = 0f;
+            initiativeCount[i] = 0;
         }
 
         // player character initiatives
@@ -116,9 +137,9 @@ public class CombatManager : MonoBehaviour
     }
 
     // sorts the initiative \\
-    void sortInitiative(float[] arrIn) {
+    void sortInitiative(int[] arrIn) {
         int highestNumIndex = -1;
-        float highestNum = -20.0f;
+        int highestNum = -20;
         int numRep = 8;
         // get the highest initiative roll
         for (int j = 0; j < numRep; j++) {
@@ -143,7 +164,7 @@ public class CombatManager : MonoBehaviour
                     } while (person1 == person2);
                 }
             }
-            arrIn[highestNumIndex] = -21.0f;
+            arrIn[highestNumIndex] = -21;
 
             // if one of those initiatives is from the player characters
             if (highestNumIndex == 0 && !initiativeNames.Contains("Raza")) {
@@ -173,8 +194,15 @@ public class CombatManager : MonoBehaviour
             }
 
             // reset variables
-            highestNum = -20.0f;
+            highestNum = -20;
             highestNumIndex = -1;
         }
+    }
+
+    // method to get the specified enemy from the overworld enemy \\
+    private void getSpecifiedEnemy() {
+        Debug.Log("Loading Specified Enemy");
+        SpecifiedEnemyData data = SaveSystem.LoadSpecifiedEnemy();
+        specifiedEnemy = data.specifiedEnemy;
     }
 }

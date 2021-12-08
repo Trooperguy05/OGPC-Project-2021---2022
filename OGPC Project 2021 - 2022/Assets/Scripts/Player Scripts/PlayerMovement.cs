@@ -27,7 +27,10 @@ public class PlayerMovement : MonoBehaviour
     // move the player
     void FixedUpdate() {
         if (playerAbleMove) {
-            rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+            if (movement.y > movement.x) {
+                rb.MovePosition(rb.position.y + movement.y * speed * Time.fixedDeltaTime);
+            }
+            //rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
         }
     }
 }
