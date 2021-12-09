@@ -27,10 +27,13 @@ public class PlayerMovement : MonoBehaviour
     // move the player
     void FixedUpdate() {
         if (playerAbleMove) {
-            if (movement.y > movement.x) {
-                rb.MovePosition(rb.position.y + movement.y * speed * Time.fixedDeltaTime);
+            // only allowing the player to move one direction at a time
+            if (movement.x > 0.5f || movement.x < -0.5f) {
+                rb.MovePosition(rb.position + new Vector2(movement.x, 0f) * speed * Time.fixedDeltaTime);
             }
-            //rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+            else if (movement.y > 0.5f || movement.y < -0.5f) {
+                rb.MovePosition(rb.position + new Vector2(0f, movement.y) * speed * Time.fixedDeltaTime);
+            }
         }
     }
 }

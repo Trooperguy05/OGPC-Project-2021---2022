@@ -21,7 +21,12 @@ public class EnemyCreator
     }
     // creates a specified enemy
     public EnemyCreator(int num) {
-        this.createEnemy(num);
+        if (num == -1) {
+            this.createEnemyRandom();
+        }
+        else {
+            this.createEnemy(num);
+        }
     }
 
     // the object's to string method \\
@@ -30,10 +35,10 @@ public class EnemyCreator
         return text;
     }
 
-    ///   Method that creates the random enemy, random or specified   \\\
+    ///   Methods that creates the enemy, random or specified   \\\
     // random enemy
     private void createEnemyRandom() {
-        int chance = Random.Range(1, 3);
+        int chance = Random.Range(1, 5);
 
         // zombie enemy
         if (chance == 1) {
@@ -59,6 +64,22 @@ public class EnemyCreator
             dexterity = 0;
             size = 2;
         }
+        // adult red dragon enemy
+        else if (chance == 4) {
+            name = "Adult Red Dragon";
+            healthMax = 200;
+            manaMax = 100;
+            dexterity = 2;
+            size = 3;
+        }
+        // tarrasque enemy
+        else if (chance == 5) {
+            name = "Tarrasque";
+            healthMax = 300;
+            manaMax = 0;
+            dexterity = 2;
+            size = 4; 
+        }
         health = healthMax;
         mana = manaMax;
     }
@@ -70,6 +91,7 @@ public class EnemyCreator
             healthMax = 100;
             manaMax = 0;
             dexterity = -1;
+            size = 1;
         }
         // skeleton enemy
         else if (num == 2) {
@@ -77,6 +99,7 @@ public class EnemyCreator
             healthMax = 90;
             manaMax = 0;
             dexterity = 2;
+            size = 1;
         }
         // ooze enemy
         else if (num == 3) {
@@ -84,6 +107,23 @@ public class EnemyCreator
             healthMax = 110;
             manaMax = 0;
             dexterity = 0;
+            size = 2;
+        }
+        // adult red dragon enemy
+        else if (num == 4) {
+            name = "Adult Red Dragon";
+            healthMax = 200;
+            manaMax = 100;
+            dexterity = 2;
+            size = 3;
+        }
+        // tarrasque enemy
+        else if (num == 5) {
+            name = "Tarrasque";
+            healthMax = 300;
+            manaMax = 0;
+            dexterity = 2;
+            size = 4; 
         }
         health = healthMax;
         mana = manaMax;

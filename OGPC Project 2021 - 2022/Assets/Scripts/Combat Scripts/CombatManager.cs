@@ -12,7 +12,7 @@ public class CombatManager : MonoBehaviour
     [Header("Initiative")]
     private string[] initiativeNames = new string[8];
     private int[] initiativeCount = new int[8];
-    public object[] enemiesInCombat = new object[4];
+    public List<GameObject> enemiesInCombat = new List<GameObject>();
     public int initiativeIndex = 0;
 
     // enemies \\
@@ -27,7 +27,7 @@ public class CombatManager : MonoBehaviour
     public EnemyCreator e3;
     public EnemyCreator e4;
     // enemy field slots
-    //private int enemySlotsLeft = 4;
+    private int enemySlotsLeft = 4;
     // specified enemies
     private int specifiedEnemy;
 
@@ -68,6 +68,7 @@ public class CombatManager : MonoBehaviour
 
         ///   Turn-Based Combat   \\\
         // if it is one of the player characters' turn
+        /*
         if (initiativeNames[initiativeIndex] == "Dorne") {
             // if the player is done, pass the turn
             if (playerActions.charDone) {
@@ -75,6 +76,7 @@ public class CombatManager : MonoBehaviour
                 initiativeIndex++;
             }
         }
+        */
 
         // if initiativeIndex is greater than 7, reset
         if (initiativeIndex > 7) {
@@ -87,35 +89,68 @@ public class CombatManager : MonoBehaviour
         // grabbing party stats
         PartyStats stats = FindObjectOfType<PartyStats>();
 
-        // creating new objects
-        e1 = new EnemyCreator(specifiedEnemy);
-        e2 = new EnemyCreator();
-        e3 = new EnemyCreator();
-        e4 = new EnemyCreator();
-        // creating the enemy objects
-        enemiesInCombat[0] = e1;
-        enemiesInCombat[1] = e2;
-        enemiesInCombat[2] = e3;
-        enemiesInCombat[3] = e4;
+        // (temporary) reset the arrays
+        for (int h = 0; h < 8; h++) {
+            initiativeNames[h] = "";
+            initiativeCount[h] = 0;
+        }
+        e1 = null;
+        e2 = null;
+        e3 = null;
+        e4 = null;
 
         // prototyping size variable of enemies \\ (To be worked on)
-        /*
-        for (int i = 0; i < enemiesInCombat.Length; i++) {
-            if (enemySlotsLeft > 0) {
-                if (!enemiesInCombat.Contains(e1)) {
-                    e1 = new EnemyCreator();
+        int i = 0;
+        while (enemySlotsLeft > 0) {
+            if (e1 == null) {
+                e1 = new EnemyCreator();
+                if (enemySlotsLeft >= e1.size) {
+                    enemySlotsLeft -= e1.size;
+                    initiativeCount[4+i] = Random.Range(1, 20) + e1.dexterity;   
+                    i++;                   
+                }
+                else {
+                    e1 = null;
                 }
             }
-            else {
+            else if (e2 == null) {
+                e2 = new EnemyCreator();
+                if (enemySlotsLeft >= e2.size) {
+                    enemySlotsLeft -= e2.size;
+                    initiativeCount[4+i] = Random.Range(1, 20) + e2.dexterity;
+                    i++;                  
+                }
+                else {
+                    e2 = null;
+                }
+            }
+            else if (e3 == null) {
+                e3 = new EnemyCreator();
+                if (enemySlotsLeft >= e3.size) {
+                    enemySlotsLeft -= e3.size;
+                    initiativeCount[4+i] = Random.Range(1, 20) + e3.dexterity;
+                    i++;                    
+                }
+                else {
+                    e3 = null;
+                }
+            }
+            else if (e4 == null) {
+                e4 = new EnemyCreator();
+                if (enemySlotsLeft >= e4.size) {
+                    enemySlotsLeft -= e4.size;
+                    initiativeCount[4+i] = Random.Range(1, 20) + e4.dexterity;
+                    i++;                     
+                }
+                else {
+                    e4 = null;
+                }
+            }
+            Debug.Log("Slots left: " + enemySlotsLeft);
+
+            if (enemySlotsLeft <= 0) {
                 break;
             }
-        }
-        */
-
-        // (temporary) reset the arrays
-        for (int i = 0; i < 8; i++) {
-            initiativeNames[i] = "";
-            initiativeCount[i] = 0;
         }
 
         // player character initiatives
@@ -123,15 +158,10 @@ public class CombatManager : MonoBehaviour
         initiativeCount[1] = Random.Range(1, 20) + stats.char2Dexterity; //Dorne
         initiativeCount[2] = Random.Range(1, 20) + stats.char3Dexterity; //Smithson
         initiativeCount[3] = Random.Range(1, 20) + stats.char4Dexterity; //Zor
-        // enemy initiatives
-        initiativeCount[4] = Random.Range(1, 20) + e1.dexterity;
-        initiativeCount[5] = Random.Range(1, 20) + e2.dexterity;
-        initiativeCount[6] = Random.Range(1, 20) + e3.dexterity;
-        initiativeCount[7] = Random.Range(1, 20) + e4.dexterity;
 
         string str = "";
-        for (int i = 0; i < initiativeCount.Length; i++) {
-            str += initiativeCount[i] + ", ";
+        for (int j = 0; j < initiativeCount.Length; j++) {
+            str += initiativeCount[j] + ", ";
         }
         Debug.Log(str);
     }
@@ -180,22 +210,40 @@ public class CombatManager : MonoBehaviour
                 initiativeNames[j] = "Zor";
             }
             // if one of those inititaives is from the enemies
-            if (highestNumIndex == 4) {
+            if (highestNumIndex == 4 && e1 != null) {
                 initiativeNames[j] = e1.name;
+                enemiesInCombat.Add(enemy1);
             }
-            else if (highestNumIndex == 5) {
+            else if (highestNumIndex == 5 && e2 != null) {
                 initiativeNames[j] = e2.name;
+                enemiesInCombat.Add(enemy2);
             }
-            else if (highestNumIndex == 6) {
+            else if (highestNumIndex == 6 && e3 != null) {
                 initiativeNames[j] = e3.name;
+                enemiesInCombat.Add(enemy3);
             }
-            else if (highestNumIndex == 7) {
+            else if (highestNumIndex == 7 && e4 != null) {
                 initiativeNames[j] = e4.name;
+                enemiesInCombat.Add(enemy4);
             }
 
             // reset variables
             highestNum = -20;
             highestNumIndex = -1;
+        }
+
+        // if the enemiesincombat doesn't have the enemy gameobject, disable it
+        if (!enemiesInCombat.Contains(enemy1)) {
+            enemy1.SetActive(false);
+        }
+        if (!enemiesInCombat.Contains(enemy2)) {
+            enemy2.SetActive(false);
+        }
+        if (!enemiesInCombat.Contains(enemy3)) {
+            enemy3.SetActive(false);
+        }
+        if (!enemiesInCombat.Contains(enemy4)) {
+            enemy4.SetActive(false);
         }
     }
 
