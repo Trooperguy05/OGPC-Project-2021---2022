@@ -86,8 +86,8 @@ public class PlayerActions : MonoBehaviour
             }
             else{
                 // rolls normal attack chance
-                int chanceToMiss = Random.Range(1, 100);
-                if (chanceToMiss <= 90 || Deadeye) {
+                int chanceToHit = Random.Range(1, 100);
+                if (chanceToHit <= 90 || Deadeye) {
                     enemy.health -= dmg;
                     Debug.Log(enemy.name + " health: " + enemy.health);
                     dmg = 30;
@@ -98,7 +98,9 @@ public class PlayerActions : MonoBehaviour
     }
     // deadeye \\
     public void razaAim(){
-        Deadeye = true;
+        if (!Deadeye) {
+            Deadeye = true;
+        }
     }
     //  mark   \\
     public void razaMark(){
@@ -107,7 +109,9 @@ public class PlayerActions : MonoBehaviour
     }
     // trick shot \\
     public void razaGamble(){
-        Gamble = true;
+        if (!Gamble) {
+            Gamble = true;
+        }
     }
     
     /////   Character: Dorne's Actions   \\\\\
@@ -125,8 +129,8 @@ public class PlayerActions : MonoBehaviour
         GameObject target = ts.target;
         EnemyCreator enemy = getEnemy(target.name);
         // act on target
-        int chanceToMiss = Random.Range(1, 100);
-        if (chanceToMiss <= 90) {
+        int chanceToHit = Random.Range(1, 100);
+        if (chanceToHit <= 90) {
             enemy.health -= 40;
             Debug.Log(enemy.name + " health: " + enemy.health);
         }
@@ -137,12 +141,15 @@ public class PlayerActions : MonoBehaviour
         GameObject target = ts.target;
         EnemyCreator enemy = getEnemy(target.name);
         // act on target
-        int chanceToMiss = Random.Range(1, 100);
-        if (chanceToMiss <= 90) {
+        int chanceToHit = Random.Range(1, 100);
+        if (chanceToHit <= 90) {
             enemy.health -= 25;
             Debug.Log(enemy.name + " health: " + enemy.health);
             // reduces enemy mana
             enemy.mana -= 35;
+            if (enemy.mana < 0) {
+                enemy.mana = 0;
+            } 
         }
     }
     //  Cavalier Charge \\
@@ -150,24 +157,25 @@ public class PlayerActions : MonoBehaviour
         // wait for target to return
         GameObject target = ts.target;
         EnemyCreator enemy = getEnemy(target.name);
-        int chanceToMiss = Random.Range(1, 100);
+        int chanceToHit = Random.Range(1, 100);
         // act on target
-        if (chanceToMiss <= 90) {
+        if (chanceToHit <= 90) {
             //randomize damage on charge
             enemy.health -= Random.Range(1, 70);
             enemy.health -= Random.Range(1, 70);
             enemy.health -= Random.Range(1, 70);
             Debug.Log(enemy.name + " health: " + enemy.health);
             //subtract Random.Range(1, 30) to Dorne
-        }
-
-        
+            pS.char2HP -= Random.Range(1,30);
+        } 
     }
     //  Tighten Harness \\
     // Will increase Dorne's dex/speed once by 2 when initiative is reprogrammed
     public void dorneSpeedUp() {
         // increases dorne's speed in initiative
         cm.initiativeCount[1] = cm.initiativeCount[1] + 2;
+        // then resort the initiative order
+        cm.sortInitiative(cm.initiativeCount);
     }
     
     /////   Character: Smithson's Actions   \\\\\
@@ -178,8 +186,8 @@ public class PlayerActions : MonoBehaviour
         GameObject target = ts.target;
         EnemyCreator enemy = getEnemy(target.name);
         // act on target
-        int chanceToMiss = Random.Range(1, 100);
-        if (chanceToMiss <= 90) {
+        int chanceToHit = Random.Range(1, 100);
+        if (chanceToHit <= 90) {
             if (enemy.health < enemy.healthMax / 2){
                 enemy.health -= 35;
             }

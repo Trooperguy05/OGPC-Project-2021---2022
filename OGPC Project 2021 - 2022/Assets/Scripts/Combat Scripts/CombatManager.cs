@@ -78,8 +78,6 @@ public class CombatManager : MonoBehaviour
             }
             Debug.Log(str);
 
-            sortInitiative(initiativeCount);
-
             string str2 = "";
             for (int i = 0; i < initiativeNames.Length; i++) {
                 if (i != initiativeNames.Length-1) {
@@ -194,7 +192,7 @@ public class CombatManager : MonoBehaviour
     }
 
     // sorts the initiative \\
-    void sortInitiative(int[] arrIn) {
+    public void sortInitiative(int[] arrIn) {
         // reset the initiativenames if it isn't empty
         for (int i = 0; i <initiativeNames.Length; i++) {
             initiativeNames[i] = "";
