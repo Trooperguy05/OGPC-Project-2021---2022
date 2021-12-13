@@ -11,12 +11,16 @@ public class PlayerActions : MonoBehaviour
     public bool Deadeye = false;
     public GameObject Mark;
     public bool Gamble;
+
     // targeting system variable
     private TargetingSystem ts;
 
     // combat manager
     public GameObject combatManager;
     private CombatManager cm;
+
+    // party stats manager
+    private PartyStats pS;
 
     // variable that tells the combatmanager if the player is done
     // with a character's turn
@@ -28,6 +32,8 @@ public class PlayerActions : MonoBehaviour
         ts = new TargetingSystem();
         // get the combat manager script
         cm = combatManager.GetComponent<CombatManager>();
+        // get the party stats manager
+        pS = GameObject.Find("Party Manager").GetComponent<PartyStats>();
     }
 
     /////     Help Methods (makes life easier)     \\\\\

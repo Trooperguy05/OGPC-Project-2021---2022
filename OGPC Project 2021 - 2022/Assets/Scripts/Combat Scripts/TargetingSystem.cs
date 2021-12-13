@@ -7,6 +7,7 @@ public class TargetingSystem
 {
     // the target of the click \\
     public GameObject target;
+    public List<GameObject> targetList = new List<GameObject>();
 
     // empty constructor because it doesn't need anything \\
     public TargetingSystem() { }
@@ -35,6 +36,35 @@ public class TargetingSystem
             }
             yield return null;
         }
+        if (callback != null) callback();
+    }
+
+    // method that waits for the player to click on multiple 'things' \\
+    public IEnumerator waitForClick(Action callback, int num) {
+        // reset
+        if (target != null) {
+            target = null;
+        }
+        if (targetList.Count != -1) {
+            for (int i = 0; i < targetList.Count; i++) {
+                targetList.RemoveAt(0);
+            }
+        }
+
+        // main checking
+        for (int i = 0; i < num; i++) {
+            while (target == null) {
+                if (Input.GetMouseButtonDown(0)) {
+                    target = this.onClick();
+                    targetList.Add(target);
+                    yield return target;
+                }
+                yield return null;
+            }
+            target = null;
+        }
+
+        // callback to player action functions
         if (callback != null) callback();
     }
 }
