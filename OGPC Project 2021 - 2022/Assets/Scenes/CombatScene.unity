@@ -1188,6 +1188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f043c1bab6aed4c8240d3f8d14a0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initiativeCount: 0000000000000000000000000000000000000000000000000000000000000000
   enemiesInCombat: []
   initiativeIndex: 0
   enemy1: {fileID: 421992108}
@@ -1433,7 +1434,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1573467614}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
-        m_MethodName: execute_testing
+        m_MethodName: execute_dorneSpeedUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1579,7 +1580,6 @@ MonoBehaviour:
   Deadeye: 0
   Mark: {fileID: 0}
   Gamble: 0
-  combatManager: {fileID: 1105582660}
   charDone: 0
 --- !u!4 &1573467615
 Transform:

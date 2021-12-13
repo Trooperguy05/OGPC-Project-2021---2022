@@ -11,7 +11,7 @@ public class CombatManager : MonoBehaviour
     // arrays for tracking initiative \\
     [Header("Initiative")]
     private string[] initiativeNames = new string[8];
-    private int[] initiativeCount = new int[8];
+    public int[] initiativeCount = new int[8];
     public List<GameObject> enemiesInCombat = new List<GameObject>();
     public int initiativeIndex = 0;
 
@@ -66,6 +66,32 @@ public class CombatManager : MonoBehaviour
             Debug.Log(" ");
         }
 
+        if (Input.GetKeyDown(KeyCode.J)) {
+            string str = "";
+            for (int i = 0; i < initiativeCount.Length; i++) {
+                if (i != initiativeCount.Length-1) {
+                    str += initiativeCount[i] + ", ";
+                }
+                else {
+                    str += initiativeCount[i];
+                }
+            }
+            Debug.Log(str);
+
+            sortInitiative(initiativeCount);
+
+            string str2 = "";
+            for (int i = 0; i < initiativeNames.Length; i++) {
+                if (i != initiativeNames.Length-1) {
+                    str2 += initiativeNames[i] + ", ";
+                }
+                else {
+                    str2 += initiativeNames[i];
+                }
+            }
+            Debug.Log(str2);
+        }
+
         ///   Turn-Based Combat   \\\
         // if it is one of the player characters' turn
         /*
@@ -76,12 +102,12 @@ public class CombatManager : MonoBehaviour
                 initiativeIndex++;
             }
         }
-        */
 
         // if initiativeIndex is greater than 7, reset
         if (initiativeIndex > 7) {
             initiativeIndex = 0;
         }
+        */
     }
 
     // method that "rolls" for combat initiative \\
@@ -98,8 +124,9 @@ public class CombatManager : MonoBehaviour
         e2 = null;
         e3 = null;
         e4 = null;
+        enemySlotsLeft = 4;
 
-        // prototyping size variable of enemies \\ (To be worked on)
+        // create enemies based on size and space left \\
         int i = 0;
         while (enemySlotsLeft > 0) {
             if (e1 == null) {
@@ -168,33 +195,45 @@ public class CombatManager : MonoBehaviour
 
     // sorts the initiative \\
     void sortInitiative(int[] arrIn) {
+        // reset the initiativenames if it isn't empty
+        for (int i = 0; i <initiativeNames.Length; i++) {
+            initiativeNames[i] = "";
+        }
+        // variables used in algorithm
         int highestNumIndex = -1;
         int highestNum = -20;
         int numRep = 8;
+        int[] tempArr = new int[8];
+
+        // setting up the temporary array for initiative sorting
+        for (int u = 0; u < arrIn.Length; u++) {
+            tempArr[u] = arrIn[u];
+        }
+
         // get the highest initiative roll
         for (int j = 0; j < numRep; j++) {
             for (int i = 0; i < numRep; i++) {
                 // checking the highest
-                if (highestNum < arrIn[i]) {
-                    highestNum = arrIn[i];
+                if (highestNum < tempArr[i]) {
+                    highestNum = tempArr[i];
                     highestNumIndex = i;
                 }
                 // checking for duplicates
                 int person1 = 0; // the original highest
                 int person2 = 0; // the equal
-                if (highestNum == arrIn[i]) {
+                if (highestNum == tempArr[i]) {
                     do {
                         person1 = Random.Range(1, 20);
                         person2 = Random.Range(1, 20);
 
                         if (person1 < person2) {
-                            highestNum = arrIn[i];
+                            highestNum = tempArr[i];
                             highestNumIndex = i;
                         }
                     } while (person1 == person2);
                 }
             }
-            arrIn[highestNumIndex] = -21;
+            tempArr[highestNumIndex] = -21;
 
             // if one of those initiatives is from the player characters
             if (highestNumIndex == 0 && !initiativeNames.Contains("Raza")) {

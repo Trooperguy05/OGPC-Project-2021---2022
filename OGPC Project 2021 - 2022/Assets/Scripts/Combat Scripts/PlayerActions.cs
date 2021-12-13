@@ -16,9 +16,7 @@ public class PlayerActions : MonoBehaviour
     private TargetingSystem ts;
 
     // combat manager
-    public GameObject combatManager;
     private CombatManager cm;
-
     // party stats manager
     private PartyStats pS;
 
@@ -31,7 +29,7 @@ public class PlayerActions : MonoBehaviour
         // create a new targeting system
         ts = new TargetingSystem();
         // get the combat manager script
-        cm = combatManager.GetComponent<CombatManager>();
+        cm = GameObject.Find("Combat Manager").GetComponent<CombatManager>();
         // get the party stats manager
         pS = GameObject.Find("Party Manager").GetComponent<PartyStats>();
     }
@@ -117,6 +115,9 @@ public class PlayerActions : MonoBehaviour
     public void execute_dorneStrike() {
         StartCoroutine(ts.waitForClick(dorneStrike));
     }
+    public void execute_dorneSpeedUp() {
+        dorneSpeedUp();
+    }
     /// Actions \\\
     // basic strike action \\
     public void dorneStrike() {
@@ -164,6 +165,10 @@ public class PlayerActions : MonoBehaviour
     }
     //  Tighten Harness \\
     // Will increase Dorne's dex/speed once by 2 when initiative is reprogrammed
+    public void dorneSpeedUp() {
+        // increases dorne's speed in initiative
+        cm.initiativeCount[1] = cm.initiativeCount[1] + 2;
+    }
     
     /////   Character: Smithson's Actions   \\\\\
     /// Action Wrappers \\\
