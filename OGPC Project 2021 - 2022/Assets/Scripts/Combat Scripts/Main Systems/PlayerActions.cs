@@ -8,9 +8,18 @@ using Random=UnityEngine.Random;
 public class PlayerActions : MonoBehaviour
 {
     // character specific abilities
+
+    // Raza
     public bool Deadeye = false;
     public GameObject Mark;
     public bool Gamble;
+
+    // Zor
+    public bool Enraged = false;
+
+    public int ZorDamage = 60;
+
+    public int ZorToHit = 80;
 
     // targeting system variable
     private TargetingSystem ts;
@@ -51,6 +60,7 @@ public class PlayerActions : MonoBehaviour
         }
         return null;
     }
+
     //////  Character: Raza's Actions   \\\\\
     /// Action Wrappers \\\
     /// Actions \\\
@@ -97,12 +107,15 @@ public class PlayerActions : MonoBehaviour
         }
     }
     // deadeye \\
+    // Automatically triggers a critical hit and guarantees an attack hits
+    // unless trick shot is active
     public void razaAim(){
         if (!Deadeye) {
             Deadeye = true;
         }
     }
     //  mark   \\
+    // not finished
     public void razaMark(){
         GameObject target = ts.target;
         Mark = target;
@@ -123,7 +136,7 @@ public class PlayerActions : MonoBehaviour
         dorneSpeedUp();
     }
     /// Actions \\\
-    // basic strike action \\
+    // A basic attack\\
     public void dorneStrike() {
         // wait for target to return
         GameObject target = ts.target;
@@ -136,6 +149,7 @@ public class PlayerActions : MonoBehaviour
         }
     }
     //  Arcane Counter  \\
+    // Lowers the mana of the target (though this applies to few enemies).
     public void dorneMage(){
         // wait for target to return
         GameObject target = ts.target;
@@ -153,6 +167,8 @@ public class PlayerActions : MonoBehaviour
         }
     }
     //  Cavalier Charge \\
+    // Deals a random amount of damage 3 times over to one enemy, while
+    // doing a lower amount of random damage to Dorne.
     public void dorneCharge(){
         // wait for target to return
         GameObject target = ts.target;
@@ -170,7 +186,7 @@ public class PlayerActions : MonoBehaviour
         } 
     }
     //  Tighten Harness \\
-    // Will increase Dorne's dex/speed once by 2 when initiative is reprogrammed
+    // Will increase Dorne's initiative by 2
     public void dorneSpeedUp() {
         // increases dorne's speed in initiative
         cm.initiativeCount[1] = cm.initiativeCount[1] + 2;
@@ -180,7 +196,10 @@ public class PlayerActions : MonoBehaviour
     
     /////   Character: Smithson's Actions   \\\\\
     /// Action Wrappers \\\
+    // Actions \\
     //  Bony Grasp  \\
+    // Basic attack dealing 35 damage, doing an extra 20 if that enemy is
+    // below half of its maximum health.
     public void smithsonGrab(){
         // wait for target to return
         GameObject target = ts.target;
@@ -199,6 +218,150 @@ public class PlayerActions : MonoBehaviour
     }
 
     //  Siphon Life \\
-    // Deals 50 damage, costs 15 mana, heals Smithson for 20, heals for 30 if enemy dies
+    // Deals 50 damage, heals Smithson for 20 plus an additional 10 if the
+    // enemy dies
+   public void smithsonSteal(){
+       //wait for target to return
+       GameObject target = ts.target;
+       EnemyCreator enemy = getEnemy(target.name);
+       //act on target
+       int chanceToHit = Random.Range(1, 100);
+       if (chanceToHit <= 90 && pS.char3Mana >= 15){
 
+           // deals damage and heals caster
+           enemy.health -= 50;
+           pS.char3HP += 20;
+           pS.char3Mana -= 15;
+
+           // if enemy is killed, heal user
+           if (enemy.health <= 0){
+               pS.char3HP += 10;
+           }
+       } else {
+           // spell wiff effect
+       }
+   }
+
+   // Chill of the Grave \\
+   // Targets all enemies, dealing 25 damage and reducing their initiative 
+   // count by 1
+    public void smithsonAOE(){
+        // check if necessary mana remains
+        if (pS.char3Mana >= 40){
+            // subtract mana
+            pS.char3Mana -= 40;
+            // Targets all enenies, dealing damage and reducing their initiative order
+            List<GameObject> targets = ts.targetList;
+            if (cm.e1 != null){
+                cm.e1.health -= 25;
+                cm.initiativeCount[4] -= 1;
+            }
+            if (cm.e2 != null){
+                cm.e2.health -= 25;
+                cm.initiativeCount[5] -= 1;
+            }
+            if (cm.e3 != null){
+                cm.e3.health -= 25;
+                cm.initiativeCount[6] -= 1;
+            }
+            if (cm.e4 != null){
+                cm.e4.health -= 25;
+                cm.initiativeCount[7] -= 1;
+            }
+            cm.sortInitiative(cm.initiativeCount);
+        }
+    }
+
+    // Clean Wounds \\
+    // Basic healing spell, heals for 35.
+    public void smithsonHeal(){
+        // check for mana
+        if (pS.char3Mana >= 10){
+            pS.char3Mana -= 10;
+                GameObject target = ts.target;
+                if (target.name == "Raza"){
+                    pS.char1HP += 35;
+                }
+                else if (target.name == "Dorne"){
+                    pS.char2HP += 35;
+                }
+                else if (target.name == "Smithson"){
+                    pS.char3HP += 35;
+                }
+                else if (target.name == "Zor"){
+                    pS.char4HP += 35;
+                }
+            
+        }
+    }
+    /////   Character: Zor's Actions   \\\\\
+    /// Action Wrappers \\\
+    // Actions \\
+    // Cleave \\
+    // Deals damage to a single enemy, increases in damage but decreases 
+    //in accuracy per hit if rage is active
+    public void zorCleave(){
+        // target enemy
+        GameObject target = ts.target;
+        EnemyCreator enemy = getEnemy(target.name);
+        int hitChance = 90;
+        int chanceToHit = Random.Range(1, 100);
+        if (Enraged){
+            hitChance = ZorToHit;
+        } else {
+            ZorDamage = 60;
+            hitChance = 90;
+        }
+        //chance to hit
+        if (chanceToHit <= hitChance){
+            enemy.health -= ZorDamage;
+            ZorDamage += 10;
+            ZorToHit -= 5;
+        }
+    }
+
+    // Tempestuous Fury \\
+    // Induces rage, which allows exclusively for the use of cleave but increases damage with each use.
+
+    public void zorAngy(){
+        //can be toggled
+        Enraged = !Enraged;
+    }
+
+    // Barbaric Bolt \\
+    // Targets two enemies, dealing 25 damage each
+    public void zorZap(){
+        if (!Enraged){
+            //chance to hit
+            int chanceToHit = Random.Range(1, 100);
+            if (chanceToHit <= 90) {
+                for(int i = 0; i < 2; i++){
+                    //hits two enemies
+                    getEnemy(ts.targetList[i].name).health -= 25;
+                }
+            }
+        }
+    }
+
+    // Hurricane \\
+    // General attack targeting all enemies, dealing 35 damage to all.
+    public void zorAOE(){
+        if (!Enraged){
+            // Targets everyone
+
+            List<GameObject> targets = ts.targetList;
+            if (cm.e1 != null){
+                cm.e1.health -= 35;
+            }
+            if (cm.e2 != null){
+                cm.e2.health -= 35;
+            }
+            if (cm.e3 != null){
+                cm.e3.health -= 35;
+            }
+            if (cm.e4 != null){
+                cm.e4.health -= 35;
+            }
+        }
+    }
 }
