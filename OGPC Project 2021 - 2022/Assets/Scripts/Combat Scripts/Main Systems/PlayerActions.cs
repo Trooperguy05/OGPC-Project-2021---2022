@@ -8,17 +8,15 @@ using Random=UnityEngine.Random;
 public class PlayerActions : MonoBehaviour
 {
     // character specific abilities
-
     // Raza
     public bool Deadeye = false;
     public GameObject Mark;
+    public int markTurn; // turn that player marked an enemy
     public bool Gamble;
-
     // Zor
     public bool Enraged = false;
-
+    public int enragedTurn; // turn that player enraged
     public int ZorDamage = 60;
-
     public int ZorToHit = 80;
 
     // targeting system variable
@@ -59,6 +57,24 @@ public class PlayerActions : MonoBehaviour
             return cm.e4;
         }
         return null;
+    }
+
+    // update the player character specific variables based on round number \\
+    public void updatePCVariables() {
+        // reset Raza's mark if the durability runs out
+        if (Mark != null) {
+            if (cm.roundNum == markTurn + 2) { // number of turns the mark lasts equals the turn the player
+                Mark = null;                   // marked plus the amount of turns we want the mark to last
+                markTurn = 0;
+            }
+        }
+        // reset Zor's enraged if durability runs out
+        if (Enraged) {
+            if (cm.roundNum == enragedTurn + 2) { // number of turns the enrage lasts equals the turn the player
+                Enraged = false;                  // enrages plus the amount of turns we want the enrage to last
+                enragedTurn = 0;
+            }
+        }
     }
 
     //////  Character: Raza's Actions   \\\\\
@@ -119,6 +135,7 @@ public class PlayerActions : MonoBehaviour
     public void razaMark(){
         GameObject target = ts.target;
         Mark = target;
+        markTurn = cm.roundNum;
     }
     // trick shot \\
     public void razaGamble(){
@@ -220,27 +237,27 @@ public class PlayerActions : MonoBehaviour
     //  Siphon Life \\
     // Deals 50 damage, heals Smithson for 20 plus an additional 10 if the
     // enemy dies
-   public void smithsonSteal(){
-       //wait for target to return
-       GameObject target = ts.target;
-       EnemyCreator enemy = getEnemy(target.name);
-       //act on target
-       int chanceToHit = Random.Range(1, 100);
-       if (chanceToHit <= 90 && pS.char3Mana >= 15){
+    public void smithsonSteal(){
+        //wait for target to return
+        GameObject target = ts.target;
+        EnemyCreator enemy = getEnemy(target.name);
+        //act on target
+        int chanceToHit = Random.Range(1, 100);
+        if (chanceToHit <= 90 && pS.char3Mana >= 15){
+            // deals damage and heals caster
+            enemy.health -= 50;
+            pS.char3HP += 20;
+            pS.char3Mana -= 15;
 
-           // deals damage and heals caster
-           enemy.health -= 50;
-           pS.char3HP += 20;
-           pS.char3Mana -= 15;
-
-           // if enemy is killed, heal user
-           if (enemy.health <= 0){
-               pS.char3HP += 10;
-           }
-       } else {
-           // spell wiff effect
-       }
-   }
+            // if enemy is killed, heal user
+            if (enemy.health <= 0){
+                pS.char3HP += 10;
+            }
+        } 
+        else {
+            // spell wiff effect
+        }
+    }
 
    // Chill of the Grave \\
    // Targets all enemies, dealing 25 damage and reducing their initiative 
@@ -322,10 +339,15 @@ public class PlayerActions : MonoBehaviour
 
     // Tempestuous Fury \\
     // Induces rage, which allows exclusively for the use of cleave but increases damage with each use.
-
     public void zorAngy(){
         //can be toggled
         Enraged = !Enraged;
+        if (Enraged) {
+            enragedTurn = cm.roundNum;
+        }
+        else {
+            enragedTurn = 0;
+        }
     }
 
     // Barbaric Bolt \\
@@ -348,7 +370,6 @@ public class PlayerActions : MonoBehaviour
     public void zorAOE(){
         if (!Enraged){
             // Targets everyone
-
             List<GameObject> targets = ts.targetList;
             if (cm.e1 != null){
                 cm.e1.health -= 35;

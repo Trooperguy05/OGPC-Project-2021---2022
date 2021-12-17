@@ -14,6 +14,7 @@ public class CombatManager : MonoBehaviour
     public int[] initiativeCount = new int[8];
     public List<GameObject> enemiesInCombat = new List<GameObject>();
     public int initiativeIndex = 0;
+    public int roundNum = 1;
 
     // enemies \\
     [Header("Enemies")]
@@ -88,6 +89,14 @@ public class CombatManager : MonoBehaviour
                 }
             }
             Debug.Log(str2);
+        }
+
+        // round stuff \\
+        if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            roundNum++;
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+            roundNum--;
         }
 
         ///   Turn-Based Combat   \\\
@@ -191,10 +200,10 @@ public class CombatManager : MonoBehaviour
         Debug.Log(str);
     }
 
-    // sorts the initiative \\
+    // sorts the initiative from highest to lowest \\
     public void sortInitiative(int[] arrIn) {
         // reset the initiativenames if it isn't empty
-        for (int i = 0; i <initiativeNames.Length; i++) {
+        for (int i = 0; i < initiativeNames.Length; i++) {
             initiativeNames[i] = "";
         }
         // variables used in algorithm
