@@ -39,10 +39,10 @@ public class PartyManager : MonoBehaviour
 
     // animators for cool portraits \\
     [Header("Portrait Animators")]
-    //public Animator char1Animator;
-    //public Animator char2Animator;
+    public Animator char1Animator;
+    public Animator char2Animator;
     public Animator char3Animator;
-    //public Animator char4Animator;
+    public Animator char4Animator;
 
     // variables for tracking party member order
     public static int character1Order = 0;
@@ -87,11 +87,16 @@ public class PartyManager : MonoBehaviour
         // if the player presses tab, open the party menu
         if (Input.GetKeyDown(KeyCode.Tab)) {
             if (!FindObjectOfType<PauseMenu>().pauseMenuOpen) { // making sure the pause menu isn't open before opening party wheel
+                // open the menu
                 partyTabOpen = !partyTabOpen;
                 partyMenu.SetActive(partyTabOpen);
-                PlayerMovement.playerAbleMove = !partyTabOpen;
                 // activate the animations for the portraits
+                char1Animator.SetBool("animationOn", !char1Animator.GetBool("animationOn"));
+                char2Animator.SetBool("animationOn", !char2Animator.GetBool("animationOn"));
                 char3Animator.SetBool("animationOn", !char3Animator.GetBool("animationOn"));
+                char4Animator.SetBool("animationOn", !char4Animator.GetBool("animationOn"));
+                // disable the player movement
+                PlayerMovement.playerAbleMove = !partyTabOpen;
             }
         }
 
