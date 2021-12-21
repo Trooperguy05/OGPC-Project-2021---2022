@@ -2,22 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Item
 {
-    // basic item properties
-    public string name;
-    public bool consumable;
-    public int quantity;
-
-    // item constructor
-    public Item(string n, bool c, int q) {
-        this.name = n;
-        this.consumable = c;
-        this.quantity = q;
+    // list of items in the game \\
+    public enum ItemType {
+        Coin,
+        HealthPotion,
+        ManaPotion,
     }
 
-    // to string method
-    public string toString() {
-        return "Name: " + name + "\n Consumable: " + consumable + "\n Quantity: " + quantity;
+    // itme properties \\
+    public ItemType itemType;
+    public int quantity;
+    public bool stackable;
+    private bool consumable;
+
+    // item constructor
+    public Item(int itemNum, int amount, bool stack, bool consume) {
+        itemType = (ItemType)itemNum;
+        quantity = amount;
+        stackable = stack;
+        consumable = consume;
+    }
+
+    // method that returns whether the item can be consumed \\
+    public bool isConsumable() {
+        return consumable;
     }
 }

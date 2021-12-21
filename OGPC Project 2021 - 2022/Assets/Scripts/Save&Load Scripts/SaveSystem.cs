@@ -128,11 +128,43 @@ public static class SaveSystem
         }
     }
 
+    // saving the player inventory \\
+    public static void SavePlayerInventory(Inventory inv) {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/inventory.txt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        InventoryData data = new InventoryData(inv);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    // load the player inventory \\
+    public static InventoryData LoadPlayerInventory() {
+        string path = Application.persistentDataPath + "/inventory.txt";
+
+        if (File.Exists(path)) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            InventoryData data = formatter.Deserialize(stream) as InventoryData;
+            stream.Close();
+            
+            return data;
+        }
+        else {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
+
     // delete save data \\
     public static void deleteSaveData() {
         string partyDataPath = Application.persistentDataPath + "/partyData.txt";
         string playerDataPath = Application.persistentDataPath + "/playerData.txt";
         string enemyDataPath = Application.persistentDataPath + "/activeEnemies.txt";
+        string invDataPath = Application.persistentDataPath + "/inventory.txt";
 
         // delete the party data
         if (File.Exists(partyDataPath)) {
@@ -154,6 +186,13 @@ public static class SaveSystem
         }
         else {
             Debug.LogError("File not found in " + enemyDataPath);
+        }
+        // delete inventory data
+        if (File.Exists(invDataPath)) {
+            File.Delete(invDataPath);
+        }
+        else {
+            Debug.LogError("File not found in " + invDataPath);
         }
     }
 }
