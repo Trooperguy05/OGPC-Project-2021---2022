@@ -79,6 +79,18 @@ public class PlayerActions : MonoBehaviour
 
     //////  Character: Raza's Actions   \\\\\
     /// Action Wrappers \\\
+    public void execute_razaFire() {
+        StartCoroutine(ts.waitForClick(razaFire));
+    }
+    public void execute_razaAim() {
+        razaAim();
+    }
+    public void execute_razaMark() {
+        StartCoroutine(ts.waitForClick(razaMark));
+    }
+    public void execute_razaGamble() {
+        razaGamble();
+    }
     /// Actions \\\
     //  basic shot  \\
     public void razaFire(){
@@ -121,6 +133,7 @@ public class PlayerActions : MonoBehaviour
                 }
             }
         }
+        charDone = true;
     }
     // deadeye \\
     // Automatically triggers a critical hit and guarantees an attack hits
@@ -129,6 +142,7 @@ public class PlayerActions : MonoBehaviour
         if (!Deadeye) {
             Deadeye = true;
         }
+        charDone = true;
     }
     //  mark   \\
     // not finished
@@ -136,18 +150,26 @@ public class PlayerActions : MonoBehaviour
         GameObject target = ts.target;
         Mark = target;
         markTurn = cm.roundNum;
+        charDone = true;
     }
     // trick shot \\
     public void razaGamble(){
         if (!Gamble) {
             Gamble = true;
         }
+        charDone = true;
     }
     
     /////   Character: Dorne's Actions   \\\\\
     /// Action Wrappers \\\
     public void execute_dorneStrike() {
         StartCoroutine(ts.waitForClick(dorneStrike));
+    }
+    public void execute_dorneMage() {
+        StartCoroutine(ts.waitForClick(dorneMage));
+    }
+    public void execute_dorneCharge() {
+        StartCoroutine(ts.waitForClick(dorneCharge));
     }
     public void execute_dorneSpeedUp() {
         dorneSpeedUp();
@@ -213,6 +235,18 @@ public class PlayerActions : MonoBehaviour
     
     /////   Character: Smithson's Actions   \\\\\
     /// Action Wrappers \\\
+    public void execute_smithsonGrab() {
+        StartCoroutine(ts.waitForClick(smithsonGrab));
+    }
+    public void execute_smithsonSteal() {
+        StartCoroutine(ts.waitForClick(smithsonSteal));
+    }
+    public void execute_smithsonAOE() {
+        smithsonAOE();
+    }
+    public void execute_smithsonHeal() {
+        StartCoroutine(ts.waitForClick(smithsonHeal));
+    }
     // Actions \\
     //  Bony Grasp  \\
     // Basic attack dealing 35 damage, doing an extra 20 if that enemy is
@@ -313,6 +347,18 @@ public class PlayerActions : MonoBehaviour
     }
     /////   Character: Zor's Actions   \\\\\
     /// Action Wrappers \\\
+    public void execute_zorCleave() {
+        StartCoroutine(ts.waitForClick(zorCleave));
+    }
+    public void execute_zorAngy() {
+        zorAngy();
+    }
+    public void execute_zorZap() {
+        StartCoroutine(ts.waitForClick(zorZap, 2));
+    }
+    public void execute_zorAOE() {
+        zorAOE();
+    }
     // Actions \\
     // Cleave \\
     // Deals damage to a single enemy, increases in damage but decreases 

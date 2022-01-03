@@ -15,9 +15,9 @@ public class Inventory : MonoBehaviour
     // testing
     void Update() {
         if (Input.GetKeyDown(KeyCode.M)) {
-            addItem(new Item(0, 5, true, false));
-            addItem(new Item(1, 2, true, true));
-            addItem(new Item(2, 2, true, true));
+            addItem(new Item(Item.ItemType.Coin, 5, true, false));
+            addItem(new Item(Item.ItemType.HealthPotion, 2, true, true));
+            addItem(new Item(Item.ItemType.ManaPotion, 2, true, true));
         }
         if (Input.GetKeyDown(KeyCode.N)) {
             string str = "";
