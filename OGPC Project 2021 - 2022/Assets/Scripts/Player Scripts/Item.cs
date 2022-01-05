@@ -30,4 +30,18 @@ public class Item
     public bool isConsumable() {
         return consumable;
     }
+
+    // method that returns name of item \\
+    public string getName() {
+        if (itemType == ItemType.Coin) {
+            return "coin";
+        }
+        else if (itemType == ItemType.HealthPotion) {
+            return "health potion";
+        }
+        else if (itemType == ItemType.ManaPotion) {
+            return "mana potion";
+        }
+        return "";
+    }
 }
