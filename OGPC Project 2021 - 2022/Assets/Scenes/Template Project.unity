@@ -1609,7 +1609,7 @@ MonoBehaviour:
   inventory: []
   invMenu: {fileID: 1935404337}
   consumableItem: {fileID: 6583942985002964048, guid: 9b038ff03d1c3674d8b1db4fff7f1cfc, type: 3}
-  nonconsumableItem: {fileID: 0}
+  nonconsumableItem: {fileID: 749430572265241167, guid: 7c2f7c3460e77054b9f57a71ddd7db1f, type: 3}
 --- !u!1 &882809959
 GameObject:
   m_ObjectHideFlags: 0

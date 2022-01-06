@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class Inventory : MonoBehaviour
 {
@@ -16,25 +17,47 @@ public class Inventory : MonoBehaviour
     public GameObject consumableItem;
     public GameObject nonconsumableItem;
     private GameObject[] prefabs;
+    private Button[] buttons;
 
-    // load the inventory on start up \\
+    // on start-up things \\
     void Start() {
+        // load the inventory on start up \\
         loadInventory();
 
         addItem(new Item(Item.ItemType.HealthPotion, 2, true, true));
         addItem(new Item(Item.ItemType.ManaPotion, 2, true, true));
+        addItem(new Item(Item.ItemType.Coin, 50, true, false));
 
         // load the inventory in the menu \\
         prefabs = new GameObject[inventory.Count];
+        buttons = new Button[inventory.Count];
         for (int i = 0; i < inventory.Count; i++) {
             if (inventory[i].isConsumable()) {
                 // create the prefab
                 GameObject temp = Instantiate(consumableItem);
                 RectTransform rt = temp.GetComponent<RectTransform>();
+                Button btn = temp.transform.Find("Use Button").GetComponent<Button>();
+                temp.transform.SetParent(invMenu.transform, false);
+                rt.transform.localPosition = new Vector3(rt.transform.localPosition.x, 131 - (i * 134), 0);
+                prefabs[i] = temp;
+                buttons[i] = btn;
+                // update the prefab to the item's information
+                temp.name = inventory[i].getName();
+                TextMeshProUGUI itemName = temp.transform.Find("Item Name").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI itemQuantity = temp.transform.Find("Quantity").GetComponent<TextMeshProUGUI>();
+                itemName.text = inventory[i].getName();
+                itemQuantity.text = "x" + inventory[i].quantity;
+                btn.onClick.AddListener(btnUseItem);
+            }
+            else {
+                // create the prefab
+                GameObject temp = Instantiate(nonconsumableItem);
+                RectTransform rt = temp.GetComponent<RectTransform>();
                 temp.transform.SetParent(invMenu.transform, false);
                 rt.transform.localPosition = new Vector3(rt.transform.localPosition.x, 131 - (i * 134), 0);
                 prefabs[i] = temp;
                 // update the prefab to the item's information
+                temp.name = inventory[i].getName();
                 TextMeshProUGUI itemName = temp.transform.Find("Item Name").GetComponent<TextMeshProUGUI>();
                 TextMeshProUGUI itemQuantity = temp.transform.Find("Quantity").GetComponent<TextMeshProUGUI>();
                 itemName.text = inventory[i].getName();
@@ -43,7 +66,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // testing
+    // allow player to access the inventory menu \\
     void Update() {
         // if the player presses 'i', show the inventory menu
         if (Input.GetKeyDown(KeyCode.I)) {
@@ -101,6 +124,27 @@ public class Inventory : MonoBehaviour
         return -1;
     }
 
+    // method that allows consumable items to be used and then
+    // the inventory is updated
+    private void useItem(int index) {
+        inventory[index].quantity--;
+        if (inventory[index].quantity <= 0) {
+            inventory.RemoveAt(index);
+        }
+        updateInventoryMenu();
+    }
+
+    // method for the "Use Button" to allow for the use of the
+    // useItem method from UI
+    public void btnUseItem() {
+        for (int i = 0; i < invMenu.transform.childCount; i++) {
+            if (EventSystem.current.currentSelectedGameObject.name == inventory[i].getName()) {
+                useItem(i);
+                return;
+            }
+        }
+    }
+
     // updates the inventory menu \\
     private void updateInventoryMenu() {
         // reset by deleting the previous prefabs
@@ -109,15 +153,34 @@ public class Inventory : MonoBehaviour
         }
         // instantiate new prefabs
         prefabs = new GameObject[inventory.Count];
+        buttons = new Button[inventory.Count];
         for (int i = 0; i < inventory.Count; i++) {
             if (inventory[i].isConsumable()) {
                 // create the prefab
                 GameObject temp = Instantiate(consumableItem);
                 RectTransform rt = temp.GetComponent<RectTransform>();
+                Button btn = temp.transform.Find("Use Button").GetComponent<Button>();
+                temp.transform.SetParent(invMenu.transform, false);
+                rt.transform.localPosition = new Vector3(rt.transform.localPosition.x, 131 - (i * 134), 0);
+                prefabs[i] = temp;
+                buttons[i] = btn;
+                // update the prefab to the item's information
+                temp.name = inventory[i].getName();
+                TextMeshProUGUI itemName = temp.transform.Find("Item Name").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI itemQuantity = temp.transform.Find("Quantity").GetComponent<TextMeshProUGUI>();
+                itemName.text = inventory[i].getName();
+                itemQuantity.text = "x" + inventory[i].quantity;
+                btn.onClick.AddListener(btnUseItem);
+            }
+            else {
+                // create the prefab
+                GameObject temp = Instantiate(nonconsumableItem);
+                RectTransform rt = temp.GetComponent<RectTransform>();
                 temp.transform.SetParent(invMenu.transform, false);
                 rt.transform.localPosition = new Vector3(rt.transform.localPosition.x, 131 - (i * 134), 0);
                 prefabs[i] = temp;
                 // update the prefab to the item's information
+                temp.name = inventory[i].getName();
                 TextMeshProUGUI itemName = temp.transform.Find("Item Name").GetComponent<TextMeshProUGUI>();
                 TextMeshProUGUI itemQuantity = temp.transform.Find("Quantity").GetComponent<TextMeshProUGUI>();
                 itemName.text = inventory[i].getName();
