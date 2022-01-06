@@ -138,7 +138,7 @@ public class Inventory : MonoBehaviour
     // useItem method from UI
     public void btnUseItem() {
         for (int i = 0; i < invMenu.transform.childCount; i++) {
-            if (EventSystem.current.currentSelectedGameObject.name == inventory[i].getName()) {
+            if (EventSystem.current.currentSelectedGameObject.transform.parent.name == inventory[i].getName()) {
                 useItem(i);
                 return;
             }
