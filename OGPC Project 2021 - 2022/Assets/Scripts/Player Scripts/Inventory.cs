@@ -16,8 +16,13 @@ public class Inventory : MonoBehaviour
     // item prefabs
     public GameObject consumableItem;
     public GameObject nonconsumableItem;
-    private GameObject[] prefabs;
+    public GameObject[] prefabs;
     private Button[] buttons;
+
+    // updated inventory or not \\
+    public static bool inventoryUpdated = false;
+    // scrollbar
+    public Scrollbar scrollbar;
 
     // on start-up things \\
     void Start() {
@@ -31,6 +36,9 @@ public class Inventory : MonoBehaviour
         // load the inventory in the menu \\
         prefabs = new GameObject[inventory.Count];
         buttons = new Button[inventory.Count];
+        if (prefabs.Length - 3 > 0) {
+            scrollbar.numberOfSteps = prefabs.Length;
+        }
         for (int i = 0; i < inventory.Count; i++) {
             if (inventory[i].isConsumable()) {
                 // create the prefab
@@ -64,6 +72,7 @@ public class Inventory : MonoBehaviour
                 itemQuantity.text = "x" + inventory[i].quantity;
             }
         }
+        inventoryUpdated = true;
     }
 
     // allow player to access the inventory menu \\
@@ -131,13 +140,14 @@ public class Inventory : MonoBehaviour
         if (inventory[index].quantity <= 0) {
             inventory.RemoveAt(index);
         }
+        inventoryUpdated = false;
         updateInventoryMenu();
     }
 
     // method for the "Use Button" to allow for the use of the
     // useItem method from UI
     public void btnUseItem() {
-        for (int i = 0; i < invMenu.transform.childCount; i++) {
+        for (int i = 0; i < inventory.Count; i++) {
             if (EventSystem.current.currentSelectedGameObject.transform.parent.name == inventory[i].getName()) {
                 useItem(i);
                 return;
@@ -187,6 +197,7 @@ public class Inventory : MonoBehaviour
                 itemQuantity.text = "x" + inventory[i].quantity;
             }
         }
+        inventoryUpdated = true;
     }
 
     ///    Methods for saving and loading player inventory    \\\

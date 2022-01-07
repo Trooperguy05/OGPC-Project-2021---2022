@@ -10,6 +10,9 @@ public class Item
         Coin,
         HealthPotion,
         ManaPotion,
+        Sword,
+        Boulder,
+        Amulet,
     }
 
     // itme properties \\
