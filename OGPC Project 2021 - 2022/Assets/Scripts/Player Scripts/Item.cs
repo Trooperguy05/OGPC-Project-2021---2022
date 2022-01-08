@@ -45,6 +45,15 @@ public class Item
         else if (itemType == ItemType.ManaPotion) {
             return "mana potion";
         }
+        else if (itemType == ItemType.Sword) {
+            return "sword";
+        }
+        else if (itemType == ItemType.Boulder) {
+            return "boudler";
+        }
+        else if (itemType == ItemType.Amulet) {
+            return "amulet";
+        }
         return "";
     }
 }

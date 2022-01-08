@@ -12,17 +12,13 @@ public class Inventory : MonoBehaviour
 
     // inventory menu \\
     public GameObject invMenu;
+    public GameObject scrollableArea;
     private bool invMenuOpen = false;
     // item prefabs
     public GameObject consumableItem;
     public GameObject nonconsumableItem;
     public GameObject[] prefabs;
     private Button[] buttons;
-
-    // updated inventory or not \\
-    public static bool inventoryUpdated = false;
-    // scrollbar
-    public Scrollbar scrollbar;
 
     // on start-up things \\
     void Start() {
@@ -32,20 +28,20 @@ public class Inventory : MonoBehaviour
         addItem(new Item(Item.ItemType.HealthPotion, 2, true, true));
         addItem(new Item(Item.ItemType.ManaPotion, 2, true, true));
         addItem(new Item(Item.ItemType.Coin, 50, true, false));
+        addItem(new Item(Item.ItemType.Sword, 1, false, false));
+        addItem(new Item(Item.ItemType.Boulder, 5, true, false));
+        addItem(new Item(Item.ItemType.Amulet, 1, false, false));
 
         // load the inventory in the menu \\
         prefabs = new GameObject[inventory.Count];
         buttons = new Button[inventory.Count];
-        if (prefabs.Length - 3 > 0) {
-            scrollbar.numberOfSteps = prefabs.Length;
-        }
         for (int i = 0; i < inventory.Count; i++) {
             if (inventory[i].isConsumable()) {
                 // create the prefab
                 GameObject temp = Instantiate(consumableItem);
                 RectTransform rt = temp.GetComponent<RectTransform>();
                 Button btn = temp.transform.Find("Use Button").GetComponent<Button>();
-                temp.transform.SetParent(invMenu.transform, false);
+                temp.transform.SetParent(scrollableArea.transform, false);
                 rt.transform.localPosition = new Vector3(rt.transform.localPosition.x, 131 - (i * 134), 0);
                 prefabs[i] = temp;
                 buttons[i] = btn;
@@ -61,7 +57,7 @@ public class Inventory : MonoBehaviour
                 // create the prefab
                 GameObject temp = Instantiate(nonconsumableItem);
                 RectTransform rt = temp.GetComponent<RectTransform>();
-                temp.transform.SetParent(invMenu.transform, false);
+                temp.transform.SetParent(scrollableArea.transform, false);
                 rt.transform.localPosition = new Vector3(rt.transform.localPosition.x, 131 - (i * 134), 0);
                 prefabs[i] = temp;
                 // update the prefab to the item's information
@@ -72,7 +68,6 @@ public class Inventory : MonoBehaviour
                 itemQuantity.text = "x" + inventory[i].quantity;
             }
         }
-        inventoryUpdated = true;
     }
 
     // allow player to access the inventory menu \\
@@ -140,7 +135,6 @@ public class Inventory : MonoBehaviour
         if (inventory[index].quantity <= 0) {
             inventory.RemoveAt(index);
         }
-        inventoryUpdated = false;
         updateInventoryMenu();
     }
 
@@ -170,7 +164,7 @@ public class Inventory : MonoBehaviour
                 GameObject temp = Instantiate(consumableItem);
                 RectTransform rt = temp.GetComponent<RectTransform>();
                 Button btn = temp.transform.Find("Use Button").GetComponent<Button>();
-                temp.transform.SetParent(invMenu.transform, false);
+                temp.transform.SetParent(scrollableArea.transform, false);
                 rt.transform.localPosition = new Vector3(rt.transform.localPosition.x, 131 - (i * 134), 0);
                 prefabs[i] = temp;
                 buttons[i] = btn;
@@ -186,7 +180,7 @@ public class Inventory : MonoBehaviour
                 // create the prefab
                 GameObject temp = Instantiate(nonconsumableItem);
                 RectTransform rt = temp.GetComponent<RectTransform>();
-                temp.transform.SetParent(invMenu.transform, false);
+                temp.transform.SetParent(scrollableArea.transform, false);
                 rt.transform.localPosition = new Vector3(rt.transform.localPosition.x, 131 - (i * 134), 0);
                 prefabs[i] = temp;
                 // update the prefab to the item's information
@@ -197,7 +191,6 @@ public class Inventory : MonoBehaviour
                 itemQuantity.text = "x" + inventory[i].quantity;
             }
         }
-        inventoryUpdated = true;
     }
 
     ///    Methods for saving and loading player inventory    \\\
