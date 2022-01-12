@@ -1705,10 +1705,7 @@ MonoBehaviour:
   character2: {fileID: 1881763352}
   character3: {fileID: 551956581}
   character4: {fileID: 670795189}
-  character1SP: {fileID: 21300000, guid: 984f68673b887124fa0f8e041df411d9, type: 3}
-  character2SP: {fileID: 21300000, guid: a396e3615451f7e44b996a2f2632ec34, type: 3}
-  character3SP: {fileID: 21300000, guid: d7e377025bb91b64896c8e0d133f9598, type: 3}
-  character4SP: {fileID: 21300000, guid: 621a98a3fead6e34a8434dd3bbd28b40, type: 3}
+  leader: 0
   char1Animator: {fileID: 252498380}
   char2Animator: {fileID: 1881763356}
   char3Animator: {fileID: 551956585}
@@ -1769,6 +1766,7 @@ GameObject:
   - component: {fileID: 845773105}
   - component: {fileID: 845773104}
   - component: {fileID: 845773106}
+  - component: {fileID: 845773107}
   m_Layer: 0
   m_Name: OverworldPlayerCharacter
   m_TagString: Untagged
@@ -1793,14 +1791,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 5}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!212 &845773102
 SpriteRenderer:
@@ -1842,12 +1840,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 984f68673b887124fa0f8e041df411d9, type: 3}
+  m_Sprite: {fileID: -1296584383614203463, guid: 2c70d5254f35fec4e8e048dc2f57d06e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1862,7 +1860,7 @@ Transform:
   m_GameObject: {fileID: 845773100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -1879,7 +1877,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f9733ced06cf5488f5a657d7985083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2.5
+  playerDirection: 3
+  smithsonUp_idle: {fileID: -4884026515125245256, guid: 3998d6c2833019e46982b0cbd81ffdad, type: 3}
+  smithsonDown_idle: {fileID: -1296584383614203463, guid: 2c70d5254f35fec4e8e048dc2f57d06e, type: 3}
+  smithsonRight_idle: {fileID: 2005830210627014568, guid: 667b242dd935a8e48bcb9fa0fd6a908c, type: 3}
+  smithsonLeft_idle: {fileID: -5559719606350521619, guid: 7007f93d57d91be43b3521dd4ce89d78, type: 3}
 --- !u!50 &845773105
 Rigidbody2D:
   serializedVersion: 4
@@ -1919,6 +1922,25 @@ MonoBehaviour:
   consumableItem: {fileID: 6583942985002964048, guid: 9b038ff03d1c3674d8b1db4fff7f1cfc, type: 3}
   nonconsumableItem: {fileID: 749430572265241167, guid: 7c2f7c3460e77054b9f57a71ddd7db1f, type: 3}
   prefabs: []
+--- !u!95 &845773107
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845773100}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 646746865bf9f8f4682689e48b27fd3f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &882809959
 GameObject:
   m_ObjectHideFlags: 0
@@ -2456,7 +2478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151712713}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.39, y: 2.9, z: 0}
+  m_LocalPosition: {x: -0.39, y: 3.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3339,7 +3361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676865673}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.77, y: -2.58, z: 0}
+  m_LocalPosition: {x: -1.77, y: -3.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

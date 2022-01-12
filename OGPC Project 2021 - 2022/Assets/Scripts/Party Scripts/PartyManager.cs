@@ -30,12 +30,15 @@ public class PartyManager : MonoBehaviour
     private RectTransform character3RT;
     private RectTransform character4RT;
 
-    // character sprites
-    [Header("Party Member Sprites")]
-    public Sprite character1SP; // character: Raza
-    public Sprite character2SP; // character: Dorne
-    public Sprite character3SP; // character: Smithson
-    public Sprite character4SP; // character: Zor
+    // enum for tracking for party lead
+    public enum PartyLead {
+        Raza,
+        Dorne,
+        Smithson,
+        Zor,
+    }
+    public PartyLead leader = PartyLead.Raza;
+    private Animator playerAnimator;
 
     // animators for cool portraits \\
     [Header("Portrait Animators")]
@@ -75,6 +78,8 @@ public class PartyManager : MonoBehaviour
 
         // player sprite renderer
         playerSR = player.GetComponent<SpriteRenderer>();
+        // player animator
+        playerAnimator = player.GetComponent<Animator>();
 
         // loading the party stats data
         FindObjectOfType<PartyStats>().LoadData();
@@ -152,10 +157,10 @@ public class PartyManager : MonoBehaviour
 
             if (partyOrderChanged) {
                 // updating the wheel visual
-                updateWheel(character1RT, character1Order, "Astar");
-                updateWheel(character2RT, character2Order, "Gor");
-                updateWheel(character3RT, character3Order, "Gadriel");
-                updateWheel(character4RT, character4Order, "Lyra");
+                updateWheel(character1RT, character1Order, "Raza");
+                updateWheel(character2RT, character2Order, "Dorne");
+                updateWheel(character3RT, character3Order, "Smithson");
+                updateWheel(character4RT, character4Order, "Zor");
                 updatePlayerSprite();
                 partyOrderChanged = false;
             }
@@ -182,26 +187,30 @@ public class PartyManager : MonoBehaviour
 
     // function that updates the player sprite to be that of the lead member's sprite
     public void updatePlayerSprite() {
-        if (partyOrder[0] == "Astar") {
-            playerSR.sprite = character1SP;
+        if (partyOrder[0] == "Raza") {
+            leader = PartyLead.Raza;
+            playerAnimator.SetBool("smithsonLeader", false);
         }
-        else if (partyOrder[0] == "Gor") {
-            playerSR.sprite = character2SP;
+        else if (partyOrder[0] == "Dorne") {
+            leader = PartyLead.Dorne;
+            playerAnimator.SetBool("smithsonLeader", false);
         }
-        else if (partyOrder[0] == "Gadriel") {
-            playerSR.sprite = character3SP;
+        else if (partyOrder[0] == "Smithson") {
+            leader = PartyLead.Smithson;
+            playerAnimator.SetBool("smithsonLeader", true);
         }
-        else if (partyOrder[0] == "Lyra") {
-            playerSR.sprite = character4SP;
+        else if (partyOrder[0] == "Zor") {
+            leader = PartyLead.Zor;
+            playerAnimator.SetBool("smithsonLeader", false);
         }
     }
 
     // updates the partyWheel after loading a save \\
     public void updatePartyWheel() {
-        updateWheel(character1RT, character1Order, "Astar");
-        updateWheel(character2RT, character2Order, "Gor");
-        updateWheel(character3RT, character3Order, "Gadriel");
-        updateWheel(character4RT, character4Order, "Lyra");
+        updateWheel(character1RT, character1Order, "Raza");
+        updateWheel(character2RT, character2Order, "Dorne");
+        updateWheel(character3RT, character3Order, "Smithson");
+        updateWheel(character4RT, character4Order, "Zor");
     }
 
     // delets player and party save \\
