@@ -72,8 +72,22 @@ public class PartyStats : MonoBehaviour
         PartyManager.partyOrder[3] = data.partyOrder[3];
         // update the visuals based on the loaded data
         if (SceneManager.GetActiveScene().name == "Template Project" || SceneManager.GetActiveScene().name == "OverworldScene") {
-            FindObjectOfType<PartyManager>().updatePlayerSprite();
-            FindObjectOfType<PartyManager>().updatePartyWheel();
+            PartyManager pM = FindObjectOfType<PartyManager>();
+            pM.updatePlayerSprite();
+            pM.updatePartyWheel();
+            if (PartyManager.partyOrder[0] == "Raza") {
+                pM.leader = PartyManager.PartyLead.Raza;
+            }
+            else if (PartyManager.partyOrder[0] == "Dorne") {
+                pM.leader = PartyManager.PartyLead.Dorne;
+            }
+            else if (PartyManager.partyOrder[0] == "Smithson") {
+                pM.leader = PartyManager.PartyLead.Smithson;
+            }
+            else if (PartyManager.partyOrder[0] == "Zor") {
+                pM.leader = PartyManager.PartyLead.Zor;
+            }
+            //FindObjectOfType<PlayerMovement>().updateIdleSprite();
         }
     }
 }

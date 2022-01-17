@@ -88,9 +88,6 @@ public class PartyManager : MonoBehaviour
         FindObjectOfType<PartyStats>().LoadData();
         // loading the player progress data
         FindObjectOfType<PlayerProgress>().loadPlayerData();
-
-        // update player sprite
-        updatePlayerSprite();
     }
     
     // checking for player input
@@ -111,6 +108,7 @@ public class PartyManager : MonoBehaviour
                 PlayerMovement.playerAbleMove = !partyTabOpen;
                 // update player sprite
                 updatePlayerSprite();
+                pM.updateIdleSprite();
             }
         }
 
@@ -171,6 +169,7 @@ public class PartyManager : MonoBehaviour
                 updateWheel(character3RT, character3Order, "Smithson");
                 updateWheel(character4RT, character4Order, "Zor");
                 updatePlayerSprite();
+                pM.updateIdleSprite();
                 partyOrderChanged = false;
             }
         }
@@ -225,7 +224,6 @@ public class PartyManager : MonoBehaviour
             playerAnimator.SetBool("smithsonLeader", false);
             playerAnimator.SetBool("zorLeader", true);
         }
-        pM.updateIdleSprite();
     }
 
     // updates the partyWheel after loading a save \\
