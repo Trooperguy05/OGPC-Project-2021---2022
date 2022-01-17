@@ -39,6 +39,7 @@ public class PartyManager : MonoBehaviour
     }
     public PartyLead leader = PartyLead.Raza;
     private Animator playerAnimator;
+    private PlayerMovement pM;
 
     // animators for cool portraits \\
     [Header("Portrait Animators")]
@@ -80,11 +81,16 @@ public class PartyManager : MonoBehaviour
         playerSR = player.GetComponent<SpriteRenderer>();
         // player animator
         playerAnimator = player.GetComponent<Animator>();
+        // player movement script
+        pM = player.GetComponent<PlayerMovement>();
 
         // loading the party stats data
         FindObjectOfType<PartyStats>().LoadData();
         // loading the player progress data
         FindObjectOfType<PlayerProgress>().loadPlayerData();
+
+        // update player sprite
+        updatePlayerSprite();
     }
     
     // checking for player input
@@ -92,6 +98,7 @@ public class PartyManager : MonoBehaviour
         // if the player presses tab, open the party menu
         if (Input.GetKeyDown(KeyCode.Tab)) {
             if (!FindObjectOfType<PauseMenu>().pauseMenuOpen) { // making sure the pause menu isn't open before opening party wheel
+                Debug.Log(partyOrder[0] + " " + partyOrder[1] + " " + partyOrder[2] + " " + partyOrder[3]);
                 // open the menu
                 partyTabOpen = !partyTabOpen;
                 partyMenu.SetActive(partyTabOpen);
@@ -102,6 +109,8 @@ public class PartyManager : MonoBehaviour
                 char4Animator.SetBool("animationOn", !char4Animator.GetBool("animationOn"));
                 // disable the player movement
                 PlayerMovement.playerAbleMove = !partyTabOpen;
+                // update player sprite
+                updatePlayerSprite();
             }
         }
 
@@ -187,22 +196,36 @@ public class PartyManager : MonoBehaviour
 
     // function that updates the player sprite to be that of the lead member's sprite
     public void updatePlayerSprite() {
+        playerAnimator.speed = 1f;
         if (partyOrder[0] == "Raza") {
             leader = PartyLead.Raza;
+            playerAnimator.SetBool("razaLeader", true);
+            playerAnimator.SetBool("dorneLeader", false);
             playerAnimator.SetBool("smithsonLeader", false);
+            playerAnimator.SetBool("zorLeader", false);
         }
         else if (partyOrder[0] == "Dorne") {
             leader = PartyLead.Dorne;
+            playerAnimator.SetBool("razaLeader", false);
+            playerAnimator.SetBool("dorneLeader", true);
             playerAnimator.SetBool("smithsonLeader", false);
+            playerAnimator.SetBool("zorLeader", false);
         }
         else if (partyOrder[0] == "Smithson") {
             leader = PartyLead.Smithson;
+            playerAnimator.SetBool("razaLeader", false);
+            playerAnimator.SetBool("dorneLeader", false);
             playerAnimator.SetBool("smithsonLeader", true);
+            playerAnimator.SetBool("zorLeader", false);
         }
         else if (partyOrder[0] == "Zor") {
             leader = PartyLead.Zor;
+            playerAnimator.SetBool("razaLeader", false);
+            playerAnimator.SetBool("dorneLeader", false);
             playerAnimator.SetBool("smithsonLeader", false);
+            playerAnimator.SetBool("zorLeader", true);
         }
+        pM.updateIdleSprite();
     }
 
     // updates the partyWheel after loading a save \\
@@ -218,4 +241,6 @@ public class PartyManager : MonoBehaviour
         Debug.Log("Deleting Save Data");
         SaveSystem.deleteSaveData();
     }
+
+
 }

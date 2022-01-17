@@ -1840,7 +1840,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1296584383614203463, guid: 2c70d5254f35fec4e8e048dc2f57d06e, type: 3}
+  m_Sprite: {fileID: -5338564379278318592, guid: f3fb5009436b78b4d8650734e069d9ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1879,10 +1879,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   playerDirection: 3
-  smithsonUp_idle: {fileID: -4884026515125245256, guid: 3998d6c2833019e46982b0cbd81ffdad, type: 3}
-  smithsonDown_idle: {fileID: -1296584383614203463, guid: 2c70d5254f35fec4e8e048dc2f57d06e, type: 3}
-  smithsonRight_idle: {fileID: 2005830210627014568, guid: 667b242dd935a8e48bcb9fa0fd6a908c, type: 3}
-  smithsonLeft_idle: {fileID: -5559719606350521619, guid: 7007f93d57d91be43b3521dd4ce89d78, type: 3}
 --- !u!50 &845773105
 Rigidbody2D:
   serializedVersion: 4
@@ -3549,8 +3545,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_XDamping: 2
-  m_YDamping: 2
+  m_XDamping: 0.5
+  m_YDamping: 0.5
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
