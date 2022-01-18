@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     // direction variables \\
     private PartyManager pM;
     private SpriteRenderer spriteRenderer;
+    private bool updatedStartingSprite = false;
     public enum direction {
         up,
         right,
@@ -23,12 +24,14 @@ public class PlayerMovement : MonoBehaviour
     // player animator
     private Animator animator;
 
-    // caching variables
+    /// Caching Variables \\\
+    void Awake() {
+        pM = GameObject.Find("Party and Player Manager").GetComponent<PartyManager>();
+        animator = GetComponent<Animator>();
+    }
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-        pM = GameObject.Find("Party and Player Manager").GetComponent<PartyManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
     }
 
     // check for player input
@@ -159,9 +162,9 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        // if the player is idle
+        // if the player is idle \\
         else {
-            if (!pM.partyTabOpen) {
+            if (!pM.partyTabOpen && loadingScreenManager.loadingDone) {
                 // if party leader is raza
                 if (pM.leader == PartyManager.PartyLead.Raza) {
                     if (playerDirection == direction.down) {
@@ -176,7 +179,6 @@ public class PlayerMovement : MonoBehaviour
                     else if (playerDirection == direction.right) {
                         animator.SetBool("razaRight", false);
                     }
-                    animator.speed = 0f;
                 }
                 // if party leader is dorne
                 else if (pM.leader == PartyManager.PartyLead.Dorne) {
@@ -192,7 +194,6 @@ public class PlayerMovement : MonoBehaviour
                     else if (playerDirection == direction.right) {
                         animator.SetBool("dorneRight", false);
                     }
-                    animator.speed = 0f;
                 }
                 // if the party leader is smithson
                 else if (pM.leader == PartyManager.PartyLead.Smithson) {
@@ -208,7 +209,6 @@ public class PlayerMovement : MonoBehaviour
                     else if (playerDirection == direction.right) {
                         animator.SetBool("smithsonRight", false);
                     }
-                    animator.speed = 0f;
                 }
                 // if the party leader is zor
                 else if (pM.leader == PartyManager.PartyLead.Zor) {
@@ -224,9 +224,17 @@ public class PlayerMovement : MonoBehaviour
                     else if (playerDirection == direction.right) {
                         animator.SetBool("zorRight", false);
                     }
-                    animator.speed = 0f;
                 }
+                animator.speed = 0f;
             }
+        }
+
+        // update the starting sprite to the last save's \\
+        if (!updatedStartingSprite) {
+            animator.speed = 1f;
+            pM.updatePlayerSprite();
+            updateIdleSprite();
+            updatedStartingSprite = true;
         }
     }
 
@@ -262,6 +270,7 @@ public class PlayerMovement : MonoBehaviour
 
     // update the idle sprite when lead member changes \\
     public void updateIdleSprite() {
+        animator.speed = 1f;
         // if player is directed down
         if (playerDirection == direction.down) {
             if (pM.leader == PartyManager.PartyLead.Raza) {

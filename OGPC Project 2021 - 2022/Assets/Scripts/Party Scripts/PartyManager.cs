@@ -63,7 +63,7 @@ public class PartyManager : MonoBehaviour
     // variable to make sure some actions are only called once
     private bool partyOrderChanged = false;
 
-    // caching variables
+    // caching
     void Start() {
         // caching the positions for the character visuals
         leadPosition = new Vector3(player.transform.position.x, player.transform.position.y + imageOffset, 0f);
@@ -81,6 +81,7 @@ public class PartyManager : MonoBehaviour
         playerSR = player.GetComponent<SpriteRenderer>();
         // player animator
         playerAnimator = player.GetComponent<Animator>();
+
         // player movement script
         pM = player.GetComponent<PlayerMovement>();
 
@@ -95,7 +96,6 @@ public class PartyManager : MonoBehaviour
         // if the player presses tab, open the party menu
         if (Input.GetKeyDown(KeyCode.Tab)) {
             if (!FindObjectOfType<PauseMenu>().pauseMenuOpen) { // making sure the pause menu isn't open before opening party wheel
-                Debug.Log(partyOrder[0] + " " + partyOrder[1] + " " + partyOrder[2] + " " + partyOrder[3]);
                 // open the menu
                 partyTabOpen = !partyTabOpen;
                 partyMenu.SetActive(partyTabOpen);

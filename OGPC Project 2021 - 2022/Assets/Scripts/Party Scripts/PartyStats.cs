@@ -30,6 +30,9 @@ public class PartyStats : MonoBehaviour
     public int char4Mana = 35;
     public int char4Dexterity = 1;
 
+    // player animator
+    public Animator playerAnimator;
+
     // methods to save and load the party stats \\
     public void SaveData() {
         Debug.Log("Saving Party Data");
@@ -76,18 +79,18 @@ public class PartyStats : MonoBehaviour
             pM.updatePlayerSprite();
             pM.updatePartyWheel();
             if (PartyManager.partyOrder[0] == "Raza") {
-                pM.leader = PartyManager.PartyLead.Raza;
+                playerAnimator.SetBool("razaLeader", true);
             }
             else if (PartyManager.partyOrder[0] == "Dorne") {
-                pM.leader = PartyManager.PartyLead.Dorne;
+                playerAnimator.SetBool("dorneLeader", true);
             }
             else if (PartyManager.partyOrder[0] == "Smithson") {
-                pM.leader = PartyManager.PartyLead.Smithson;
+                playerAnimator.SetBool("smithsonLeader", true);
             }
             else if (PartyManager.partyOrder[0] == "Zor") {
-                pM.leader = PartyManager.PartyLead.Zor;
+                playerAnimator.SetBool("zorLeader", true);
             }
-            //FindObjectOfType<PlayerMovement>().updateIdleSprite();
+            FindObjectOfType<PlayerMovement>().updateIdleSprite();
         }
     }
 }
