@@ -8,6 +8,32 @@ public class OpenWorldEnemy : MonoBehaviour
     // making so a specified enemy has to be in the combat
     public int specifiedEnemy = -1; // -1 if none, positive if there is
 
+    // random movement \\
+    public float timeBetweenMove = 2f;
+    public float startTime;
+    public float currentTime;
+    void Start() {
+        startTime = Time.time;
+    }
+    void Update() {
+        currentTime = Time.time - startTime;
+        if (currentTime >= timeBetweenMove) {
+            int chance = Random.Range(1, 2);
+            // right
+            if (chance == 1) {
+                transform.Translate(new Vector3(1f, 0f, 0f));
+                Debug.Log("right");
+            }
+            // left
+            else if (chance == 2) {
+                transform.Translate(new Vector3(-1f, 0f, 0f));
+                Debug.Log("left");
+            }
+            startTime = Time.time;
+        }
+
+    }
+
     // when an enemy interacts with the player
     // initiate combat with the player
     void OnTriggerEnter2D(Collider2D col) {
