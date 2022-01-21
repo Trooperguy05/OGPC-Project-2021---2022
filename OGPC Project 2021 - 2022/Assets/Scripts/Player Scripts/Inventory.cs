@@ -202,8 +202,10 @@ public class Inventory : MonoBehaviour
         Debug.Log("Loading Player Inventory");
         InventoryData data = SaveSystem.LoadPlayerInventory();
 
-        for (int i = 0; i < data.playerInventory.Count; i++) {
-            inventory.Add(data.playerInventory[i]);
+        if (data != null) {
+            for (int i = 0; i < data.playerInventory.Count; i++) {
+                inventory.Add(data.playerInventory[i]);
+            }  
         }
     }
 }

@@ -42,55 +42,59 @@ public class PartyStats : MonoBehaviour
     public void LoadData() {
         Debug.Log("Loading Party Data");
         PartyData data = SaveSystem.LoadPartyStats();
+        if (data != null) {
+            // data for Astar
+            char1Name = data.char1Name;
+            char1HP = data.char1HP;
+            char1Mana = data.char1Mana;
+            char1Dexterity = data.char1Dexterity;
+            // data for Gor
+            char2Name = data.char2Name;
+            char2HP = data.char2HP;
+            char2Mana = data.char2Mana;
+            char2Dexterity = data.char2Dexterity;
+            // data for Gadriel
+            char3Name = data.char3Name;
+            char3HP = data.char3HP;
+            char3Mana = data.char3Mana;
+            char3Dexterity = data.char3Dexterity;
+            // data for Lyra
+            char4Name = data.char4Name;
+            char4HP = data.char4HP;
+            char4Mana = data.char4Mana;
+            char4Dexterity = data.char4Dexterity;
 
-        // data for Astar
-        char1Name = data.char1Name;
-        char1HP = data.char1HP;
-        char1Mana = data.char1Mana;
-        char1Dexterity = data.char1Dexterity;
-        // data for Gor
-        char2Name = data.char2Name;
-        char2HP = data.char2HP;
-        char2Mana = data.char2Mana;
-        char2Dexterity = data.char2Dexterity;
-        // data for Gadriel
-        char3Name = data.char3Name;
-        char3HP = data.char3HP;
-        char3Mana = data.char3Mana;
-        char3Dexterity = data.char3Dexterity;
-        // data for Lyra
-        char4Name = data.char4Name;
-        char4HP = data.char4HP;
-        char4Mana = data.char4Mana;
-        char4Dexterity = data.char4Dexterity;
-
-        // data for party order
-        PartyManager.character1Order = data.char1Order;
-        PartyManager.character2Order = data.char2Order;
-        PartyManager.character3Order = data.char3Order;
-        PartyManager.character4Order = data.char4Order;
-        PartyManager.partyOrder[0] = data.partyOrder[0];
-        PartyManager.partyOrder[1] = data.partyOrder[1];
-        PartyManager.partyOrder[2] = data.partyOrder[2];
-        PartyManager.partyOrder[3] = data.partyOrder[3];
-        // update the visuals based on the loaded data
-        if (SceneManager.GetActiveScene().name == "Template Project" || SceneManager.GetActiveScene().name == "OverworldScene") {
-            PartyManager pM = FindObjectOfType<PartyManager>();
-            pM.updatePlayerSprite();
-            pM.updatePartyWheel();
-            if (PartyManager.partyOrder[0] == "Raza") {
-                playerAnimator.SetBool("razaLeader", true);
-            }
-            else if (PartyManager.partyOrder[0] == "Dorne") {
-                playerAnimator.SetBool("dorneLeader", true);
-            }
-            else if (PartyManager.partyOrder[0] == "Smithson") {
-                playerAnimator.SetBool("smithsonLeader", true);
-            }
-            else if (PartyManager.partyOrder[0] == "Zor") {
-                playerAnimator.SetBool("zorLeader", true);
-            }
-            FindObjectOfType<PlayerMovement>().updateIdleSprite();
+            // data for party order
+            PartyManager.character1Order = data.char1Order;
+            PartyManager.character2Order = data.char2Order;
+            PartyManager.character3Order = data.char3Order;
+            PartyManager.character4Order = data.char4Order;
+            PartyManager.partyOrder[0] = data.partyOrder[0];
+            PartyManager.partyOrder[1] = data.partyOrder[1];
+            PartyManager.partyOrder[2] = data.partyOrder[2];
+            PartyManager.partyOrder[3] = data.partyOrder[3];
+            // update the visuals based on the loaded data
+            if (SceneManager.GetActiveScene().name == "Template Project" || SceneManager.GetActiveScene().name == "OverworldScene") {
+                PartyManager pM = FindObjectOfType<PartyManager>();
+                pM.updatePlayerSprite();
+                pM.updatePartyWheel();
+                if (PartyManager.partyOrder[0] == "Raza") {
+                    playerAnimator.SetBool("razaLeader", true);
+                }
+                else if (PartyManager.partyOrder[0] == "Dorne") {
+                    playerAnimator.SetBool("dorneLeader", true);
+                }
+                else if (PartyManager.partyOrder[0] == "Smithson") {
+                    playerAnimator.SetBool("smithsonLeader", true);
+                }
+                else if (PartyManager.partyOrder[0] == "Zor") {
+                    playerAnimator.SetBool("zorLeader", true);
+                }
+                FindObjectOfType<PlayerMovement>().updateIdleSprite();
+            }  
+        }
+        else {
+            playerAnimator.SetBool("razaLeader", true);
         }
     }
 }

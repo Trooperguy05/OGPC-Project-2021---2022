@@ -40,25 +40,6 @@ public class PlayerMovement : MonoBehaviour
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");  
         }
-        else
-        {
-            animator.SetBool("razaUp", false);
-            animator.SetBool("razaDown", false);
-            animator.SetBool("razaLeft", false);
-            animator.SetBool("razaRight", false);
-            animator.SetBool("dorneUp", false);
-            animator.SetBool("dorneDown", false);
-            animator.SetBool("dorneLeft", false);
-            animator.SetBool("dorneRight", false);
-            animator.SetBool("smithsonUp", false);
-            animator.SetBool("smithsonDown", false);
-            animator.SetBool("smithsonLeft", false);
-            animator.SetBool("smithsonRight", false);
-            animator.SetBool("zorUp", false);
-            animator.SetBool("zorDown", false);
-            animator.SetBool("zorLeft", false);
-            animator.SetBool("zorRight", false);
-        }
 
         // change sprite based on movement \\
         // horizontal movement
@@ -183,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         }
         // if the player is idle \\
         else {
-            if (!pM.partyTabOpen && loadingScreenManager.loadingDone) {
+            if (!pM.partyTabOpen) {
                 // if party leader is raza
                 if (pM.leader == PartyManager.PartyLead.Raza) {
                     if (playerDirection == direction.down) {
@@ -284,6 +265,10 @@ public class PlayerMovement : MonoBehaviour
                 // move the player
                 rb.MovePosition(rb.position + new Vector2(0f, movement.y) * speed * Time.fixedDeltaTime);
             }
+        }
+        else {
+            movement.x = 0f;
+            movement.y = 0f;
         }
     }
 
@@ -399,5 +384,15 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         animator.speed = 0f;
-    } 
+    }
+
+    // method to check if the player animator is playing \\
+    private bool isPlaying(string stateName) {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

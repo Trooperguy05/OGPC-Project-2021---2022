@@ -7,31 +7,149 @@ public class OpenWorldEnemy : MonoBehaviour
 {
     // making so a specified enemy has to be in the combat
     public int specifiedEnemy = -1; // -1 if none, positive if there is
+    
+    // enemy animator
+    private Animator animator;
 
-    // random movement \\
+    // the movement types the enemy can make \\
+    [Header("Movement Types")]
+    public bool moveCircle = false;
+    public bool moveLeftRight = false;
+    public bool moveUpDown = false;
+    public int moveTick = 1;
+
+    // moving every x seconds \\
+    [Header("Timed Movement")]
     public float timeBetweenMove = 2f;
     public float startTime;
     public float currentTime;
     void Start() {
         startTime = Time.time;
+        animator = GetComponent<Animator>();
     }
     void Update() {
         currentTime = Time.time - startTime;
+
+        // move every few seconds
         if (currentTime >= timeBetweenMove) {
-            int chance = Random.Range(1, 2);
-            // right
-            if (chance == 1) {
-                transform.Translate(new Vector3(1f, 0f, 0f));
-                Debug.Log("right");
+            // moveCircle \\
+            if (moveCircle) {
+                if (moveTick == 1) {
+                    transform.Translate(new Vector2(1f, 0f));
+                    moveTick++;
+                    animator.SetBool("right", true);
+                }
+                else if (moveTick == 2) {
+                    transform.Translate(new Vector2(0f, -1f));
+                    moveTick++;
+                }
+                else if (moveTick == 3) {
+                    transform.Translate(new Vector2(0f, -1f));
+                    moveTick++;
+                }
+                else if (moveTick == 4) {
+                    transform.Translate(new Vector2(-1f, 0f));
+                    animator.SetBool("right", false);
+                    moveTick++;
+                }
+                else if (moveTick == 5) {
+                    transform.Translate(new Vector2(-1f, 0f));
+                    moveTick++;
+                }
+                else if (moveTick == 6) {
+                    transform.Translate(new Vector2(0f, 1f));
+                    moveTick++;
+                }
+                else if (moveTick == 7) {
+                    transform.Translate(new Vector2(0f, 1f));
+                    moveTick++;
+                }
+                else if (moveTick == 8) {
+                    transform.Translate(new Vector2(1f, 0f));
+                    animator.SetBool("right", true);
+                    moveTick = 1;
+                }
             }
-            // left
-            else if (chance == 2) {
-                transform.Translate(new Vector3(-1f, 0f, 0f));
-                Debug.Log("left");
+            // move leftright \\
+            else if (moveLeftRight) {
+                if (moveTick == 1) {
+                    transform.Translate(new Vector2(1f, 0f));
+                    animator.SetBool("right", true);
+                    moveTick++;
+                }
+                else if (moveTick == 2) {
+                    transform.Translate(new Vector2(1f, 0f));
+                    moveTick++;
+                }
+                else if (moveTick == 3) {
+                    transform.Translate(new Vector2(-1f, 0f));
+                    animator.SetBool("right", false);
+                    moveTick++;
+                }
+                else if (moveTick == 4) {
+                    transform.Translate(new Vector2(-1f, 0f));
+                    moveTick++;
+                }
+                else if (moveTick == 5) {
+                    transform.Translate(new Vector2(-1f, 0f));
+                    moveTick++;
+                }
+                else if (moveTick == 6) {
+                    transform.Translate(new Vector2(-1f, 0f));
+                    moveTick++;
+                }
+                else if (moveTick == 7) {
+                    transform.Translate(new Vector2(1f, 0f));
+                    animator.SetBool("right", true);
+                    moveTick++;
+                }
+                else if (moveTick == 8) {
+                    transform.Translate(new Vector2(1f, 0f));
+                    moveTick = 1;
+                }
             }
+            // move updown \\
+            else if (moveUpDown) {
+                if (moveTick == 1) {
+                    transform.Translate(new Vector2(0f, 1f));
+                    animator.SetBool("right", true);
+                    moveTick++;
+                }
+                else if (moveTick == 2) {
+                    transform.Translate(new Vector2(0f, 1f));
+                    moveTick++;
+                }
+                else if (moveTick == 3) {
+                    transform.Translate(new Vector2(0f, -1f));
+                    animator.SetBool("right", false);
+                    moveTick++;
+                }
+                else if (moveTick == 4) {
+                    transform.Translate(new Vector2(0f, -1f));
+                    moveTick++;
+                }
+                else if (moveTick == 5) {
+                    transform.Translate(new Vector2(0f, -1f));
+                    moveTick++;
+                }
+                else if (moveTick == 6) {
+                    transform.Translate(new Vector2(0f, -1f));
+                    moveTick++;
+                }
+                else if (moveTick == 7) {
+                    transform.Translate(new Vector2(0f, 1f));
+                    animator.SetBool("right", true);
+                    moveTick++;
+                }
+                else if (moveTick == 8) {
+                    transform.Translate(new Vector2(0f, 1f));
+                    moveTick = 1;
+                }
+            }
+
+            // reset
             startTime = Time.time;
         }
-
     }
 
     // when an enemy interacts with the player

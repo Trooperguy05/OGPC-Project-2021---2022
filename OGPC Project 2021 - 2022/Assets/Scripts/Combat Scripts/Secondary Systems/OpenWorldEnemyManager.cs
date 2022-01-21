@@ -22,9 +22,10 @@ public class OpenWorldEnemyManager : MonoBehaviour
     public void loadActiveEnemies() {
         Debug.Log("Loading Active Enemies");
         OverworldEnemyData data = SaveSystem.LoadActiveEnemies();
-
-        for (int i = 0; i < data.overworldEnemyActive.Length; i++) {
-            enemies[i].SetActive(data.overworldEnemyActive[i]);
+        if (data != null) {
+            for (int i = 0; i < data.overworldEnemyActive.Length; i++) {
+                enemies[i].SetActive(data.overworldEnemyActive[i]);
+            }  
         }
     }
 }

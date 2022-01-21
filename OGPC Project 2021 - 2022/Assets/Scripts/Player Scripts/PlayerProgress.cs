@@ -20,11 +20,12 @@ public class PlayerProgress : MonoBehaviour
     public void loadPlayerData() {
         Debug.Log("Loading Player Data");
         PlayerData data = SaveSystem.LoadPlayerProgress();
+        if (data != null) {
+            // load the player position
+            player.transform.position = new Vector3(data.playerPosition[0], data.playerPosition[1], data.playerPosition[2]);
 
-        // load the player position
-        player.transform.position = new Vector3(data.playerPosition[0], data.playerPosition[1], data.playerPosition[2]);
-
-        // load the story progress
-        passedTutorial = data.passedTutorial;
+            // load the story progress
+            passedTutorial = data.passedTutorial;
+        }
     }
 }

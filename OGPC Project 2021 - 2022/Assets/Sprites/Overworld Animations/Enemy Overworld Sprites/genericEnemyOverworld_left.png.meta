@@ -1,67 +1,67 @@
 fileFormatVersion: 2
-guid: 11ddeda96efc976478f4c869d54fd085
+guid: dbaa7be7553260d44b2f0d1223652fbb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1262059663766233953
-    second: genericEnemyOverworld_right_0
+      213: -5661137682544726512
+    second: genericEnemyOverworld_left_0
   - first:
-      213: 463993477094780576
-    second: genericEnemyOverworld_right_1
+      213: 502578968563780731
+    second: genericEnemyOverworld_left_1
   - first:
-      213: 2193724043219159540
-    second: genericEnemyOverworld_right_2
+      213: 3080345953756660666
+    second: genericEnemyOverworld_left_2
   - first:
-      213: 4296627447558784349
-    second: genericEnemyOverworld_right_3
+      213: 3731334533668220441
+    second: genericEnemyOverworld_left_3
   - first:
-      213: 4344831277009334943
-    second: genericEnemyOverworld_right_4
+      213: 7152047180661153480
+    second: genericEnemyOverworld_left_4
   - first:
-      213: 5688248379941268098
-    second: genericEnemyOverworld_right_5
+      213: -3400809453563088440
+    second: genericEnemyOverworld_left_5
   - first:
-      213: -4159688649375322095
-    second: genericEnemyOverworld_right_6
+      213: -584897563750601567
+    second: genericEnemyOverworld_left_6
   - first:
-      213: -6961064177044621734
-    second: genericEnemyOverworld_right_7
+      213: -6280555090315210210
+    second: genericEnemyOverworld_left_7
   - first:
-      213: 3899121079160469389
-    second: genericEnemyOverworld_right_8
+      213: 7397162938826514992
+    second: genericEnemyOverworld_left_8
   - first:
-      213: -2131242255242349791
-    second: genericEnemyOverworld_right_9
+      213: 2033694550341586809
+    second: genericEnemyOverworld_left_9
   - first:
-      213: -3233031778903889919
-    second: genericEnemyOverworld_right_10
+      213: 6838600203029187586
+    second: genericEnemyOverworld_left_10
   - first:
-      213: 7043202359279985651
-    second: genericEnemyOverworld_right_11
+      213: -3859724218488078179
+    second: genericEnemyOverworld_left_11
   - first:
-      213: -7575659635327292471
-    second: genericEnemyOverworld_right_12
+      213: -6311984745600644256
+    second: genericEnemyOverworld_left_12
   - first:
-      213: 6256969529969948282
-    second: genericEnemyOverworld_right_13
+      213: -6875294540180549326
+    second: genericEnemyOverworld_left_13
   - first:
-      213: -3079791195179680954
-    second: genericEnemyOverworld_right_14
+      213: 2342663972253771095
+    second: genericEnemyOverworld_left_14
   - first:
-      213: -6165293104382118497
-    second: genericEnemyOverworld_right_15
+      213: -3913681266363314325
+    second: genericEnemyOverworld_left_15
   - first:
-      213: -4301841566047975262
-    second: genericEnemyOverworld_right_16
+      213: -4165598649157607199
+    second: genericEnemyOverworld_left_16
   - first:
-      213: -9091063494163450843
-    second: genericEnemyOverworld_right_17
+      213: -2233290279415325579
+    second: genericEnemyOverworld_left_17
   - first:
-      213: -4472931024465082965
-    second: genericEnemyOverworld_right_18
+      213: 2124906324863837151
+    second: genericEnemyOverworld_left_18
   - first:
-      213: -7164097734363861926
-    second: genericEnemyOverworld_right_19
+      213: -7076798648270980208
+    second: genericEnemyOverworld_left_19
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -106,7 +106,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -163,7 +163,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_0
+      name: genericEnemyOverworld_left_0
       rect:
         serializedVersion: 2
         x: 0
@@ -177,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 163a228d39cb38110800000000000000
-      internalID: 1262059663766233953
+      spriteID: 01ee75f85499f61b0800000000000000
+      internalID: -5661137682544726512
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_1
+      name: genericEnemyOverworld_left_1
       rect:
         serializedVersion: 2
         x: 64
@@ -198,14 +198,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ae255ceb9f607600800000000000000
-      internalID: 463993477094780576
+      spriteID: b7c83dcb8e489f600800000000000000
+      internalID: 502578968563780731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_2
+      name: genericEnemyOverworld_left_2
       rect:
         serializedVersion: 2
         x: 128
@@ -219,14 +219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f9cf4bf46ca17e10800000000000000
-      internalID: 2193724043219159540
+      spriteID: ab34af613569fba20800000000000000
+      internalID: 3080345953756660666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_3
+      name: genericEnemyOverworld_left_3
       rect:
         serializedVersion: 2
         x: 192
@@ -240,14 +240,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d554fe726efa0ab30800000000000000
-      internalID: 4296627447558784349
+      spriteID: 91e21792dfc58c330800000000000000
+      internalID: 3731334533668220441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_4
+      name: genericEnemyOverworld_left_4
       rect:
         serializedVersion: 2
         x: 256
@@ -261,14 +261,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f92f52bc601fb4c30800000000000000
-      internalID: 4344831277009334943
+      spriteID: 8ce5424840d214360800000000000000
+      internalID: 7152047180661153480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_5
+      name: genericEnemyOverworld_left_5
       rect:
         serializedVersion: 2
         x: 320
@@ -282,14 +282,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28a279093c7b0fe40800000000000000
-      internalID: 5688248379941268098
+      spriteID: 8c1f49bf1d5edc0d0800000000000000
+      internalID: -3400809453563088440
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_6
+      name: genericEnemyOverworld_left_6
       rect:
         serializedVersion: 2
         x: 384
@@ -303,14 +303,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11072cd5631d546c0800000000000000
-      internalID: -4159688649375322095
+      spriteID: 1ac67a2c3c602e7f0800000000000000
+      internalID: -584897563750601567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_7
+      name: genericEnemyOverworld_left_7
       rect:
         serializedVersion: 2
         x: 448
@@ -324,14 +324,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a56fe842305556f90800000000000000
-      internalID: -6961064177044621734
+      spriteID: e129d71db6cf6d8a0800000000000000
+      internalID: -6280555090315210210
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_8
+      name: genericEnemyOverworld_left_8
       rect:
         serializedVersion: 2
         x: 512
@@ -345,14 +345,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d87f89b86f57c1630800000000000000
-      internalID: 3899121079160469389
+      spriteID: 0326072408008a660800000000000000
+      internalID: 7397162938826514992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_9
+      name: genericEnemyOverworld_left_9
       rect:
         serializedVersion: 2
         x: 576
@@ -366,14 +366,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1233afde57e4c62e0800000000000000
-      internalID: -2131242255242349791
+      spriteID: 97f02c62b62293c10800000000000000
+      internalID: 2033694550341586809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_10
+      name: genericEnemyOverworld_left_10
       rect:
         serializedVersion: 2
         x: 640
@@ -387,14 +387,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10862e6f9b6f123d0800000000000000
-      internalID: -3233031778903889919
+      spriteID: 20c0876f6a697ee50800000000000000
+      internalID: 6838600203029187586
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_11
+      name: genericEnemyOverworld_left_11
       rect:
         serializedVersion: 2
         x: 704
@@ -408,14 +408,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f3a312ba3b7eb160800000000000000
-      internalID: 7043202359279985651
+      spriteID: d90cb02e5418f6ac0800000000000000
+      internalID: -3859724218488078179
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_12
+      name: genericEnemyOverworld_left_12
       rect:
         serializedVersion: 2
         x: 768
@@ -429,14 +429,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cb2d0103b9ddd690800000000000000
-      internalID: -7575659635327292471
+      spriteID: 06b0ac2f0535768a0800000000000000
+      internalID: -6311984745600644256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_13
+      name: genericEnemyOverworld_left_13
       rect:
         serializedVersion: 2
         x: 832
@@ -450,14 +450,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a763d4cf2a835d650800000000000000
-      internalID: 6256969529969948282
+      spriteID: 2311b56ea0c0690a0800000000000000
+      internalID: -6875294540180549326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_14
+      name: genericEnemyOverworld_left_14
       rect:
         serializedVersion: 2
         x: 896
@@ -471,14 +471,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64b70f4b9326245d0800000000000000
-      internalID: -3079791195179680954
+      spriteID: 755aa468870d28020800000000000000
+      internalID: 2342663972253771095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_15
+      name: genericEnemyOverworld_left_15
       rect:
         serializedVersion: 2
         x: 960
@@ -492,14 +492,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f957321369a707aa0800000000000000
-      internalID: -6165293104382118497
+      spriteID: b6f4052bf9fcfa9c0800000000000000
+      internalID: -3913681266363314325
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_16
+      name: genericEnemyOverworld_left_16
       rect:
         serializedVersion: 2
         x: 1024
@@ -513,14 +513,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a843b743e9cc44c0800000000000000
-      internalID: -4301841566047975262
+      spriteID: 1e02d105912d036c0800000000000000
+      internalID: -4165598649157607199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_17
+      name: genericEnemyOverworld_left_17
       rect:
         serializedVersion: 2
         x: 1088
@@ -534,14 +534,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 524bdd72bed06d180800000000000000
-      internalID: -9091063494163450843
+      spriteID: 57cdd17c252c101e0800000000000000
+      internalID: -2233290279415325579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_18
+      name: genericEnemyOverworld_left_18
       rect:
         serializedVersion: 2
         x: 1152
@@ -555,14 +555,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba54fed8ee4fce1c0800000000000000
-      internalID: -4472931024465082965
+      spriteID: fd36d725b0f2d7d10800000000000000
+      internalID: 2124906324863837151
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: genericEnemyOverworld_right_19
+      name: genericEnemyOverworld_left_19
       rect:
         serializedVersion: 2
         x: 1216
@@ -576,8 +576,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5caf0f4113049c90800000000000000
-      internalID: -7164097734363861926
+      spriteID: 09bf7d6bf192acd90800000000000000
+      internalID: -7076798648270980208
       vertices: []
       indices: 
       edges: []

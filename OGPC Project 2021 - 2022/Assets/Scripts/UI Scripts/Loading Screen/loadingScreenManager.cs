@@ -21,7 +21,7 @@ public class loadingScreenManager : MonoBehaviour
     // disable the loading screen when it is done
     void Update()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.999f && animator.GetCurrentAnimatorStateInfo(0).IsName("loadingScreen_active")) {
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9999f && animator.GetCurrentAnimatorStateInfo(0).IsName("loadingScreen_active")) {
             animator.SetBool("loadingDone", true);
             loadingDone = true;
             loadingScreen.SetActive(false);

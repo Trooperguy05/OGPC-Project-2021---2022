@@ -89,7 +89,9 @@ public class PartyManager : MonoBehaviour
         FindObjectOfType<PartyStats>().LoadData();
         // loading the player progress data
         FindObjectOfType<PlayerProgress>().loadPlayerData();
-        Debug.Log(partyOrder[0]);
+        
+        updatePlayerSprite();
+        pM.updateIdleSprite();
     }
 
     
