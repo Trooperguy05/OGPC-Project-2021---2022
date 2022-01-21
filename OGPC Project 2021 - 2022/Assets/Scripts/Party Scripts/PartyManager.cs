@@ -70,7 +70,7 @@ public class PartyManager : MonoBehaviour
         secondPosition = new Vector3(player.transform.position.x + imageOffset, player.transform.position.y, 0f);
         thirdPosition = new Vector3(player.transform.position.x, player.transform.position.y - imageOffset, 0f);
         fourthPosition = new Vector3(player.transform.position.x - imageOffset, player.transform.position.y, 0f);
-
+        
         // caching the RectTransforms of the character UI elements
         character1RT = character1.GetComponent<RectTransform>();
         character2RT = character2.GetComponent<RectTransform>();
@@ -89,12 +89,14 @@ public class PartyManager : MonoBehaviour
         FindObjectOfType<PartyStats>().LoadData();
         // loading the player progress data
         FindObjectOfType<PlayerProgress>().loadPlayerData();
+        Debug.Log(partyOrder[0]);
     }
+
     
     // checking for player input
     void Update() {
         // if the player presses tab, open the party menu
-        if (Input.GetKeyDown(KeyCode.Tab)) {
+        if (Input.GetKeyDown(KeyCode.Tab) && loadingScreenManager.loadingDone && !DialogueManager.InDialogue) {
             if (!FindObjectOfType<PauseMenu>().pauseMenuOpen) { // making sure the pause menu isn't open before opening party wheel
                 // open the menu
                 partyTabOpen = !partyTabOpen;

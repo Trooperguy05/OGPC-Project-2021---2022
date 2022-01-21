@@ -13,6 +13,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject dialogueBox;
     public TextMeshProUGUI dialogueName;
     public TextMeshProUGUI dialogueText;
+    public static bool InDialogue = false;
     // its animator
     private Animator dialogueBoxAnimator;
 
@@ -33,6 +34,7 @@ public class DialogueManager : MonoBehaviour
         dialogueBoxAnimator.SetBool("dialogueOn", true);
         PlayerMovement.playerAbleMove = false;
         dialogueName.text = dialogue.name;
+        InDialogue = true;
 
         sentences.Clear();
 
@@ -69,5 +71,6 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("End of conversation");
         dialogueBoxAnimator.SetBool("dialogueOn", false);
         PlayerMovement.playerAbleMove = true;
+        InDialogue = false;
     }
 }

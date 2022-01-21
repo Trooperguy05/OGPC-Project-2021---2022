@@ -40,6 +40,25 @@ public class PlayerMovement : MonoBehaviour
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");  
         }
+        else
+        {
+            animator.SetBool("razaUp", false);
+            animator.SetBool("razaDown", false);
+            animator.SetBool("razaLeft", false);
+            animator.SetBool("razaRight", false);
+            animator.SetBool("dorneUp", false);
+            animator.SetBool("dorneDown", false);
+            animator.SetBool("dorneLeft", false);
+            animator.SetBool("dorneRight", false);
+            animator.SetBool("smithsonUp", false);
+            animator.SetBool("smithsonDown", false);
+            animator.SetBool("smithsonLeft", false);
+            animator.SetBool("smithsonRight", false);
+            animator.SetBool("zorUp", false);
+            animator.SetBool("zorDown", false);
+            animator.SetBool("zorLeft", false);
+            animator.SetBool("zorRight", false);
+        }
 
         // change sprite based on movement \\
         // horizontal movement
