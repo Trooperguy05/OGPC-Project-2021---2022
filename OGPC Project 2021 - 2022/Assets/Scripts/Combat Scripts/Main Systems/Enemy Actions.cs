@@ -181,7 +181,7 @@ public class EnemyActions : MonoBehaviour
     public void crocSpin()
     {
         int target = enemyHit(20);
-        // inflicts bleed condition for 3 turns
+        // inflicts bleed condition for 3 turns (5 dmg per turn)
     }
 
     /////Swamp Miniboss\\\\\
