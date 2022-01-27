@@ -534,6 +534,7 @@ MonoBehaviour:
   char4HP: 90
   char4Mana: 100
   char4Dexterity: 1
+  playerAnimator: {fileID: 0}
 --- !u!4 &100334156
 Transform:
   m_ObjectHideFlags: 0
@@ -1555,6 +1556,7 @@ GameObject:
   - component: {fileID: 1105582661}
   - component: {fileID: 1105582662}
   - component: {fileID: 1105582663}
+  - component: {fileID: 1105582664}
   m_Layer: 0
   m_Name: Combat Manager
   m_TagString: Untagged
@@ -1608,6 +1610,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372de1415b089524496b3a2c22c90adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1105582664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105582660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2777c72fee319f409f87f3acb829838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameList: []
+  effectList: []
+  effectDurations: 
 --- !u!1 &1303819986
 GameObject:
   m_ObjectHideFlags: 0

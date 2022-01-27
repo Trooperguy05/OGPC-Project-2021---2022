@@ -8,6 +8,8 @@ public class EnemyActions : MonoBehaviour
     private CombatManager cm;
     private PartyStats pS;
 
+    private StatusManager sM;
+
     //enemy specific variables
     public bool snakeCoil = false;
     public int snakeCoilTarget;
@@ -20,12 +22,16 @@ public class EnemyActions : MonoBehaviour
         cm = GameObject.Find("Combat Manager").GetComponent<CombatManager>();
         // get the party stats manager
         pS = GameObject.Find("Party Manager").GetComponent<PartyStats>();
+        // get the status effect manager
+        sM = GameObject.Find("Combat Manager").GetComponent<StatusManager>();
+
     }
 
     //decides what party member is targeted by an enemy
-    public int enemyHit(int dmg)
+    public string enemyHit(int dmg)
     {
         int target = 0;
+        string character = "";
         int healthCheck = 0;
         while (healthCheck < 1)
         {
@@ -33,18 +39,22 @@ public class EnemyActions : MonoBehaviour
             if (target == 1)
             {
                 healthCheck = pS.char1HP;
+                character = "raza";
             }
             else if (target == 2)
             {
                 healthCheck = pS.char2HP;
+                character = "dorne";
             }
             else if (target == 3)
             {
                 healthCheck = pS.char3HP;
+                character = "smithson";
             }
             else
             {
                 healthCheck = pS.char4HP;
+                character = "zor";
             }
         }
         if (target == 1)
@@ -63,7 +73,7 @@ public class EnemyActions : MonoBehaviour
         {
             pS.char4HP -= dmg;
         }
-        return target;
+        return character;
     }
 
     //variation of the enemy attack method but without a return value, as to hit all player characters
@@ -86,7 +96,8 @@ public class EnemyActions : MonoBehaviour
         int toHit = Random.Range(1, 100);
         if (toHit <= 90)
         {
-            int target = enemyHit(10);
+            string character = enemyHit(10);
+            sM.statusAdd(character, "poison", 3);
         }
         //poisons target, dealing 3 damage per turn for 3 turns. will impliment with status manager.
     }
@@ -132,7 +143,7 @@ public class EnemyActions : MonoBehaviour
     ///Constrict\\\
     public void snakeConstrict()
     {
-        snakeCoilTarget = enemyHit(0);
+        string snakeCoilTarget = enemyHit(0);
         snakeCoil = true;
         //will lower initiative to minimum on target until the anaconda dies
     }
@@ -180,7 +191,8 @@ public class EnemyActions : MonoBehaviour
     ///Death Roll\\\
     public void crocSpin()
     {
-        int target = enemyHit(20);
+        string target = enemyHit(20);
+        sM.statusAdd(target, "bleed", 3);
         // inflicts bleed condition for 3 turns (5 dmg per turn)
     }
 
@@ -192,7 +204,7 @@ public class EnemyActions : MonoBehaviour
         int toHit = Random.Range(1, 100);
         if (toHit <= 90)
         {
-            int target = enemyHit(25);
+            string target = enemyHit(25);
             //lowers enemy initiative to minimum for 2 turns
         }
     }
@@ -202,7 +214,7 @@ public class EnemyActions : MonoBehaviour
         int toHit = Random.Range(1, 100);
         if (toHit <= 90)
         {
-            int target = enemyHit(30);
+            string target = enemyHit(30);
             //If target is slower than man trap, deal an additional 10 damage
         }
     }
@@ -216,7 +228,7 @@ public class EnemyActions : MonoBehaviour
         int toHit = Random.Range(1, 100);
         if (toHit <= 90)
         {
-            int target = enemyHit(30);
+            string target = enemyHit(30);
             //decreases target initiative by 1
         }
     }
@@ -229,7 +241,8 @@ public class EnemyActions : MonoBehaviour
         int toHit = Random.Range(1, 100);
         if(toHit <= 90)
         {
-            int target = enemyHit(20);
+            string target = enemyHit(20);
+            sM.statusAdd(target, "poison", 3);
             // inflicts poison for 3 turns on the target
         }
     }
@@ -240,7 +253,7 @@ public class EnemyActions : MonoBehaviour
         int toHit = Random.Range(1, 100);
         if (toHit <= 90)
         {
-            int target = enemyHit(10);
+            string target = enemyHit(10);
             // subtracts 2 from intiative until combat ends
         }
     }
