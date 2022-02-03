@@ -64,7 +64,7 @@ public class CombatManager : MonoBehaviour
                 str += initiativeNames[i] + ", ";
             }
             Debug.Log(str);
-            Debug.Log(" ");
+            Debug.Log(initiativeNames[initiativeIndex]);
         }
 
         if (Input.GetKeyDown(KeyCode.J)) {
@@ -94,19 +94,26 @@ public class CombatManager : MonoBehaviour
         // round stuff \\
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
             roundNum++;
+            Debug.Log("Round: " + roundNum);
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-            roundNum--;
+
+        if (Input.GetKeyDown(KeyCode.P)) {
+            initiativeIndex++;
+            if (initiativeIndex <= 7 && initiativeNames[initiativeIndex] != "") {
+                Debug.Log(initiativeNames[initiativeIndex]);
+            }
         }
 
         ///   Turn-Based Combat   \\\
         // if it is one of the player characters' turn
+        /*
         if (initiativeNames[initiativeIndex] == "Raza") {
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 initiativeIndex++;
             }
         }
+        */
         /*
         if (initiativeNames[initiativeIndex] == "Dorne") {
             // if the player is done, pass the turn
@@ -115,12 +122,20 @@ public class CombatManager : MonoBehaviour
                 initiativeIndex++;
             }
         }
+        */
+
+        // if initiativeNames does not contain a name, skip
+        if (initiativeNames[initiativeIndex] == "" && initiativeIndex <= 7) {
+            initiativeIndex++;
+        }
 
         // if initiativeIndex is greater than 7, reset
         if (initiativeIndex > 7) {
             initiativeIndex = 0;
+            roundNum++;
+            Debug.Log("Round: " + roundNum);
+            Debug.Log(initiativeNames[initiativeIndex]);
         }
-        */
     }
 
     // method that "rolls" for combat initiative \\
@@ -303,6 +318,8 @@ public class CombatManager : MonoBehaviour
     private void getSpecifiedEnemy() {
         Debug.Log("Loading Specified Enemy");
         SpecifiedEnemyData data = SaveSystem.LoadSpecifiedEnemy();
-        specifiedEnemy = data.specifiedEnemy;
+        if (data != null) {
+            specifiedEnemy = data.specifiedEnemy;
+        }
     }
 }

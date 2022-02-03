@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         }
         // if the player is idle \\
         else {
-            if (!pM.partyTabOpen) {
+            if (!pM.partyTabOpen && loadingScreenManager.loadingDone) {
                 // if party leader is raza
                 if (pM.leader == PartyManager.PartyLead.Raza) {
                     if (playerDirection == direction.down) {
