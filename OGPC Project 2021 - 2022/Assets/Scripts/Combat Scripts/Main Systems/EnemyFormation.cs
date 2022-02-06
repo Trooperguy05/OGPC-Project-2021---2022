@@ -30,5 +30,18 @@ public class EnemyFormation : MonoBehaviour
                 cM.enemiesInCombat[i].transform.position = fourEnemyPositions[i];
             }
         }
+        if (cM.enemiesInCombat.Count == 3) {
+            for (int i = 0; i < threeEnemyPositions.Length; i++) {
+                cM.enemiesInCombat[i].transform.position = threeEnemyPositions[i];
+            }
+        }
+        if (cM.enemiesInCombat.Count == 2) {
+            for (int i = 0; i < twoEnemyPositions.Length; i++) {
+                cM.enemiesInCombat[i].transform.position = twoEnemyPositions[i];
+            }
+        }
+        if (cM.enemiesInCombat.Count == 1) {
+            cM.enemiesInCombat[0].transform.position = oneEnemyPosition;
+        }
     }
 }

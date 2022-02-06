@@ -10,11 +10,13 @@ public class CombatManager : MonoBehaviour
 {
     // arrays for tracking initiative \\
     [Header("Initiative")]
-    private string[] initiativeNames = new string[8];
+    public string[] initiativeNames = new string[8];
     public int[] initiativeCount = new int[8];
     public List<GameObject> enemiesInCombat = new List<GameObject>();
+    public GameObject[] gameObjectsInCombat = new GameObject[8];
     public int initiativeIndex = 0;
     public int roundNum = 1;
+    public bool combatStarted = false;
 
     // enemies \\
     [Header("Enemies")]
@@ -31,6 +33,10 @@ public class CombatManager : MonoBehaviour
     private int enemySlotsLeft = 4;
     // specified enemies
     private int specifiedEnemy;
+    // script for enemy formation
+    private EnemyFormation eF;
+    // script for turn indicator
+    private turnIndicator tI;
 
     // action scripts to monitor who's done what \\
     private PlayerActions playerActions;
@@ -51,6 +57,12 @@ public class CombatManager : MonoBehaviour
 
         // grabbing the action scripts
         playerActions = GameObject.Find("Action Manager").GetComponent<PlayerActions>();
+
+        // grabbing the enemy formation script
+        eF = GetComponent<EnemyFormation>();
+
+        // grabbing the turn indicator script
+        tI = GetComponent<turnIndicator>();
     }
 
     void Update() {
@@ -65,42 +77,18 @@ public class CombatManager : MonoBehaviour
             }
             Debug.Log(str);
             Debug.Log(initiativeNames[initiativeIndex]);
-        }
 
-        if (Input.GetKeyDown(KeyCode.J)) {
-            string str = "";
-            for (int i = 0; i < initiativeCount.Length; i++) {
-                if (i != initiativeCount.Length-1) {
-                    str += initiativeCount[i] + ", ";
-                }
-                else {
-                    str += initiativeCount[i];
-                }
-            }
-            Debug.Log(str);
-
-            string str2 = "";
-            for (int i = 0; i < initiativeNames.Length; i++) {
-                if (i != initiativeNames.Length-1) {
-                    str2 += initiativeNames[i] + ", ";
-                }
-                else {
-                    str2 += initiativeNames[i];
-                }
-            }
-            Debug.Log(str2);
-        }
-
-        // round stuff \\
-        if (Input.GetKeyDown(KeyCode.RightArrow)) {
-            roundNum++;
-            Debug.Log("Round: " + roundNum);
+            eF.organizeField();
+            tI.updateIndicator();
         }
 
         if (Input.GetKeyDown(KeyCode.P)) {
             initiativeIndex++;
             if (initiativeIndex <= 7 && initiativeNames[initiativeIndex] != "") {
                 Debug.Log(initiativeNames[initiativeIndex]);
+            }
+            if (initiativeIndex < 7) {
+                tI.updateIndicator();
             }
         }
 
@@ -124,9 +112,11 @@ public class CombatManager : MonoBehaviour
         }
         */
 
-        // if initiativeNames does not contain a name, skip
-        if (initiativeNames[initiativeIndex] == "" && initiativeIndex <= 7) {
-            initiativeIndex++;
+        // if initiativeNames[initiativeIndex] = "", continue to next person
+        if (combatStarted) {
+            if (initiativeNames[initiativeIndex] == "") {
+                initiativeIndex++;
+            }
         }
 
         // if initiativeIndex is greater than 7, reset
@@ -135,6 +125,7 @@ public class CombatManager : MonoBehaviour
             roundNum++;
             Debug.Log("Round: " + roundNum);
             Debug.Log(initiativeNames[initiativeIndex]);
+            tI.updateIndicator();
         }
     }
 
@@ -162,7 +153,7 @@ public class CombatManager : MonoBehaviour
                 if (enemySlotsLeft >= e1.size) {
                     enemySlotsLeft -= e1.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e1.dexterity;   
-                    i++;                   
+                    i++;          
                 }
                 else {
                     e1 = null;
@@ -173,7 +164,7 @@ public class CombatManager : MonoBehaviour
                 if (enemySlotsLeft >= e2.size) {
                     enemySlotsLeft -= e2.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e2.dexterity;
-                    i++;                  
+                    i++;            
                 }
                 else {
                     e2 = null;
@@ -184,7 +175,7 @@ public class CombatManager : MonoBehaviour
                 if (enemySlotsLeft >= e3.size) {
                     enemySlotsLeft -= e3.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e3.dexterity;
-                    i++;                    
+                    i++;           
                 }
                 else {
                     e3 = null;
@@ -195,7 +186,7 @@ public class CombatManager : MonoBehaviour
                 if (enemySlotsLeft >= e4.size) {
                     enemySlotsLeft -= e4.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e4.dexterity;
-                    i++;                     
+                    i++;          
                 }
                 else {
                     e4 = null;
@@ -219,6 +210,8 @@ public class CombatManager : MonoBehaviour
             str += initiativeCount[j] + ", ";
         }
         Debug.Log(str);
+
+        combatStarted = true;
     }
 
     // sorts the initiative from highest to lowest \\
@@ -226,6 +219,9 @@ public class CombatManager : MonoBehaviour
         // reset the initiativenames if it isn't empty
         for (int i = 0; i < initiativeNames.Length; i++) {
             initiativeNames[i] = "";
+        }
+        for (int i = 0; i < gameObjectsInCombat.Length; i++) {
+            gameObjectsInCombat[i] = null;
         }
         // variables used in algorithm
         int highestNumIndex = -1;
@@ -266,31 +262,39 @@ public class CombatManager : MonoBehaviour
             // if one of those initiatives is from the player characters
             if (highestNumIndex == 0 && !initiativeNames.Contains("Raza")) {
                 initiativeNames[j] = "Raza";
+                gameObjectsInCombat[j] = GameObject.Find("Raza");
             }
             else if (highestNumIndex == 1 && !initiativeNames.Contains("Dorne")) {
                 initiativeNames[j] = "Dorne";
+                gameObjectsInCombat[j] = GameObject.Find("Dorne");
             }
             else if (highestNumIndex == 2 && !initiativeNames.Contains("Smithson")) {
                 initiativeNames[j] = "Smithson";
+                gameObjectsInCombat[j] = GameObject.Find("Smithson");
             }
             else if (highestNumIndex == 3 && !initiativeNames.Contains("Zor")) {
                 initiativeNames[j] = "Zor";
+                gameObjectsInCombat[j] = GameObject.Find("Zor");
             }
             // if one of those inititaives is from the enemies
             if (highestNumIndex == 4 && e1 != null) {
                 initiativeNames[j] = e1.name;
+                gameObjectsInCombat[j] = enemy1;
                 enemiesInCombat.Add(enemy1);
             }
             else if (highestNumIndex == 5 && e2 != null) {
                 initiativeNames[j] = e2.name;
+                gameObjectsInCombat[j] = enemy2;
                 enemiesInCombat.Add(enemy2);
             }
             else if (highestNumIndex == 6 && e3 != null) {
                 initiativeNames[j] = e3.name;
+                gameObjectsInCombat[j] = enemy3;
                 enemiesInCombat.Add(enemy3);
             }
             else if (highestNumIndex == 7 && e4 != null) {
                 initiativeNames[j] = e4.name;
+                gameObjectsInCombat[j] = enemy4;
                 enemiesInCombat.Add(enemy4);
             }
 
