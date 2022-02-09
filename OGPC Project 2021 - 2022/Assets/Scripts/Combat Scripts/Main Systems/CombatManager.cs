@@ -87,7 +87,7 @@ public class CombatManager : MonoBehaviour
             if (initiativeIndex <= 7 && initiativeNames[initiativeIndex] != "") {
                 Debug.Log(initiativeNames[initiativeIndex]);
             }
-            if (initiativeIndex < 7) {
+            if (initiativeIndex <= 7) {
                 tI.updateIndicator();
             }
         }
@@ -113,11 +113,13 @@ public class CombatManager : MonoBehaviour
         */
 
         // if initiativeNames[initiativeIndex] = "", continue to next person
+        /*
         if (combatStarted) {
             if (initiativeNames[initiativeIndex] == "") {
                 initiativeIndex++;
             }
         }
+        */
 
         // if initiativeIndex is greater than 7, reset
         if (initiativeIndex > 7) {
