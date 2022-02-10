@@ -156,7 +156,7 @@ public class OpenWorldEnemy : MonoBehaviour
     // initiate combat with the player
     void OnTriggerEnter2D(Collider2D col) {
         Debug.Log("Entering Combat");
-        Destroy(gameObject); // destroy itself
+        gameObject.SetActive(false); // deactivate itself
         FindObjectOfType<PartyStats>().SaveData(); // save party stats
         FindObjectOfType<PlayerProgress>().savePlayerData(); // save player progress
         FindObjectOfType<OpenWorldEnemyManager>().saveActiveEnemies(); // save active enemies

@@ -22,7 +22,7 @@ public class CombatManager : MonoBehaviour
     [Header("Enemies")]
     public GameObject enemy1;
     public GameObject enemy2;
-    public GameObject enemy3 ;
+    public GameObject enemy3;
     public GameObject enemy4;
     // enemycreator objects
     public EnemyCreator e1;
@@ -37,6 +37,8 @@ public class CombatManager : MonoBehaviour
     private EnemyFormation eF;
     // script for turn indicator
     private turnIndicator tI;
+    // script for healthbar manager
+    private HealthbarManager hM;
 
     // action scripts to monitor who's done what \\
     private PlayerActions playerActions;
@@ -63,6 +65,9 @@ public class CombatManager : MonoBehaviour
 
         // grabbing the turn indicator script
         tI = GetComponent<turnIndicator>();
+
+        // getting the healthbar manager
+        hM = GameObject.Find("Healthbar Manager").GetComponent<HealthbarManager>();
     }
 
     void Update() {
@@ -155,7 +160,9 @@ public class CombatManager : MonoBehaviour
                 if (enemySlotsLeft >= e1.size) {
                     enemySlotsLeft -= e1.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e1.dexterity;   
-                    i++;          
+                    i++;
+                    hM.enemy1Slider.maxValue = e1.healthMax;
+                    //hM.enemy1Slider.value = hM.enemy1Slider.maxValue;     
                 }
                 else {
                     e1 = null;
@@ -166,7 +173,7 @@ public class CombatManager : MonoBehaviour
                 if (enemySlotsLeft >= e2.size) {
                     enemySlotsLeft -= e2.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e2.dexterity;
-                    i++;            
+                    i++;       
                 }
                 else {
                     e2 = null;
@@ -177,7 +184,7 @@ public class CombatManager : MonoBehaviour
                 if (enemySlotsLeft >= e3.size) {
                     enemySlotsLeft -= e3.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e3.dexterity;
-                    i++;           
+                    i++;     
                 }
                 else {
                     e3 = null;
@@ -188,7 +195,7 @@ public class CombatManager : MonoBehaviour
                 if (enemySlotsLeft >= e4.size) {
                     enemySlotsLeft -= e4.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e4.dexterity;
-                    i++;          
+                    i++;        
                 }
                 else {
                     e4 = null;
