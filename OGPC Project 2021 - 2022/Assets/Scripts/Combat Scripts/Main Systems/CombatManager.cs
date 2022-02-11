@@ -33,12 +33,13 @@ public class CombatManager : MonoBehaviour
     private int enemySlotsLeft = 4;
     // specified enemies
     private int specifiedEnemy;
+    [Header("Other Scripts")]
     // script for enemy formation
-    private EnemyFormation eF;
+    public EnemyFormation eF;
     // script for turn indicator
-    private turnIndicator tI;
+    public turnIndicator tI;
     // script for healthbar manager
-    private HealthbarManager hM;
+    public HealthbarManager hM;
 
     // action scripts to monitor who's done what \\
     private PlayerActions playerActions;
@@ -65,9 +66,6 @@ public class CombatManager : MonoBehaviour
 
         // grabbing the turn indicator script
         tI = GetComponent<turnIndicator>();
-
-        // getting the healthbar manager
-        hM = GameObject.Find("Healthbar Manager").GetComponent<HealthbarManager>();
     }
 
     void Update() {
@@ -162,7 +160,7 @@ public class CombatManager : MonoBehaviour
                     initiativeCount[4+i] = Random.Range(1, 20) + e1.dexterity;   
                     i++;
                     hM.enemy1Slider.maxValue = e1.healthMax;
-                    //hM.enemy1Slider.value = hM.enemy1Slider.maxValue;     
+                    hM.enemy1Slider.value = hM.enemy1Slider.maxValue;     
                 }
                 else {
                     e1 = null;
@@ -173,7 +171,9 @@ public class CombatManager : MonoBehaviour
                 if (enemySlotsLeft >= e2.size) {
                     enemySlotsLeft -= e2.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e2.dexterity;
-                    i++;       
+                    i++;
+                    hM.enemy2Slider.maxValue = e2.healthMax;
+                    hM.enemy2Slider.value = hM.enemy2Slider.maxValue; 
                 }
                 else {
                     e2 = null;
@@ -184,7 +184,9 @@ public class CombatManager : MonoBehaviour
                 if (enemySlotsLeft >= e3.size) {
                     enemySlotsLeft -= e3.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e3.dexterity;
-                    i++;     
+                    i++;
+                    hM.enemy3Slider.maxValue = e3.healthMax;
+                    hM.enemy3Slider.value = hM.enemy3Slider.maxValue;  
                 }
                 else {
                     e3 = null;
@@ -195,7 +197,9 @@ public class CombatManager : MonoBehaviour
                 if (enemySlotsLeft >= e4.size) {
                     enemySlotsLeft -= e4.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e4.dexterity;
-                    i++;        
+                    i++;
+                    hM.enemy4Slider.maxValue = e4.healthMax;
+                    hM.enemy4Slider.value = hM.enemy4Slider.maxValue;     
                 }
                 else {
                     e4 = null;
@@ -315,15 +319,19 @@ public class CombatManager : MonoBehaviour
         // if the enemiesincombat doesn't have the enemy gameobject, disable it
         if (!enemiesInCombat.Contains(enemy1)) {
             enemy1.SetActive(false);
+            hM.enemy1Healthbar.SetActive(false);
         }
         if (!enemiesInCombat.Contains(enemy2)) {
             enemy2.SetActive(false);
+            hM.enemy2Healthbar.SetActive(false);
         }
         if (!enemiesInCombat.Contains(enemy3)) {
             enemy3.SetActive(false);
+            hM.enemy3Healthbar.SetActive(false);
         }
         if (!enemiesInCombat.Contains(enemy4)) {
             enemy4.SetActive(false);
+            hM.enemy4Healthbar.SetActive(false);
         }
     }
 
