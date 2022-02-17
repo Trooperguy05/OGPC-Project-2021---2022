@@ -38,47 +38,23 @@ public class EnemyCreator
     ///   Methods that creates the enemy, random or specified   \\\
     // random enemy
     private void createEnemyRandom() {
-        int chance = Random.Range(1, 5);
+        int chance = Random.Range(1, 2);
 
         // zombie enemy
         if (chance == 1) {
-            name = "Zombie";
-            healthMax = 100;
+            name = "Scorpion";
+            healthMax = 150;
             manaMax = 0;
-            dexterity = -1;
+            dexterity = 1;
             size = 1;
         }
         // skeleton enemy
         else if (chance == 2) {
-            name = "Skeleton";
-            healthMax = 90;
-            manaMax = 0;
-            dexterity = 2;
-            size = 1;
-        }
-        // ooze enemy
-        else if (chance == 3) {
-            name = "Ooze";
-            healthMax = 110;
-            manaMax = 0;
-            dexterity = 0;
-            size = 2;
-        }
-        // adult red dragon enemy
-        else if (chance == 4) {
-            name = "Adult Red Dragon";
+            name = "Mummy";
             healthMax = 200;
-            manaMax = 100;
-            dexterity = 2;
-            size = 3;
-        }
-        // tarrasque enemy
-        else if (chance == 5) {
-            name = "Tarrasque";
-            healthMax = 300;
             manaMax = 0;
-            dexterity = 2;
-            size = 4; 
+            dexterity = -1;
+            size = 1;
         }
         health = healthMax;
         mana = manaMax;

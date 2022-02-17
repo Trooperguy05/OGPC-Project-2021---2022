@@ -17,6 +17,7 @@ public class CombatManager : MonoBehaviour
     public int initiativeIndex = 0;
     public int roundNum = 1;
     public bool combatStarted = false;
+    private bool tookChoice = false;
 
     // enemies \\
     [Header("Enemies")]
@@ -40,9 +41,9 @@ public class CombatManager : MonoBehaviour
     public turnIndicator tI;
     // script for healthbar manager
     public HealthbarManager hM;
-
     // action scripts to monitor who's done what \\
-    private PlayerActions playerActions;
+    public PlayerActions playerActions;
+    public EnemyActions enemyActions;
 
     // load the party stats when the player enters combat
     void Start() {
@@ -97,39 +98,90 @@ public class CombatManager : MonoBehaviour
 
         ///   Turn-Based Combat   \\\
         // if it is one of the player characters' turn
-        /*
         if (initiativeNames[initiativeIndex] == "Raza") {
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 initiativeIndex++;
+                if (initiativeIndex <= 7) {
+                    tI.updateIndicator();
+                }
+                newRound();
             }
         }
-        */
-        /*
-        if (initiativeNames[initiativeIndex] == "Dorne") {
-            // if the player is done, pass the turn
+        else if (initiativeNames[initiativeIndex] == "Dorne") {
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 initiativeIndex++;
+                if (initiativeIndex <= 7) {
+                    tI.updateIndicator();
+                }
+                newRound();
             }
         }
-        */
+        else if (initiativeNames[initiativeIndex] == "Smithson") {
+            if (playerActions.charDone) {
+                playerActions.charDone = false;
+                initiativeIndex++;
+                if (initiativeIndex <= 7) {
+                    tI.updateIndicator();
+                }
+                newRound();
+            }
+        }
+        else if (initiativeNames[initiativeIndex] == "Zor") {
+            if (playerActions.charDone) {
+                playerActions.charDone = false;
+                initiativeIndex++;
+                if (initiativeIndex <= 7) {
+                    tI.updateIndicator();
+                }
+                newRound();
+            }
+        }
+        // if it is one of the enemy's turns
+        // if the enemy is a scorpion
+        if (initiativeNames[initiativeIndex] == "Scorpion") {
+            int choice = Random.Range(1, 2);
+            if (!tookChoice) {
+                if (choice == 1) {
+                    StartCoroutine(enemyActions.scorpSting());
+                    tookChoice = true;
+                }
+                else {
+                    StartCoroutine(enemyActions.scorpPinch());
+                    tookChoice = true;
+                }      
+            }
+            if (enemyActions.enemyDone) {
+                enemyActions.enemyDone = false;
+                tookChoice = false;
+                initiativeIndex++;
+                if (initiativeIndex <= 7) {
+                    tI.updateIndicator();
+                }
+                newRound();
+            }
+        }
 
         // if initiativeNames[initiativeIndex] = "", continue to next person
-        /*
         if (combatStarted) {
             if (initiativeNames[initiativeIndex] == "") {
                 initiativeIndex++;
+                newRound();
             }
         }
-        */
 
-        // if initiativeIndex is greater than 7, reset
+        newRound();
+    }
+
+    // method that continues combat to the next round \\
+    public void newRound() {
         if (initiativeIndex > 7) {
             initiativeIndex = 0;
             roundNum++;
             Debug.Log("Round: " + roundNum);
             Debug.Log(initiativeNames[initiativeIndex]);
+            playerActions.updatePCVariables();
             tI.updateIndicator();
         }
     }

@@ -11,10 +11,10 @@ public class HealthbarManager : MonoBehaviour
     public GameObject dorneHealthbar;
     public GameObject smithsonHealtbar;
     public GameObject zorHealthbar;
-    private Slider razaSlider;
-    private Slider dorneSlider;
-    private Slider smithsonSlider;
-    private Slider zorSlider;
+    public Slider razaSlider;
+    public Slider dorneSlider;
+    public Slider smithsonSlider;
+    public Slider zorSlider;
     // Healthbars for the enemies \\
     [Header("Enemy Healthbars")]
     public GameObject enemy1Healthbar;
@@ -37,10 +37,10 @@ public class HealthbarManager : MonoBehaviour
 
         // set the initial positions of the healthbars \\
         // PC healthbars
-        razaHealthbar.GetComponent<RectTransform>().position = new Vector2(-6, 4);
+        razaHealthbar.GetComponent<RectTransform>().position = new Vector2(-6, 4.25f);
         dorneHealthbar.GetComponent<RectTransform>().position = new Vector2(-6, 2.6f);
-        smithsonHealtbar.GetComponent<RectTransform>().position = new Vector2(-6, 1.2f);
-        zorHealthbar.GetComponent<RectTransform>().position = new Vector2(-6, -0.2f);
+        smithsonHealtbar.GetComponent<RectTransform>().position = new Vector2(-6, 1.45f);
+        zorHealthbar.GetComponent<RectTransform>().position = new Vector2(-6, 0.05f);
         // enemy healthbars
 
         // cache the healthbar sliders \\

@@ -21,11 +21,14 @@ public class PlayerActions : MonoBehaviour
 
     // targeting system variable
     private TargetingSystem ts;
-
     // combat manager
     private CombatManager cm;
     // party stats manager
     private PartyStats pS;
+    // healthbar manager
+    private HealthbarManager hM;
+    // manabar manager
+    private ManabarManager mM;
 
     // variable that tells the combatmanager if the player is done
     // with a character's turn
@@ -39,6 +42,10 @@ public class PlayerActions : MonoBehaviour
         cm = GameObject.Find("Combat Manager").GetComponent<CombatManager>();
         // get the party stats manager
         pS = GameObject.Find("Party Manager").GetComponent<PartyStats>();
+        // get healthbar manager
+        hM = GameObject.Find("Healthbar Manager").GetComponent<HealthbarManager>();
+        // get manabar manager
+        mM = GameObject.Find("Healthbar Manager").GetComponent<ManabarManager>();
     }
 
     /////     Help Methods (makes life easier)     \\\\\
@@ -74,6 +81,22 @@ public class PlayerActions : MonoBehaviour
                 Enraged = false;                  // enrages plus the amount of turns we want the enrage to last
                 enragedTurn = 0;
             }
+        }
+    }
+
+    // shows damage through the enemy healthbars \\
+    public void showDealtDamage(GameObject target, int amt) {
+        if (target.name == "Enemy1") {
+            StartCoroutine(hM.dealDamage(hM.enemy1Slider, amt, 0.01f));
+        }
+        if (target.name == "Enemy2") {
+            StartCoroutine(hM.dealDamage(hM.enemy2Slider, amt, 0.01f));
+        }
+        if (target.name == "Enemy3") {
+            StartCoroutine(hM.dealDamage(hM.enemy3Slider, amt, 0.01f));
+        }
+        if (target.name == "Enemy4") {
+            StartCoroutine(hM.dealDamage(hM.enemy4Slider, amt, 0.01f));
         }
     }
 
@@ -116,6 +139,7 @@ public class PlayerActions : MonoBehaviour
                 if (chance == 2){
                     enemy.health -= dmg;
                     Debug.Log(enemy.name + " health: " + enemy.health);
+                    showDealtDamage(target, dmg);
                 }
                 dmg = 30;
                 Gamble = false;
@@ -128,6 +152,7 @@ public class PlayerActions : MonoBehaviour
                 if (chanceToHit <= 90 || Deadeye) {
                     enemy.health -= dmg;
                     Debug.Log(enemy.name + " health: " + enemy.health);
+                    showDealtDamage(target, dmg);
                     dmg = 30;
                     Deadeye = false;
                 }
@@ -185,7 +210,9 @@ public class PlayerActions : MonoBehaviour
         if (chanceToHit <= 90) {
             enemy.health -= 40;
             Debug.Log(enemy.name + " health: " + enemy.health);
+            showDealtDamage(target, 40);
         }
+        charDone = true;
     }
     //  Arcane Counter  \\
     // Lowers the mana of the target (though this applies to few enemies).
@@ -204,6 +231,7 @@ public class PlayerActions : MonoBehaviour
                 enemy.mana = 0;
             } 
         }
+        charDone = true;
     }
     //  Cavalier Charge \\
     // Deals a random amount of damage 3 times over to one enemy, while
@@ -222,7 +250,8 @@ public class PlayerActions : MonoBehaviour
             Debug.Log(enemy.name + " health: " + enemy.health);
             //subtract Random.Range(1, 30) to Dorne
             pS.char2HP -= Random.Range(1,30);
-        } 
+        }
+        charDone = true;
     }
     //  Tighten Harness \\
     // Will increase Dorne's initiative by 2
@@ -231,6 +260,7 @@ public class PlayerActions : MonoBehaviour
         cm.initiativeCount[1] = cm.initiativeCount[1] + 2;
         // then resort the initiative order
         cm.sortInitiative(cm.initiativeCount);
+        charDone = true;
     }
     
     /////   Character: Smithson's Actions   \\\\\
@@ -260,12 +290,15 @@ public class PlayerActions : MonoBehaviour
         if (chanceToHit <= 90) {
             if (enemy.health < enemy.healthMax / 2){
                 enemy.health -= 35;
+                showDealtDamage(target, 35);
             }
             else{
                 enemy.health -= 20;
+                showDealtDamage(target, 20);
                 Debug.Log(enemy.name + " health: " + enemy.health);
             }
         }
+        charDone = true;
     }
 
     //  Siphon Life \\
@@ -282,15 +315,26 @@ public class PlayerActions : MonoBehaviour
             enemy.health -= 50;
             pS.char3HP += 20;
             pS.char3Mana -= 15;
+            showDealtDamage(target, 50);
+            hM.giveHeal(hM.smithsonSlider, 20, 0.01f);
+            mM.depleteMana(mM.smithsonManabarSlider, 15, 0.01f);
 
             // if enemy is killed, heal user
             if (enemy.health <= 0){
                 pS.char3HP += 10;
+                hM.giveHeal(hM.smithsonSlider, 10, 0.01f);
+            }
+
+            // make sure the player isn't overhealed
+            if (pS.char3HP > pS.char3HPMax) {
+                pS.char3HP = pS.char3HPMax;
             }
         } 
         else {
+            Debug.Log("whiffed");
             // spell wiff effect
         }
+        charDone = true;
     }
 
    // Chill of the Grave \\
@@ -301,26 +345,32 @@ public class PlayerActions : MonoBehaviour
         if (pS.char3Mana >= 40){
             // subtract mana
             pS.char3Mana -= 40;
+            mM.depleteMana(mM.smithsonManabarSlider, 40, 0.01f);
             // Targets all enenies, dealing damage and reducing their initiative order
             List<GameObject> targets = ts.targetList;
             if (cm.e1 != null){
                 cm.e1.health -= 25;
+                showDealtDamage(cm.enemy1, 25);
                 cm.initiativeCount[4] -= 1;
             }
             if (cm.e2 != null){
                 cm.e2.health -= 25;
+                showDealtDamage(cm.enemy2, 25);
                 cm.initiativeCount[5] -= 1;
             }
             if (cm.e3 != null){
                 cm.e3.health -= 25;
+                showDealtDamage(cm.enemy3, 25);
                 cm.initiativeCount[6] -= 1;
             }
             if (cm.e4 != null){
                 cm.e4.health -= 25;
+                showDealtDamage(cm.enemy4, 25);
                 cm.initiativeCount[7] -= 1;
             }
             cm.sortInitiative(cm.initiativeCount);
         }
+        charDone = true;
     }
 
     // Clean Wounds \\
@@ -329,21 +379,26 @@ public class PlayerActions : MonoBehaviour
         // check for mana
         if (pS.char3Mana >= 10){
             pS.char3Mana -= 10;
-                GameObject target = ts.target;
-                if (target.name == "Raza"){
-                    pS.char1HP += 35;
-                }
-                else if (target.name == "Dorne"){
-                    pS.char2HP += 35;
-                }
-                else if (target.name == "Smithson"){
-                    pS.char3HP += 35;
-                }
-                else if (target.name == "Zor"){
-                    pS.char4HP += 35;
-                }
-            
+            mM.depleteMana(mM.smithsonManabarSlider, 10, 0.01f);
+            GameObject target = ts.target;
+            if (target.name == "Raza"){
+                pS.char1HP += 35;
+                hM.giveHeal(hM.razaSlider, 35, 0.01f);
+            }
+            else if (target.name == "Dorne"){
+                pS.char2HP += 35;
+                hM.giveHeal(hM.dorneSlider, 35, 0.01f);
+            }
+            else if (target.name == "Smithson"){
+                pS.char3HP += 35;
+                hM.giveHeal(hM.smithsonSlider, 35, 0.01f);
+            }
+            else if (target.name == "Zor"){
+                pS.char4HP += 35;
+                hM.giveHeal(hM.zorSlider, 35, 0.01f);
+            }      
         }
+        charDone = true;
     }
     /////   Character: Zor's Actions   \\\\\
     /// Action Wrappers \\\
@@ -381,6 +436,7 @@ public class PlayerActions : MonoBehaviour
             ZorDamage += 10;
             ZorToHit -= 5;
         }
+        charDone = true;
     }
 
     // Tempestuous Fury \\
@@ -394,6 +450,7 @@ public class PlayerActions : MonoBehaviour
         else {
             enragedTurn = 0;
         }
+        charDone = true;
     }
 
     // Barbaric Bolt \\
@@ -409,6 +466,7 @@ public class PlayerActions : MonoBehaviour
                 }
             }
         }
+        charDone = true;
     }
 
     // Hurricane \\
@@ -430,5 +488,6 @@ public class PlayerActions : MonoBehaviour
                 cm.e4.health -= 35;
             }
         }
+        charDone = true;
     }
 }

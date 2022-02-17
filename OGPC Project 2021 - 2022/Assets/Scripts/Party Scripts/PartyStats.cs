@@ -9,25 +9,33 @@ public class PartyStats : MonoBehaviour
     [Header("Character 1")]
     public string char1Name = "Raza";
     public int char1HP = 85;
-    public int char1Mana = 45;
+    public int char1HPMax = 85;
+    public int char1Mana = 0;
+    public int char1ManaMax = 0;
     public int char1Dexterity = 2;
 
     [Header("Character 2")]
     public string char2Name = "Dorne";
     public int char2HP = 100;
+    public int char2HPMax = 100;
     public int char2Mana = 0;
+    public int char2ManaMax = 0;
     public int char2Dexterity = 1;
 
     [Header("Character 3")]
     public string char3Name = "Smithson";
     public int char3HP = 75;
+    public int char3HPMax = 75;
     public int char3Mana = 100;
+    public int char3ManaMax = 100;
     public int char3Dexterity = 0;
 
     [Header("Character 4")]
     public string char4Name = "Zor";
     public int char4HP = 100;
-    public int char4Mana = 35;
+    public int char4HPMax = 100;
+    public int char4Mana = 0;
+    public int char4ManaMax = 0;
     public int char4Dexterity = 1;
 
     // player animator
@@ -46,22 +54,30 @@ public class PartyStats : MonoBehaviour
             // data for Astar
             char1Name = data.char1Name;
             char1HP = data.char1HP;
+            char1HPMax = data.char1HPMax;
             char1Mana = data.char1Mana;
+            char1ManaMax = data.char1ManaMax;
             char1Dexterity = data.char1Dexterity;
             // data for Gor
             char2Name = data.char2Name;
             char2HP = data.char2HP;
+            char2HPMax = data.char2HPMax;
             char2Mana = data.char2Mana;
+            char2ManaMax = data.char2ManaMax;
             char2Dexterity = data.char2Dexterity;
             // data for Gadriel
             char3Name = data.char3Name;
             char3HP = data.char3HP;
+            char3HPMax = data.char3HPMax;
             char3Mana = data.char3Mana;
+            char3ManaMax = data.char3ManaMax;
             char3Dexterity = data.char3Dexterity;
             // data for Lyra
             char4Name = data.char4Name;
             char4HP = data.char4HP;
+            char4HPMax = data.char4HPMax;
             char4Mana = data.char4Mana;
+            char4ManaMax = data.char4ManaMax;
             char4Dexterity = data.char4Dexterity;
 
             // data for party order
