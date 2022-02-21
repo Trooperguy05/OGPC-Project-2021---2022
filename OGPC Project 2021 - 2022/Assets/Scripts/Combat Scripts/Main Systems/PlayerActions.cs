@@ -316,8 +316,8 @@ public class PlayerActions : MonoBehaviour
             pS.char3HP += 20;
             pS.char3Mana -= 15;
             showDealtDamage(target, 50);
-            hM.giveHeal(hM.smithsonSlider, 20, 0.01f);
-            mM.depleteMana(mM.smithsonManabarSlider, 15, 0.01f);
+            StartCoroutine(hM.giveHeal(hM.smithsonSlider, 20, 0.01f));
+            StartCoroutine(mM.depleteMana(mM.smithsonManabarSlider, 15, 0.01f));
 
             // if enemy is killed, heal user
             if (enemy.health <= 0){
@@ -379,23 +379,35 @@ public class PlayerActions : MonoBehaviour
         // check for mana
         if (pS.char3Mana >= 10){
             pS.char3Mana -= 10;
-            mM.depleteMana(mM.smithsonManabarSlider, 10, 0.01f);
+            StartCoroutine(mM.depleteMana(mM.smithsonManabarSlider, 10, 0.01f));
             GameObject target = ts.target;
             if (target.name == "Raza"){
                 pS.char1HP += 35;
-                hM.giveHeal(hM.razaSlider, 35, 0.01f);
+                StartCoroutine(hM.giveHeal(hM.razaSlider, 35, 0.01f));
+                if (pS.char1HP > pS.char1HPMax) {
+                    pS.char1HP = pS.char1HPMax;
+                }
             }
             else if (target.name == "Dorne"){
                 pS.char2HP += 35;
-                hM.giveHeal(hM.dorneSlider, 35, 0.01f);
+                StartCoroutine(hM.giveHeal(hM.dorneSlider, 35, 0.01f));
+                if (pS.char2HP > pS.char2HPMax) {
+                    pS.char2HP = pS.char2HPMax;
+                }
             }
             else if (target.name == "Smithson"){
                 pS.char3HP += 35;
-                hM.giveHeal(hM.smithsonSlider, 35, 0.01f);
+                StartCoroutine(hM.giveHeal(hM.smithsonSlider, 35, 0.01f));
+                if (pS.char3HP > pS.char3HPMax) {
+                    pS.char3HP = pS.char3HPMax;
+                }
             }
             else if (target.name == "Zor"){
                 pS.char4HP += 35;
-                hM.giveHeal(hM.zorSlider, 35, 0.01f);
+                StartCoroutine(hM.giveHeal(hM.zorSlider, 35, 0.01f));
+                if (pS.char4HP > pS.char4HPMax) {
+                    pS.char4HP = pS.char4HPMax;
+                }
             }      
         }
         charDone = true;
@@ -433,6 +445,7 @@ public class PlayerActions : MonoBehaviour
         //chance to hit
         if (chanceToHit <= hitChance){
             enemy.health -= ZorDamage;
+            showDealtDamage(target, ZorDamage);
             ZorDamage += 10;
             ZorToHit -= 5;
         }
@@ -463,6 +476,7 @@ public class PlayerActions : MonoBehaviour
                 for(int i = 0; i < 2; i++){
                     //hits two enemies
                     getEnemy(ts.targetList[i].name).health -= 25;
+                    showDealtDamage(ts.targetList[i], 25);
                 }
             }
         }
@@ -477,15 +491,19 @@ public class PlayerActions : MonoBehaviour
             List<GameObject> targets = ts.targetList;
             if (cm.e1 != null){
                 cm.e1.health -= 35;
+                showDealtDamage(cm.enemy1, 35);
             }
             if (cm.e2 != null){
                 cm.e2.health -= 35;
+                showDealtDamage(cm.enemy2, 35);
             }
             if (cm.e3 != null){
                 cm.e3.health -= 35;
+                showDealtDamage(cm.enemy3, 35);
             }
             if (cm.e4 != null){
                 cm.e4.health -= 35;
+                showDealtDamage(cm.enemy4, 35);
             }
         }
         charDone = true;

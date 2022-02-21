@@ -27,7 +27,6 @@ public class ManabarManager : MonoBehaviour
             slider.value -= 1;
             yield return new WaitForSeconds(wait);
         }
-        Debug.Log("j");
     }
 
     // method taht shows mana regeneration \\

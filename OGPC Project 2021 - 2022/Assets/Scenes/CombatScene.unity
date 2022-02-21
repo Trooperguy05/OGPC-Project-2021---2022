@@ -546,6 +546,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &28561362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,6 +682,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1573467614}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
         m_MethodName: execute_razaAim
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1456,6 +1480,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &155548553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1877,6 +1913,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &252945515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2209,7 +2257,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1573467614}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
-        m_MethodName: execute_razaAim
+        m_MethodName: execute_zorAngy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2418,6 +2478,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1573467614}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
         m_MethodName: execute_dorneSpeedUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2818,7 +2890,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1573467614}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
-        m_MethodName: execute_razaFire
+        m_MethodName: execute_zorCleave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2999,6 +3083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426409690}
   - component: {fileID: 426409689}
+  - component: {fileID: 426409691}
   m_Layer: 0
   m_Name: Dorne
   m_TagString: Untagged
@@ -3071,6 +3156,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &426409691
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426409688}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &428423683
 GameObject:
   m_ObjectHideFlags: 0
@@ -3157,6 +3268,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1573467614}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
         m_MethodName: execute_dorneCharge
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3320,6 +3443,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1573467614}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
         m_MethodName: execute_smithsonSteal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3767,6 +3902,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1573467614}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
         m_MethodName: execute_smithsonAOE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4334,6 +4481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 697840785}
   - component: {fileID: 697840784}
+  - component: {fileID: 697840786}
   m_Layer: 0
   m_Name: Raza
   m_TagString: Untagged
@@ -4406,6 +4554,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &697840786
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697840783}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &708097969
 GameObject:
   m_ObjectHideFlags: 0
@@ -4741,6 +4915,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &751545837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4828,6 +5014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 823792487}
   - component: {fileID: 823792486}
+  - component: {fileID: 823792488}
   m_Layer: 0
   m_Name: Zor
   m_TagString: Untagged
@@ -4900,6 +5087,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &823792488
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823792485}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &839624947
 GameObject:
   m_ObjectHideFlags: 0
@@ -5108,7 +5321,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1573467614}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
-        m_MethodName: execute_razaMark
+        m_MethodName: execute_zorZap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7128,6 +7353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1451797655}
   - component: {fileID: 1451797654}
+  - component: {fileID: 1451797656}
   m_Layer: 0
   m_Name: Smithson
   m_TagString: Untagged
@@ -7200,6 +7426,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1451797656
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451797653}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1460547487
 GameObject:
   m_ObjectHideFlags: 0
@@ -7286,6 +7538,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1573467614}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
         m_MethodName: execute_razaFire
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8266,6 +8530,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1743771008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8464,7 +8740,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1573467614}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
-        m_MethodName: execute_razaGamble
+        m_MethodName: execute_zorAOE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8806,6 +9094,7 @@ MonoBehaviour:
   dorneActions: {fileID: 1988647509}
   smithsonActions: {fileID: 821410213}
   zorActions: {fileID: 1103294863}
+  hidingActions: 0
 --- !u!1 &1917776911
 GameObject:
   m_ObjectHideFlags: 0
@@ -9359,6 +9648,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1573467614}
         m_TargetAssemblyTypeName: PlayerActions, Assembly-CSharp
         m_MethodName: execute_razaGamble
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1886967298}
+        m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
+        m_MethodName: execute_hideActions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

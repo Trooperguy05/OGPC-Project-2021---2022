@@ -144,12 +144,13 @@ public class CombatManager : MonoBehaviour
             int choice = Random.Range(1, 2);
             if (!tookChoice) {
                 if (choice == 1) {
-                    StartCoroutine(enemyActions.scorpSting());
                     tookChoice = true;
+                    StartCoroutine(enemyActions.scorpSting());
+
                 }
                 else {
-                    StartCoroutine(enemyActions.scorpPinch());
                     tookChoice = true;
+                    StartCoroutine(enemyActions.scorpPinch());
                 }      
             }
             if (enemyActions.enemyDone) {

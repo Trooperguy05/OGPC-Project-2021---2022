@@ -4130,21 +4130,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50db463833a5b14cbe865c6e16c86ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  char1Name: Astar
-  char1HP: 80
-  char1Mana: 100
+  char1Name: Raza
+  char1HP: 85
+  char1HPMax: 85
+  char1Mana: 0
+  char1ManaMax: 0
   char1Dexterity: 2
-  char2Name: Gor
-  char2HP: 120
+  char2Name: Dorne
+  char2HP: 100
+  char2HPMax: 100
   char2Mana: 0
-  char2Dexterity: 2
-  char3Name: Gadriel
-  char3HP: 100
+  char2ManaMax: 0
+  char2Dexterity: 1
+  char3Name: Smithson
+  char3HP: 75
+  char3HPMax: 75
   char3Mana: 100
-  char3Dexterity: 2
-  char4Name: Lyra
-  char4HP: 90
-  char4Mana: 100
+  char3ManaMax: 100
+  char3Dexterity: 0
+  char4Name: Zor
+  char4HP: 100
+  char4HPMax: 100
+  char4Mana: 0
+  char4ManaMax: 0
   char4Dexterity: 1
   playerAnimator: {fileID: 845773107}
 --- !u!1 &845773100

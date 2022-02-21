@@ -103,27 +103,33 @@ public class EnemyActions : MonoBehaviour
     ///Stinger\\\
     public IEnumerator scorpSting()
     {
+        yield return new WaitForSeconds(1);
         int toHit = Random.Range(1, 100);
         if (toHit <= 90)
         {
             string character = enemyHit(10);
             //sM.statusAdd(character, "poison", 3);
         }
+        else {
+            Debug.Log("Miss");
+        }
         //poisons target, dealing 3 damage per turn for 3 turns. will impliment with status manager.
-        yield return new WaitForSeconds(1);
         enemyDone = true;
     }
 
     ///Pincers\\\
     public IEnumerator scorpPinch()
     {
+        yield return new WaitForSeconds(1);
         int toHit = Random.Range(1, 100);
         if (toHit <= 90)
         {
             enemyHit(15);
         }
+        else {
+            Debug.Log("Miss");
+        }
 
-        yield return new WaitForSeconds(1);
         enemyDone = true;
     }
 
