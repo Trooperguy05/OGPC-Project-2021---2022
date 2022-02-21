@@ -10,7 +10,7 @@ public class achievements : MonoBehaviour
     public bool damageTaker = false;
     public bool protocall3ProtectThePilot = false;
     public bool combatMedic = false;
-    public bool pauserPwner = false;
+    public bool pausePwner = false;
     public bool fileRemover = false;
     public bool phylacteryDown = false;
     public bool ancientWhispers = false;
@@ -23,9 +23,21 @@ public class achievements : MonoBehaviour
     public bool hadToDoItToEm = false;
     public bool exterminatus = false;
     public bool gotANewRoach = false;
+    public bool isThisAllowed = false;
 
+    //Achievement counters\\
+    public int pausePwnerCount;
     void Start() {
         loadAchievementData();
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            pausePwnerCount++;
+            if (pausePwnerCount >= 60 && !pausePwner) {
+                pausePwner = true;
+            }
+        }
     }
 
     // Methods for saving and loading achievement data \\
@@ -43,7 +55,8 @@ public class achievements : MonoBehaviour
             damageTaker = data.damageTaker;
             protocall3ProtectThePilot = data.protocall3ProtectThePilot;
             combatMedic = data.combatMedic;
-            pauserPwner = data.pauserPwner;
+            pausePwner = data.pausePwner;
+            pausePwnerCount = data.pausePwnerCount;
             fileRemover = data.fileRemover;
             phylacteryDown = data.phylacteryDown;
             ancientWhispers = data.ancientWhispers;
@@ -56,6 +69,7 @@ public class achievements : MonoBehaviour
             hadToDoItToEm = data.hadToDoItToEm;
             exterminatus = data.exterminatus;
             gotANewRoach = data.gotANewRoach;
+            isThisAllowed = data.isThisAllowed;
 
         }
     }

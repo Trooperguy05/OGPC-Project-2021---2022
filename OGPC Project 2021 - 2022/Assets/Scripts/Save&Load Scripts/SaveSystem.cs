@@ -195,6 +195,7 @@ public static class SaveSystem
         string playerDataPath = Application.persistentDataPath + "/playerData.txt";
         string enemyDataPath = Application.persistentDataPath + "/activeEnemies.txt";
         string invDataPath = Application.persistentDataPath + "/inventory.txt";
+        string achivementDataPath = Application.persistentDataPath + "/achievements.txt";
 
         // delete the party data
         if (File.Exists(partyDataPath)) {
@@ -223,6 +224,13 @@ public static class SaveSystem
         }
         else {
             Debug.LogError("File not found in " + invDataPath);
+        }
+        // Delete the achivement data
+        if (File.Exists(achivementDataPath)) {
+            File.Delete(achivementDataPath);
+        }
+        else {
+            Debug.LogError("File not found in " + achivementDataPath);
         }
     }
 }

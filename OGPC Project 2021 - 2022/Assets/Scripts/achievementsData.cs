@@ -5,12 +5,13 @@ using UnityEngine;
 [System.Serializable]
 public class achievementsData 
 {
+    //Achievement bools\\
     public bool breathOfTheWilderness = false;
     public bool timeWaster = false;
     public bool damageTaker = false;
     public bool protocall3ProtectThePilot = false;
     public bool combatMedic = false;
-    public bool pauserPwner = false;
+    public bool pausePwner = false;
     public bool fileRemover = false;
     public bool phylacteryDown = false;
     public bool ancientWhispers = false;
@@ -23,14 +24,18 @@ public class achievementsData
     public bool hadToDoItToEm = false;
     public bool exterminatus = false;
     public bool gotANewRoach = false;
+    public bool isThisAllowed = false;
     
+    //Achievement counters\\
+    public int pausePwnerCount;
     public achievementsData(achievements ach) {
         breathOfTheWilderness = ach.breathOfTheWilderness;
         timeWaster = ach.timeWaster;
         damageTaker = ach.damageTaker;
         protocall3ProtectThePilot = ach.protocall3ProtectThePilot;
         combatMedic = ach.combatMedic;
-        pauserPwner = ach.pauserPwner;
+        pausePwner = ach.pausePwner;
+        pausePwnerCount = ach.pausePwnerCount;
         fileRemover = ach.fileRemover;
         phylacteryDown = ach.phylacteryDown;
         ancientWhispers = ach.ancientWhispers;
@@ -43,6 +48,7 @@ public class achievementsData
         hadToDoItToEm = ach.hadToDoItToEm;
         exterminatus = ach.exterminatus;
         gotANewRoach = ach.gotANewRoach;
+        isThisAllowed = ach.isThisAllowed;
     }
     
 }
