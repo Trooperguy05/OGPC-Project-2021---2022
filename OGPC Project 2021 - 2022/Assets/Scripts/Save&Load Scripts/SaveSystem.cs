@@ -159,6 +159,36 @@ public static class SaveSystem
         }
     }
 
+    // saving the achievement data \\
+    public static void saveAchievements(achievements ach) {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/achievements.txt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+        
+        achievementsData data = new achievementsData(ach);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    // loading the achievement data \\
+    public static achievementsData loadAchievements() {
+        string path = Application.persistentDataPath + "/achievements.txt";
+
+        if (File.Exists(path)) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            achievementsData data = formatter.Deserialize(stream) as achievementsData;
+            stream.Close();
+            return data;
+        }
+        else {
+            Debug.LogError("SaveFile not found in " + path);
+            return null;
+        }
+    }
+
     // delete save data \\
     public static void deleteSaveData() {
         string partyDataPath = Application.persistentDataPath + "/partyData.txt";
