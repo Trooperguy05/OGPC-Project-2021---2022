@@ -40,6 +40,10 @@ public class achievements : MonoBehaviour
         }
     }
 
+    public void fileRemoverCheck() {
+        fileRemover = true;
+    }
+
     // Methods for saving and loading achievement data \\
     public void savedAchievementData() {
         Debug.Log("Saving achievement data");

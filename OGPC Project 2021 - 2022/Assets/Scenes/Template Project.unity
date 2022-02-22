@@ -4972,7 +4972,7 @@ MonoBehaviour:
   damageTaker: 0
   protocall3ProtectThePilot: 0
   combatMedic: 0
-  pauserPwner: 0
+  pausePwner: 0
   fileRemover: 0
   phylacteryDown: 0
   ancientWhispers: 0
@@ -4985,6 +4985,8 @@ MonoBehaviour:
   hadToDoItToEm: 0
   exterminatus: 0
   gotANewRoach: 0
+  isThisAllowed: 0
+  pausePwnerCount: 0
 --- !u!4 &1289651755
 Transform:
   m_ObjectHideFlags: 0
@@ -16899,6 +16901,18 @@ MonoBehaviour:
       - m_Target: {fileID: 834137213}
         m_TargetAssemblyTypeName: PartyManager, Assembly-CSharp
         m_MethodName: deleteSave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1289651754}
+        m_TargetAssemblyTypeName: achievements, Assembly-CSharp
+        m_MethodName: fileRemoverCheck
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
