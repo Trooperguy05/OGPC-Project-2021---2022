@@ -225,6 +225,7 @@ public static class SaveSystem
         else {
             Debug.LogError("File not found in " + invDataPath);
         }
+        /*
         // Delete the achivement data
         if (File.Exists(achivementDataPath)) {
             File.Delete(achivementDataPath);
@@ -232,5 +233,6 @@ public static class SaveSystem
         else {
             Debug.LogError("File not found in " + achivementDataPath);
         }
+        */
     }
 }
