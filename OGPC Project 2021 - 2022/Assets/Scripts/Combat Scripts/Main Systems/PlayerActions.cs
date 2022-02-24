@@ -7,7 +7,8 @@ using Random=UnityEngine.Random;
 
 public class PlayerActions : MonoBehaviour
 {
-    // character specific abilities
+    // character specific abilities\
+    [Header("Character Ability Bools")]
     // Raza
     public bool Deadeye = false;
     public GameObject Mark;
@@ -18,6 +19,13 @@ public class PlayerActions : MonoBehaviour
     public int enragedTurn; // turn that player enraged
     public int ZorDamage = 60;
     public int ZorToHit = 80;
+
+    // animators for the player characters \\
+    [Header("PC Animators")]
+    public Animator razaAnimator;
+    public Animator dorneAnimator;
+    public Animator smithsonAnimator;
+    public Animator zorAnimator;
 
     // targeting system variable
     private TargetingSystem ts;
@@ -100,6 +108,15 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
+    // method that plays the active animations of the pc's \\
+    public IEnumerator checkAnimationDone(Animator animator, string anim) {
+        while (animator.GetCurrentAnimatorStateInfo(0).IsName(anim)) {
+            Debug.Log("h");
+            yield return null;
+        }
+        charDone = true;
+    }
+
     //////  Character: Raza's Actions   \\\\\
     /// Action Wrappers \\\
     public void execute_razaFire() {
@@ -144,6 +161,8 @@ public class PlayerActions : MonoBehaviour
                 dmg = 30;
                 Gamble = false;
                 Deadeye = false;
+                razaAnimator.SetTrigger("act");
+                checkAnimationDone(razaAnimator, "razaCombat_active");
 
             }
             else{
@@ -155,10 +174,14 @@ public class PlayerActions : MonoBehaviour
                     showDealtDamage(target, dmg);
                     dmg = 30;
                     Deadeye = false;
+                    razaAnimator.SetTrigger("act");
+                    checkAnimationDone(razaAnimator, "razaCombat_active");
+                }
+                else {
+                    charDone = true;
                 }
             }
         }
-        charDone = true;
     }
     // deadeye \\
     // Automatically triggers a critical hit and guarantees an attack hits

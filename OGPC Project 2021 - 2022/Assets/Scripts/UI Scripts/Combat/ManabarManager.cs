@@ -7,18 +7,14 @@ public class ManabarManager : MonoBehaviour
 {
     [Header("Manabars")]
     public GameObject smithsonManabar;
-    public GameObject zorManabar;
     public Slider smithsonManabarSlider;
-    public Slider zorManabarSlider;
 
     // set-up \\
     void Start() {
         // get the sliders
         smithsonManabarSlider = smithsonManabar.GetComponent<Slider>();
-        zorManabarSlider = zorManabar.GetComponent<Slider>();
         // move the manabars
         smithsonManabar.GetComponent<RectTransform>().position = new Vector2(-6, 0.95f);
-        zorManabar.GetComponent<RectTransform>().position = new Vector2(-6, -0.45f);
     }
 
     // method that shows mana depletion \\
