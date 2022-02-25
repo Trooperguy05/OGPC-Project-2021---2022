@@ -37,7 +37,7 @@ public class HealthbarManager : MonoBehaviour
 
         // set the initial positions of the healthbars \\
         // PC healthbars
-        razaHealthbar.GetComponent<RectTransform>().position = new Vector2(-6, 4.25f);
+        razaHealthbar.GetComponent<RectTransform>().position = new Vector2(-5, 4.25f);
         dorneHealthbar.GetComponent<RectTransform>().position = new Vector2(-6, 2.6f);
         smithsonHealtbar.GetComponent<RectTransform>().position = new Vector2(-6, 1.45f);
         zorHealthbar.GetComponent<RectTransform>().position = new Vector2(-6, 0.05f);

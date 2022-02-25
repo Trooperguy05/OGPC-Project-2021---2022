@@ -108,10 +108,12 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-    // method that plays the active animations of the pc's \\
-    public IEnumerator checkAnimationDone(Animator animator, string anim) {
+    // method that checks if the animation is done playing before passing the turn \\
+    public IEnumerator animPlaying(Animator animator, string anim) {
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(anim)) {
+            yield return null;
+        }
         while (animator.GetCurrentAnimatorStateInfo(0).IsName(anim)) {
-            Debug.Log("h");
             yield return null;
         }
         charDone = true;
@@ -161,9 +163,9 @@ public class PlayerActions : MonoBehaviour
                 dmg = 30;
                 Gamble = false;
                 Deadeye = false;
+                // play active animation
                 razaAnimator.SetTrigger("act");
-                checkAnimationDone(razaAnimator, "razaCombat_active");
-
+                StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
             }
             else{
                 // rolls normal attack chance
@@ -174,8 +176,9 @@ public class PlayerActions : MonoBehaviour
                     showDealtDamage(target, dmg);
                     dmg = 30;
                     Deadeye = false;
+                    // play active animation
                     razaAnimator.SetTrigger("act");
-                    checkAnimationDone(razaAnimator, "razaCombat_active");
+                    StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
                 }
                 else {
                     charDone = true;
@@ -190,7 +193,9 @@ public class PlayerActions : MonoBehaviour
         if (!Deadeye) {
             Deadeye = true;
         }
-        charDone = true;
+        // play active animation
+        razaAnimator.SetTrigger("act");
+        StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
     }
     //  mark   \\
     // not finished
@@ -198,14 +203,19 @@ public class PlayerActions : MonoBehaviour
         GameObject target = ts.target;
         Mark = target;
         markTurn = cm.roundNum;
-        charDone = true;
+
+        // play active animation
+        razaAnimator.SetTrigger("act");
+        StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
     }
     // trick shot \\
     public void razaGamble(){
         if (!Gamble) {
             Gamble = true;
         }
-        charDone = true;
+        // play active animation
+        razaAnimator.SetTrigger("act");
+        StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
     }
     
     /////   Character: Dorne's Actions   \\\\\
