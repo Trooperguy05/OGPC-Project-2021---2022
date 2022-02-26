@@ -21,12 +21,16 @@ public class ConsoleController : MonoBehaviour
             // player cannot move while console menu is open
             PlayerMovement.playerAbleMove = !consoleIsActive;
         };
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            storeInput();
+        }
     }
 
     // Stores the input of the text box \\
     public void storeInput() {
         consoleText = inputField.GetComponent<Text>().text;
         checkCommand();
+        inputField.GetComponent<Text>().text = null;
     }
 
     // Checks if a valid command has been entered \\
