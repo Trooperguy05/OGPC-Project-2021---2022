@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class HealthbarManager : MonoBehaviour
 {
+    // PC Gameobjects \\
+    public GameObject raza;
+    public GameObject dorne;
+    public GameObject smithson;
+    public GameObject zor;
     // Healthbars for the PC's \\
     [Header("Player Healthbars")]
     public GameObject razaHealthbar;
@@ -37,11 +42,9 @@ public class HealthbarManager : MonoBehaviour
 
         // set the initial positions of the healthbars \\
         // PC healthbars
-        razaHealthbar.GetComponent<RectTransform>().position = new Vector2(-5, 4.25f);
-        dorneHealthbar.GetComponent<RectTransform>().position = new Vector2(-6, 2.6f);
-        smithsonHealtbar.GetComponent<RectTransform>().position = new Vector2(-6, 1.45f);
-        zorHealthbar.GetComponent<RectTransform>().position = new Vector2(-6, 0.05f);
+        updatePlayerHealthbars();
         // enemy healthbars
+        updateEnemyHealthbars();
 
         // cache the healthbar sliders \\
         // PC sliders
@@ -49,6 +52,21 @@ public class HealthbarManager : MonoBehaviour
         dorneSlider = dorneHealthbar.GetComponent<Slider>();
         smithsonSlider = smithsonHealtbar.GetComponent<Slider>();
         zorSlider = zorHealthbar.GetComponent<Slider>();
+    }
+
+    // method that updates the position of the enemy healthbars \\
+    public void updateEnemyHealthbars() {
+        enemy1Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy1.transform.position.x+1, cM.enemy1.transform.position.y+0.25f);
+        enemy2Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy2.transform.position.x+1, cM.enemy2.transform.position.y+0.25f);
+        enemy3Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy3.transform.position.x+1, cM.enemy3.transform.position.y+0.25f);
+        enemy4Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy4.transform.position.x+1, cM.enemy4.transform.position.y+0.25f);
+    }
+    // method that updates the position of the player healthbars \\
+    public void updatePlayerHealthbars() {
+        razaHealthbar.GetComponent<RectTransform>().position = new Vector2(raza.transform.position.x-1, raza.transform.position.y+0.25f);
+        dorneHealthbar.GetComponent<RectTransform>().position = new Vector2(dorne.transform.position.x-1, dorne.transform.position.y+0.25f);
+        smithsonHealtbar.GetComponent<RectTransform>().position = new Vector2(smithson.transform.position.x-1, smithson.transform.position.y+0.25f);
+        zorHealthbar.GetComponent<RectTransform>().position = new Vector2(zor.transform.position.x-1, zor.transform.position.y+0.25f); 
     }
 
     // method that shows damage to healthbar \\

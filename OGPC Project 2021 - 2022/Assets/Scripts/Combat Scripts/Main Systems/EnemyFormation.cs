@@ -9,7 +9,7 @@ public class EnemyFormation : MonoBehaviour
 
     // the 4 different formations the enemies could be in on the field \\
     private Vector2[] fourEnemyPositions = {
-        new Vector2(4, 4), new Vector2(4, 2.6f), new Vector2(4, 1.2f), new Vector2(4, -0.2f)
+        new Vector2(4, 4.2f), new Vector2(4, 2.7f), new Vector2(4, 1.3f), new Vector2(4, -0.1f)
     };
     private Vector2[] threeEnemyPositions = {
         new Vector2(4, 4), new Vector2(4, 1.9f), new Vector2(4, -0.2f)
@@ -49,17 +49,6 @@ public class EnemyFormation : MonoBehaviour
         }
 
         // move the enemies' healthbars
-        if (cM.enemy1 != null) {
-            hM.enemy1Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy1.transform.position.x + 2, cM.enemy1.transform.position.y);
-        }
-        if (cM.enemy2 != null) {
-            hM.enemy2Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy2.transform.position.x + 2, cM.enemy2.transform.position.y);
-        }
-        if (cM.enemy3 != null) {
-            hM.enemy3Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy3.transform.position.x + 2, cM.enemy3.transform.position.y);
-        }
-        if (cM.enemy4 != null) {
-            hM.enemy4Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy4.transform.position.x + 2, cM.enemy4.transform.position.y);
-        }
+        hM.updateEnemyHealthbars();
     }
 }

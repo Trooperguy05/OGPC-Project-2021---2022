@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ManabarManager : MonoBehaviour
 {
+    [Header("PC Objects")]
+    public GameObject smithson;
     [Header("Manabars")]
     public GameObject smithsonManabar;
     public Slider smithsonManabarSlider;
@@ -14,7 +16,7 @@ public class ManabarManager : MonoBehaviour
         // get the sliders
         smithsonManabarSlider = smithsonManabar.GetComponent<Slider>();
         // move the manabars
-        smithsonManabar.GetComponent<RectTransform>().position = new Vector2(-6, 0.95f);
+        smithsonManabar.GetComponent<RectTransform>().position = new Vector2(smithson.transform.position.x-1, smithson.transform.position.y);
     }
 
     // method that shows mana depletion \\
