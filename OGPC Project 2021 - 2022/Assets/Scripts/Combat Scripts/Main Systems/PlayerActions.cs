@@ -7,7 +7,8 @@ using Random=UnityEngine.Random;
 
 public class PlayerActions : MonoBehaviour
 {
-    // character specific abilities
+    // character specific abilities\
+    [Header("Character Ability Bools")]
     // Raza
     public bool Deadeye = false;
     public GameObject Mark;
@@ -19,6 +20,13 @@ public class PlayerActions : MonoBehaviour
     public int ZorDamage = 60;
     public int ZorToHit = 80;
 
+    // animators for the player characters \\
+    [Header("PC Animators")]
+    public Animator razaAnimator;
+    public Animator dorneAnimator;
+    public Animator smithsonAnimator;
+    public Animator zorAnimator;
+
     // targeting system variable
     private TargetingSystem ts;
     // combat manager
@@ -29,6 +37,8 @@ public class PlayerActions : MonoBehaviour
     private HealthbarManager hM;
     // manabar manager
     private ManabarManager mM;
+    // enemy actions
+    private EnemyActions eA;
 
     // variable that tells the combatmanager if the player is done
     // with a character's turn
@@ -46,6 +56,8 @@ public class PlayerActions : MonoBehaviour
         hM = GameObject.Find("Healthbar Manager").GetComponent<HealthbarManager>();
         // get manabar manager
         mM = GameObject.Find("Healthbar Manager").GetComponent<ManabarManager>();
+        // get enemy actions
+        eA = GetComponent<EnemyActions>();
     }
 
     /////     Help Methods (makes life easier)     \\\\\
@@ -100,6 +112,33 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
+    // method that checks if the animation is done playing before passing the turn \\
+    public IEnumerator animPlaying(Animator animator, string anim) {
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(anim)) {
+            yield return null;
+        }
+        while (animator.GetCurrentAnimatorStateInfo(0).IsName(anim)) {
+            yield return null;
+        }
+        charDone = true;
+    }
+
+    // method that plays the hurt animation of the enemy hit \\
+    public void hurtEnemy(GameObject target) {
+        if (target.name == "Enemy1") {
+            eA.e1Animator.SetTrigger("hurt");
+        }
+        if (target.name == "Enemy2") {
+            eA.e2Animator.SetTrigger("hurt");
+        }
+        if (target.name == "Enemy3") {
+            eA.e3Animator.SetTrigger("hurt");
+        }
+        if (target.name == "Enemy4") {
+            eA.e4Animator.SetTrigger("hurt");
+        }
+    }
+
     //////  Character: Raza's Actions   \\\\\
     /// Action Wrappers \\\
     public void execute_razaFire() {
@@ -144,7 +183,10 @@ public class PlayerActions : MonoBehaviour
                 dmg = 30;
                 Gamble = false;
                 Deadeye = false;
-
+                // play active animation
+                razaAnimator.SetTrigger("act");
+                hurtEnemy(target);
+                StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
             }
             else{
                 // rolls normal attack chance
@@ -155,10 +197,16 @@ public class PlayerActions : MonoBehaviour
                     showDealtDamage(target, dmg);
                     dmg = 30;
                     Deadeye = false;
+                    // play active animation
+                    razaAnimator.SetTrigger("act");
+                    hurtEnemy(target);
+                    StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
+                }
+                else {
+                    charDone = true;
                 }
             }
         }
-        charDone = true;
     }
     // deadeye \\
     // Automatically triggers a critical hit and guarantees an attack hits
@@ -167,7 +215,9 @@ public class PlayerActions : MonoBehaviour
         if (!Deadeye) {
             Deadeye = true;
         }
-        charDone = true;
+        // play active animation
+        razaAnimator.SetTrigger("act");
+        StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
     }
     //  mark   \\
     // not finished
@@ -175,14 +225,19 @@ public class PlayerActions : MonoBehaviour
         GameObject target = ts.target;
         Mark = target;
         markTurn = cm.roundNum;
-        charDone = true;
+
+        // play active animation
+        razaAnimator.SetTrigger("act");
+        StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
     }
     // trick shot \\
     public void razaGamble(){
         if (!Gamble) {
             Gamble = true;
         }
-        charDone = true;
+        // play active animation
+        razaAnimator.SetTrigger("act");
+        StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
     }
     
     /////   Character: Dorne's Actions   \\\\\
