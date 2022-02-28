@@ -87,6 +87,13 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
+    // method that combines the three below methods: showDealtDamage, animPlaying, & hurtEnemy into one \\
+    public IEnumerator updateGameField(Animator animator, string anim, GameObject target, int dmg) {
+        StartCoroutine(animPlaying(animator, anim));
+        yield return new WaitForSeconds(1f);
+        hurtEnemy(target, dmg);
+    }
+
     // shows damage through the enemy healthbars \\
     public void showDealtDamage(GameObject target, int amt) {
         if (target.name == "Enemy1") {
@@ -115,7 +122,8 @@ public class PlayerActions : MonoBehaviour
     }
 
     // method that plays the hurt animation of the enemy hit \\
-    public void hurtEnemy(GameObject target) {
+    public void hurtEnemy(GameObject target, int dmg) {
+        showDealtDamage(target, dmg);
         if (target.name == "Enemy1") {
             eA.e1Animator.SetTrigger("hurt");
         }
@@ -168,34 +176,30 @@ public class PlayerActions : MonoBehaviour
                 int chance = Random.Range(1,2);
                 if (chance == 2){
                     enemy.health -= dmg;
-                    Debug.Log(enemy.name + " health: " + enemy.health);
-                    showDealtDamage(target, dmg);
                 }
+                // play active animation
+                razaAnimator.SetTrigger("act");
+                StartCoroutine(updateGameField(razaAnimator, "razaCombat_active", target, dmg));
+                // update battle menu with action text
+                StartCoroutine(bMM.typeActionText("raza used fire!", 0.01f));
+                // reset
                 dmg = 30;
                 Gamble = false;
                 Deadeye = false;
-                // play active animation
-                razaAnimator.SetTrigger("act");
-                hurtEnemy(target);
-                StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
-                // update battle menu with action text
-                StartCoroutine(bMM.typeActionText("raza used fire!", 0.01f));
             }
             else{
                 // rolls normal attack chance
                 int chanceToHit = Random.Range(1, 100);
                 if (chanceToHit <= 90 || Deadeye) {
                     enemy.health -= dmg;
-                    Debug.Log(enemy.name + " health: " + enemy.health);
-                    showDealtDamage(target, dmg);
-                    dmg = 30;
-                    Deadeye = false;
                     // play active animation
                     razaAnimator.SetTrigger("act");
-                    hurtEnemy(target);
-                    StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
+                    StartCoroutine(updateGameField(razaAnimator, "razaCombat_active", target, dmg));
                     // update battle menu with action text
                     StartCoroutine(bMM.typeActionText("raza used fire!", 0.01f));
+                    // reset
+                    dmg = 30;
+                    Deadeye = false;
                 }
                 else {
                     charDone = true;

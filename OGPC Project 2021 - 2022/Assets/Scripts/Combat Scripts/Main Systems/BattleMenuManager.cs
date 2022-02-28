@@ -64,10 +64,6 @@ public class BattleMenuManager : MonoBehaviour
                 zorActions.SetActive(false);
             }   
         }
-        // action text
-        else if (hidingActions) {
-
-        }
     }
 
     // method that types out the action text to the battle menu \\
@@ -77,7 +73,7 @@ public class BattleMenuManager : MonoBehaviour
             actionText.text += text[i];
             yield return new WaitForSeconds(typeSpeed);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         actionText.text = "";
     }
 
