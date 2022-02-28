@@ -27,37 +27,28 @@ public class PlayerActions : MonoBehaviour
     public Animator smithsonAnimator;
     public Animator zorAnimator;
 
-    // targeting system variable
+    // other scripts \\
     private TargetingSystem ts;
-    // combat manager
     private CombatManager cm;
-    // party stats manager
     private PartyStats pS;
-    // healthbar manager
     private HealthbarManager hM;
-    // manabar manager
     private ManabarManager mM;
-    // enemy actions
     private EnemyActions eA;
+    private BattleMenuManager bMM;
 
     // variable that tells the combatmanager if the player is done
     // with a character's turn
     public bool charDone = false;
 
-    // caching
+    // caching the other scripts \\
     void Start() {
-        // create a new targeting system
         ts = new TargetingSystem();
-        // get the combat manager script
         cm = GameObject.Find("Combat Manager").GetComponent<CombatManager>();
-        // get the party stats manager
         pS = GameObject.Find("Party Manager").GetComponent<PartyStats>();
-        // get healthbar manager
         hM = GameObject.Find("Healthbar Manager").GetComponent<HealthbarManager>();
-        // get manabar manager
         mM = GameObject.Find("Healthbar Manager").GetComponent<ManabarManager>();
-        // get enemy actions
         eA = GetComponent<EnemyActions>();
+        bMM = GameObject.Find("Battle Menu").GetComponent<BattleMenuManager>();
     }
 
     /////     Help Methods (makes life easier)     \\\\\
@@ -187,6 +178,8 @@ public class PlayerActions : MonoBehaviour
                 razaAnimator.SetTrigger("act");
                 hurtEnemy(target);
                 StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
+                // update battle menu with action text
+                StartCoroutine(bMM.typeActionText("raza used fire!", 0.01f));
             }
             else{
                 // rolls normal attack chance
@@ -201,9 +194,13 @@ public class PlayerActions : MonoBehaviour
                     razaAnimator.SetTrigger("act");
                     hurtEnemy(target);
                     StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
+                    // update battle menu with action text
+                    StartCoroutine(bMM.typeActionText("raza used fire!", 0.01f));
                 }
                 else {
                     charDone = true;
+                    // update battle menu with action text
+                    StartCoroutine(bMM.typeActionText("raza missed!", 0.01f));
                 }
             }
         }
