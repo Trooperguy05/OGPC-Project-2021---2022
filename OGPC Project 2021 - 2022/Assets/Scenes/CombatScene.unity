@@ -7297,6 +7297,7 @@ GameObject:
   - component: {fileID: 1451797655}
   - component: {fileID: 1451797654}
   - component: {fileID: 1451797656}
+  - component: {fileID: 1451797657}
   m_Layer: 0
   m_Name: Smithson
   m_TagString: Untagged
@@ -7344,7 +7345,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e466cdcf3179444897ba76d453f0e46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7386,7 +7387,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7395,6 +7396,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &1451797657
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451797653}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 53b15903a71baac4782585cffba97c67, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1460547487
 GameObject:
   m_ObjectHideFlags: 0
@@ -7811,7 +7831,7 @@ MonoBehaviour:
   ZorToHit: 80
   razaAnimator: {fileID: 697840787}
   dorneAnimator: {fileID: 0}
-  smithsonAnimator: {fileID: 0}
+  smithsonAnimator: {fileID: 1451797657}
   zorAnimator: {fileID: 0}
   charDone: 0
 --- !u!4 &1573467615

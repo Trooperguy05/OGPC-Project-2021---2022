@@ -343,18 +343,23 @@ public class PlayerActions : MonoBehaviour
         EnemyCreator enemy = getEnemy(target.name);
         // act on target
         int chanceToHit = Random.Range(1, 100);
+        // hits
         if (chanceToHit <= 90) {
             if (enemy.health < enemy.healthMax / 2){
                 enemy.health -= 35;
-                showDealtDamage(target, 35);
+                smithsonAnimator.SetTrigger("act");
+                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", target, 35));
             }
             else{
                 enemy.health -= 20;
-                showDealtDamage(target, 20);
-                Debug.Log(enemy.name + " health: " + enemy.health);
+                smithsonAnimator.SetTrigger("act");
+                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", target, 20));
             }
         }
-        charDone = true;
+        // misses
+        else {
+            charDone = true;
+        }
     }
 
     //  Siphon Life \\
@@ -371,9 +376,6 @@ public class PlayerActions : MonoBehaviour
             enemy.health -= 50;
             pS.char3HP += 20;
             pS.char3Mana -= 15;
-            showDealtDamage(target, 50);
-            StartCoroutine(hM.giveHeal(hM.smithsonSlider, 20, 0.01f));
-            StartCoroutine(mM.depleteMana(mM.smithsonManabarSlider, 15, 0.01f));
 
             // if enemy is killed, heal user
             if (enemy.health <= 0){
@@ -385,12 +387,18 @@ public class PlayerActions : MonoBehaviour
             if (pS.char3HP > pS.char3HPMax) {
                 pS.char3HP = pS.char3HPMax;
             }
+
+            // animations
+            smithsonAnimator.SetTrigger("act");
+            StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", target, 50));
+            StartCoroutine(hM.giveHeal(hM.smithsonSlider, 20, 0.01f));
+            StartCoroutine(mM.depleteMana(mM.smithsonManabarSlider, 15, 0.01f));
         } 
         else {
             Debug.Log("whiffed");
+            charDone = true;
             // spell wiff effect
         }
-        charDone = true;
     }
 
    // Chill of the Grave \\
@@ -401,32 +409,36 @@ public class PlayerActions : MonoBehaviour
         if (pS.char3Mana >= 40){
             // subtract mana
             pS.char3Mana -= 40;
-            mM.depleteMana(mM.smithsonManabarSlider, 40, 0.01f);
+            StartCoroutine(mM.depleteMana(mM.smithsonManabarSlider, 40, 0.01f));
             // Targets all enenies, dealing damage and reducing their initiative order
             List<GameObject> targets = ts.targetList;
+            smithsonAnimator.SetTrigger("act");
             if (cm.e1 != null){
                 cm.e1.health -= 25;
-                showDealtDamage(cm.enemy1, 25);
+                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", cm.enemy1, 25));
                 cm.initiativeCount[4] -= 1;
             }
             if (cm.e2 != null){
                 cm.e2.health -= 25;
-                showDealtDamage(cm.enemy2, 25);
+                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", cm.enemy2, 25));
                 cm.initiativeCount[5] -= 1;
             }
             if (cm.e3 != null){
                 cm.e3.health -= 25;
-                showDealtDamage(cm.enemy3, 25);
+                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", cm.enemy3, 25));
                 cm.initiativeCount[6] -= 1;
             }
             if (cm.e4 != null){
                 cm.e4.health -= 25;
-                showDealtDamage(cm.enemy4, 25);
+                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", cm.enemy4, 25));
                 cm.initiativeCount[7] -= 1;
             }
             cm.sortInitiative(cm.initiativeCount);
         }
-        charDone = true;
+        // out of mana
+        else {
+            charDone = true;
+        }
     }
 
     // Clean Wounds \\
@@ -464,9 +476,15 @@ public class PlayerActions : MonoBehaviour
                 if (pS.char4HP > pS.char4HPMax) {
                     pS.char4HP = pS.char4HPMax;
                 }
-            }      
+            }
+            // animation
+            smithsonAnimator.SetTrigger("act");
+            StartCoroutine(animPlaying(smithsonAnimator, "smithsonCombat_active"));     
         }
-        charDone = true;
+        // is out of mana
+        else {
+            charDone = true;
+        }
     }
     /////   Character: Zor's Actions   \\\\\
     /// Action Wrappers \\\
