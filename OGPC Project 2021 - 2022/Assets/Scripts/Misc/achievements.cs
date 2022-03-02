@@ -46,6 +46,10 @@ public class achievements : MonoBehaviour
         fileRemover = true;
     }
 
+    public void updateCrocSpin() {
+        crocSpin = true;
+    }
+
     // Methods for saving and loading achievement data \\
     public void savedAchievementData() {
         Debug.Log("Saving achievement data");
