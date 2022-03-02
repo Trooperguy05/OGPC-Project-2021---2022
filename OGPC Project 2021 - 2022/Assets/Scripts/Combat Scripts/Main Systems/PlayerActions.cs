@@ -191,7 +191,7 @@ public class PlayerActions : MonoBehaviour
                 }
                 // misses the gamble shot
                 else {
-                    StartCoroutine(bMM.typeActionText("raza missed"), 0.01f);
+                    StartCoroutine(bMM.typeActionText("raza missed", 0.01f));
                     StartCoroutine(pauseOnMiss(1f));
                 }
                 // reset
