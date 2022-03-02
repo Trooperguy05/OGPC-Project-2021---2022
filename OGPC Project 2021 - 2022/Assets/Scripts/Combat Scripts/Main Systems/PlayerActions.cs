@@ -87,6 +87,12 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
+    // method that, if a pc misses, pauses the turn before passing it \\
+    public IEnumerator pauseOnMiss(float duration) {
+        yield return new WaitForSeconds(duration);
+        charDone = true;
+    }
+
     // method that combines the three below methods: showDealtDamage, animPlaying, & hurtEnemy into one \\
     public IEnumerator updateGameField(Animator animator, string anim, GameObject target, int dmg) {
         StartCoroutine(animPlaying(animator, anim));
@@ -174,14 +180,20 @@ public class PlayerActions : MonoBehaviour
             if (Gamble){
                 dmg *= 2;
                 int chance = Random.Range(1,2);
+                // hits the gamble shot
                 if (chance == 2){
                     enemy.health -= dmg;
+                    // play active animation
+                    razaAnimator.SetTrigger("act");
+                    StartCoroutine(updateGameField(razaAnimator, "razaCombat_active", target, dmg));
+                    // update battle menu with action text
+                    StartCoroutine(bMM.typeActionText("raza used fire!", 0.01f));
                 }
-                // play active animation
-                razaAnimator.SetTrigger("act");
-                StartCoroutine(updateGameField(razaAnimator, "razaCombat_active", target, dmg));
-                // update battle menu with action text
-                StartCoroutine(bMM.typeActionText("raza used fire!", 0.01f));
+                // misses the gamble shot
+                else {
+                    StartCoroutine(bMM.typeActionText("raza missed"), 0.01f);
+                    StartCoroutine(pauseOnMiss(1f));
+                }
                 // reset
                 dmg = 30;
                 Gamble = false;
@@ -202,9 +214,9 @@ public class PlayerActions : MonoBehaviour
                     Deadeye = false;
                 }
                 else {
-                    charDone = true;
                     // update battle menu with action text
                     StartCoroutine(bMM.typeActionText("raza missed!", 0.01f));
+                    StartCoroutine(pauseOnMiss(1f));
                 }
             }
         }
@@ -355,10 +367,13 @@ public class PlayerActions : MonoBehaviour
                 smithsonAnimator.SetTrigger("act");
                 StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", target, 20));
             }
+            // update battle menu with action text
+            StartCoroutine(bMM.typeActionText("smithson used bony grasp!", 0.01f));
         }
         // misses
         else {
-            charDone = true;
+            StartCoroutine(bMM.typeActionText("smithson missed", 0.01f));
+            StartCoroutine(pauseOnMiss(1f));
         }
     }
 
@@ -393,11 +408,13 @@ public class PlayerActions : MonoBehaviour
             StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", target, 50));
             StartCoroutine(hM.giveHeal(hM.smithsonSlider, 20, 0.01f));
             StartCoroutine(mM.depleteMana(mM.smithsonManabarSlider, 15, 0.01f));
+
+            // update battle menu with action text
+            StartCoroutine(bMM.typeActionText("smithson used siphon life!", 0.01f));
         } 
         else {
-            Debug.Log("whiffed");
-            charDone = true;
-            // spell wiff effect
+            StartCoroutine(bMM.typeActionText("smithson's spell fizzled", 0.01f));
+            StartCoroutine(pauseOnMiss(1f));
         }
     }
 
@@ -434,10 +451,14 @@ public class PlayerActions : MonoBehaviour
                 cm.initiativeCount[7] -= 1;
             }
             cm.sortInitiative(cm.initiativeCount);
+
+            // update battle menu with action text
+            StartCoroutine(bMM.typeActionText("smithson used chill of the grave!", 0.01f));
         }
         // out of mana
         else {
-            charDone = true;
+            StartCoroutine(bMM.typeActionText("smithson's spell fizzled", 0.01f));
+            StartCoroutine(pauseOnMiss(1f));
         }
     }
 
@@ -479,11 +500,15 @@ public class PlayerActions : MonoBehaviour
             }
             // animation
             smithsonAnimator.SetTrigger("act");
-            StartCoroutine(animPlaying(smithsonAnimator, "smithsonCombat_active"));     
+            StartCoroutine(animPlaying(smithsonAnimator, "smithsonCombat_active"));
+
+            // update battle menu with action text
+            StartCoroutine(bMM.typeActionText("smithson used clean wounds!", 0.01f));     
         }
         // is out of mana
         else {
-            charDone = true;
+            StartCoroutine(bMM.typeActionText("smithson's spell fizzles", 0.01f));
+            StartCoroutine(pauseOnMiss(1f));
         }
     }
     /////   Character: Zor's Actions   \\\\\
