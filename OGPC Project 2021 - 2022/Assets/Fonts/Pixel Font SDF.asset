@@ -175,7 +175,7 @@ MonoBehaviour:
     m_FamilyName: Pixel Font
     m_StyleName: Regular
     m_PointSize: 97
-    m_Scale: 1
+    m_Scale: 3
     m_LineHeight: 97
     m_AscentLine: 72.75
     m_CapLine: 0

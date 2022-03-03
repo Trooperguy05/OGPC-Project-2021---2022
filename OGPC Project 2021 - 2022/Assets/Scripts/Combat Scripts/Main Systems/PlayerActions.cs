@@ -78,13 +78,6 @@ public class PlayerActions : MonoBehaviour
                 markTurn = 0;
             }
         }
-        // reset Zor's enraged if durability runs out
-        if (Enraged) {
-            if (cm.roundNum == enragedTurn + 2) { // number of turns the enrage lasts equals the turn the player
-                Enraged = false;                  // enrages plus the amount of turns we want the enrage to last
-                enragedTurn = 0;
-            }
-        }
     }
 
     // method that, if a pc misses, pauses the turn before passing it \\
@@ -231,10 +224,13 @@ public class PlayerActions : MonoBehaviour
         // play active animation
         razaAnimator.SetTrigger("act");
         StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
+        // update battle menu with action text
+        StartCoroutine(bMM.typeActionText("raza used deadeye!", 0.01f));
     }
     //  mark   \\
     // not finished
     public void razaMark(){
+        // create the mark
         GameObject target = ts.target;
         Mark = target;
         markTurn = cm.roundNum;
@@ -242,6 +238,8 @@ public class PlayerActions : MonoBehaviour
         // play active animation
         razaAnimator.SetTrigger("act");
         StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
+        // update battle menu with action text
+        StartCoroutine(bMM.typeActionText("raza used mark!", 0.01f));
     }
     // trick shot \\
     public void razaGamble(){
@@ -251,6 +249,8 @@ public class PlayerActions : MonoBehaviour
         // play active animation
         razaAnimator.SetTrigger("act");
         StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
+        // update battle menu with action text
+        StartCoroutine(bMM.typeActionText("raza used gamble!", 0.01f));
     }
     
     /////   Character: Dorne's Actions   \\\\\
@@ -277,10 +277,14 @@ public class PlayerActions : MonoBehaviour
         int chanceToHit = Random.Range(1, 100);
         if (chanceToHit <= 90) {
             enemy.health -= 40;
-            Debug.Log(enemy.name + " health: " + enemy.health);
-            showDealtDamage(target, 40);
+            // play active animation
+            dorneAnimator.SetTrigger("act");
+            StartCoroutine(updateGameField(dorneAnimator, "dorneCombat_active", target, 40));
         }
-        charDone = true;
+        // on miss
+        else {
+            StartCoroutine(pauseOnMiss(1f));
+        }
     }
     //  Arcane Counter  \\
     // Lowers the mana of the target (though this applies to few enemies).
@@ -292,14 +296,19 @@ public class PlayerActions : MonoBehaviour
         int chanceToHit = Random.Range(1, 100);
         if (chanceToHit <= 90) {
             enemy.health -= 25;
-            Debug.Log(enemy.name + " health: " + enemy.health);
             // reduces enemy mana
             enemy.mana -= 35;
             if (enemy.mana < 0) {
                 enemy.mana = 0;
             } 
+            // play animation
+            dorneAnimator.SetTrigger("act");
+            StartCoroutine(updateGameField(dorneAnimator, "dorneCombat_active", target, 25));
         }
-        charDone = true;
+        // on miss
+        else {
+            StartCoroutine(pauseOnMiss(1f));
+        }
     }
     //  Cavalier Charge \\
     // Deals a random amount of damage 3 times over to one enemy, while
@@ -312,14 +321,19 @@ public class PlayerActions : MonoBehaviour
         // act on target
         if (chanceToHit <= 90) {
             //randomize damage on charge
-            enemy.health -= Random.Range(1, 70);
-            enemy.health -= Random.Range(1, 70);
-            enemy.health -= Random.Range(1, 70);
-            Debug.Log(enemy.name + " health: " + enemy.health);
-            //subtract Random.Range(1, 30) to Dorne
-            pS.char2HP -= Random.Range(1,30);
+            int dmg = (Random.Range(1, 70) + Random.Range(1, 70) + Random.Range(1, 70));
+            int selfDmg = Random.Range(1, 30);
+            enemy.health -= dmg;
+            pS.char2HP -= selfDmg;
+            // animation
+            dorneAnimator.SetTrigger("act");
+            StartCoroutine(hM.dealDamage(hM.dorneSlider, selfDmg, 0.01f));
+            StartCoroutine(updateGameField(dorneAnimator, "dorneCombat_active", target, dmg));
         }
-        charDone = true;
+        // on miss
+        else {
+            StartCoroutine(pauseOnMiss(1f));
+        }
     }
     //  Tighten Harness \\
     // Will increase Dorne's initiative by 2
@@ -328,7 +342,10 @@ public class PlayerActions : MonoBehaviour
         cm.initiativeCount[1] = cm.initiativeCount[1] + 2;
         // then resort the initiative order
         cm.sortInitiative(cm.initiativeCount);
-        charDone = true;
+        
+        // play animation
+        dorneAnimator.SetTrigger("act");
+        StartCoroutine(animPlaying(dorneAnimator, "dorneCombat_active"));
     }
     
     /////   Character: Smithson's Actions   \\\\\
@@ -432,25 +449,28 @@ public class PlayerActions : MonoBehaviour
             smithsonAnimator.SetTrigger("act");
             if (cm.e1 != null){
                 cm.e1.health -= 25;
-                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", cm.enemy1, 25));
                 cm.initiativeCount[4] -= 1;
             }
             if (cm.e2 != null){
                 cm.e2.health -= 25;
-                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", cm.enemy2, 25));
                 cm.initiativeCount[5] -= 1;
             }
             if (cm.e3 != null){
                 cm.e3.health -= 25;
-                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", cm.enemy3, 25));
                 cm.initiativeCount[6] -= 1;
             }
             if (cm.e4 != null){
                 cm.e4.health -= 25;
-                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", cm.enemy4, 25));
                 cm.initiativeCount[7] -= 1;
             }
             cm.sortInitiative(cm.initiativeCount);
+
+            // play animation
+            StartCoroutine(animPlaying(smithsonAnimator, "smithsonCombat_active"));
+            hurtEnemy(cm.enemy1, 25);
+            hurtEnemy(cm.enemy2, 25);
+            hurtEnemy(cm.enemy3, 25);
+            hurtEnemy(cm.enemy4, 25);
 
             // update battle menu with action text
             StartCoroutine(bMM.typeActionText("smithson used chill of the grave!", 0.01f));

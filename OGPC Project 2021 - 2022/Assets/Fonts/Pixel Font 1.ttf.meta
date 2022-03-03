@@ -3,7 +3,7 @@ guid: bcc35042ce690194ab29e541c4709eed
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 16
+  fontSize: 128
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1

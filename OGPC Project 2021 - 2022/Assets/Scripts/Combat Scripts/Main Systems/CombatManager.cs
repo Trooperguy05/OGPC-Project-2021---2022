@@ -89,7 +89,6 @@ public class CombatManager : MonoBehaviour
                 str += initiativeNames[i] + ", ";
             }
             Debug.Log(str);
-            Debug.Log(initiativeNames[initiativeIndex]);
 
             eF.organizeField();
             tI.updateIndicator();
@@ -190,7 +189,6 @@ public class CombatManager : MonoBehaviour
             initiativeIndex = 0;
             roundNum++;
             Debug.Log("Round: " + roundNum);
-            Debug.Log(initiativeNames[initiativeIndex]);
             playerActions.updatePCVariables();
             tI.updateIndicator();
         }
