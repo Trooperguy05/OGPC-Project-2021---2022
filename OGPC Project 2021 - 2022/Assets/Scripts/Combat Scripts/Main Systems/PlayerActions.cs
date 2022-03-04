@@ -36,6 +36,29 @@ public class PlayerActions : MonoBehaviour
     private EnemyActions eA;
     private BattleMenuManager bMM;
 
+    // audio sets \\
+    [Header("Audio")]
+    public AudioSource AS;
+    // raza audio
+    public AudioClip razaFireSFX;
+    public AudioClip razaAimSFX;
+    public AudioClip razaMarkSFX;
+    public AudioClip razaGambleSFX;
+    // Dorne audio
+    public AudioClip dorneStrikeSFX;
+    public AudioClip dorneMageSFX;
+    public AudioClip dorneChargeSFX;
+    public AudioClip tightenHarnessSFX;
+    // Smithson audio
+    public AudioClip smithsonGrabSFX;
+    public AudioClip smithsonLifeStealSFX;
+    public AudioClip smithsonChillOfTheGraveSFX;
+    public AudioClip smithsonCleanWoundsSFX;
+    // Zor audio
+    public AudioClip zorCleaveSFX;
+    public AudioClip zorAngySFX;
+    public AudioClip zorZapSFX;
+    public AudioClip zorAOESFX;
     // variable that tells the combatmanager if the player is done
     // with a character's turn
     public bool charDone = false;
@@ -213,6 +236,7 @@ public class PlayerActions : MonoBehaviour
                 }
             }
         }
+        AS.PlayOneShot(razaFireSFX, 1);
     }
     // deadeye \\
     // Automatically triggers a critical hit and guarantees an attack hits
@@ -226,6 +250,7 @@ public class PlayerActions : MonoBehaviour
         StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
         // update battle menu with action text
         StartCoroutine(bMM.typeActionText("raza used deadeye!", 0.01f));
+        AS.PlayOneShot(razaAimSFX, 1);
     }
     //  mark   \\
     // not finished
@@ -240,6 +265,7 @@ public class PlayerActions : MonoBehaviour
         StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
         // update battle menu with action text
         StartCoroutine(bMM.typeActionText("raza used mark!", 0.01f));
+        AS.PlayOneShot(razaMarkSFX, 1);
     }
     // trick shot \\
     public void razaGamble(){
@@ -251,6 +277,7 @@ public class PlayerActions : MonoBehaviour
         StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
         // update battle menu with action text
         StartCoroutine(bMM.typeActionText("raza used gamble!", 0.01f));
+        AS.PlayOneShot(razaGambleSFX, 1);
     }
     
     /////   Character: Dorne's Actions   \\\\\
@@ -285,6 +312,7 @@ public class PlayerActions : MonoBehaviour
         else {
             StartCoroutine(pauseOnMiss(1f));
         }
+        AS.PlayOneShot(dorneStrikeSFX, 1);
     }
     //  Arcane Counter  \\
     // Lowers the mana of the target (though this applies to few enemies).
@@ -309,6 +337,7 @@ public class PlayerActions : MonoBehaviour
         else {
             StartCoroutine(pauseOnMiss(1f));
         }
+        AS.PlayOneShot(dorneMageSFX, 1);
     }
     //  Cavalier Charge \\
     // Deals a random amount of damage 3 times over to one enemy, while
@@ -334,6 +363,7 @@ public class PlayerActions : MonoBehaviour
         else {
             StartCoroutine(pauseOnMiss(1f));
         }
+        AS.PlayOneShot(dorneChargeSFX, 1);
     }
     //  Tighten Harness \\
     // Will increase Dorne's initiative by 2
@@ -346,6 +376,7 @@ public class PlayerActions : MonoBehaviour
         // play animation
         dorneAnimator.SetTrigger("act");
         StartCoroutine(animPlaying(dorneAnimator, "dorneCombat_active"));
+        AS.PlayOneShot(tightenHarnessSFX, 1);
     }
     
     /////   Character: Smithson's Actions   \\\\\
@@ -392,6 +423,7 @@ public class PlayerActions : MonoBehaviour
             StartCoroutine(bMM.typeActionText("smithson missed", 0.01f));
             StartCoroutine(pauseOnMiss(1f));
         }
+        AS.PlayOneShot(smithsonGrabSFX, 1);
     }
 
     //  Siphon Life \\
@@ -433,6 +465,7 @@ public class PlayerActions : MonoBehaviour
             StartCoroutine(bMM.typeActionText("smithson's spell fizzled", 0.01f));
             StartCoroutine(pauseOnMiss(1f));
         }
+        AS.PlayOneShot(smithsonLifeStealSFX, 1);
     }
 
    // Chill of the Grave \\
@@ -480,6 +513,7 @@ public class PlayerActions : MonoBehaviour
             StartCoroutine(bMM.typeActionText("smithson's spell fizzled", 0.01f));
             StartCoroutine(pauseOnMiss(1f));
         }
+        AS.PlayOneShot(smithsonChillOfTheGraveSFX, 1);
     }
 
     // Clean Wounds \\
@@ -530,6 +564,7 @@ public class PlayerActions : MonoBehaviour
             StartCoroutine(bMM.typeActionText("smithson's spell fizzles", 0.01f));
             StartCoroutine(pauseOnMiss(1f));
         }
+        AS.PlayOneShot(smithsonCleanWoundsSFX, 1);
     }
     /////   Character: Zor's Actions   \\\\\
     /// Action Wrappers \\\
@@ -569,6 +604,7 @@ public class PlayerActions : MonoBehaviour
             ZorToHit -= 5;
         }
         charDone = true;
+        AS.PlayOneShot(zorCleaveSFX, 1);
     }
 
     // Tempestuous Fury \\
@@ -583,6 +619,7 @@ public class PlayerActions : MonoBehaviour
             enragedTurn = 0;
         }
         charDone = true;
+        AS.PlayOneShot(zorAngySFX, 1);
     }
 
     // Barbaric Bolt \\
@@ -600,6 +637,7 @@ public class PlayerActions : MonoBehaviour
             }
         }
         charDone = true;
+        AS.PlayOneShot(zorZapSFX, 1);
     }
 
     // Hurricane \\
@@ -626,5 +664,6 @@ public class PlayerActions : MonoBehaviour
             }
         }
         charDone = true;
+        AS.PlayOneShot(zorAOESFX, 1);
     }
 }

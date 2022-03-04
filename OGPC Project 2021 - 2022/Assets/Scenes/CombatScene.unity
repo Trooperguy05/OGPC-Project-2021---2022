@@ -7822,6 +7822,7 @@ GameObject:
   - component: {fileID: 1573467615}
   - component: {fileID: 1573467614}
   - component: {fileID: 1573467616}
+  - component: {fileID: 1573467617}
   m_Layer: 0
   m_Name: Action Manager
   m_TagString: Untagged
@@ -7853,6 +7854,23 @@ MonoBehaviour:
   dorneAnimator: {fileID: 426409692}
   smithsonAnimator: {fileID: 1451797657}
   zorAnimator: {fileID: 0}
+  AS: {fileID: 1573467617}
+  razaFireSFX: {fileID: 8300000, guid: b024f2d5cfa03e7429a41694469e74d8, type: 3}
+  razaAimSFX: {fileID: 8300000, guid: 09986dc0305edc04685092434e463380, type: 3}
+  razaMarkSFX: {fileID: 8300000, guid: b738c6fdb793b404da734c38a7877034, type: 3}
+  razaGambleSFX: {fileID: 8300000, guid: d588b84bea03f294195edcae6e0fe38f, type: 3}
+  dorneStrikeSFX: {fileID: 8300000, guid: f91abed3a538a2a4dbc1675a85313ceb, type: 3}
+  dorneMageSFX: {fileID: 0}
+  dorneChargeSFX: {fileID: 8300000, guid: f77b773e8e8404c45a69e7050a518728, type: 3}
+  tightenHarnessSFX: {fileID: 8300000, guid: ca056d4afe5e74498a0798f16e0e866d, type: 3}
+  smithsonGrabSFX: {fileID: 8300000, guid: e93d5cbd4a12fe540a2b627c99c00b85, type: 3}
+  smithsonLifeStealSFX: {fileID: 8300000, guid: a3ff8a98bf8e5ab4fa7f8b085fb35dd4, type: 3}
+  smithsonChillOfTheGraveSFX: {fileID: 8300000, guid: c7e572b255e311b479005985ed7f4ba2, type: 3}
+  smithsonCleanWoundsSFX: {fileID: 8300000, guid: ecd31749e627d5847a9dada02dc42dfb, type: 3}
+  zorCleaveSFX: {fileID: 8300000, guid: f30f5cb6ad803914688cdd4e88b30ba1, type: 3}
+  zorAngySFX: {fileID: 8300000, guid: 6a81ca39e09d6664f98792766a5ffb74, type: 3}
+  zorZapSFX: {fileID: 8300000, guid: 68b1cd0f24df06d4d93e30fb6f956d82, type: 3}
+  zorAOESFX: {fileID: 8300000, guid: 678ce39e67d76d040a732f601bcb0571, type: 3}
   charDone: 0
 --- !u!4 &1573467615
 Transform:
@@ -7887,6 +7905,102 @@ MonoBehaviour:
   snakeCoil: 0
   snakeCoilTarget: 0
   enemyDone: 0
+--- !u!82 &1573467617
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573467613}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1650755603
 GameObject:
   m_ObjectHideFlags: 0
