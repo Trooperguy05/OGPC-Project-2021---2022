@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class BattleMenuManager : MonoBehaviour
 {
@@ -13,6 +15,9 @@ public class BattleMenuManager : MonoBehaviour
     public GameObject dorneActions;
     public GameObject smithsonActions;
     public GameObject zorActions;
+
+    // action text \\
+    public TextMeshProUGUI actionText;
 
     // variable for checking if the manager is hiding the player actions \\
     public bool hidingActions = false;
@@ -59,6 +64,17 @@ public class BattleMenuManager : MonoBehaviour
                 zorActions.SetActive(false);
             }   
         }
+    }
+
+    // method that types out the action text to the battle menu \\
+    public IEnumerator typeActionText(string text, float typeSpeed) {
+        actionText.text = "";
+        for (int i = 0; i < text.Length; i++) {
+            actionText.text += text[i];
+            yield return new WaitForSeconds(typeSpeed);
+        }
+        yield return new WaitForSeconds(2f);
+        actionText.text = "";
     }
 
     // method that hides the actions when the player chooses one \\

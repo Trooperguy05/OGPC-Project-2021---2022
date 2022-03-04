@@ -30,6 +30,11 @@ public class CombatManager : MonoBehaviour
     public EnemyCreator e2;
     public EnemyCreator e3;
     public EnemyCreator e4;
+    // combat enemy scripts
+    private CombatEnemy e1combat;
+    private CombatEnemy e2combat;
+    private CombatEnemy e3combat;
+    private CombatEnemy e4combat;
     // enemy field slots
     private int enemySlotsLeft = 4;
     // specified enemies
@@ -54,10 +59,14 @@ public class CombatManager : MonoBehaviour
         getSpecifiedEnemy();
 
         // grabbing the enemy objects
-        e1 = enemy1.GetComponent<CombatEnemy>().eOb;
-        e2 = enemy2.GetComponent<CombatEnemy>().eOb;
-        e3 = enemy3.GetComponent<CombatEnemy>().eOb;
-        e4 = enemy4.GetComponent<CombatEnemy>().eOb;
+        e1combat = enemy1.GetComponent<CombatEnemy>();
+        e2combat = enemy2.GetComponent<CombatEnemy>();
+        e3combat = enemy3.GetComponent<CombatEnemy>();
+        e4combat = enemy4.GetComponent<CombatEnemy>();
+        e1 = e1combat.eOb;
+        e2 = e2combat.eOb;
+        e3 = e3combat.eOb;
+        e4 = e4combat.eOb;
 
         // grabbing the action scripts
         playerActions = GameObject.Find("Action Manager").GetComponent<PlayerActions>();
@@ -80,7 +89,6 @@ public class CombatManager : MonoBehaviour
                 str += initiativeNames[i] + ", ";
             }
             Debug.Log(str);
-            Debug.Log(initiativeNames[initiativeIndex]);
 
             eF.organizeField();
             tI.updateIndicator();
@@ -181,7 +189,6 @@ public class CombatManager : MonoBehaviour
             initiativeIndex = 0;
             roundNum++;
             Debug.Log("Round: " + roundNum);
-            Debug.Log(initiativeNames[initiativeIndex]);
             playerActions.updatePCVariables();
             tI.updateIndicator();
         }
@@ -213,7 +220,9 @@ public class CombatManager : MonoBehaviour
                     initiativeCount[4+i] = Random.Range(1, 20) + e1.dexterity;   
                     i++;
                     hM.enemy1Slider.maxValue = e1.healthMax;
-                    hM.enemy1Slider.value = hM.enemy1Slider.maxValue;     
+                    hM.enemy1Slider.value = hM.enemy1Slider.maxValue;
+                    e1combat.eOb = e1;
+                    e1combat.updateSprite();   
                 }
                 else {
                     e1 = null;
@@ -226,7 +235,9 @@ public class CombatManager : MonoBehaviour
                     initiativeCount[4+i] = Random.Range(1, 20) + e2.dexterity;
                     i++;
                     hM.enemy2Slider.maxValue = e2.healthMax;
-                    hM.enemy2Slider.value = hM.enemy2Slider.maxValue; 
+                    hM.enemy2Slider.value = hM.enemy2Slider.maxValue;
+                    e2combat.eOb = e2;
+                    e2combat.updateSprite();
                 }
                 else {
                     e2 = null;
@@ -239,7 +250,9 @@ public class CombatManager : MonoBehaviour
                     initiativeCount[4+i] = Random.Range(1, 20) + e3.dexterity;
                     i++;
                     hM.enemy3Slider.maxValue = e3.healthMax;
-                    hM.enemy3Slider.value = hM.enemy3Slider.maxValue;  
+                    hM.enemy3Slider.value = hM.enemy3Slider.maxValue;
+                    e3combat.eOb = e3;
+                    e3combat.updateSprite(); 
                 }
                 else {
                     e3 = null;
@@ -252,7 +265,9 @@ public class CombatManager : MonoBehaviour
                     initiativeCount[4+i] = Random.Range(1, 20) + e4.dexterity;
                     i++;
                     hM.enemy4Slider.maxValue = e4.healthMax;
-                    hM.enemy4Slider.value = hM.enemy4Slider.maxValue;     
+                    hM.enemy4Slider.value = hM.enemy4Slider.maxValue;
+                    e4combat.eOb = e4;
+                    e4combat.updateSprite();   
                 }
                 else {
                     e4 = null;

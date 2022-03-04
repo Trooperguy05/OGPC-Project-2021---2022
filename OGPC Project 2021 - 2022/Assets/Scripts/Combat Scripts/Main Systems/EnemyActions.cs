@@ -5,6 +5,11 @@ using System.Threading;
 
 public class EnemyActions : MonoBehaviour
 {
+    [Header("Enemy Animators")]
+    public Animator e1Animator;
+    public Animator e2Animator;
+    public Animator e3Animator;
+    public Animator e4Animator;
     //party stats and combat manager
     private CombatManager cm;
     private PartyStats pS;
@@ -12,10 +17,12 @@ public class EnemyActions : MonoBehaviour
     private HealthbarManager hM;
 
     //enemy specific variables
+    [Header("Enemy Abilities")]
     public bool snakeCoil = false;
     public int snakeCoilTarget;
 
     // dictates whether the enemy is done or not \\
+    [Header("Enemy Done")]
     public bool enemyDone = false;
 
 
@@ -31,6 +38,34 @@ public class EnemyActions : MonoBehaviour
         // healthbar manager
         hM = GameObject.Find("Healthbar Manager").GetComponent<HealthbarManager>();
 
+    }
+
+    // method that checks if the animation is done playing before passing the turn \\
+    public IEnumerator animPlaying(Animator animator, string anim) {
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(anim)) {
+            yield return null;
+        }
+        while (animator.GetCurrentAnimatorStateInfo(0).IsName(anim)) {
+            yield return null;
+        }
+        enemyDone = true;
+    }
+
+    // method that finds the animator of the current enemy (whose turn it is) \\
+    public Animator findAnimator() {
+        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy1") {
+            return e1Animator;
+        }
+        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy2") {
+            return e2Animator;
+        }
+        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy3") {
+            return e3Animator;
+        }
+        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy4") {
+            return e4Animator;
+        }
+        return null;
     }
 
     //decides what party member is targeted by an enemy
@@ -114,7 +149,10 @@ public class EnemyActions : MonoBehaviour
             Debug.Log("Miss");
         }
         //poisons target, dealing 3 damage per turn for 3 turns. will impliment with status manager.
-        enemyDone = true;
+        // play attack animation
+        Animator animator = findAnimator();
+        animator.SetTrigger("act");
+        StartCoroutine(animPlaying(animator, "scorpionCombat_active"));
     }
 
     ///Pincers\\\
@@ -130,7 +168,10 @@ public class EnemyActions : MonoBehaviour
             Debug.Log("Miss");
         }
 
-        enemyDone = true;
+        // play attack animation
+        Animator animator = findAnimator();
+        animator.SetTrigger("act");
+        StartCoroutine(animPlaying(animator, "scorpionCombat_active"));
     }
 
     /////Mummy Attacks\\\\\

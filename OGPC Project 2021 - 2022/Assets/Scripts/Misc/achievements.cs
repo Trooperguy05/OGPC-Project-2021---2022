@@ -25,13 +25,15 @@ public class achievements : MonoBehaviour
     public bool gotANewRoach = false;
     public bool isThisAllowed = false;
 
-    //Achievement counters\\
+    // Achievement counters \\
     public int pausePwnerCount;
+    
     void Start() {
         loadAchievementData();
     }
 
     void Update() {
+        // Checks if the player pressed the escape key
         if (Input.GetKeyDown(KeyCode.Escape)) {
             pausePwnerCount++;
             if (pausePwnerCount >= 60 && !pausePwner) {
@@ -42,6 +44,10 @@ public class achievements : MonoBehaviour
 
     public void fileRemoverCheck() {
         fileRemover = true;
+    }
+
+    public void updateCrocSpin() {
+        crocSpin = true;
     }
 
     // Methods for saving and loading achievement data \\
