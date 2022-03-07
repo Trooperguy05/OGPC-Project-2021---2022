@@ -483,27 +483,27 @@ public class PlayerActions : MonoBehaviour
             if (cm.e1 != null){
                 cm.e1.health -= 25;
                 cm.initiativeCount[4] -= 1;
+                hurtEnemy(cm.enemy1, 25);
             }
             if (cm.e2 != null){
                 cm.e2.health -= 25;
                 cm.initiativeCount[5] -= 1;
+                hurtEnemy(cm.enemy2, 25);
             }
             if (cm.e3 != null){
                 cm.e3.health -= 25;
                 cm.initiativeCount[6] -= 1;
+                hurtEnemy(cm.enemy3, 25);
             }
             if (cm.e4 != null){
                 cm.e4.health -= 25;
                 cm.initiativeCount[7] -= 1;
+                hurtEnemy(cm.enemy4, 25);
             }
             cm.sortInitiative(cm.initiativeCount);
 
             // play animation
             StartCoroutine(animPlaying(smithsonAnimator, "smithsonCombat_active"));
-            hurtEnemy(cm.enemy1, 25);
-            hurtEnemy(cm.enemy2, 25);
-            hurtEnemy(cm.enemy3, 25);
-            hurtEnemy(cm.enemy4, 25);
 
             // update battle menu with action text
             StartCoroutine(bMM.typeActionText("smithson used chill of the grave!", 0.01f));
@@ -599,11 +599,22 @@ public class PlayerActions : MonoBehaviour
         //chance to hit
         if (chanceToHit <= hitChance){
             enemy.health -= ZorDamage;
+            // animation
+            zorAnimator.SetTrigger("act");
+            StartCoroutine(updateGameField(zorAnimator, "zorCombat_active", target, ZorDamage));
+            // update battle menu with action text
+            StartCoroutine(bMM.typeActionText("zor used cleave!", 0.01f));
+
+            // after action things
             showDealtDamage(target, ZorDamage);
             ZorDamage += 10;
             ZorToHit -= 5;
+
         }
-        charDone = true;
+        else {
+            StartCoroutine(pauseOnMiss(1f));
+            StartCoroutine(bMM.typeActionText("zor missed!", 0.01f));
+        }
         AS.PlayOneShot(zorCleaveSFX, 1);
     }
 
@@ -612,13 +623,14 @@ public class PlayerActions : MonoBehaviour
     public void zorAngy(){
         //can be toggled
         Enraged = !Enraged;
-        if (Enraged) {
-            enragedTurn = cm.roundNum;
-        }
-        else {
-            enragedTurn = 0;
-        }
-        charDone = true;
+
+        // play active animation
+        zorAnimator.SetTrigger("act");
+        StartCoroutine(animPlaying(zorAnimator, "zorCombat_active"));
+        // update battle menu with action text
+        StartCoroutine(bMM.typeActionText("zor used rage!", 0.01f));
+
+        // play sfx
         AS.PlayOneShot(zorAngySFX, 1);
     }
 
@@ -629,14 +641,28 @@ public class PlayerActions : MonoBehaviour
             //chance to hit
             int chanceToHit = Random.Range(1, 100);
             if (chanceToHit <= 90) {
+                zorAnimator.SetTrigger("act");
                 for(int i = 0; i < 2; i++){
                     //hits two enemies
                     getEnemy(ts.targetList[i].name).health -= 25;
-                    showDealtDamage(ts.targetList[i], 25);
+                    hurtEnemy(ts.targetList[i], 25);
                 }
+                // play animation
+                StartCoroutine(animPlaying(zorAnimator, "zorCombat_active"));
+                // update battle menu with action text
+                StartCoroutine(bMM.typeActionText("zor used barbaric bolt!", 0.01f));
+            }
+            // on miss
+            else {
+                StartCoroutine(pauseOnMiss(1f));
+                StartCoroutine(bMM.typeActionText("zor missed!", 0.01f));
             }
         }
-        charDone = true;
+        // if he is enraged
+        else {
+            StartCoroutine(pauseOnMiss(1f));
+            StartCoroutine(bMM.typeActionText("zor is enraged! he cannot use this action!", 0.01f));
+        }
         AS.PlayOneShot(zorZapSFX, 1);
     }
 
@@ -646,24 +672,28 @@ public class PlayerActions : MonoBehaviour
         if (!Enraged){
             // Targets everyone
             List<GameObject> targets = ts.targetList;
+            zorAnimator.SetTrigger("act");
             if (cm.e1 != null){
                 cm.e1.health -= 35;
-                showDealtDamage(cm.enemy1, 35);
+                hurtEnemy(cm.enemy1, 35);
             }
             if (cm.e2 != null){
                 cm.e2.health -= 35;
-                showDealtDamage(cm.enemy2, 35);
+                hurtEnemy(cm.enemy2, 35);
             }
             if (cm.e3 != null){
                 cm.e3.health -= 35;
-                showDealtDamage(cm.enemy3, 35);
+                hurtEnemy(cm.enemy3, 35);
             }
             if (cm.e4 != null){
                 cm.e4.health -= 35;
-                showDealtDamage(cm.enemy4, 35);
+                hurtEnemy(cm.enemy4, 35);
             }
+            // play animation
+            StartCoroutine(animPlaying(zorAnimator, "zorCombat_active"));
+            // update battle menu with action text
+            StartCoroutine(bMM.typeActionText("zor used hurricane!", 0.01f));
         }
-        charDone = true;
         AS.PlayOneShot(zorAOESFX, 1);
     }
 }
