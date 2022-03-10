@@ -17,5 +17,8 @@ public class CombatEnemy : MonoBehaviour
             GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 1);
             GetComponent<BoxCollider2D>().offset = new Vector2(-0.15f, -0.5f);
         }
+        else if (eOb.name == "Mummy") {
+            GetComponent<Animator>().SetBool("isMummy", true);
+        }
     }
 }

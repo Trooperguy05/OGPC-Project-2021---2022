@@ -222,7 +222,7 @@ public class CombatManager : MonoBehaviour
                     hM.enemy1Slider.maxValue = e1.healthMax;
                     hM.enemy1Slider.value = hM.enemy1Slider.maxValue;
                     e1combat.eOb = e1;
-                    e1combat.updateSprite();   
+                    e1combat.updateSprite(); 
                 }
                 else {
                     e1 = null;
@@ -252,7 +252,7 @@ public class CombatManager : MonoBehaviour
                     hM.enemy3Slider.maxValue = e3.healthMax;
                     hM.enemy3Slider.value = hM.enemy3Slider.maxValue;
                     e3combat.eOb = e3;
-                    e3combat.updateSprite(); 
+                    e3combat.updateSprite();
                 }
                 else {
                     e3 = null;
@@ -267,13 +267,12 @@ public class CombatManager : MonoBehaviour
                     hM.enemy4Slider.maxValue = e4.healthMax;
                     hM.enemy4Slider.value = hM.enemy4Slider.maxValue;
                     e4combat.eOb = e4;
-                    e4combat.updateSprite();   
+                    e4combat.updateSprite();  
                 }
                 else {
                     e4 = null;
                 }
             }
-            Debug.Log("Slots left: " + enemySlotsLeft);
 
             if (enemySlotsLeft <= 0) {
                 break;

@@ -9,7 +9,7 @@ public class EnemyFormation : MonoBehaviour
 
     // the 4 different formations the enemies could be in on the field \\
     private Vector2[] fourEnemyPositions = {
-        new Vector2(4, 4.2f), new Vector2(4, 2.7f), new Vector2(4, 1.3f), new Vector2(4, -0.1f)
+        new Vector2(4, 4), new Vector2(4, 2.6f), new Vector2(4, 1.2f), new Vector2(4, -0.2f)
     };
     private Vector2[] threeEnemyPositions = {
         new Vector2(4, 4), new Vector2(4, 1.9f), new Vector2(4, -0.2f)
