@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class ConsoleController : MonoBehaviour
+public class ConsoleAndAchievementsController : MonoBehaviour
 {
     // Declaring Varibles \\
     public GameObject console;
@@ -13,6 +13,8 @@ public class ConsoleController : MonoBehaviour
     public string consoleText;
     public GameObject inputField;
     public GameObject consoleLog;
+    public GameObject achievements;
+    public static bool achievementsIsActive;
 
     void Update() {
         // Opens and closes the console \\
@@ -21,7 +23,7 @@ public class ConsoleController : MonoBehaviour
             console.SetActive(consoleIsActive); 
             // player cannot move while console menu is open
             PlayerMovement.playerAbleMove = !consoleIsActive;
-        };
+        }
     }
 
     // Stores the input of the text box \\
@@ -52,5 +54,11 @@ public class ConsoleController : MonoBehaviour
         else {
             consoleLog.GetComponent<TextMeshProUGUI>().text += "\ninvalid command issued to the console";
         }
+    }
+
+    //Opens and closes the achievements menu \\
+    public void toggleAchievementsMenu() {
+        achievementsIsActive = !achievementsIsActive;
+        achievements.SetActive(achievementsIsActive);
     }
 }

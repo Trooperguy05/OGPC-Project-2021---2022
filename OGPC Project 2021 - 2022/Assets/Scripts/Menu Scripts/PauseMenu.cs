@@ -11,12 +11,17 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         // if the player presses the escape key, open the pause menu
-        if (Input.GetKeyDown(KeyCode.Escape) && !DialogueManager.InDialogue) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !DialogueManager.InDialogue && !ConsoleAndAchievementsController.achievementsIsActive) {
            if (!FindObjectOfType<PartyManager>().partyTabOpen) { // open the pause menu when the party tab is closed
                 pauseMenuOpen = !pauseMenuOpen;
                 pauseMenu.SetActive(pauseMenuOpen);
                 PlayerMovement.playerAbleMove = !pauseMenuOpen;
            }
         } 
+    }
+
+    public void togglePauseMenu() {
+        pauseMenuOpen = !pauseMenuOpen;
+        pauseMenu.SetActive(pauseMenuOpen);
     }
 }
