@@ -39,7 +39,7 @@ public class EnemyCreator
     ///   Methods that creates the enemy, random or specified   \\\
     // random enemy
     private void createEnemyRandom() {
-        int chance = Random.Range(1, 3);
+        int chance = Random.Range(100, 200);
 
         // scorpion
         if (chance == 1) {
@@ -56,6 +56,13 @@ public class EnemyCreator
             manaMax = 0;
             dexterity = -1;
             size = 1;
+        }
+        else if (chance == 7) {
+            name = "Worm";
+            healthMax = 500;
+            manaMax = 0;
+            dexterity = -2;
+            size = 4;
         }
         health = healthMax;
         mana = manaMax;
@@ -77,6 +84,13 @@ public class EnemyCreator
             manaMax = 0;
             dexterity = -1;
             size = 1;
+        }
+        else if (num == 7) {
+            name = "Worm";
+            healthMax = 500;
+            manaMax = 0;
+            dexterity = -2;
+            size = 4;
         }
         health = healthMax;
         mana = manaMax;

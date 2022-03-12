@@ -606,7 +606,6 @@ public class PlayerActions : MonoBehaviour
             StartCoroutine(bMM.typeActionText("zor used cleave!", 0.01f));
 
             // after action things
-            showDealtDamage(target, ZorDamage);
             ZorDamage += 10;
             ZorToHit -= 5;
 

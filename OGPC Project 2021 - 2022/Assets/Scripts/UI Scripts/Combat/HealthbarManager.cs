@@ -56,10 +56,10 @@ public class HealthbarManager : MonoBehaviour
 
     // method that updates the position of the enemy healthbars \\
     public void updateEnemyHealthbars() {
-        enemy1Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy1.transform.position.x+1, cM.enemy1.transform.position.y+0.25f);
-        enemy2Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy2.transform.position.x+1, cM.enemy2.transform.position.y+0.25f);
-        enemy3Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy3.transform.position.x+1, cM.enemy3.transform.position.y+0.25f);
-        enemy4Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy4.transform.position.x+1, cM.enemy4.transform.position.y+0.25f);
+        enemy1Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy1.transform.position.x+1.5f, cM.enemy1.transform.position.y+0.25f);
+        enemy2Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy2.transform.position.x+1.5f, cM.enemy2.transform.position.y+0.25f);
+        enemy3Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy3.transform.position.x+1.5f, cM.enemy3.transform.position.y+0.25f);
+        enemy4Healthbar.GetComponent<RectTransform>().position = new Vector2(cM.enemy4.transform.position.x+1.5f, cM.enemy4.transform.position.y+0.25f);
     }
     // method that updates the position of the player healthbars \\
     public void updatePlayerHealthbars() {

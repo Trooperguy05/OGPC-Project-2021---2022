@@ -40,6 +40,8 @@ public class CombatManager : MonoBehaviour
     // specified enemies
     private int specifiedEnemy;
     [Header("Other Scripts")]
+    // party stats script
+    public PartyStats pS;
     // script for enemy formation
     public EnemyFormation eF;
     // script for turn indicator
@@ -94,39 +96,40 @@ public class CombatManager : MonoBehaviour
             tI.updateIndicator();
         }
 
-        if (Input.GetKeyDown(KeyCode.P)) {
-            initiativeIndex++;
-            if (initiativeIndex <= 7 && initiativeNames[initiativeIndex] != "") {
-                Debug.Log(initiativeNames[initiativeIndex]);
-            }
-            if (initiativeIndex <= 7) {
-                tI.updateIndicator();
-            }
-        }
-
         ///   Turn-Based Combat   \\\
         // if it is one of the player characters' turn
         if (initiativeNames[initiativeIndex] == "Raza") {
+            if (pS.char1HP <= 0) {
+                initiativeIndex++;
+                tI.updateIndicator();
+                newRound();
+            }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 initiativeIndex++;
-                if (initiativeIndex <= 7) {
-                    tI.updateIndicator();
-                }
+                tI.updateIndicator();
                 newRound();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Dorne") {
+            if (pS.char2HP <= 0) {
+                initiativeIndex++;
+                tI.updateIndicator();
+                newRound();
+            }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 initiativeIndex++;
-                if (initiativeIndex <= 7) {
-                    tI.updateIndicator();
-                }
+                tI.updateIndicator();
                 newRound();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Smithson") {
+            if (pS.char3HP <= 0) {
+                initiativeIndex++;
+                tI.updateIndicator();
+                newRound();
+            }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 initiativeIndex++;
@@ -137,6 +140,11 @@ public class CombatManager : MonoBehaviour
             }
         }
         else if (initiativeNames[initiativeIndex] == "Zor") {
+            if (pS.char4HP <= 0) {
+                initiativeIndex++;
+                tI.updateIndicator();
+                newRound();
+            }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 initiativeIndex++;
@@ -149,7 +157,7 @@ public class CombatManager : MonoBehaviour
         // if it is one of the enemy's turns
         // if the enemy is a scorpion
         if (initiativeNames[initiativeIndex] == "Scorpion") {
-            int choice = Random.Range(1, 2);
+            int choice = Random.Range(1, 3);
             if (!tookChoice) {
                 if (choice == 1) {
                     tookChoice = true;
@@ -168,6 +176,50 @@ public class CombatManager : MonoBehaviour
                 if (initiativeIndex <= 7) {
                     tI.updateIndicator();
                 }
+                newRound();
+            }
+        }
+        // if enemy is a mummy
+        else if (initiativeNames[initiativeIndex] == "Mummy") {
+            if (!tookChoice) {
+                tookChoice = true;
+                StartCoroutine(enemyActions.mummyWalkin());
+            }
+            if (enemyActions.enemyDone) {
+                enemyActions.enemyDone = false;
+                tookChoice = false;
+                initiativeIndex++;
+                if (initiativeIndex <= 7) {
+                    tI.updateIndicator();
+                }
+                newRound();
+            }
+        }
+        // if enemy is the worm (miniboss)
+        else if (initiativeNames[initiativeIndex] == "Worm") {
+            if (gameObjectsInCombat[initiativeIndex].GetComponent<CombatEnemy>().eOb.health > 0) {
+                if (!tookChoice) {
+                    int choice = Random.Range(1, 3);
+                    if (choice == 1) {
+                        tookChoice = true;
+                        StartCoroutine(enemyActions.sandwormHole());
+                    }
+                    else if (choice == 2) {
+                        tookChoice = true;
+                        StartCoroutine(enemyActions.sandwormBite());
+                    }
+                }  
+            }
+            else {
+                initiativeIndex++;
+                tI.updateIndicator();
+                newRound();
+            }
+            if (enemyActions.enemyDone) {
+                enemyActions.enemyDone = false;
+                tookChoice = false;
+                initiativeIndex++;
+                tI.updateIndicator();
                 newRound();
             }
         }

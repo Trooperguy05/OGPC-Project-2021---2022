@@ -20,5 +20,9 @@ public class CombatEnemy : MonoBehaviour
         else if (eOb.name == "Mummy") {
             GetComponent<Animator>().SetBool("isMummy", true);
         }
+        else if (eOb.name == "Worm") {
+            GetComponent<Animator>().SetBool("isWorm", true);
+            GetComponent<BoxCollider2D>().size = new Vector3(3, 3);
+        }
     }
 }

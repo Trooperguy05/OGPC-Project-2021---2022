@@ -146,7 +146,7 @@ public class EnemyActions : MonoBehaviour
             //sM.statusAdd(character, "poison", 3);
         }
         else {
-            Debug.Log("Miss");
+            enemyDone = true;
         }
         //poisons target, dealing 3 damage per turn for 3 turns. will impliment with status manager.
         // play attack animation
@@ -165,7 +165,7 @@ public class EnemyActions : MonoBehaviour
             enemyHit(15);
         }
         else {
-            Debug.Log("Miss");
+            enemyDone = true;
         }
 
         // play attack animation
@@ -176,30 +176,48 @@ public class EnemyActions : MonoBehaviour
 
     /////Mummy Attacks\\\\\
     ///Shamble\\\
-    public void mummyWalkin()
+    public IEnumerator mummyWalkin()
     {
+        yield return new WaitForSeconds(1f);
         int toHit = Random.Range(1, 100);
         if (toHit <= 90)
         {
             enemyHit(25);
         }
-        enemyDone = true;
+        else {
+            enemyDone = true;
+        }
+
+        // play animation
+        Animator animator = findAnimator();
+        animator.SetTrigger("act");
+        StartCoroutine(animPlaying(animator, "mummyCombat_active"));
     }
 
     /////Desert Miniboss\\\\\
     /////Sandworm Attacks\\\\\
     ///Sinkhole\\\
-    public void sandwormHole()
+    public IEnumerator sandwormHole()
     {
+        yield return new WaitForSeconds(1f);
         enemyAll(15);
-        enemyDone = true;
+
+        // play animation
+        Animator animator = findAnimator();
+        animator.SetTrigger("act");
+        StartCoroutine(animPlaying(animator, "wormCombat_active"));
     }
 
     ///Sand-stained Maw\\\
-    public void sandwormBite()
+    public IEnumerator sandwormBite()
     {
+        yield return new WaitForSeconds(1f);
         enemyHit(40);
-        enemyDone = true;
+
+        // play animation
+        Animator animator = findAnimator();
+        animator.SetTrigger("act");
+        StartCoroutine(animPlaying(animator, "wormCombat_active"));
     }
 
     //////Swamp\\\\\\
