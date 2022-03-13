@@ -59,9 +59,13 @@ public class PlayerActions : MonoBehaviour
     public AudioClip zorAngySFX;
     public AudioClip zorZapSFX;
     public AudioClip zorAOESFX;
+
+    [Header("Other Action Variables")]
     // variable that tells the combatmanager if the player is done
     // with a character's turn
     public bool charDone = false;
+    // time amt of pause when the player misses
+    public float pauseWait = 1.5f;
 
     // caching the other scripts \\
     void Start() {
@@ -209,7 +213,7 @@ public class PlayerActions : MonoBehaviour
                 // misses the gamble shot
                 else {
                     StartCoroutine(bMM.typeActionText("raza missed", 0.01f));
-                    StartCoroutine(pauseOnMiss(1f));
+                    StartCoroutine(pauseOnMiss(pauseWait));
                 }
                 // reset
                 dmg = 30;
@@ -233,7 +237,7 @@ public class PlayerActions : MonoBehaviour
                 else {
                     // update battle menu with action text
                     StartCoroutine(bMM.typeActionText("raza missed!", 0.01f));
-                    StartCoroutine(pauseOnMiss(1f));
+                    StartCoroutine(pauseOnMiss(pauseWait));
                 }
             }
         }
@@ -312,7 +316,7 @@ public class PlayerActions : MonoBehaviour
         // on miss
         else {
             StartCoroutine(bMM.typeActionText("dorne missed!", 0.01f));
-            StartCoroutine(pauseOnMiss(1f));
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
         AS.PlayOneShot(dorneStrikeSFX, 1);
     }
@@ -337,7 +341,8 @@ public class PlayerActions : MonoBehaviour
         }
         // on miss
         else {
-            StartCoroutine(pauseOnMiss(1f));
+            StartCoroutine(bMM.typeActionText("dorne missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
         AS.PlayOneShot(dorneMageSFX, 1);
     }
@@ -363,7 +368,8 @@ public class PlayerActions : MonoBehaviour
         }
         // on miss
         else {
-            StartCoroutine(pauseOnMiss(1f));
+            StartCoroutine(bMM.typeActionText("dorne missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
         AS.PlayOneShot(dorneChargeSFX, 1);
     }
@@ -423,7 +429,7 @@ public class PlayerActions : MonoBehaviour
         // misses
         else {
             StartCoroutine(bMM.typeActionText("smithson missed", 0.01f));
-            StartCoroutine(pauseOnMiss(1f));
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
         AS.PlayOneShot(smithsonGrabSFX, 1);
     }
@@ -465,7 +471,7 @@ public class PlayerActions : MonoBehaviour
         } 
         else {
             StartCoroutine(bMM.typeActionText("smithson's spell fizzled", 0.01f));
-            StartCoroutine(pauseOnMiss(1f));
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
         AS.PlayOneShot(smithsonLifeStealSFX, 1);
     }
@@ -513,7 +519,7 @@ public class PlayerActions : MonoBehaviour
         // out of mana
         else {
             StartCoroutine(bMM.typeActionText("smithson's spell fizzled", 0.01f));
-            StartCoroutine(pauseOnMiss(1f));
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
         AS.PlayOneShot(smithsonChillOfTheGraveSFX, 1);
     }
@@ -564,7 +570,7 @@ public class PlayerActions : MonoBehaviour
         // is out of mana
         else {
             StartCoroutine(bMM.typeActionText("smithson's spell fizzles", 0.01f));
-            StartCoroutine(pauseOnMiss(1f));
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
         AS.PlayOneShot(smithsonCleanWoundsSFX, 1);
     }
@@ -613,7 +619,7 @@ public class PlayerActions : MonoBehaviour
 
         }
         else {
-            StartCoroutine(pauseOnMiss(1f));
+            StartCoroutine(pauseOnMiss(pauseWait));
             StartCoroutine(bMM.typeActionText("zor missed!", 0.01f));
         }
         AS.PlayOneShot(zorCleaveSFX, 1);
@@ -655,13 +661,13 @@ public class PlayerActions : MonoBehaviour
             }
             // on miss
             else {
-                StartCoroutine(pauseOnMiss(1f));
+                StartCoroutine(pauseOnMiss(pauseWait));
                 StartCoroutine(bMM.typeActionText("zor missed!", 0.01f));
             }
         }
         // if he is enraged
         else {
-            StartCoroutine(pauseOnMiss(1f));
+            StartCoroutine(pauseOnMiss(pauseWait));
             StartCoroutine(bMM.typeActionText("zor is enraged! he cannot use this action!", 0.01f));
         }
         AS.PlayOneShot(zorZapSFX, 1);

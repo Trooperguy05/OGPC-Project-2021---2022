@@ -25,6 +25,9 @@ public class BattleMenuManager : MonoBehaviour
     // variable that checks if the action text is done \\
     public bool actionTextDone = false;
 
+    // variable that checks what index the hidingActions was called at \\
+    private int indexCalled;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -96,12 +99,16 @@ public class BattleMenuManager : MonoBehaviour
         StartCoroutine(hideActions());
     }
     public IEnumerator hideActions() {
+        indexCalled = cM.initiativeIndex;
         hidingActions = true;
         while (!pA.charDone) {
             razaActions.SetActive(false);
             dorneActions.SetActive(false);
             smithsonActions.SetActive(false);
             zorActions.SetActive(false);
+            if (indexCalled != cM.initiativeIndex) {
+                break;
+            }
             yield return null; 
         }
         yield return new WaitForSeconds(0.5f);

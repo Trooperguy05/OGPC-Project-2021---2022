@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
 {
     // sentence queue of the dialogue \\
     private Queue<string> sentences;
+    private Queue<string> names;
 
     // dialogue box game object and text fields \\
     public GameObject dialogueBox;
@@ -23,6 +24,7 @@ public class DialogueManager : MonoBehaviour
     // initialize the queue \\
     void Start() {
         sentences = new Queue<string>();
+        names = new Queue<string>();
 
         // grabbing the dialogue box animator
         dialogueBoxAnimator = dialogueBox.GetComponent<Animator>();
@@ -33,9 +35,20 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Starting conversation with " + dialogue.name);
         dialogueBoxAnimator.SetBool("dialogueOn", true);
         PlayerMovement.playerAbleMove = false;
-        dialogueName.text = dialogue.name;
         InDialogue = true;
 
+        // if there are multiple people in the conversation
+        if (dialogue.names.Length > 0) {
+            names.Clear();
+            foreach(string name in dialogue.names) {
+                names.Enqueue(name);
+            }
+        }
+        else {
+            dialogueName.text = dialogue.name;
+        }
+
+        // sentences
         sentences.Clear();
 
         foreach(string sentence in dialogue.sentences) {
@@ -53,13 +66,16 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
+        string name = names.Dequeue();
         StopAllCoroutines();
-        StartCoroutine(typeText(sentence));
+        StartCoroutine(typeText(name, sentence));
     }
 
     // method that types the sentence in keyboard-like fashion \\
-    IEnumerator typeText(string sentence) {
+    IEnumerator typeText(string name, string sentence) {
+        Debug.Log("h");
         dialogueText.text = "";
+        dialogueName.text = name;
         for (int i = 0; i < sentence.Length; i++) {
             dialogueText.text += sentence[i];
             yield return new WaitForSeconds(typeSpeed);

@@ -10,6 +10,9 @@ public class Inventory : MonoBehaviour
     // inventory list \\
     public List<Item> inventory = new List<Item>();
 
+    // cheat menu manager \\
+    private ConsoleController cC;
+
     // inventory menu \\
     public GameObject invMenu;
     public GameObject scrollableArea;
@@ -22,6 +25,9 @@ public class Inventory : MonoBehaviour
 
     // on start-up things \\
     void Start() {
+        // get the console controller \\
+        cC = GameObject.Find("ConsoleMenuController").GetComponent<ConsoleController>();
+
         // load the inventory on start up \\
         loadInventory();
 
@@ -73,7 +79,7 @@ public class Inventory : MonoBehaviour
     // allow player to access the inventory menu \\
     void Update() {
         // if the player presses 'i', show the inventory menu
-        if (Input.GetKeyDown(KeyCode.I)) {
+        if (Input.GetKeyDown(KeyCode.I) && !cC.consoleIsActive) {
             invMenuOpen = !invMenuOpen;
             invMenu.SetActive(invMenuOpen);
             PlayerMovement.playerAbleMove = !invMenuOpen;
