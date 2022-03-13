@@ -8,7 +8,7 @@ public class BattleMenuManager : MonoBehaviour
 {
     // other scripts
     private CombatManager cM;
-    private PlayerActions pA;
+    public PlayerActions pA;
 
     // player action buttons \\
     public GameObject razaActions;
@@ -21,6 +21,9 @@ public class BattleMenuManager : MonoBehaviour
 
     // variable for checking if the manager is hiding the player actions \\
     public bool hidingActions = false;
+
+    // variable that checks if the action text is done \\
+    public bool actionTextDone = false;
 
     // Start is called before the first frame update
     void Start()
@@ -68,13 +71,24 @@ public class BattleMenuManager : MonoBehaviour
 
     // method that types out the action text to the battle menu \\
     public IEnumerator typeActionText(string text, float typeSpeed) {
+        // typing
         actionText.text = "";
         for (int i = 0; i < text.Length; i++) {
             actionText.text += text[i];
             yield return new WaitForSeconds(typeSpeed);
         }
+
+        // after typing
         yield return new WaitForSeconds(2f);
         actionText.text = "";
+    }
+    public IEnumerator typeHelperActionText(string text, float typeSpeed) {
+        actionText.text = "";
+        // typing
+        for (int i = 0; i < text.Length; i++) {
+            actionText.text += text[i];
+            yield return new WaitForSeconds(typeSpeed);
+        }
     }
 
     // method that hides the actions when the player chooses one \\

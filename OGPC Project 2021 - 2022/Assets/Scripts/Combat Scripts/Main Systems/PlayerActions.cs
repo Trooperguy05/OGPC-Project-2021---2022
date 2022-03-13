@@ -163,6 +163,7 @@ public class PlayerActions : MonoBehaviour
     //////  Character: Raza's Actions   \\\\\
     /// Action Wrappers \\\
     public void execute_razaFire() {
+        StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
         StartCoroutine(ts.waitForClick(razaFire));
     }
     public void execute_razaAim() {
@@ -310,6 +311,7 @@ public class PlayerActions : MonoBehaviour
         }
         // on miss
         else {
+            StartCoroutine(bMM.typeActionText("dorne missed!", 0.01f));
             StartCoroutine(pauseOnMiss(1f));
         }
         AS.PlayOneShot(dorneStrikeSFX, 1);

@@ -16,7 +16,7 @@ public class ManabarManager : MonoBehaviour
         // get the sliders
         smithsonManabarSlider = smithsonManabar.GetComponent<Slider>();
         // move the manabars
-        smithsonManabar.GetComponent<RectTransform>().position = new Vector2(smithson.transform.position.x-1, smithson.transform.position.y);
+        smithsonManabar.GetComponent<RectTransform>().position = new Vector2(smithson.transform.position.x-1.5f, smithson.transform.position.y);
     }
 
     // method that shows mana depletion \\

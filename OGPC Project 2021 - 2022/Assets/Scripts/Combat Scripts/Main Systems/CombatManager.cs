@@ -133,9 +133,7 @@ public class CombatManager : MonoBehaviour
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 initiativeIndex++;
-                if (initiativeIndex <= 7) {
-                    tI.updateIndicator();
-                }
+                tI.updateIndicator();
                 newRound();
             }
         }
@@ -148,9 +146,7 @@ public class CombatManager : MonoBehaviour
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 initiativeIndex++;
-                if (initiativeIndex <= 7) {
-                    tI.updateIndicator();
-                }
+                tI.updateIndicator();
                 newRound();
             }
         }
@@ -173,9 +169,7 @@ public class CombatManager : MonoBehaviour
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 initiativeIndex++;
-                if (initiativeIndex <= 7) {
-                    tI.updateIndicator();
-                }
+                tI.updateIndicator();
                 newRound();
             }
         }
@@ -189,9 +183,7 @@ public class CombatManager : MonoBehaviour
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 initiativeIndex++;
-                if (initiativeIndex <= 7) {
-                    tI.updateIndicator();
-                }
+                tI.updateIndicator();
                 newRound();
             }
         }
@@ -262,6 +254,17 @@ public class CombatManager : MonoBehaviour
         e4 = null;
         enemySlotsLeft = 4;
 
+        // if there is a specified enemy \\
+        if (specifiedEnemy != 0) {
+            e1 = new EnemyCreator(specifiedEnemy);
+            enemySlotsLeft -= e1.size;
+            initiativeCount[4] = Random.Range(1, 21) + e1.dexterity;
+            hM.enemy1Slider.maxValue = e1.healthMax;
+            hM.enemy1Slider.value = hM.enemy1Slider.maxValue;
+            e1combat.eOb = e1;
+            e1combat.updateSprite();
+        }
+
         // create enemies based on size and space left \\
         int i = 0;
         while (enemySlotsLeft > 0) {
@@ -329,7 +332,7 @@ public class CombatManager : MonoBehaviour
             if (enemySlotsLeft <= 0) {
                 break;
             }
-        }
+        }     
 
         // player character initiatives
         initiativeCount[0] = Random.Range(1, 20) + stats.char1Dexterity; //Razza

@@ -63,10 +63,10 @@ public class HealthbarManager : MonoBehaviour
     }
     // method that updates the position of the player healthbars \\
     public void updatePlayerHealthbars() {
-        razaHealthbar.GetComponent<RectTransform>().position = new Vector2(raza.transform.position.x-1, raza.transform.position.y+0.25f);
-        dorneHealthbar.GetComponent<RectTransform>().position = new Vector2(dorne.transform.position.x-1, dorne.transform.position.y+0.25f);
-        smithsonHealtbar.GetComponent<RectTransform>().position = new Vector2(smithson.transform.position.x-1, smithson.transform.position.y+0.25f);
-        zorHealthbar.GetComponent<RectTransform>().position = new Vector2(zor.transform.position.x-1, zor.transform.position.y+0.25f); 
+        razaHealthbar.GetComponent<RectTransform>().position = new Vector2(raza.transform.position.x-1.5f, raza.transform.position.y+0.25f);
+        dorneHealthbar.GetComponent<RectTransform>().position = new Vector2(dorne.transform.position.x-1.5f, dorne.transform.position.y+0.25f);
+        smithsonHealtbar.GetComponent<RectTransform>().position = new Vector2(smithson.transform.position.x-1.5f, smithson.transform.position.y+0.25f);
+        zorHealthbar.GetComponent<RectTransform>().position = new Vector2(zor.transform.position.x-1.5f, zor.transform.position.y+0.25f); 
     }
 
     // method that shows damage to healthbar \\
