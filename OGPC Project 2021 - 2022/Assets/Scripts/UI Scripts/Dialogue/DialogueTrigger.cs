@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    public bool destroyOnInteract = false;
     public Dialogue dialogue;
 
     void OnTriggerEnter2D(Collider2D col) {
         GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>().StartDialogue(dialogue);
+        if (destroyOnInteract) {
+            Destroy(this.gameObject);
+        }
     }
 }

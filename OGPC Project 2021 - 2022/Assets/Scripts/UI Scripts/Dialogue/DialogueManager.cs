@@ -66,16 +66,20 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
-        string name = names.Dequeue();
+        string name = "";
+        if (names.Count > 0) {
+            name = names.Dequeue();
+        }
         StopAllCoroutines();
         StartCoroutine(typeText(name, sentence));
     }
 
     // method that types the sentence in keyboard-like fashion \\
     IEnumerator typeText(string name, string sentence) {
-        Debug.Log("h");
         dialogueText.text = "";
-        dialogueName.text = name;
+        if (name != "") {
+            dialogueName.text = name;
+        }
         for (int i = 0; i < sentence.Length; i++) {
             dialogueText.text += sentence[i];
             yield return new WaitForSeconds(typeSpeed);
