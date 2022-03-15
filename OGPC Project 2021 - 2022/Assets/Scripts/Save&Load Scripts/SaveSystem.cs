@@ -189,6 +189,36 @@ public static class SaveSystem
         }
     }
 
+    // save story dialogue data \\
+    public static void saveStoryDialogue(StoryDialogueManager sDM) {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/storyDialogue.txt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        StoryDialogueData data = new StoryDialogueData(sDM);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    // load the story dialogue data \\
+    public static StoryDialogueData loadStoryDialogue() {
+        string path = Application.persistentDataPath + "/storyDialogue.txt";
+
+        if (File.Exists(path)) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            StoryDialogueData data = formatter.Deserialize(stream) as StoryDialogueData;
+            stream.Close();
+            return data;
+        }
+        else {
+            Debug.LogError("Save file does not exist at " + path);
+            return null;
+        }
+    }
+
     // delete save data \\
     public static void deleteSaveData() {
         string partyDataPath = Application.persistentDataPath + "/partyData.txt";
@@ -196,6 +226,7 @@ public static class SaveSystem
         string enemyDataPath = Application.persistentDataPath + "/activeEnemies.txt";
         string invDataPath = Application.persistentDataPath + "/inventory.txt";
         string achivementDataPath = Application.persistentDataPath + "/achievements.txt";
+        string storyDialoguePath = Application.persistentDataPath + "/storyDialogue.txt";
 
         // delete the party data
         if (File.Exists(partyDataPath)) {
@@ -224,6 +255,13 @@ public static class SaveSystem
         }
         else {
             Debug.LogError("File not found in " + invDataPath);
+        }
+        // delete story dialogue data
+        if (File.Exists(storyDialoguePath)) {
+            File.Delete(storyDialoguePath);
+        }
+        else {
+            Debug.LogError("File not found in " + storyDialoguePath);
         }
         /*
         // Delete the achivement data
