@@ -207,8 +207,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6
-  m_fontSizeBase: 6
+  m_fontSize: 9
+  m_fontSizeBase: 9
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1205,6 +1205,89 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 371865225}
   m_CullTransparentMesh: 1
+--- !u!1 &419160769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 419160772}
+  - component: {fileID: 419160771}
+  - component: {fileID: 419160770}
+  m_Layer: 0
+  m_Name: Party Dialogue Trigger (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &419160770
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419160769}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &419160771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419160769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc6de0cd3ebb0d47bd107c083ea2cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableOnInteract: 1
+  dialogue:
+    name: Party
+    names:
+    - dorne
+    - raza
+    - smithson
+    - zor
+    sentences:
+    - what is that in the distance?
+    - looks like a non distinct silhouette.
+    - i can hardly see from here.
+    - lets take a closer look!
+--- !u!4 &419160772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419160769}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.72, y: -26.41, z: -5.893913}
+  m_LocalScale: {x: 13.793062, y: 8.466864, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &427760590
 GameObject:
   m_ObjectHideFlags: 0
@@ -17522,6 +17605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggers:
   - {fileID: 1593967874}
+  - {fileID: 419160769}
 --- !u!4 &1381214371
 Transform:
   m_ObjectHideFlags: 0
@@ -18429,15 +18513,21 @@ MonoBehaviour:
   dialogue:
     name: Party
     names:
-    - dorne
-    - raza
     - smithson
-    - zor
+    - raza
+    - dorne
+    - smithson
+    - dorne
+    - smithson
     sentences:
-    - what is that in the distance?
-    - looks like a non distinct silhouette.
-    - i can hardly see from here.
-    - lets take a closer look!
+    - i hate deserts, could of we have taken a different route?
+    - the only other way is by sea. and dorne constantly gets seasick.
+    - sorry...
+    - oh well. hopefully this virus survives this trek i want to disect it once i
+      travel back to my lab.
+    - what is it? we got it from that zombie job two months prior. do you think it
+      is related this one?
+    - only time will tell.
 --- !u!4 &1593967877
 Transform:
   m_ObjectHideFlags: 0
@@ -18446,8 +18536,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593967874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.72, y: -26.41, z: -5.893913}
-  m_LocalScale: {x: 13.793062, y: 8.466864, z: 1}
+  m_LocalPosition: {x: 0.32, y: -2.31, z: -5.893913}
+  m_LocalScale: {x: 13.793062, y: 2.2225516, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 19

@@ -15,6 +15,7 @@ public class EnemyActions : MonoBehaviour
     private PartyStats pS;
     private StatusManager sM;
     private HealthbarManager hM;
+    private BattleMenuManager bMM;
 
     //enemy specific variables
     [Header("Enemy Abilities")]
@@ -37,6 +38,8 @@ public class EnemyActions : MonoBehaviour
         sM = GameObject.Find("Combat Manager").GetComponent<StatusManager>();
         // healthbar manager
         hM = GameObject.Find("Healthbar Manager").GetComponent<HealthbarManager>();
+        // battle menu manager
+        bMM = GameObject.Find("Battle Menu").GetComponent<BattleMenuManager>();
 
     }
 
@@ -51,6 +54,12 @@ public class EnemyActions : MonoBehaviour
         enemyDone = true;
     }
 
+    // method that pauses the flow of combat when the enemy misses before passing the turn \\
+    public IEnumerator pauseOnMiss(float wait) {
+        yield return new WaitForSeconds(wait);
+        enemyDone = true;
+    }
+ 
     // method that finds the animator of the current enemy (whose turn it is) \\
     public Animator findAnimator() {
         if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy1") {
@@ -125,9 +134,13 @@ public class EnemyActions : MonoBehaviour
     public void enemyAll(int dmg)
     {
         pS.char1HP -= dmg;
+        StartCoroutine(hM.dealDamage(hM.razaSlider, dmg, 0.01f));
         pS.char2HP -= dmg;
+        StartCoroutine(hM.dealDamage(hM.dorneSlider, dmg, 0.01f));
         pS.char3HP -= dmg;
+        StartCoroutine(hM.dealDamage(hM.smithsonSlider, dmg, 0.01f));
         pS.char4HP -= dmg;
+        StartCoroutine(hM.dealDamage(hM.zorSlider, dmg, 0.01f));
     }
 
     ////////Enemy Types\\\\\\\\
@@ -143,16 +156,18 @@ public class EnemyActions : MonoBehaviour
         if (toHit <= 90)
         {
             string character = enemyHit(10);
+            // action text
+            StartCoroutine(bMM.typeActionText("scorpion used sting!", 0.01f));
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "scorpionCombat_active"));
             //sM.statusAdd(character, "poison", 3);
         }
         else {
-            enemyDone = true;
+            StartCoroutine(bMM.typeActionText("scorpion missed", 0.01f));
+            StartCoroutine(pauseOnMiss(1f));
         }
-        //poisons target, dealing 3 damage per turn for 3 turns. will impliment with status manager.
-        // play attack animation
-        Animator animator = findAnimator();
-        animator.SetTrigger("act");
-        StartCoroutine(animPlaying(animator, "scorpionCombat_active"));
     }
 
     ///Pincers\\\
@@ -201,6 +216,10 @@ public class EnemyActions : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         enemyAll(15);
+        
+        // action text
+        StartCoroutine(bMM.typeActionText("sandworm used sinkhole!", 0.01f));
+        yield return new WaitForSeconds(1f);
 
         // play animation
         Animator animator = findAnimator();
@@ -213,6 +232,9 @@ public class EnemyActions : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         enemyHit(40);
+
+        // action text
+        StartCoroutine(bMM.typeActionText("sandworm used sand-stained maw!", 0.01f));
 
         // play animation
         Animator animator = findAnimator();

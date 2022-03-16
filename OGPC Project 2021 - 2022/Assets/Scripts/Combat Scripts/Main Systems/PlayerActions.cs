@@ -174,6 +174,7 @@ public class PlayerActions : MonoBehaviour
         razaAim();
     }
     public void execute_razaMark() {
+        StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
         StartCoroutine(ts.waitForClick(razaMark));
     }
     public void execute_razaGamble() {
@@ -196,49 +197,47 @@ public class PlayerActions : MonoBehaviour
         if (Deadeye){
             dmg = dmg * 2 + dmg / 2;
         }
+        // Checks if trick shot is active
+        if (Gamble){
+            dmg *= 2;
+            int chance = Random.Range(1,2);
+            // hits the gamble shot
+            if (chance == 2){
+                enemy.health -= dmg;
+                // play active animation
+                razaAnimator.SetTrigger("act");
+                StartCoroutine(updateGameField(razaAnimator, "razaCombat_active", target, dmg));
+                // update battle menu with action text
+                StartCoroutine(bMM.typeActionText("raza used fire!", 0.01f));
+            }
+            // misses the gamble shot
+            else {
+                StartCoroutine(bMM.typeActionText("raza missed", 0.01f));
+                StartCoroutine(pauseOnMiss(pauseWait));
+            }
+            // reset
+            dmg = 30;
+            Gamble = false;
+            Deadeye = false;
+        }
         else{
-            // Checks if trick shot is active
-            if (Gamble){
-                dmg *= 2;
-                int chance = Random.Range(1,2);
-                // hits the gamble shot
-                if (chance == 2){
-                    enemy.health -= dmg;
-                    // play active animation
-                    razaAnimator.SetTrigger("act");
-                    StartCoroutine(updateGameField(razaAnimator, "razaCombat_active", target, dmg));
-                    // update battle menu with action text
-                    StartCoroutine(bMM.typeActionText("raza used fire!", 0.01f));
-                }
-                // misses the gamble shot
-                else {
-                    StartCoroutine(bMM.typeActionText("raza missed", 0.01f));
-                    StartCoroutine(pauseOnMiss(pauseWait));
-                }
+            // rolls normal attack chance
+            int chanceToHit = Random.Range(1, 100);
+            if (chanceToHit <= 90 || Deadeye) {
+                enemy.health -= dmg;
+                // play active animation
+                razaAnimator.SetTrigger("act");
+                StartCoroutine(updateGameField(razaAnimator, "razaCombat_active", target, dmg));
+                // update battle menu with action text
+                StartCoroutine(bMM.typeActionText("raza used fire!", 0.01f));
                 // reset
                 dmg = 30;
-                Gamble = false;
                 Deadeye = false;
             }
-            else{
-                // rolls normal attack chance
-                int chanceToHit = Random.Range(1, 100);
-                if (chanceToHit <= 90 || Deadeye) {
-                    enemy.health -= dmg;
-                    // play active animation
-                    razaAnimator.SetTrigger("act");
-                    StartCoroutine(updateGameField(razaAnimator, "razaCombat_active", target, dmg));
-                    // update battle menu with action text
-                    StartCoroutine(bMM.typeActionText("raza used fire!", 0.01f));
-                    // reset
-                    dmg = 30;
-                    Deadeye = false;
-                }
-                else {
-                    // update battle menu with action text
-                    StartCoroutine(bMM.typeActionText("raza missed!", 0.01f));
-                    StartCoroutine(pauseOnMiss(pauseWait));
-                }
+            else {
+                // update battle menu with action text
+                StartCoroutine(bMM.typeActionText("raza missed!", 0.01f));
+                StartCoroutine(pauseOnMiss(pauseWait));
             }
         }
         AS.PlayOneShot(razaFireSFX, 1);
@@ -288,12 +287,15 @@ public class PlayerActions : MonoBehaviour
     /////   Character: Dorne's Actions   \\\\\
     /// Action Wrappers \\\
     public void execute_dorneStrike() {
+        StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
         StartCoroutine(ts.waitForClick(dorneStrike));
     }
     public void execute_dorneMage() {
+        StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
         StartCoroutine(ts.waitForClick(dorneMage));
     }
     public void execute_dorneCharge() {
+        StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
         StartCoroutine(ts.waitForClick(dorneCharge));
     }
     public void execute_dorneSpeedUp() {
@@ -312,6 +314,8 @@ public class PlayerActions : MonoBehaviour
             // play active animation
             dorneAnimator.SetTrigger("act");
             StartCoroutine(updateGameField(dorneAnimator, "dorneCombat_active", target, 40));
+            // action text
+            StartCoroutine(bMM.typeActionText("dorne used strike!", 0.01f));
         }
         // on miss
         else {
@@ -365,6 +369,8 @@ public class PlayerActions : MonoBehaviour
             dorneAnimator.SetTrigger("act");
             StartCoroutine(hM.dealDamage(hM.dorneSlider, selfDmg, 0.01f));
             StartCoroutine(updateGameField(dorneAnimator, "dorneCombat_active", target, dmg));
+            // action text
+            StartCoroutine(bMM.typeActionText("dorne used charge!", 0.01f));
         }
         // on miss
         else {
@@ -390,15 +396,18 @@ public class PlayerActions : MonoBehaviour
     /////   Character: Smithson's Actions   \\\\\
     /// Action Wrappers \\\
     public void execute_smithsonGrab() {
+        StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
         StartCoroutine(ts.waitForClick(smithsonGrab));
     }
     public void execute_smithsonSteal() {
+        StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
         StartCoroutine(ts.waitForClick(smithsonSteal));
     }
     public void execute_smithsonAOE() {
         smithsonAOE();
     }
     public void execute_smithsonHeal() {
+        StartCoroutine(bMM.typeHelperActionText("select one ally", 0.01f));
         StartCoroutine(ts.waitForClick(smithsonHeal));
     }
     // Actions \\
@@ -577,12 +586,14 @@ public class PlayerActions : MonoBehaviour
     /////   Character: Zor's Actions   \\\\\
     /// Action Wrappers \\\
     public void execute_zorCleave() {
+        StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
         StartCoroutine(ts.waitForClick(zorCleave));
     }
     public void execute_zorAngy() {
         zorAngy();
     }
     public void execute_zorZap() {
+        StartCoroutine(bMM.typeHelperActionText("select two enemies", 0.01f));
         StartCoroutine(ts.waitForClick(zorZap, 2));
     }
     public void execute_zorAOE() {
