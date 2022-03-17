@@ -18,17 +18,20 @@ public class Credits : MonoBehaviour
     }
 
     public IEnumerator gravityON() {
-        while (name1.position.y <= 0.05) {
+        while (name1.position.y <= 2) {
             name1.MovePosition(name1.position + new Vector2(0f, 0.05f));
             name2.MovePosition(name2.position + new Vector2(0f, 0.05f));
             name3.MovePosition(name3.position + new Vector2(0f, 0.05f));
             name4.MovePosition(name4.position + new Vector2(0f, 0.05f));
             yield return null;
         }
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds((float)7.5);
         name1.isKinematic = false;
         name2.isKinematic = false;
         name3.isKinematic = false;
         name4.isKinematic = false;
+        name2.AddForce(new Vector2(-1000f, 0f));
+        name3.AddForce(new Vector2(1000f, 0f));
+        name4.AddForce(new Vector2(0f, 1000f));
     }
 }
