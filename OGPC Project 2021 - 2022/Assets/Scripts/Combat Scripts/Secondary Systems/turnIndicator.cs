@@ -43,21 +43,23 @@ public class turnIndicator : MonoBehaviour
             indicator.transform.position = new Vector2(zor.transform.position.x + indicatorOffset, zor.transform.position.y);
         }
         else { // if it's one of the enemy's turn
-            if (cM.gameObjectsInCombat[cM.initiativeIndex].name == gameObjects[4].name) {
-                indicatorRenderer.sprite = enemyIndicator;
-                indicator.transform.position = new Vector2(gameObjects[4].transform.position.x - indicatorOffset, gameObjects[4].transform.position.y);
-            }
-            else if (cM.gameObjectsInCombat[cM.initiativeIndex].name == gameObjects[5].name) {
-                indicatorRenderer.sprite = enemyIndicator;
-                indicator.transform.position = new Vector2(gameObjects[5].transform.position.x - indicatorOffset, gameObjects[5].transform.position.y);
-            }
-            else if (cM.gameObjectsInCombat[cM.initiativeIndex].name == gameObjects[6].name) {
-                indicatorRenderer.sprite = enemyIndicator;
-                indicator.transform.position = new Vector2(gameObjects[6].transform.position.x - indicatorOffset, gameObjects[6].transform.position.y);
-            }
-            else if (cM.gameObjectsInCombat[cM.initiativeIndex].name == gameObjects[7].name) {
-                indicatorRenderer.sprite = enemyIndicator;
-                indicator.transform.position = new Vector2(gameObjects[7].transform.position.x - indicatorOffset, gameObjects[7].transform.position.y);
+            if (cM.gameObjectsInCombat[cM.initiativeIndex] != null) {
+                if (cM.gameObjectsInCombat[cM.initiativeIndex].name == gameObjects[4].name) {
+                    indicatorRenderer.sprite = enemyIndicator;
+                    indicator.transform.position = new Vector2(gameObjects[4].transform.position.x - indicatorOffset, gameObjects[4].transform.position.y);
+                }
+                else if (cM.gameObjectsInCombat[cM.initiativeIndex].name == gameObjects[5].name) {
+                    indicatorRenderer.sprite = enemyIndicator;
+                    indicator.transform.position = new Vector2(gameObjects[5].transform.position.x - indicatorOffset, gameObjects[5].transform.position.y);
+                }
+                else if (cM.gameObjectsInCombat[cM.initiativeIndex].name == gameObjects[6].name) {
+                    indicatorRenderer.sprite = enemyIndicator;
+                    indicator.transform.position = new Vector2(gameObjects[6].transform.position.x - indicatorOffset, gameObjects[6].transform.position.y);
+                }
+                else if (cM.gameObjectsInCombat[cM.initiativeIndex].name == gameObjects[7].name) {
+                    indicatorRenderer.sprite = enemyIndicator;
+                    indicator.transform.position = new Vector2(gameObjects[7].transform.position.x - indicatorOffset, gameObjects[7].transform.position.y);
+                }   
             }
         }
     }

@@ -20,7 +20,7 @@ public class StoryDialogueManager : MonoBehaviour
     }
     
     // function that loads the dialogue triggers \\
-    public async void loadDialogueTriggers() {
+    public void loadDialogueTriggers() {
         Debug.Log("Loading story dialogue");
         StoryDialogueData data = SaveSystem.loadStoryDialogue();
         if (data != null) {

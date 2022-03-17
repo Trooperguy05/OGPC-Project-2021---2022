@@ -101,90 +101,104 @@ public class CombatManager : MonoBehaviour
         if (initiativeNames[initiativeIndex] == "Raza") {
             if (pS.char1HP <= 0) {
                 initiativeIndex++;
-                tI.updateIndicator();
                 newRound();
+                tI.updateIndicator();
             }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 initiativeIndex++;
-                tI.updateIndicator();
                 newRound();
+                tI.updateIndicator();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Dorne") {
             if (pS.char2HP <= 0) {
                 initiativeIndex++;
-                tI.updateIndicator();
                 newRound();
+                tI.updateIndicator();
             }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 initiativeIndex++;
-                tI.updateIndicator();
                 newRound();
+                tI.updateIndicator();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Smithson") {
             if (pS.char3HP <= 0) {
                 initiativeIndex++;
-                tI.updateIndicator();
                 newRound();
+                tI.updateIndicator();
             }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 initiativeIndex++;
-                tI.updateIndicator();
                 newRound();
+                tI.updateIndicator();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Zor") {
             if (pS.char4HP <= 0) {
                 initiativeIndex++;
-                tI.updateIndicator();
                 newRound();
+                tI.updateIndicator();
             }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 initiativeIndex++;
-                tI.updateIndicator();
                 newRound();
+                tI.updateIndicator();
             }
         }
         // if it is one of the enemy's turns
         // if the enemy is a scorpion
         if (initiativeNames[initiativeIndex] == "Scorpion") {
-            int choice = Random.Range(1, 3);
-            if (!tookChoice) {
-                if (choice == 1) {
-                    tookChoice = true;
-                    StartCoroutine(enemyActions.scorpSting());
+            if (gameObjectsInCombat[initiativeIndex].GetComponent<CombatEnemy>().eOb.health > 0) {
+                int choice = Random.Range(1, 3);
+                if (!tookChoice) {
+                    if (choice == 1) {
+                        tookChoice = true;
+                        StartCoroutine(enemyActions.scorpSting());
 
+                    }
+                    else {
+                        tookChoice = true;
+                        StartCoroutine(enemyActions.scorpPinch());
+                    }      
                 }
-                else {
-                    tookChoice = true;
-                    StartCoroutine(enemyActions.scorpPinch());
-                }      
+            }
+            else {
+                initiativeIndex++;
+                newRound();
+                tI.updateIndicator();     
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 initiativeIndex++;
-                tI.updateIndicator();
                 newRound();
+                tI.updateIndicator();
             }
         }
         // if enemy is a mummy
         else if (initiativeNames[initiativeIndex] == "Mummy") {
-            if (!tookChoice) {
-                tookChoice = true;
-                StartCoroutine(enemyActions.mummyWalkin());
+            if (gameObjectsInCombat[initiativeIndex].GetComponent<CombatEnemy>().eOb.health > 0) {
+                if (!tookChoice) {
+                    tookChoice = true;
+                    StartCoroutine(enemyActions.mummyWalkin());
+                }
+            }
+            else {
+                initiativeIndex++;
+                newRound();
+                tI.updateIndicator();  
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 initiativeIndex++;
-                tI.updateIndicator();
                 newRound();
+                tI.updateIndicator();
             }
         }
         // if enemy is the worm (miniboss)
@@ -204,15 +218,15 @@ public class CombatManager : MonoBehaviour
             }
             else {
                 initiativeIndex++;
-                tI.updateIndicator();
                 newRound();
+                tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 initiativeIndex++;
-                tI.updateIndicator();
                 newRound();
+                tI.updateIndicator();
             }
         }
 
@@ -223,8 +237,6 @@ public class CombatManager : MonoBehaviour
                 newRound();
             }
         }
-
-        newRound();
     }
 
     // method that continues combat to the next round \\
@@ -235,6 +247,23 @@ public class CombatManager : MonoBehaviour
             Debug.Log("Round: " + roundNum);
             playerActions.updatePCVariables();
             tI.updateIndicator();
+
+            // checking win/lose conditions
+            // if player loses
+            if (pS.char1HP <= 0 && pS.char2HP <= 0 && pS.char3HP <= 0 && pS.char4HP <= 0) {
+                // return to the overworld
+                SceneManager.LoadScene(1);
+            }
+            // if player wins
+            int numEnemyDead = 0;
+            foreach (GameObject enemy in enemiesInCombat) {
+                if (enemy.GetComponent<CombatEnemy>().eOb.health < 0) {
+                    numEnemyDead++;
+                }
+            }
+            if (numEnemyDead == enemiesInCombat.Count) {
+                SceneManager.LoadScene(1);
+            }
         }
     }
 

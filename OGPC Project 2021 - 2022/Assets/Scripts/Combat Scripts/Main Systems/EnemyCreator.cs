@@ -39,7 +39,7 @@ public class EnemyCreator
     ///   Methods that creates the enemy, random or specified   \\\
     // random enemy
     private void createEnemyRandom() {
-        int chance = Random.Range(7, 8);
+        int chance = Random.Range(2, 3);
 
         // scorpion
         if (chance == 1) {

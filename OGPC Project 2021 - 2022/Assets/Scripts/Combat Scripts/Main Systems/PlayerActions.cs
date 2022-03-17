@@ -145,6 +145,8 @@ public class PlayerActions : MonoBehaviour
             yield return null;
         }
         charDone = true;
+        yield return new WaitForSeconds(1f);
+        hM.updateHealthbarValues();
     }
 
     // method that plays the hurt animation of the enemy hit \\
@@ -630,8 +632,8 @@ public class PlayerActions : MonoBehaviour
 
         }
         else {
-            StartCoroutine(pauseOnMiss(pauseWait));
             StartCoroutine(bMM.typeActionText("zor missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
         AS.PlayOneShot(zorCleaveSFX, 1);
     }
@@ -672,14 +674,14 @@ public class PlayerActions : MonoBehaviour
             }
             // on miss
             else {
-                StartCoroutine(pauseOnMiss(pauseWait));
                 StartCoroutine(bMM.typeActionText("zor missed!", 0.01f));
+                StartCoroutine(pauseOnMiss(pauseWait));
             }
         }
         // if he is enraged
         else {
-            StartCoroutine(pauseOnMiss(pauseWait));
             StartCoroutine(bMM.typeActionText("zor is enraged! he cannot use this action!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
         AS.PlayOneShot(zorZapSFX, 1);
     }
@@ -711,6 +713,11 @@ public class PlayerActions : MonoBehaviour
             StartCoroutine(animPlaying(zorAnimator, "zorCombat_active"));
             // update battle menu with action text
             StartCoroutine(bMM.typeActionText("zor used hurricane!", 0.01f));
+        }
+        // if he is enraged
+        else {
+            StartCoroutine(bMM.typeActionText("zor is enraged! he cannot use this action!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
         AS.PlayOneShot(zorAOESFX, 1);
     }

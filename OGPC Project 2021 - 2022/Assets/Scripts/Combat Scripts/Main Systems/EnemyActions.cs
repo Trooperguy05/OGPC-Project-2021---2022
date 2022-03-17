@@ -22,9 +22,10 @@ public class EnemyActions : MonoBehaviour
     public bool snakeCoil = false;
     public int snakeCoilTarget;
 
-    // dictates whether the enemy is done or not \\
-    [Header("Enemy Done")]
+    // other important variables for dictating flow of combat \\
+    [Header("Other Variables")]
     public bool enemyDone = false;
+    public float pauseWait = 1.5f;
 
 
     //caching
@@ -158,6 +159,7 @@ public class EnemyActions : MonoBehaviour
             string character = enemyHit(10);
             // action text
             StartCoroutine(bMM.typeActionText("scorpion used sting!", 0.01f));
+            yield return new WaitForSeconds(1f);
             // play attack animation
             Animator animator = findAnimator();
             animator.SetTrigger("act");
@@ -165,8 +167,8 @@ public class EnemyActions : MonoBehaviour
             //sM.statusAdd(character, "poison", 3);
         }
         else {
-            StartCoroutine(bMM.typeActionText("scorpion missed", 0.01f));
-            StartCoroutine(pauseOnMiss(1f));
+            StartCoroutine(bMM.typeActionText("scorpion missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
     }
 
@@ -178,15 +180,18 @@ public class EnemyActions : MonoBehaviour
         if (toHit <= 90)
         {
             enemyHit(15);
+            // action text
+            StartCoroutine(bMM.typeActionText("scorpion used pincers!", 0.01f));
+            yield return new WaitForSeconds(1f);
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "scorpionCombat_active"));
         }
         else {
-            enemyDone = true;
+            StartCoroutine(bMM.typeActionText("scorpion missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
-
-        // play attack animation
-        Animator animator = findAnimator();
-        animator.SetTrigger("act");
-        StartCoroutine(animPlaying(animator, "scorpionCombat_active"));
     }
 
     /////Mummy Attacks\\\\\
@@ -198,15 +203,18 @@ public class EnemyActions : MonoBehaviour
         if (toHit <= 90)
         {
             enemyHit(25);
+            // action text
+            StartCoroutine(bMM.typeActionText("mummy used shamble!", 0.01f));
+            yield return new WaitForSeconds(1f);
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "mummyCombat_active"));
         }
         else {
-            enemyDone = true;
+            StartCoroutine(bMM.typeActionText("mummy missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
-
-        // play animation
-        Animator animator = findAnimator();
-        animator.SetTrigger("act");
-        StartCoroutine(animPlaying(animator, "mummyCombat_active"));
     }
 
     /////Desert Miniboss\\\\\
@@ -235,6 +243,7 @@ public class EnemyActions : MonoBehaviour
 
         // action text
         StartCoroutine(bMM.typeActionText("sandworm used sand-stained maw!", 0.01f));
+        yield return new WaitForSeconds(1f);
 
         // play animation
         Animator animator = findAnimator();
