@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.007997513, y: 0.3285799}
+  m_AnchoredPosition: {x: -0.00799942, y: 0.3285799}
   m_SizeDelta: {x: -1.224, y: -3.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &11231921
@@ -11295,7 +11295,7 @@ MonoBehaviour:
   dorneVirusBar: {fileID: 1414949636}
   smithsonVirusBar: {fileID: 1259482845}
   zorVirusBar: {fileID: 1788806242}
-  razaSlider: {fileID: 0}
-  dorneSlider: {fileID: 0}
-  smithsonSlider: {fileID: 0}
-  zorSlider: {fileID: 0}
+  razaSlider: {fileID: 48871388}
+  dorneSlider: {fileID: 1414949638}
+  smithsonSlider: {fileID: 1259482847}
+  zorSlider: {fileID: 1788806244}

@@ -31,10 +31,10 @@ public class VirusMeterManager : MonoBehaviour
         pS = GameObject.Find("Party Manager").GetComponent<PartyStats>();
 
         // set the position of the virus bars
-        razaVirusBar.GetComponent<RectTransform>().position = new Vector2(raza.transform.position.x-1.5f, raza.transform.position.y-0.25f);
-        dorneVirusBar.GetComponent<RectTransform>().position = new Vector2(dorne.transform.position.x-1.5f, dorne.transform.position.y-0.25f);
+        razaVirusBar.GetComponent<RectTransform>().position = new Vector2(raza.transform.position.x-1.5f, raza.transform.position.y);
+        dorneVirusBar.GetComponent<RectTransform>().position = new Vector2(dorne.transform.position.x-1.5f, dorne.transform.position.y);
         smithsonVirusBar.GetComponent<RectTransform>().position = new Vector2(smithson.transform.position.x-1.5f, smithson.transform.position.y-0.25f);
-        zorVirusBar.GetComponent<RectTransform>().position = new Vector2(zor.transform.position.x-1.5f, zor.transform.position.y-0.25f); 
+        zorVirusBar.GetComponent<RectTransform>().position = new Vector2(zor.transform.position.x-1.5f, zor.transform.position.y); 
 
         // get the virus bar sliders
         razaSlider = razaVirusBar.GetComponent<Slider>();
@@ -79,14 +79,16 @@ public class VirusMeterManager : MonoBehaviour
             }
         }
         // add to the visual meter
-        for (int i = 0; i < Mathf.Abs(amt); i++) {
-            if (amt < 0) {
-                slider.value--;
-            }
-            else if (amt > 0) {
-                slider.value++;
-            }
-            yield return new WaitForSeconds(0.01f);
+        if (slider.value != slider.maxValue || amt < 0) {
+            for (int i = 0; i < Mathf.Abs(amt); i++) {
+                if (amt < 0) {
+                    slider.value--;
+                }
+                else if (amt > 0) {
+                    slider.value++;
+                }
+                yield return new WaitForSeconds(0.01f);
+            }      
         }
     }
 }

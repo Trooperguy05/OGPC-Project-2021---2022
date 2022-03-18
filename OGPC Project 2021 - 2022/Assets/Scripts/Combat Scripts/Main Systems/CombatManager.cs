@@ -255,15 +255,20 @@ public class CombatManager : MonoBehaviour
                 SceneManager.LoadScene(1);
             }
             // if player wins
+            if (e1combat.eOb.health <= 0 && e2combat.eOb.health <= 0 && e3combat.eOb.health <= 0 && e4combat.eOb.health <= 0) {
+                SceneManager.LoadScene(1);
+            }
+            /*
             int numEnemyDead = 0;
             foreach (GameObject enemy in enemiesInCombat) {
-                if (enemy.GetComponent<CombatEnemy>().eOb.health < 0) {
+                if (enemy.GetComponent<CombatEnemy>().eOb.health <= 0) {
                     numEnemyDead++;
                 }
             }
             if (numEnemyDead == enemiesInCombat.Count) {
                 SceneManager.LoadScene(1);
             }
+            */
         }
     }
 

@@ -150,7 +150,7 @@ public class PlayerActions : MonoBehaviour
             yield return null;
         }
         charDone = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         hM.updateHealthbarValues();
     }
 
@@ -192,7 +192,7 @@ public class PlayerActions : MonoBehaviour
     public void razaFire(){
         // add to virus meter
         StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.razaSlider, "raza"));
-
+        
         // define base damage
         int dmg = 30;
 
