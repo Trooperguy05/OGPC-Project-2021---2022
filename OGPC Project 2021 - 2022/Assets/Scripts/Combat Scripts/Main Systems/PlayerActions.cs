@@ -35,6 +35,7 @@ public class PlayerActions : MonoBehaviour
     private ManabarManager mM;
     private EnemyActions eA;
     private BattleMenuManager bMM;
+    private VirusMeterManager vMM;
 
     // audio sets \\
     [Header("Audio")]
@@ -66,6 +67,9 @@ public class PlayerActions : MonoBehaviour
     public bool charDone = false;
     // time amt of pause when the player misses
     public float pauseWait = 1.5f;
+    // amt the crit increases
+    public int critIncreaseMin = 5;
+    public int critIncreaseMax = 11;
 
     // caching the other scripts \\
     void Start() {
@@ -74,6 +78,7 @@ public class PlayerActions : MonoBehaviour
         pS = GameObject.Find("Party Manager").GetComponent<PartyStats>();
         hM = GameObject.Find("Healthbar Manager").GetComponent<HealthbarManager>();
         mM = GameObject.Find("Healthbar Manager").GetComponent<ManabarManager>();
+        vMM = GameObject.Find("Healthbar Manager").GetComponent<VirusMeterManager>();
         eA = GetComponent<EnemyActions>();
         bMM = GameObject.Find("Battle Menu").GetComponent<BattleMenuManager>();
     }
@@ -185,12 +190,17 @@ public class PlayerActions : MonoBehaviour
     /// Actions \\\
     //  basic shot  \\
     public void razaFire(){
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.razaSlider, "raza"));
+
         // define base damage
         int dmg = 30;
+
         // wait for target to return
         GameObject target = ts.target;
         EnemyCreator enemy = getEnemy(target.name);
-        // act on target
+
+        /// damage mutlipliers
         // increases damage on marked targets
         if (target == Mark){
             dmg += 20;
@@ -199,9 +209,19 @@ public class PlayerActions : MonoBehaviour
         if (Deadeye){
             dmg = dmg * 2 + dmg / 2;
         }
+        // if gamble, double the damage
+        if (Gamble) {
+            dmg *= 2;
+        }
+        // check virus meter for "crit"
+        if (pS.char1VMeter == 100) {
+            dmg = (int) Mathf.Pow(dmg, 2.5f);
+            StartCoroutine(vMM.updateMeter(-100, vMM.razaSlider, "raza"));
+        }
+
+        /// act on target
         // Checks if trick shot is active
         if (Gamble){
-            dmg *= 2;
             int chance = Random.Range(1,2);
             // hits the gamble shot
             if (chance == 2){
@@ -248,12 +268,17 @@ public class PlayerActions : MonoBehaviour
     // Automatically triggers a critical hit and guarantees an attack hits
     // unless trick shot is active
     public void razaAim(){
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.razaSlider, "raza"));
+
+        // update deadeye
         if (!Deadeye) {
             Deadeye = true;
         }
         // play active animation
         razaAnimator.SetTrigger("act");
         StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
+
         // update battle menu with action text
         StartCoroutine(bMM.typeActionText("raza used deadeye!", 0.01f));
         AS.PlayOneShot(razaAimSFX, 1);
@@ -261,6 +286,9 @@ public class PlayerActions : MonoBehaviour
     //  mark   \\
     // not finished
     public void razaMark(){
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.razaSlider, "raza"));
+
         // create the mark
         GameObject target = ts.target;
         Mark = target;
@@ -275,12 +303,18 @@ public class PlayerActions : MonoBehaviour
     }
     // trick shot \\
     public void razaGamble(){
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.razaSlider, "raza"));
+
+        // update gamble
         if (!Gamble) {
             Gamble = true;
         }
+
         // play active animation
         razaAnimator.SetTrigger("act");
         StartCoroutine(animPlaying(razaAnimator, "razaCombat_active"));
+
         // update battle menu with action text
         StartCoroutine(bMM.typeActionText("raza used gamble!", 0.01f));
         AS.PlayOneShot(razaGambleSFX, 1);

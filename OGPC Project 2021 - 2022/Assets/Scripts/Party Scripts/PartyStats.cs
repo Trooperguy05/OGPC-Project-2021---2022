@@ -13,6 +13,7 @@ public class PartyStats : MonoBehaviour
     public int char1Mana = 0;
     public int char1ManaMax = 0;
     public int char1Dexterity = 2;
+    public int char1VMeter = 0;
 
     [Header("Character 2")]
     public string char2Name = "Dorne";
@@ -21,6 +22,7 @@ public class PartyStats : MonoBehaviour
     public int char2Mana = 0;
     public int char2ManaMax = 0;
     public int char2Dexterity = 1;
+    public int char2VMeter = 0;
 
     [Header("Character 3")]
     public string char3Name = "Smithson";
@@ -29,6 +31,7 @@ public class PartyStats : MonoBehaviour
     public int char3Mana = 100;
     public int char3ManaMax = 100;
     public int char3Dexterity = 0;
+    public int char3VMeter = 0;
 
     [Header("Character 4")]
     public string char4Name = "Zor";
@@ -37,6 +40,7 @@ public class PartyStats : MonoBehaviour
     public int char4Mana = 0;
     public int char4ManaMax = 0;
     public int char4Dexterity = 1;
+    public int char4VMeter = 0;
 
     // player animator
     public Animator playerAnimator;
@@ -58,6 +62,7 @@ public class PartyStats : MonoBehaviour
             char1Mana = data.char1Mana;
             char1ManaMax = data.char1ManaMax;
             char1Dexterity = data.char1Dexterity;
+            char1VMeter = data.char1VMeter;
             // data for Gor
             char2Name = data.char2Name;
             char2HP = data.char2HP;
@@ -65,6 +70,7 @@ public class PartyStats : MonoBehaviour
             char2Mana = data.char2Mana;
             char2ManaMax = data.char2ManaMax;
             char2Dexterity = data.char2Dexterity;
+            char2VMeter = data.char2VMeter;
             // data for Gadriel
             char3Name = data.char3Name;
             char3HP = data.char3HP;
@@ -72,6 +78,7 @@ public class PartyStats : MonoBehaviour
             char3Mana = data.char3Mana;
             char3ManaMax = data.char3ManaMax;
             char3Dexterity = data.char3Dexterity;
+            char3VMeter = data.char3VMeter;
             // data for Lyra
             char4Name = data.char4Name;
             char4HP = data.char4HP;
@@ -79,6 +86,7 @@ public class PartyStats : MonoBehaviour
             char4Mana = data.char4Mana;
             char4ManaMax = data.char4ManaMax;
             char4Dexterity = data.char4Dexterity;
+            char4VMeter = data.char4VMeter;
 
             // data for party order
             PartyManager.character1Order = data.char1Order;

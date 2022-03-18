@@ -31,10 +31,10 @@ public class CombatManager : MonoBehaviour
     public EnemyCreator e3;
     public EnemyCreator e4;
     // combat enemy scripts
-    private CombatEnemy e1combat;
-    private CombatEnemy e2combat;
-    private CombatEnemy e3combat;
-    private CombatEnemy e4combat;
+    public CombatEnemy e1combat;
+    public CombatEnemy e2combat;
+    public CombatEnemy e3combat;
+    public CombatEnemy e4combat;
     // enemy field slots
     private int enemySlotsLeft = 4;
     // specified enemies
@@ -305,6 +305,7 @@ public class CombatManager : MonoBehaviour
                     i++;
                     hM.enemy1Slider.maxValue = e1.healthMax;
                     hM.enemy1Slider.value = hM.enemy1Slider.maxValue;
+                    Debug.Log(e1combat);
                     e1combat.eOb = e1;
                     e1combat.updateSprite(); 
                 }
