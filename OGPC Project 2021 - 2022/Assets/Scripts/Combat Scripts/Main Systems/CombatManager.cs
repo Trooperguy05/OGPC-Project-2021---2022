@@ -241,34 +241,44 @@ public class CombatManager : MonoBehaviour
 
     // method that continues combat to the next round \\
     public void newRound() {
+        /// checking win/lose conditions
+        // if player loses
+        if (pS.char1HP <= 0 && pS.char2HP <= 0 && pS.char3HP <= 0 && pS.char4HP <= 0) {
+            // return to the overworld
+            SceneManager.LoadScene(1);
+        }
+        // if player wins
+        int numCheck = 0;
+        if (e1combat != null) {
+            if (e1combat.eOb.health <= 0) {
+                numCheck++;
+            }
+        }
+        if (e2combat.eOb != null) {
+            if (e2combat.eOb.health <= 0) {
+                numCheck++;
+            }
+        }
+        if (e3combat.eOb != null) {
+            if (e3combat.eOb.health <= 0) {
+                numCheck++;
+            }
+        }
+        if (e4combat.eOb != null) {
+            if (e4combat.eOb.health <= 0) {
+                numCheck++;
+            }
+        }
+        if (numCheck == enemiesInCombat.Count) {
+            SceneManager.LoadScene(1);
+        }
+        /// checking if it's the end of a round
         if (initiativeIndex > 7) {
             initiativeIndex = 0;
             roundNum++;
             Debug.Log("Round: " + roundNum);
             playerActions.updatePCVariables();
             tI.updateIndicator();
-
-            // checking win/lose conditions
-            // if player loses
-            if (pS.char1HP <= 0 && pS.char2HP <= 0 && pS.char3HP <= 0 && pS.char4HP <= 0) {
-                // return to the overworld
-                SceneManager.LoadScene(1);
-            }
-            // if player wins
-            if (e1combat.eOb.health <= 0 && e2combat.eOb.health <= 0 && e3combat.eOb.health <= 0 && e4combat.eOb.health <= 0) {
-                SceneManager.LoadScene(1);
-            }
-            /*
-            int numEnemyDead = 0;
-            foreach (GameObject enemy in enemiesInCombat) {
-                if (enemy.GetComponent<CombatEnemy>().eOb.health <= 0) {
-                    numEnemyDead++;
-                }
-            }
-            if (numEnemyDead == enemiesInCombat.Count) {
-                SceneManager.LoadScene(1);
-            }
-            */
         }
     }
 

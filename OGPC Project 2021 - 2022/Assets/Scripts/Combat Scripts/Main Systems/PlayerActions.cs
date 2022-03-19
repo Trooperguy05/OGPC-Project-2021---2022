@@ -121,36 +121,40 @@ public class PlayerActions : MonoBehaviour
     // method that combines the three below methods: showDealtDamage, animPlaying, & hurtEnemy into one \\
     public IEnumerator updateGameField(Animator animator, string anim, GameObject target, int dmg) {
         StartCoroutine(animPlaying(animator, anim));
-        yield return new WaitForSeconds(1f);
         hurtEnemy(target, dmg);
+        yield return null;
     }
 
     // shows damage through the enemy healthbars \\
     public void showDealtDamage(GameObject target, int amt) {
         if (target.name == "Enemy1") {
-            StartCoroutine(hM.dealDamage(hM.enemy1Slider, amt, 0.01f));
+            StartCoroutine(hM.dealDamage(hM.enemy1Slider, amt, 0));
         }
         if (target.name == "Enemy2") {
-            StartCoroutine(hM.dealDamage(hM.enemy2Slider, amt, 0.01f));
+            StartCoroutine(hM.dealDamage(hM.enemy2Slider, amt, 0));
         }
         if (target.name == "Enemy3") {
-            StartCoroutine(hM.dealDamage(hM.enemy3Slider, amt, 0.01f));
+            StartCoroutine(hM.dealDamage(hM.enemy3Slider, amt, 0));
         }
         if (target.name == "Enemy4") {
-            StartCoroutine(hM.dealDamage(hM.enemy4Slider, amt, 0.01f));
+            StartCoroutine(hM.dealDamage(hM.enemy4Slider, amt, 0));
         }
     }
 
     // method that checks if the animation is done playing before passing the turn \\
     public IEnumerator animPlaying(Animator animator, string anim) {
+        // if the pc critted, increase the wait time
+        float waitTime = 1.1f;
+        // wait for animation to finish
         while (!animator.GetCurrentAnimatorStateInfo(0).IsName(anim)) {
             yield return null;
         }
         while (animator.GetCurrentAnimatorStateInfo(0).IsName(anim)) {
             yield return null;
         }
+        // pass the turn
+        yield return new WaitForSeconds(waitTime);
         charDone = true;
-        yield return new WaitForSeconds(2f);
         hM.updateHealthbarValues();
     }
 
@@ -192,6 +196,7 @@ public class PlayerActions : MonoBehaviour
     public void razaFire(){
         // add to virus meter
         StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.razaSlider, "raza"));
+        bool crit = false;
         
         // define base damage
         int dmg = 30;
@@ -217,6 +222,7 @@ public class PlayerActions : MonoBehaviour
         if (pS.char1VMeter == 100) {
             dmg = (int) Mathf.Pow(dmg, 2.5f);
             StartCoroutine(vMM.updateMeter(-100, vMM.razaSlider, "raza"));
+            crit = true;
         }
 
         /// act on target
@@ -226,9 +232,17 @@ public class PlayerActions : MonoBehaviour
             // hits the gamble shot
             if (chance == 2){
                 enemy.health -= dmg;
-                // play active animation
-                razaAnimator.SetTrigger("act");
-                StartCoroutine(updateGameField(razaAnimator, "razaCombat_active", target, dmg));
+                /// play active animation
+                // for non-crit
+                if (!crit) {
+                    razaAnimator.SetTrigger("act");
+                    StartCoroutine(updateGameField(razaAnimator, "razaCombat_active", target, dmg));                   
+                }
+                // for crit
+                else {
+                    razaAnimator.SetTrigger("crit");
+                    StartCoroutine(updateGameField(razaAnimator, "razaCombat_crit", target, dmg));
+                }
                 // update battle menu with action text
                 StartCoroutine(bMM.typeActionText("raza used fire!", 0.01f));
             }
@@ -247,9 +261,17 @@ public class PlayerActions : MonoBehaviour
             int chanceToHit = Random.Range(1, 100);
             if (chanceToHit <= 90 || Deadeye) {
                 enemy.health -= dmg;
-                // play active animation
-                razaAnimator.SetTrigger("act");
-                StartCoroutine(updateGameField(razaAnimator, "razaCombat_active", target, dmg));
+                /// play active animation
+                // for non-crit
+                if (!crit) {
+                    razaAnimator.SetTrigger("act");
+                    StartCoroutine(updateGameField(razaAnimator, "razaCombat_active", target, dmg));                   
+                }
+                // for crit
+                else {
+                    razaAnimator.SetTrigger("crit");
+                    StartCoroutine(updateGameField(razaAnimator, "razaCombat_crit", target, dmg));
+                }
                 // update battle menu with action text
                 StartCoroutine(bMM.typeActionText("raza used fire!", 0.01f));
                 // reset
