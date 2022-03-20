@@ -511,16 +511,14 @@ public class PlayerActions : MonoBehaviour
         //act on target
         int chanceToHit = Random.Range(1, 100);
         if (chanceToHit <= 90 && pS.char3Mana >= 15){
-            // deals damage and heals caster
+            /// deals damage and heals caster
+            int heal = 20;
             enemy.health -= 50;
-            pS.char3HP += 20;
-            pS.char3Mana -= 15;
-
-            // if enemy is killed, heal user
-            if (enemy.health <= 0){
-                pS.char3HP += 10;
-                hM.giveHeal(hM.smithsonSlider, 10, 0.01f);
+            if (enemy.health <= 0) { // if the ability kills the enemy, increase the heal
+                heal += 10;
             }
+            pS.char3HP += heal;
+            pS.char3Mana -= 15;
 
             // make sure the player isn't overhealed
             if (pS.char3HP > pS.char3HPMax) {
@@ -528,10 +526,10 @@ public class PlayerActions : MonoBehaviour
             }
 
             // animations
+            StartCoroutine(hM.giveHeal(hM.smithsonSlider, heal, 0.01f));
+            StartCoroutine(mM.depleteMana(mM.smithsonManabarSlider, 15, 0.01f));
             smithsonAnimator.SetTrigger("act");
             StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", target, 50));
-            StartCoroutine(hM.giveHeal(hM.smithsonSlider, 20, 0.01f));
-            StartCoroutine(mM.depleteMana(mM.smithsonManabarSlider, 15, 0.01f));
 
             // update battle menu with action text
             StartCoroutine(bMM.typeActionText("smithson used siphon life!", 0.01f));

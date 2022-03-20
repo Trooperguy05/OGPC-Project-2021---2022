@@ -254,17 +254,17 @@ public class CombatManager : MonoBehaviour
                 numCheck++;
             }
         }
-        if (e2combat.eOb != null) {
+        if (e2combat != null) {
             if (e2combat.eOb.health <= 0) {
                 numCheck++;
             }
         }
-        if (e3combat.eOb != null) {
+        if (e3combat != null) {
             if (e3combat.eOb.health <= 0) {
                 numCheck++;
             }
         }
-        if (e4combat.eOb != null) {
+        if (e4combat != null) {
             if (e4combat.eOb.health <= 0) {
                 numCheck++;
             }
@@ -320,7 +320,6 @@ public class CombatManager : MonoBehaviour
                     i++;
                     hM.enemy1Slider.maxValue = e1.healthMax;
                     hM.enemy1Slider.value = hM.enemy1Slider.maxValue;
-                    Debug.Log(e1combat);
                     e1combat.eOb = e1;
                     e1combat.updateSprite(); 
                 }
@@ -402,6 +401,10 @@ public class CombatManager : MonoBehaviour
         }
         for (int i = 0; i < gameObjectsInCombat.Length; i++) {
             gameObjectsInCombat[i] = null;
+        }
+        for (int i = 0; i < enemiesInCombat.Count; i++) {
+            enemiesInCombat.RemoveAt(0);
+            i--;
         }
         // variables used in algorithm
         int highestNumIndex = -1;
