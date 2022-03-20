@@ -9061,7 +9061,7 @@ MonoBehaviour:
   zorZapSFX: {fileID: 8300000, guid: 68b1cd0f24df06d4d93e30fb6f956d82, type: 3}
   zorAOESFX: {fileID: 8300000, guid: 678ce39e67d76d040a732f601bcb0571, type: 3}
   charDone: 0
-  pauseWait: 2
+  pauseWait: 2.5
   critIncreaseMin: 5
   critIncreaseMax: 11
 --- !u!4 &1573467615
