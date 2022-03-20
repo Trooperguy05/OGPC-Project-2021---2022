@@ -9,6 +9,9 @@ public class Credits : MonoBehaviour
     public Rigidbody2D name2;
     public Rigidbody2D name3;
     public Rigidbody2D name4;
+    public Rigidbody2D croc;
+    public GameObject cam1;
+    public GameObject crocObject;
 
     // Update is called once per frame
     void Start()
@@ -25,7 +28,7 @@ public class Credits : MonoBehaviour
             name4.MovePosition(name4.position + new Vector2(0f, 0.05f));
             yield return null;
         }
-        yield return new WaitForSeconds((float)7.5);
+        yield return new WaitForSeconds((float)9.2);
         name1.isKinematic = false;
         name2.isKinematic = false;
         name3.isKinematic = false;
@@ -33,5 +36,9 @@ public class Credits : MonoBehaviour
         name2.AddForce(new Vector2(-1000f, 0f));
         name3.AddForce(new Vector2(1000f, 0f));
         name4.AddForce(new Vector2(0f, 1000f));
+
+        yield return new WaitForSeconds(5);
+        croc.isKinematic = false;
+        croc.AddForce(new Vector2(0f, 350f));
     }
 }
