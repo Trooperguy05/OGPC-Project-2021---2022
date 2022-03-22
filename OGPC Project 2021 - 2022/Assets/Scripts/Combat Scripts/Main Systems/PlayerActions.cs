@@ -143,8 +143,6 @@ public class PlayerActions : MonoBehaviour
 
     // method that checks if the animation is done playing before passing the turn \\
     public IEnumerator animPlaying(Animator animator, string anim) {
-        // if the pc critted, increase the wait time
-        float waitTime = 1.1f;
         // wait for animation to finish
         while (!animator.GetCurrentAnimatorStateInfo(0).IsName(anim)) {
             yield return null;
@@ -153,7 +151,7 @@ public class PlayerActions : MonoBehaviour
             yield return null;
         }
         // pass the turn
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(1f);
         charDone = true;
         hM.updateHealthbarValues();
     }

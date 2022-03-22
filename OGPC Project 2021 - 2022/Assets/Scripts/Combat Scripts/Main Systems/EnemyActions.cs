@@ -52,7 +52,9 @@ public class EnemyActions : MonoBehaviour
         while (animator.GetCurrentAnimatorStateInfo(0).IsName(anim)) {
             yield return null;
         }
+        yield return new WaitForSeconds(1f);
         enemyDone = true;
+        hM.updateHealthbarValues();
     }
 
     // method that pauses the flow of combat when the enemy misses before passing the turn \\
@@ -159,7 +161,6 @@ public class EnemyActions : MonoBehaviour
             string character = enemyHit(10);
             // action text
             StartCoroutine(bMM.typeActionText("scorpion used sting!", 0.01f));
-            yield return new WaitForSeconds(1f);
             // play attack animation
             Animator animator = findAnimator();
             animator.SetTrigger("act");
@@ -182,7 +183,6 @@ public class EnemyActions : MonoBehaviour
             enemyHit(15);
             // action text
             StartCoroutine(bMM.typeActionText("scorpion used pincers!", 0.01f));
-            yield return new WaitForSeconds(1f);
             // play attack animation
             Animator animator = findAnimator();
             animator.SetTrigger("act");
@@ -205,7 +205,6 @@ public class EnemyActions : MonoBehaviour
             enemyHit(25);
             // action text
             StartCoroutine(bMM.typeActionText("mummy used shamble!", 0.01f));
-            yield return new WaitForSeconds(1f);
             // play attack animation
             Animator animator = findAnimator();
             animator.SetTrigger("act");
@@ -227,7 +226,6 @@ public class EnemyActions : MonoBehaviour
         
         // action text
         StartCoroutine(bMM.typeActionText("sandworm used sinkhole!", 0.01f));
-        yield return new WaitForSeconds(1f);
 
         // play animation
         Animator animator = findAnimator();
@@ -243,7 +241,6 @@ public class EnemyActions : MonoBehaviour
 
         // action text
         StartCoroutine(bMM.typeActionText("sandworm used sand-stained maw!", 0.01f));
-        yield return new WaitForSeconds(1f);
 
         // play animation
         Animator animator = findAnimator();

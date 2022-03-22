@@ -249,22 +249,22 @@ public class CombatManager : MonoBehaviour
         }
         // if player wins
         int numCheck = 0;
-        if (e1combat != null) {
+        if (e1 != null) {
             if (e1combat.eOb.health <= 0) {
                 numCheck++;
             }
         }
-        if (e2combat != null) {
+        if (e2 != null) {
             if (e2combat.eOb.health <= 0) {
                 numCheck++;
             }
         }
-        if (e3combat != null) {
+        if (e3 != null) {
             if (e3combat.eOb.health <= 0) {
                 numCheck++;
             }
         }
-        if (e4combat != null) {
+        if (e4 != null) {
             if (e4combat.eOb.health <= 0) {
                 numCheck++;
             }
