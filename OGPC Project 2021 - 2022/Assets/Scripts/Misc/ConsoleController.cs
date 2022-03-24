@@ -51,6 +51,9 @@ public class ConsoleController : MonoBehaviour
         else if (consoleText == "SWITCHSCENE COMBAT") {
             SceneManager.LoadScene(2);
         }
+        else if (consoleText == "SWITCHSCENE CREDITS") {
+            SceneManager.LoadScene(4);
+        }
         // Displays that an invalid command is entered in the console
         else {
             consoleLog.GetComponent<Text>().text += "\nInvalid command issued to the console";
