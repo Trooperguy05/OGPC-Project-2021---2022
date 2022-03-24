@@ -272,6 +272,19 @@ public class CombatManager : MonoBehaviour
         if (numCheck == enemiesInCombat.Count) {
             SceneManager.LoadScene(1);
         }
+        /// checking if one of the PC's is stunned
+        if (playerActions.razaStun) {
+            playerActions.razaStun = false;
+        }
+        if (playerActions.dorneStun) {
+            playerActions.dorneStun = false;
+        }
+        if (playerActions.smithsonStun) {
+            playerActions.smithsonStun = false;
+        }
+        if (playerActions.zorStun) {
+            playerActions.zorStun = false;
+        }
         /// checking if it's the end of a round
         if (initiativeIndex > 7) {
             initiativeIndex = 0;

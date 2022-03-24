@@ -20,6 +20,12 @@ public class PlayerActions : MonoBehaviour
     public int ZorDamage = 60;
     public int ZorToHit = 80;
 
+    // stunned effect if the PC critted \\
+    public bool razaStun = false;
+    public bool dorneStun = false;
+    public bool smithsonStun = false;
+    public bool zorStun = false;
+
     // animators for the player characters \\
     [Header("PC Animators")]
     public Animator razaAnimator;
@@ -221,6 +227,7 @@ public class PlayerActions : MonoBehaviour
             dmg = (int) Mathf.Pow(dmg, 2.5f);
             StartCoroutine(vMM.updateMeter(-100, vMM.razaSlider, "raza"));
             crit = true;
+            razaStun = true;
         }
 
         /// act on target
@@ -363,13 +370,33 @@ public class PlayerActions : MonoBehaviour
         // wait for target to return
         GameObject target = ts.target;
         EnemyCreator enemy = getEnemy(target.name);
+        int dmg = 40;
+
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.dorneSlider, "dorne"));
+        bool crit = false;
+        // check virus meter for "crit"
+        if (pS.char2VMeter == 100) {
+            dmg = (int) Mathf.Pow(dmg, 2.5f);
+            StartCoroutine(vMM.updateMeter(-100, vMM.dorneSlider, "dorne"));
+            crit = true;
+        }
+
         // act on target
         int chanceToHit = Random.Range(1, 100);
         if (chanceToHit <= 90) {
-            enemy.health -= 40;
-            // play active animation
-            dorneAnimator.SetTrigger("act");
-            StartCoroutine(updateGameField(dorneAnimator, "dorneCombat_active", target, 40));
+            if (crit) {
+                enemy.health -= dmg;
+                // play crit animation
+                dorneAnimator.SetTrigger("crit");
+                StartCoroutine(updateGameField(dorneAnimator, "dorneCombat_crit", target, dmg));
+            }
+            else {
+                enemy.health -= dmg;
+                // play active animation
+                dorneAnimator.SetTrigger("act");
+                StartCoroutine(updateGameField(dorneAnimator, "dorneCombat_active", target, dmg));          
+            }
             // action text
             StartCoroutine(bMM.typeActionText("dorne used strike!", 0.01f));
         }
@@ -474,19 +501,34 @@ public class PlayerActions : MonoBehaviour
         // wait for target to return
         GameObject target = ts.target;
         EnemyCreator enemy = getEnemy(target.name);
+
+        int dmg = 20;
+        if (enemy.health < enemy.healthMax/2) {
+            dmg += 15;
+        }
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.smithsonSlider, "smithson"));
+        bool crit = false;
+        // check virus meter for "crit"
+        if (pS.char3VMeter == 100) {
+            dmg = (int) Mathf.Pow(dmg, 2.5f);
+            StartCoroutine(vMM.updateMeter(-100, vMM.smithsonSlider, "smithson"));
+            crit = true;
+        }
+
         // act on target
         int chanceToHit = Random.Range(1, 100);
         // hits
         if (chanceToHit <= 90) {
-            if (enemy.health < enemy.healthMax / 2){
-                enemy.health -= 35;
-                smithsonAnimator.SetTrigger("act");
-                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", target, 35));
+            if (crit) {
+                enemy.health -= dmg;
+                smithsonAnimator.SetTrigger("crit");
+                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_crit", target, dmg));
             }
-            else{
-                enemy.health -= 20;
+            else {
+                enemy.health -= dmg;
                 smithsonAnimator.SetTrigger("act");
-                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", target, 20));
+                StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", target, dmg));   
             }
             // update battle menu with action text
             StartCoroutine(bMM.typeActionText("smithson used bony grasp!", 0.01f));
@@ -663,25 +705,42 @@ public class PlayerActions : MonoBehaviour
         EnemyCreator enemy = getEnemy(target.name);
         int hitChance = 90;
         int chanceToHit = Random.Range(1, 100);
+        // enrage calcs
         if (Enraged){
             hitChance = ZorToHit;
         } else {
             ZorDamage = 60;
             hitChance = 90;
         }
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.zorSlider, "zor"));
+        bool crit = false;
+        // check virus meter for "crit"
+        if (pS.char4VMeter == 100) {
+            StartCoroutine(vMM.updateMeter(-100, vMM.zorSlider, "zor"));
+            crit = true;
+        }
         //chance to hit
         if (chanceToHit <= hitChance){
-            enemy.health -= ZorDamage;
-            // animation
-            zorAnimator.SetTrigger("act");
-            StartCoroutine(updateGameField(zorAnimator, "zorCombat_active", target, ZorDamage));
+            if (crit) {
+                int dmg = (int) Mathf.Pow(ZorDamage, 2.5f);
+                enemy.health -= dmg;
+                // active animation
+                zorAnimator.SetTrigger("crit");
+                StartCoroutine(updateGameField(zorAnimator, "zorCombat_crit", target, dmg));
+            }
+            else {
+                enemy.health -= ZorDamage;
+                // animation
+                zorAnimator.SetTrigger("act");
+                StartCoroutine(updateGameField(zorAnimator, "zorCombat_active", target, ZorDamage));           
+            }
             // update battle menu with action text
             StartCoroutine(bMM.typeActionText("zor used cleave!", 0.01f));
 
             // after action things
             ZorDamage += 10;
             ZorToHit -= 5;
-
         }
         else {
             StartCoroutine(bMM.typeActionText("zor missed!", 0.01f));

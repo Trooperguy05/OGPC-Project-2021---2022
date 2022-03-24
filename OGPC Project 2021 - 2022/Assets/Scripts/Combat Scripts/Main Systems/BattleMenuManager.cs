@@ -40,24 +40,28 @@ public class BattleMenuManager : MonoBehaviour
     {
         if (cM.combatStarted && cM.gameObjectsInCombat[cM.initiativeIndex] != null && !hidingActions) {
             if (cM.gameObjectsInCombat[cM.initiativeIndex].name == "Raza") {
+                actionText.text = "";
                 razaActions.SetActive(true);
                 dorneActions.SetActive(false);
                 smithsonActions.SetActive(false);
                 zorActions.SetActive(false);
             }
             else if (cM.gameObjectsInCombat[cM.initiativeIndex].name == "Dorne") {
+                actionText.text = "";
                 razaActions.SetActive(false);
                 dorneActions.SetActive(true);
                 smithsonActions.SetActive(false);
                 zorActions.SetActive(false);
             }
             else if (cM.gameObjectsInCombat[cM.initiativeIndex].name == "Smithson") {
+                actionText.text = "";
                 razaActions.SetActive(false);
                 dorneActions.SetActive(false);
                 smithsonActions.SetActive(true);
                 zorActions.SetActive(false);        
             }
             else if (cM.gameObjectsInCombat[cM.initiativeIndex].name == "Zor") {
+                actionText.text = "";
                 razaActions.SetActive(false);
                 dorneActions.SetActive(false);
                 smithsonActions.SetActive(false);

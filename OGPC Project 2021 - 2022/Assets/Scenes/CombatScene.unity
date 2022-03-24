@@ -1327,21 +1327,21 @@ MonoBehaviour:
   char2Mana: 0
   char2ManaMax: 0
   char2Dexterity: 1
-  char2VMeter: 0
+  char2VMeter: 100
   char3Name: Smithson
   char3HP: 75
   char3HPMax: 75
   char3Mana: 100
   char3ManaMax: 100
   char3Dexterity: 0
-  char3VMeter: 0
+  char3VMeter: 100
   char4Name: Zor
   char4HP: 100
   char4HPMax: 100
   char4Mana: 0
   char4ManaMax: 0
   char4Dexterity: 1
-  char4VMeter: 0
+  char4VMeter: 100
   playerAnimator: {fileID: 0}
 --- !u!4 &100334156
 Transform:

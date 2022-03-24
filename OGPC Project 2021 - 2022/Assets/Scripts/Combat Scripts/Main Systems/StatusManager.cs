@@ -27,8 +27,17 @@ public class StatusManager : MonoBehaviour
 
     /// Loops through every active status
     public void statusUpdate(){
+        // apply the effect
         for(int i = 0; i < nameList.Count; i++){
             statusApply(i);
+        }
+        // remove effect if it has no duration left
+        for (int i = 0; i < nameList.Count; i++) {
+            if (effectDurations[i] == 0) {
+                nameList.RemoveAt(i);
+                effectList.RemoveAt(i);
+                effectDurations.RemoveAt(i);
+            }
         }
     }
 
@@ -38,23 +47,23 @@ public class StatusManager : MonoBehaviour
         if (effectList[index] == "bleed"){
             dmg = 5;
         }
-
         else if (effectList[index] == "poison"){
             dmg = 3;
         }
-        if (nameList[index] =="Raza" && effectDurations[index] != 0){
+
+        if (nameList[index] == "Raza" && effectDurations[index] != 0){
             effectDurations[index] -= 1;
             pM.char1HP -= dmg;
         }
-        if (nameList[index] =="zor" && effectDurations[index] != 0){
+        if (nameList[index] == "Zor" && effectDurations[index] != 0){
             effectDurations[index] -= 1;
             pM.char4HP -= dmg;
         }
-        if (nameList[index] =="smithson" && effectDurations[index] != 0){
+        if (nameList[index] == "Smithson" && effectDurations[index] != 0){
             effectDurations[index] -= 1;
             pM.char3HP -= dmg;
         }
-        if (nameList[index] =="dorne" && effectDurations[index] != 0){
+        if (nameList[index] == "Dorne" && effectDurations[index] != 0){
             effectDurations[index] -= 1;
             pM.char2HP -= dmg;
         }
