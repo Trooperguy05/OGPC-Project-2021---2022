@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     public List<Item> inventory = new List<Item>();
 
     // cheat menu manager \\
-    private ConsoleController cC;
+    private ConsoleAndAchievementController cC;
 
     // inventory menu \\
     public GameObject invMenu;
@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour
     // on start-up things \\
     void Start() {
         // get the console controller \\
-        cC = GameObject.Find("ConsoleMenuController").GetComponent<ConsoleController>();
+        cC = GameObject.Find("ConsoleMenuController").GetComponent<ConsoleAndAchievementController>();
 
         // load the inventory on start up \\
         loadInventory();
