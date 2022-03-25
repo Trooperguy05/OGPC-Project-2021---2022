@@ -99,7 +99,7 @@ public class CombatManager : MonoBehaviour
         ///   Turn-Based Combat   \\\
         // if it is one of the player characters' turn
         if (initiativeNames[initiativeIndex] == "Raza") {
-            if (pS.char1HP <= 0) {
+            if (pS.char1HP <= 0 || roundNum == playerActions.razaStunRound) {
                 initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
@@ -112,7 +112,7 @@ public class CombatManager : MonoBehaviour
             }
         }
         else if (initiativeNames[initiativeIndex] == "Dorne") {
-            if (pS.char2HP <= 0) {
+            if (pS.char2HP <= 0 || roundNum == playerActions.dorneStunRound) {
                 initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
@@ -125,7 +125,7 @@ public class CombatManager : MonoBehaviour
             }
         }
         else if (initiativeNames[initiativeIndex] == "Smithson") {
-            if (pS.char3HP <= 0) {
+            if (pS.char3HP <= 0 || roundNum == playerActions.smithsonStunRound) {
                 initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
@@ -138,7 +138,7 @@ public class CombatManager : MonoBehaviour
             }
         }
         else if (initiativeNames[initiativeIndex] == "Zor") {
-            if (pS.char4HP <= 0) {
+            if (pS.char4HP <= 0 || roundNum == playerActions.zorStunRound) {
                 initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
@@ -270,20 +270,8 @@ public class CombatManager : MonoBehaviour
             }
         }
         if (numCheck == enemiesInCombat.Count) {
+            SaveSystem.SavePartyStats(pS);
             SceneManager.LoadScene(1);
-        }
-        /// checking if one of the PC's is stunned
-        if (playerActions.razaStun) {
-            playerActions.razaStun = false;
-        }
-        if (playerActions.dorneStun) {
-            playerActions.dorneStun = false;
-        }
-        if (playerActions.smithsonStun) {
-            playerActions.smithsonStun = false;
-        }
-        if (playerActions.zorStun) {
-            playerActions.zorStun = false;
         }
         /// checking if it's the end of a round
         if (initiativeIndex > 7) {

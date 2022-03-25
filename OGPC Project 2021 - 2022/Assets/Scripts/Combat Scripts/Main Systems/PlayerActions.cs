@@ -21,10 +21,10 @@ public class PlayerActions : MonoBehaviour
     public int ZorToHit = 80;
 
     // stunned effect if the PC critted \\
-    public bool razaStun = false;
-    public bool dorneStun = false;
-    public bool smithsonStun = false;
-    public bool zorStun = false;
+    public int razaStunRound = -1;
+    public int dorneStunRound = -1;
+    public int smithsonStunRound = -1;
+    public int zorStunRound = -1;
 
     // animators for the player characters \\
     [Header("PC Animators")]
@@ -227,7 +227,7 @@ public class PlayerActions : MonoBehaviour
             dmg = (int) Mathf.Pow(dmg, 2.5f);
             StartCoroutine(vMM.updateMeter(-100, vMM.razaSlider, "raza"));
             crit = true;
-            razaStun = true;
+            razaStunRound = cm.roundNum+1;
         }
 
         /// act on target
@@ -380,6 +380,7 @@ public class PlayerActions : MonoBehaviour
             dmg = (int) Mathf.Pow(dmg, 2.5f);
             StartCoroutine(vMM.updateMeter(-100, vMM.dorneSlider, "dorne"));
             crit = true;
+            dorneStunRound = cm.roundNum+1;
         }
 
         // act on target
@@ -514,6 +515,7 @@ public class PlayerActions : MonoBehaviour
             dmg = (int) Mathf.Pow(dmg, 2.5f);
             StartCoroutine(vMM.updateMeter(-100, vMM.smithsonSlider, "smithson"));
             crit = true;
+            smithsonStunRound = cm.roundNum+1;
         }
 
         // act on target
@@ -719,6 +721,7 @@ public class PlayerActions : MonoBehaviour
         if (pS.char4VMeter == 100) {
             StartCoroutine(vMM.updateMeter(-100, vMM.zorSlider, "zor"));
             crit = true;
+            zorStunRound = cm.roundNum+1;
         }
         //chance to hit
         if (chanceToHit <= hitChance){
