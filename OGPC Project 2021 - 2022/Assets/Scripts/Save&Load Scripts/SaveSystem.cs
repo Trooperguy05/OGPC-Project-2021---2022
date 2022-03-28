@@ -189,6 +189,35 @@ public static class SaveSystem
         }
     }
 
+    // save pickup item data \\
+    public static void saveItemPickups(itemPickupManager iPM) {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/itemPickups.txt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+        
+        ItemData data = new ItemData(iPM);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    // load pickup item data \\
+    public static ItemData loadItemPickups() {
+        string path = Application.persistentDataPath + "/itemPickups.txt";
+        if (File.Exists(path)) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            ItemData data = formatter.Deserialize(stream) as ItemData;
+            stream.Close();
+            return data;
+        }
+        else {
+            Debug.LogError("SaveFile not found in " + path);
+            return null;
+        }
+    }
+
     // save story dialogue data \\
     public static void saveStoryDialogue(StoryDialogueManager sDM) {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -227,6 +256,7 @@ public static class SaveSystem
         string invDataPath = Application.persistentDataPath + "/inventory.txt";
         string achivementDataPath = Application.persistentDataPath + "/achievements.txt";
         string storyDialoguePath = Application.persistentDataPath + "/storyDialogue.txt";
+        string itemDataPath = Application.persistentDataPath + "/itemPickups.txt";
 
         // delete the party data
         if (File.Exists(partyDataPath)) {
@@ -262,6 +292,13 @@ public static class SaveSystem
         }
         else {
             Debug.LogError("File not found in " + storyDialoguePath);
+        }
+        // delete item pickup data
+        if (File.Exists(itemDataPath)) {
+            File.Delete(itemDataPath);
+        }
+        else {
+            Debug.LogError("File not found in " + itemDataPath);
         }
         /*
         // Delete the achivement data

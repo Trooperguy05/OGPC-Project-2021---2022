@@ -31,13 +31,6 @@ public class Inventory : MonoBehaviour
         // load the inventory on start up \\
         loadInventory();
 
-        addItem(new Item(Item.ItemType.HealthPotion, 2, true, true));
-        addItem(new Item(Item.ItemType.ManaPotion, 2, true, true));
-        addItem(new Item(Item.ItemType.Coin, 50, true, false));
-        addItem(new Item(Item.ItemType.Sword, 1, false, false));
-        addItem(new Item(Item.ItemType.Boulder, 5, true, false));
-        addItem(new Item(Item.ItemType.Amulet, 1, false, false));
-
         // load the inventory in the menu \\
         prefabs = new GameObject[inventory.Count];
         buttons = new Button[inventory.Count];
@@ -111,6 +104,7 @@ public class Inventory : MonoBehaviour
         else {
             inventory[findItem(item)].quantity += item.quantity;
         }
+        updateInventoryMenu();
     }
 
     // checks if an item is in the inventory \\

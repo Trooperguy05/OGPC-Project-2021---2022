@@ -4,35 +4,62 @@ using UnityEngine;
 
 public class PhylactertyScript : MonoBehaviour
 {
+    // check which phylactery this object is
+    [Header("Which phylactery?")]
+    public bool isDesertPhy;
+    public bool isForestPhy;
+    public bool isSwampPhy;
+
     // phylacterty animator
     private Animator animator;
-    public bool interactable = false;
-    // player progress cript
+    // interact notice
+    private Animator interactNoticeAnimator;
+    // interactable object
+    private interactable interact;
+    // player progress script
     private PlayerProgress pP;
+    // player object
+    private GameObject player;
+    // after destruction dialogue
+    public Dialogue dialogue;
 
     // caching
     void Start() {
         animator = GetComponent<Animator>();
         pP = GameObject.Find("Party and Player Manager").GetComponent<PlayerProgress>();
+        player = GameObject.Find("OverworldPlayerCharacter");
+        interactNoticeAnimator = GameObject.Find("Interact Notice").GetComponent<Animator>();
+        interact = new interactable(2);
+
+        // disable this object if the player has already destroyed it (in a previous save)
+        if (isDesertPhy && pP.destroyedDesertPhylactery) {
+            gameObject.SetActive(false);
+        }
     }
 
     // if the phylactery is interactable, the player can destroy it \\
     void Update() {
-        if (interactable) {
+        // check if player is within interact range
+        float distance = interact.checkDistance(gameObject, player);
+        if (distance <= 10) {
+            if (distance <= interact.interactableRange) {
+                interact.changeInteract(true);
+
+            }
+            else {
+                interact.changeInteract(false);
+            }  
+            interactNoticeAnimator.SetBool("open", interact.isInteractable());      
+        }
+
+        // allow the player to destroy the phylactery
+        if (interact.isInteractable()) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 animator.SetTrigger("destroy");
                 pP.destroyedDesertPhylactery = true;
                 StartCoroutine(wait());
             }
         }
-    }
-
-    // if the player touches the phylactery, it become interactable \\
-    void OnTriggerEnter2D(Collider2D col) {
-        interactable = true;
-    }
-    void OnTriggerExit2D(Collider2D col) {
-        interactable = false;
     }
 
     // method that waits for the destroy animation to destroy the gameobject \\
@@ -45,6 +72,9 @@ public class PhylactertyScript : MonoBehaviour
             yield return null;
         }
         animator.SetBool("destroyed", true);
+        // start the after destruction dialogue
+        GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>().StartDialogue(dialogue);
+        interactNoticeAnimator.SetBool("open", false);
         // destroy the gameobject
         Destroy(gameObject);
     }
