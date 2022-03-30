@@ -161,6 +161,7 @@ public class OpenWorldEnemy : MonoBehaviour
         FindObjectOfType<PlayerProgress>().savePlayerData(); // save player progress
         FindObjectOfType<OpenWorldEnemyManager>().saveActiveEnemies(); // save active enemies
         FindObjectOfType<StoryDialogueManager>().saveDialogueTriggers(); // save the story dialogue
+        FindObjectOfType<itemPickupManager>().saveItems(); // save items
         SaveSystem.SaveSpecifiedEnemy(this); // save the specified enemy
         SceneManager.LoadScene(2); // load the combat scene
     }

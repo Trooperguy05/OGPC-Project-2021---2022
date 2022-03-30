@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class PlayerData
@@ -9,6 +10,7 @@ public class PlayerData
     public float[] playerPosition = new float[3];
 
     // player progress variables
+    public bool wonLastCombat;
     public bool passedTutorial;
     public bool destroyedDesertPhylactery;
 

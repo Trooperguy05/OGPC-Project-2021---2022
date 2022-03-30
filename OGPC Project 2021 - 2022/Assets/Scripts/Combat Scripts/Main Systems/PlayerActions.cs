@@ -442,6 +442,10 @@ public class PlayerActions : MonoBehaviour
         GameObject target = ts.target;
         EnemyCreator enemy = getEnemy(target.name);
         int chanceToHit = Random.Range(1, 100);
+
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.dorneSlider, "dorne"));
+
         // act on target
         if (chanceToHit <= 90) {
             //randomize damage on charge
@@ -466,6 +470,9 @@ public class PlayerActions : MonoBehaviour
     //  Tighten Harness \\
     // Will increase Dorne's initiative by 2
     public void dorneSpeedUp() {
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.dorneSlider, "dorne"));
+
         // increases dorne's speed in initiative
         cm.initiativeCount[1] = cm.initiativeCount[1] + 2;
         // then resort the initiative order
@@ -550,6 +557,10 @@ public class PlayerActions : MonoBehaviour
         //wait for target to return
         GameObject target = ts.target;
         EnemyCreator enemy = getEnemy(target.name);
+
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.smithsonSlider, "smithson"));
+
         //act on target
         int chanceToHit = Random.Range(1, 100);
         if (chanceToHit <= 90 && pS.char3Mana >= 15){
@@ -587,6 +598,9 @@ public class PlayerActions : MonoBehaviour
    // Targets all enemies, dealing 25 damage and reducing their initiative 
    // count by 1
     public void smithsonAOE(){
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.smithsonSlider, "smithson"));
+
         // check if necessary mana remains
         if (pS.char3Mana >= 40){
             // subtract mana
@@ -634,6 +648,9 @@ public class PlayerActions : MonoBehaviour
     // Clean Wounds \\
     // Basic healing spell, heals for 35.
     public void smithsonHeal(){
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.smithsonSlider, "smithson"));
+
         // check for mana
         if (pS.char3Mana >= 10){
             pS.char3Mana -= 10;
@@ -755,6 +772,9 @@ public class PlayerActions : MonoBehaviour
     // Tempestuous Fury \\
     // Induces rage, which allows exclusively for the use of cleave but increases damage with each use.
     public void zorAngy(){
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.zorSlider, "zor"));
+
         //can be toggled
         Enraged = !Enraged;
 
@@ -771,6 +791,9 @@ public class PlayerActions : MonoBehaviour
     // Barbaric Bolt \\
     // Targets two enemies, dealing 25 damage each
     public void zorZap(){
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.zorSlider, "zor"));
+
         if (!Enraged){
             //chance to hit
             int chanceToHit = Random.Range(1, 100);
@@ -803,6 +826,9 @@ public class PlayerActions : MonoBehaviour
     // Hurricane \\
     // General attack targeting all enemies, dealing 35 damage to all.
     public void zorAOE(){
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.zorSlider, "zor"));
+
         if (!Enraged){
             // Targets everyone
             List<GameObject> targets = ts.targetList;

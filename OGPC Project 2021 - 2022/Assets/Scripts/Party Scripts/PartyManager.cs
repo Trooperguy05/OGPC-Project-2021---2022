@@ -6,6 +6,7 @@ public class PartyManager : MonoBehaviour
 {
     // party order
     public static string[] partyOrder = new string[] {" ", " ", " ", " "};
+    public GameObject combatReward;
 
     // visual variables
     [Header("Party Menu Logic")]
@@ -86,9 +87,32 @@ public class PartyManager : MonoBehaviour
         pM = player.GetComponent<PlayerMovement>();
 
         // loading the party stats data
-        FindObjectOfType<PartyStats>().LoadData();
+        PartyStats pS = GetComponent<PartyStats>();
+        pS.LoadData();
         // loading the player progress data
         FindObjectOfType<PlayerProgress>().loadPlayerData();
+        // combat report
+        CombatReport cR = GetComponent<CombatReport>();
+        cR.loadData();
+        // if the player came back from combat and won, give them some moneys
+        if (cR.wonLastCombat) {
+            cR.wonLastCombat = false;
+            GameObject temp = Instantiate(combatReward);
+            temp.transform.position = new Vector2(player.transform.position.x, player.transform.position.y - 1.5f);
+        }
+        // if the player came back from combat and lost, set their health to 1
+        if (pS.char1HP <= 0) {
+            pS.char1HP = 1;
+        }
+        if (pS.char2HP <= 0) {
+            pS.char2HP = 1;
+        }
+        if (pS.char3HP <= 0) {
+            pS.char3HP = 1;
+        }
+        if (pS.char3HP <= 0) {
+            pS.char3HP = 1;
+        }
         
         updatePlayerSprite();
         pM.updateIdleSprite();

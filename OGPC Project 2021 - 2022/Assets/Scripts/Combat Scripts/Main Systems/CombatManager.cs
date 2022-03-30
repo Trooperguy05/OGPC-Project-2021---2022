@@ -48,6 +48,7 @@ public class CombatManager : MonoBehaviour
     public turnIndicator tI;
     // script for healthbar manager
     public HealthbarManager hM;
+    public ManabarManager mM;
     // action scripts to monitor who's done what \\
     public PlayerActions playerActions;
     public EnemyActions enemyActions;
@@ -92,6 +93,17 @@ public class CombatManager : MonoBehaviour
             }
             Debug.Log(str);
 
+            eF.organizeField();
+            tI.updateIndicator();
+        }
+
+        if (!combatStarted) {
+            // update healthbar and manabar
+            hM.updateHealthbarValues();
+            mM.smithsonManabarSlider.value = pS.char3Mana;
+            // start combat
+            startCombat();
+            sortInitiative(initiativeCount);
             eF.organizeField();
             tI.updateIndicator();
         }
@@ -244,6 +256,11 @@ public class CombatManager : MonoBehaviour
         /// checking win/lose conditions
         // if player loses
         if (pS.char1HP <= 0 && pS.char2HP <= 0 && pS.char3HP <= 0 && pS.char4HP <= 0) {
+            // save
+            SaveSystem.SavePartyStats(pS);
+            CombatReport cR = GetComponent<CombatReport>();
+            cR.wonLastCombat = true;
+            SaveSystem.saveCombatReport(cR);
             // return to the overworld
             SceneManager.LoadScene(1);
         }
@@ -270,7 +287,12 @@ public class CombatManager : MonoBehaviour
             }
         }
         if (numCheck == enemiesInCombat.Count) {
+            // save
             SaveSystem.SavePartyStats(pS);
+            CombatReport cR = GetComponent<CombatReport>();
+            cR.wonLastCombat = true;
+            SaveSystem.saveCombatReport(cR);
+            // return to overworld
             SceneManager.LoadScene(1);
         }
         /// checking if it's the end of a round
@@ -280,6 +302,8 @@ public class CombatManager : MonoBehaviour
             Debug.Log("Round: " + roundNum);
             playerActions.updatePCVariables();
             tI.updateIndicator();
+            // regen some mana for smithson
+            StartCoroutine(mM.regenMana(mM.smithsonManabarSlider, 15, 0.01f));
         }
     }
 

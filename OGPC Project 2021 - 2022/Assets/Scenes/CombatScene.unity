@@ -1295,6 +1295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 100334156}
   - component: {fileID: 100334155}
+  - component: {fileID: 100334157}
   m_Layer: 0
   m_Name: Party Manager
   m_TagString: Untagged
@@ -1357,6 +1358,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &100334157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100334154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6dd910d6801641448724cab83063c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  passedTutorial: 0
+  destroyedDesertPhylactery: 0
 --- !u!1 &101187077
 GameObject:
   m_ObjectHideFlags: 0
@@ -6849,6 +6865,7 @@ GameObject:
   - component: {fileID: 1105582663}
   - component: {fileID: 1105582664}
   - component: {fileID: 1105582665}
+  - component: {fileID: 1105582666}
   m_Layer: 0
   m_Name: Combat Manager
   m_TagString: Untagged
@@ -6917,6 +6934,7 @@ MonoBehaviour:
   eF: {fileID: 1105582663}
   tI: {fileID: 1105582665}
   hM: {fileID: 2142421438}
+  mM: {fileID: 2142421440}
   playerActions: {fileID: 1573467614}
   enemyActions: {fileID: 1573467616}
 --- !u!114 &1105582663
@@ -6971,6 +6989,19 @@ MonoBehaviour:
   - {fileID: 252053429}
   - {fileID: 1846267407}
   - {fileID: 839624947}
+--- !u!114 &1105582666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105582660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af6a13ffe578fd144a8ec1445e2517fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wonLastCombat: 0
 --- !u!1 &1110061215
 GameObject:
   m_ObjectHideFlags: 0
@@ -9039,6 +9070,10 @@ MonoBehaviour:
   enragedTurn: 0
   ZorDamage: 60
   ZorToHit: 80
+  razaStunRound: -1
+  dorneStunRound: -1
+  smithsonStunRound: -1
+  zorStunRound: -1
   razaAnimator: {fileID: 697840787}
   dorneAnimator: {fileID: 426409692}
   smithsonAnimator: {fileID: 1451797657}

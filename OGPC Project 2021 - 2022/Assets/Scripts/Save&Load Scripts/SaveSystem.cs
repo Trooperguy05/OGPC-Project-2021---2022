@@ -248,6 +248,36 @@ public static class SaveSystem
         }
     }
 
+    // save combat report data \\
+    public static void saveCombatReport(CombatReport cR) {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/combatReport.txt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        CombatReportData data = new CombatReportData(cR);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    // load combat report data \\
+    public static CombatReportData loadCombatReport() {
+        string path = Application.persistentDataPath + "/combatReport.txt";
+
+        if (File.Exists(path)) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            CombatReportData data = formatter.Deserialize(stream) as CombatReportData;
+            stream.Close();
+            return data;
+        }
+        else {
+            Debug.LogError("Save file does not exist at " + path);
+            return null;
+        }
+    }
+
     // delete save data \\
     public static void deleteSaveData() {
         string partyDataPath = Application.persistentDataPath + "/partyData.txt";
@@ -257,6 +287,7 @@ public static class SaveSystem
         string achivementDataPath = Application.persistentDataPath + "/achievements.txt";
         string storyDialoguePath = Application.persistentDataPath + "/storyDialogue.txt";
         string itemDataPath = Application.persistentDataPath + "/itemPickups.txt";
+        string combatReportPath = Application.persistentDataPath + "/combatReport.txt";
 
         // delete the party data
         if (File.Exists(partyDataPath)) {
@@ -299,6 +330,13 @@ public static class SaveSystem
         }
         else {
             Debug.LogError("File not found in " + itemDataPath);
+        }
+        // delete combat report data
+        if (File.Exists(combatReportPath)) {
+            File.Delete(combatReportPath);
+        }
+        else {
+            Debug.LogError("File not found in " + combatReportPath);
         }
         /*
         // Delete the achivement data
