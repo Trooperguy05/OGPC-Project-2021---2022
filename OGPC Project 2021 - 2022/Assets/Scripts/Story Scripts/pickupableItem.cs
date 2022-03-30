@@ -29,7 +29,7 @@ public class pickupableItem : MonoBehaviour
     {
         // check if player is within interact range
         float distance = interact.checkDistance(gameObject, player);
-        if (distance <= 10) {
+        if (distance <= 5) {
             if (distance <= interact.interactableRange) {
                 interact.changeInteract(true);
             }

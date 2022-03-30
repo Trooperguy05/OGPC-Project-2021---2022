@@ -108,7 +108,7 @@ public class Inventory : MonoBehaviour
     }
 
     // checks if an item is in the inventory \\
-    private bool checkInventory(Item item) {
+    public bool checkInventory(Item item) {
         // check each item in inventory
         for (int i = 0; i < inventory.Count; i++) {
             if (inventory[i].itemType == item.itemType) {
@@ -119,7 +119,7 @@ public class Inventory : MonoBehaviour
     }
 
     // finds an item in the inventory and returns its index \\
-    private int findItem(Item item) {
+    public int findItem(Item item) {
         for (int i = 0; i < inventory.Count; i++) {
             if (inventory[i].itemType == item.itemType) {
                 return i;
@@ -132,6 +132,15 @@ public class Inventory : MonoBehaviour
     // the inventory is updated
     private void useItem(int index) {
         inventory[index].quantity--;
+        if (inventory[index].quantity <= 0) {
+            inventory.RemoveAt(index);
+        }
+        updateInventoryMenu();
+    }
+
+    // method that removes a large quantity of a stackable item from the inventory
+    public void removeItem(int index, int amt) {
+        inventory[index].quantity -= amt;
         if (inventory[index].quantity <= 0) {
             inventory.RemoveAt(index);
         }
