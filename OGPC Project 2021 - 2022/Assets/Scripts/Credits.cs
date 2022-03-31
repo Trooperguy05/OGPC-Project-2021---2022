@@ -28,7 +28,7 @@ public class Credits : MonoBehaviour
             name4.MovePosition(name4.position + new Vector2(0f, 0.05f));
             yield return null;
         }
-        yield return new WaitForSeconds((float)9.2);
+        yield return new WaitForSecondsRealtime((float)9.1);
         name1.isKinematic = false;
         name2.isKinematic = false;
         name3.isKinematic = false;

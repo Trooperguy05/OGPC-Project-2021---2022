@@ -15,6 +15,7 @@ public class ConsoleAndAchievementsController : MonoBehaviour
     public GameObject consoleLog;
     public GameObject achievements;
     public static bool achievementsIsActive;
+    public GameObject player;
 
     void Update() {
         // Opens and closes the console \\
@@ -38,7 +39,7 @@ public class ConsoleAndAchievementsController : MonoBehaviour
         consoleText = consoleText.ToUpper();
         // Displays the help menu for the console in the console log
         if (consoleText.Equals("HELP")) {
-            consoleLog.GetComponent<TextMeshProUGUI>().text += "\n*\nswitchscene - must add scene name.\nskipturn - skips an enemies turn during combat.\nhealparty - heals all party members.\nendcombat - ends the current combat.\nhelp - shows this menu.\ncommands are not case sensitive.\n*";
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\n-----------------------------------------------------------\n'switchscene' - switches the scene (must input scene name).\n'skipturn' - skips an enemies turn during combat.\n'healparty' - heals all party members.\n'endcombat' - ends the current combat.\n'help' - shows this menu.\n'goto' - moves the player character to a location (e.g temple, well)\ncommands are not case sensitive.\n-----------------------------------------------------------";
         }
         // Switchs the scene based on what scene name is entered with the commands
         else if (consoleText == "SWITCHSCENE MAINMENU") {
@@ -49,6 +50,18 @@ public class ConsoleAndAchievementsController : MonoBehaviour
         }
         else if (consoleText == "SWITCHSCENE COMBAT") {
             SceneManager.LoadScene(2);
+        }
+        else if (consoleText == "SWITCHSCENE CREDITS") {
+            SceneManager.LoadScene(4);
+        }
+        // Teleports the player to important locations
+        else if (consoleText == "GOTO TEMPLE") {
+            player.transform.position = new Vector2(-18, -57);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to temple";
+        }
+        else if (consoleText == "GOTO WELL") {
+            player.transform.position = new Vector2((float)-19.3, (float)-99.2);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to well";
         }
         // Displays that an invalid command is entered in the console
         else {
