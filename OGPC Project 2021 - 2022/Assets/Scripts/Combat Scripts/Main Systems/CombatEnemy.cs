@@ -15,6 +15,9 @@ public class CombatEnemy : MonoBehaviour
         if (health != 0) {
             health = eOb.health;
         }
+        if (eOb.health <= 0) {
+            sr.color = new Color(0, 0, 0, 1);
+        }
     }
 
     // method that updates their sprites and changes the size of their colliders \\
