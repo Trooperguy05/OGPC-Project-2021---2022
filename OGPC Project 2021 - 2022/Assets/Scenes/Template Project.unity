@@ -6543,7 +6543,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419160769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.72, y: -26.41, z: -5.893913}
+  m_LocalPosition: {x: -3.72, y: -26.18, z: -5.893913}
   m_LocalScale: {x: 13.793062, y: 8.466864, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6672,7 +6672,8 @@ MonoBehaviour:
   dialogueBox: {fileID: 529540012}
   dialogueName: {fileID: 35150957}
   dialogueText: {fileID: 27709023}
-  typeSpeed: 0.05
+  isTyping: 0
+  typeSpeed: 0.01
 --- !u!1 &459412731
 GameObject:
   m_ObjectHideFlags: 0
@@ -7092,8 +7093,8 @@ MonoBehaviour:
       the dead.
     - but miraculously, they gained an inconsistent power. in times of great stress
       they can gain an immense amount of power.
-    - fueld by curiosity, the party finds a contract to slay the dracolich. and after
-      traveling for a week the party finds themselves in this very desert.
+    - fueled by curiosity, the party finds a contract to slay the dracolich. and
+      after traveling for a week the party finds themselves in this very desert.
 --- !u!4 &525599593
 Transform:
   m_ObjectHideFlags: 0
@@ -7436,7 +7437,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f16e570887b2eeb4496b0b05d9f2a382, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7456,7 +7457,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -81687,7 +81688,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1403493962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -39.8, y: -65.2, z: -5.893913}
+  m_LocalPosition: {x: -39.43, y: -65.2, z: -5.893913}
   m_LocalScale: {x: 13.793062, y: 8.466864, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -82371,7 +82372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575104322}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.17, y: -54.92, z: -5.893913}
+  m_LocalPosition: {x: -12.17, y: -53.74, z: -5.893913}
   m_LocalScale: {x: 13.793062, y: 8.466864, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -82829,7 +82830,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603682118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.03, y: -87.85, z: -5.893913}
+  m_LocalPosition: {x: 27.03, y: -86.26, z: -5.893913}
   m_LocalScale: {x: 13.793062, y: 8.466864, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -82860,8 +82861,8 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604346640}
   m_Enabled: 1
-  m_CellSize: {x: 1, y: 1, z: 0}
-  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellSize: {x: 0.98, y: 0.98, z: 0}
+  m_CellGap: {x: -0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
 --- !u!4 &1604346642
@@ -82960,7 +82961,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604560074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18, y: -88.39, z: 0}
+  m_LocalPosition: {x: -17.65, y: -86.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

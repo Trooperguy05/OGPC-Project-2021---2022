@@ -15,6 +15,8 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueName;
     public TextMeshProUGUI dialogueText;
     public static bool InDialogue = false;
+    public bool isTyping = false;
+    private string currentSentence;
     // its animator
     private Animator dialogueBoxAnimator;
 
@@ -60,18 +62,25 @@ public class DialogueManager : MonoBehaviour
 
     // method that displays the next sentence in a dialogue \\
     public void DisplayNextSentence() {
-        if (sentences.Count == 0) {
-            EndDialogue();
-            return;
+        if (!isTyping) {
+            if (sentences.Count == 0) {
+                EndDialogue();
+                return;
+            }
+            string sentence = sentences.Dequeue();
+            currentSentence = sentence;
+            string name = "";
+            if (names.Count > 0) {
+                name = names.Dequeue();
+            }
+            StopAllCoroutines();
+            StartCoroutine(typeText(name, sentence));
         }
-
-        string sentence = sentences.Dequeue();
-        string name = "";
-        if (names.Count > 0) {
-            name = names.Dequeue();
+        else {
+            StopAllCoroutines();
+            dialogueText.text = currentSentence;
+            isTyping = false;
         }
-        StopAllCoroutines();
-        StartCoroutine(typeText(name, sentence));
     }
 
     // method that types the sentence in keyboard-like fashion \\
@@ -80,10 +89,12 @@ public class DialogueManager : MonoBehaviour
         if (name != "") {
             dialogueName.text = name;
         }
+        isTyping = true;
         for (int i = 0; i < sentence.Length; i++) {
             dialogueText.text += sentence[i];
             yield return new WaitForSeconds(typeSpeed);
         }
+        isTyping = false;
     }
 
     // method that ends the dialogue \\

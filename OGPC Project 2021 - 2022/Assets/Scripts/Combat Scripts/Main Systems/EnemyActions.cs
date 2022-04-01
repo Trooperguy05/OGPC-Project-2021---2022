@@ -88,47 +88,39 @@ public class EnemyActions : MonoBehaviour
         int healthCheck = 0;
         while (healthCheck < 1)
         {
-            target = Random.Range(1, 4);
+            target = Random.Range(1, 5);
             if (target == 1)
             {
                 healthCheck = pS.char1HP;
                 character = "raza";
+                pS.char1HP -= dmg;
+                StartCoroutine(hM.dealDamage(hM.razaSlider, dmg, 0.01f));
+                break;
             }
             else if (target == 2)
             {
                 healthCheck = pS.char2HP;
                 character = "dorne";
+                pS.char2HP -= dmg;
+                StartCoroutine(hM.dealDamage(hM.dorneSlider, dmg, 0.01f));
+                break;
             }
             else if (target == 3)
             {
                 healthCheck = pS.char3HP;
                 character = "smithson";
+                pS.char3HP -= dmg;
+                StartCoroutine(hM.dealDamage(hM.smithsonSlider, dmg, 0.01f));
+                break;
             }
             else
             {
                 healthCheck = pS.char4HP;
                 character = "zor";
+                pS.char4HP -= dmg;
+                StartCoroutine(hM.dealDamage(hM.zorSlider, dmg, 0.01f));
+                break;
             }
-        }
-        if (target == 1)
-        {
-            pS.char1HP -= dmg;
-            StartCoroutine(hM.dealDamage(hM.razaSlider, dmg, 0.01f));
-        }
-        else if (target == 2)
-        {
-            pS.char2HP -= dmg;
-            StartCoroutine(hM.dealDamage(hM.dorneSlider, dmg, 0.01f));
-        }
-        else if (target == 3)
-        {
-            pS.char3HP -= dmg;
-            StartCoroutine(hM.dealDamage(hM.smithsonSlider, dmg, 0.01f));
-        }
-        else
-        {
-            pS.char4HP -= dmg;
-            StartCoroutine(hM.dealDamage(hM.zorSlider, dmg, 0.01f));
         }
         return character;
     }
