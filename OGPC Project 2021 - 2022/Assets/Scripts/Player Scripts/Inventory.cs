@@ -16,7 +16,7 @@ public class Inventory : MonoBehaviour
     // inventory menu \\
     public GameObject invMenu;
     public GameObject scrollableArea;
-    private bool invMenuOpen = false;
+    public static bool invMenuOpen = false;
     // item prefabs
     public GameObject consumableItem;
     public GameObject nonconsumableItem;
