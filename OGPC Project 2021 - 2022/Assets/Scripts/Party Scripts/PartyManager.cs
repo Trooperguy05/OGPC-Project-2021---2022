@@ -146,7 +146,7 @@ public class PartyManager : MonoBehaviour
             partyMenu.transform.position = player.transform.position;
 
             // move the characters in clockwise order
-            if (Input.GetKeyDown(KeyCode.D)) {
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
                 character1Order++;
                 character2Order++;
                 character3Order++;
@@ -168,7 +168,7 @@ public class PartyManager : MonoBehaviour
                 partyOrderChanged = true;
             }
             // move the characters in counterclockwise order
-            else if (Input.GetKeyDown(KeyCode.A)) {
+            else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
                 character1Order--;
                 character2Order--;
                 character3Order--;
