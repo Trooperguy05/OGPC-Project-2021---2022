@@ -44,7 +44,7 @@ public class EnemyCreator
         // scorpion
         if (chance == 1) {
             name = "Scorpion";
-            healthMax = 150;
+            healthMax = 100;
             manaMax = 0;
             dexterity = 1;
             size = 1;
@@ -52,7 +52,7 @@ public class EnemyCreator
         // mummy
         else if (chance == 2) {
             name = "Mummy";
-            healthMax = 200;
+            healthMax = 130;
             manaMax = 0;
             dexterity = -1;
             size = 1;
@@ -72,7 +72,7 @@ public class EnemyCreator
         // scorpion
         if (num == 1) {
             name = "Scorpion";
-            healthMax = 150;
+            healthMax = 100;
             manaMax = 0;
             dexterity = 1;
             size = 1;
@@ -80,7 +80,7 @@ public class EnemyCreator
         // mummy
         else if (num == 2) {
             name = "Mummy";
-            healthMax = 200;
+            healthMax = 130;
             manaMax = 0;
             dexterity = -1;
             size = 1;

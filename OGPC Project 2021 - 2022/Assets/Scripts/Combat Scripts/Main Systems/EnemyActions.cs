@@ -13,6 +13,7 @@ public class EnemyActions : MonoBehaviour
     //party stats and combat manager
     private CombatManager cm;
     private PartyStats pS;
+    private PlayerActions pA;
     private StatusManager sM;
     private HealthbarManager hM;
     private BattleMenuManager bMM;
@@ -41,6 +42,8 @@ public class EnemyActions : MonoBehaviour
         hM = GameObject.Find("Healthbar Manager").GetComponent<HealthbarManager>();
         // battle menu manager
         bMM = GameObject.Find("Battle Menu").GetComponent<BattleMenuManager>();
+        // player actions
+        pA = GameObject.Find("Action Manager").GetComponent<PlayerActions>();
 
     }
 
@@ -93,32 +96,44 @@ public class EnemyActions : MonoBehaviour
             {
                 healthCheck = pS.char1HP;
                 character = "raza";
+                // deal damage
                 pS.char1HP -= dmg;
                 StartCoroutine(hM.dealDamage(hM.razaSlider, dmg, 0.01f));
+                pA.razaAnimator.SetTrigger("hurt");
+                // exit loop
                 break;
             }
             else if (target == 2)
             {
                 healthCheck = pS.char2HP;
                 character = "dorne";
+                // deal damage
                 pS.char2HP -= dmg;
                 StartCoroutine(hM.dealDamage(hM.dorneSlider, dmg, 0.01f));
+                pA.dorneAnimator.SetTrigger("hurt");
+                // exit loop
                 break;
             }
             else if (target == 3)
             {
                 healthCheck = pS.char3HP;
                 character = "smithson";
+                // deal damage
                 pS.char3HP -= dmg;
                 StartCoroutine(hM.dealDamage(hM.smithsonSlider, dmg, 0.01f));
+                pA.smithsonAnimator.SetTrigger("hurt");
+                // exit loop
                 break;
             }
             else
             {
                 healthCheck = pS.char4HP;
                 character = "zor";
+                // deal damage
                 pS.char4HP -= dmg;
                 StartCoroutine(hM.dealDamage(hM.zorSlider, dmg, 0.01f));
+                pA.zorAnimator.SetTrigger("hurt");
+                // exit loop
                 break;
             }
         }

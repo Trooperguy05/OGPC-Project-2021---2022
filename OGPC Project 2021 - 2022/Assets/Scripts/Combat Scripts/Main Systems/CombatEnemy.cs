@@ -15,13 +15,16 @@ public class CombatEnemy : MonoBehaviour
         if (health != 0) {
             health = eOb.health;
         }
-        if (eOb.health <= 0) {
-            sr.color = new Color(0, 0, 0, 1);
+        if (eOb != null) {
+            if (eOb.health <= 0) {
+                sr.color = new Color(0, 0, 0, 1);
+            }
         }
     }
 
     // method that updates their sprites and changes the size of their colliders \\
     public void updateSprite() {
+        // desert enemies
         if (eOb.name == "Scorpion") {
             GetComponent<Animator>().SetBool("isScorpion", true);
             GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 1);
