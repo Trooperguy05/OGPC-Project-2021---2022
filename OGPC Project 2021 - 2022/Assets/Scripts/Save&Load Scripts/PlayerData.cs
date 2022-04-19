@@ -13,6 +13,7 @@ public class PlayerData
     public bool wonLastCombat;
     public bool passedTutorial;
     public bool destroyedDesertPhylactery;
+    public bool destroyedSwampPhylactery;
 
     public PlayerData(PlayerProgress playerProgress) {
         // player positional data
@@ -23,5 +24,6 @@ public class PlayerData
         // player progress data
         passedTutorial = playerProgress.passedTutorial;
         destroyedDesertPhylactery = playerProgress.destroyedDesertPhylactery;
+        destroyedSwampPhylactery = playerProgress.destroyedSwampPhylactery;
     }
 }

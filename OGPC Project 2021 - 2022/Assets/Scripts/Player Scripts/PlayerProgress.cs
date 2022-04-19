@@ -11,6 +11,7 @@ public class PlayerProgress : MonoBehaviour
     [Header("Story Progress Variables")]
     public bool passedTutorial = false;
     public bool destroyedDesertPhylactery = false;
+    public bool destroyedSwampPhylactery = false;
 
     // save the player progress \\
     public void savePlayerData() {
@@ -29,6 +30,7 @@ public class PlayerProgress : MonoBehaviour
             // load the story progress
             passedTutorial = data.passedTutorial;
             destroyedDesertPhylactery = data.destroyedDesertPhylactery;
+            destroyedSwampPhylactery = data.destroyedSwampPhylactery;
         }
     }
 }

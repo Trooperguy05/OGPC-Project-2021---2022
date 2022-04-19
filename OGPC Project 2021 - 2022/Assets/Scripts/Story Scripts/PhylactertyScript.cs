@@ -35,6 +35,12 @@ public class PhylactertyScript : MonoBehaviour
         if (isDesertPhy && pP.destroyedDesertPhylactery) {
             gameObject.SetActive(false);
         }
+        else if (isSwampPhy && pP.destroyedSwampPhylactery) {
+            gameObject.SetActive(false);
+        }
+        if (isSwampPhy) {
+            Debug.Log("h");
+        }
     }
 
     // if the phylactery is interactable, the player can destroy it \\
@@ -56,7 +62,12 @@ public class PhylactertyScript : MonoBehaviour
         if (interact.isInteractable()) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 animator.SetTrigger("destroy");
-                pP.destroyedDesertPhylactery = true;
+                if (isDesertPhy) {
+                    pP.destroyedDesertPhylactery = true;
+                }
+                else if (isSwampPhy) {
+                    pP.destroyedSwampPhylactery = true;
+                }
                 StartCoroutine(wait());
             }
         }

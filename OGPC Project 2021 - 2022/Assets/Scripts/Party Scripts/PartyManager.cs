@@ -64,6 +64,11 @@ public class PartyManager : MonoBehaviour
     // variable to make sure some actions are only called once
     private bool partyOrderChanged = false;
 
+    // load the player data before everything else
+    void Awake() {
+        // loading the player progress data
+        FindObjectOfType<PlayerProgress>().loadPlayerData();
+    }
     // caching
     void Start() {
         // caching the positions for the character visuals
@@ -89,8 +94,6 @@ public class PartyManager : MonoBehaviour
         // loading the party stats data
         PartyStats pS = GetComponent<PartyStats>();
         pS.LoadData();
-        // loading the player progress data
-        FindObjectOfType<PlayerProgress>().loadPlayerData();
         // combat report
         CombatReport cR = GetComponent<CombatReport>();
         cR.loadData();
