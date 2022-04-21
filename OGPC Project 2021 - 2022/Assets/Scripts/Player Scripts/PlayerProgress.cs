@@ -8,6 +8,14 @@ public class PlayerProgress : MonoBehaviour
     [Header("Player")]
     public GameObject player;
 
+    // details what biome the player is in
+    public enum Biome {
+        desert,
+        swamp,
+        forest
+    }
+    public Biome playerBiome = Biome.desert;
+
     [Header("Story Progress Variables")]
     public bool passedTutorial = false;
     public bool destroyedDesertPhylactery = false;
@@ -26,6 +34,9 @@ public class PlayerProgress : MonoBehaviour
         if (data != null) {
             // load the player position
             player.transform.position = new Vector3(data.playerPosition[0], data.playerPosition[1], data.playerPosition[2]);
+
+            // load the player biome
+            playerBiome = data.playerBiome;
 
             // load the story progress
             passedTutorial = data.passedTutorial;
