@@ -15,7 +15,10 @@ public class MainMenuAudio : MonoBehaviour
         if (percentChance == 1) {
             AS.PlayOneShot(kazooMenu, 1);
         }
-        Debug.Log(percentChance);
+        else {
+            AS.PlayOneShot(regularMenu, 1);
+        }
+        
     }
 
 }

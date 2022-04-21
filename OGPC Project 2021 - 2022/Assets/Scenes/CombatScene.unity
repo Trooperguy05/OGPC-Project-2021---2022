@@ -1371,8 +1371,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  playerBiome: 0
   passedTutorial: 0
   destroyedDesertPhylactery: 0
+  destroyedSwampPhylactery: 0
 --- !u!1 &101187077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,6 +1386,8 @@ GameObject:
   - component: {fileID: 101187080}
   - component: {fileID: 101187079}
   - component: {fileID: 101187078}
+  - component: {fileID: 101187081}
+  - component: {fileID: 101187082}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1456,6 +1460,120 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &101187081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101187077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393ce2039f3b165428245e7e3aabf963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AS: {fileID: 101187082}
+  FC: {fileID: 8300000, guid: 85c4c5cb0539c004bb4c6fd4689c9346, type: 3}
+  DC: {fileID: 8300000, guid: b142ab068a38df944bedf518fe6a02c7, type: 3}
+  SC: {fileID: 8300000, guid: 9af83e517b84fe44ab4311e8314e8fcb, type: 3}
+  MC: {fileID: 8300000, guid: c0479a15621f9254b93be762c639b561, type: 3}
+  BC: {fileID: 8300000, guid: 225cd602924923b49a9e4c93686dceec, type: 3}
+--- !u!82 &101187082
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101187077}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &134507556
 GameObject:
   m_ObjectHideFlags: 0
@@ -9090,7 +9208,7 @@ MonoBehaviour:
   smithsonGrabSFX: {fileID: 8300000, guid: e93d5cbd4a12fe540a2b627c99c00b85, type: 3}
   smithsonLifeStealSFX: {fileID: 8300000, guid: a3ff8a98bf8e5ab4fa7f8b085fb35dd4, type: 3}
   smithsonChillOfTheGraveSFX: {fileID: 8300000, guid: c7e572b255e311b479005985ed7f4ba2, type: 3}
-  smithsonCleanWoundsSFX: {fileID: 8300000, guid: ecd31749e627d5847a9dada02dc42dfb, type: 3}
+  smithsonCleanWoundsSFX: {fileID: 8300000, guid: 231838d2fb47a164abec5fb8cf049b6a, type: 3}
   zorCleaveSFX: {fileID: 8300000, guid: f30f5cb6ad803914688cdd4e88b30ba1, type: 3}
   zorAngySFX: {fileID: 8300000, guid: 6a81ca39e09d6664f98792766a5ffb74, type: 3}
   zorZapSFX: {fileID: 8300000, guid: 68b1cd0f24df06d4d93e30fb6f956d82, type: 3}
