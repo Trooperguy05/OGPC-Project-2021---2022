@@ -38,9 +38,6 @@ public class PhylactertyScript : MonoBehaviour
         else if (isSwampPhy && pP.destroyedSwampPhylactery) {
             gameObject.SetActive(false);
         }
-        if (isSwampPhy) {
-            Debug.Log("h");
-        }
     }
 
     // if the phylactery is interactable, the player can destroy it \\

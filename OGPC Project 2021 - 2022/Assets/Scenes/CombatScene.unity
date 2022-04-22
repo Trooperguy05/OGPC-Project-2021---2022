@@ -1371,7 +1371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  playerBiome: 0
+  playerBiome: 1
   passedTutorial: 0
   destroyedDesertPhylactery: 0
   destroyedSwampPhylactery: 0
@@ -7050,6 +7050,7 @@ MonoBehaviour:
   e3combat: {fileID: 1846267408}
   e4combat: {fileID: 839624948}
   pS: {fileID: 100334155}
+  pP: {fileID: 100334157}
   eF: {fileID: 1105582663}
   tI: {fileID: 1105582665}
   hM: {fileID: 2142421438}

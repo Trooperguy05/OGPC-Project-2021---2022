@@ -42,6 +42,7 @@ public class CombatManager : MonoBehaviour
     [Header("Other Scripts")]
     // party stats script
     public PartyStats pS;
+    public PlayerProgress pP;
     // script for enemy formation
     public EnemyFormation eF;
     // script for turn indicator
@@ -55,8 +56,8 @@ public class CombatManager : MonoBehaviour
 
     // load the party stats when the player enters combat
     void Start() {
-        Debug.Log("Loading Party Stats");
         FindObjectOfType<PartyStats>().LoadData();
+        pP.loadPlayerData();
 
         // load specified enemy
         getSpecifiedEnemy();
@@ -82,21 +83,6 @@ public class CombatManager : MonoBehaviour
     }
 
     void Update() {
-        // prints turn order
-        // will remove later
-        if (Input.GetKeyDown(KeyCode.I)) {
-            startCombat();
-            sortInitiative(initiativeCount);
-            string str = "";
-            for (int i = 0; i < initiativeNames.Length; i++) {
-                str += initiativeNames[i] + ", ";
-            }
-            Debug.Log(str);
-
-            eF.organizeField();
-            tI.updateIndicator();
-        }
-
         if (!combatStarted) {
             // update healthbar and manabar
             hM.updateHealthbarValues();
@@ -338,7 +324,16 @@ public class CombatManager : MonoBehaviour
         int i = 0;
         while (enemySlotsLeft > 0) {
             if (e1 == null) {
-                e1 = new EnemyCreator();
+                // different enemies based on player biome
+                if (pP.playerBiome == PlayerProgress.Biome.desert) {
+                    int chance = Random.Range(1, 3);
+                    e1 = new EnemyCreator(chance);
+                }
+                else if (pP.playerBiome == PlayerProgress.Biome.swamp) {
+                    int chance = Random.Range(3, 4);
+                    e1 = new EnemyCreator(chance);
+                }
+                // create the enemy
                 if (enemySlotsLeft >= e1.size) {
                     enemySlotsLeft -= e1.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e1.dexterity;   

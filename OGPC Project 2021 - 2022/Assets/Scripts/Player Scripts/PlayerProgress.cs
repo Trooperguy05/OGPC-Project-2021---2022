@@ -33,8 +33,10 @@ public class PlayerProgress : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayerProgress();
         if (data != null) {
             // load the player position
-            player.transform.position = new Vector3(data.playerPosition[0], data.playerPosition[1], data.playerPosition[2]);
-
+            if (player != null) {
+                player.transform.position = new Vector3(data.playerPosition[0], data.playerPosition[1], data.playerPosition[2]);
+            }
+            
             // load the player biome
             playerBiome = data.playerBiome;
 

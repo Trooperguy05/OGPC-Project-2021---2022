@@ -57,6 +57,15 @@ public class EnemyCreator
             dexterity = -1;
             size = 1;
         }
+        // crocodile
+        else if (chance == 3) {
+            name = "Crocodile";
+            healthMax = 110;
+            manaMax = 0;
+            dexterity = 2;
+            size = 1;
+        }
+        // worm miniboss
         else if (chance == 7) {
             name = "Worm";
             healthMax = 500;
@@ -85,6 +94,15 @@ public class EnemyCreator
             dexterity = -1;
             size = 1;
         }
+        // crocodile
+        else if (num == 3) {
+            name = "Crocodile";
+            healthMax = 110;
+            manaMax = 0;
+            dexterity = 2;
+            size = 1;
+        }
+        // worm miniboss
         else if (num == 7) {
             name = "Worm";
             healthMax = 500;

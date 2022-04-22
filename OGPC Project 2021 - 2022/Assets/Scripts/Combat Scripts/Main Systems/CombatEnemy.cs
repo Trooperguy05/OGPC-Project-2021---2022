@@ -40,5 +40,10 @@ public class CombatEnemy : MonoBehaviour
             GetComponent<BoxCollider2D>().size = new Vector3(3, 3);
             health = eOb.health;
         }
+        // swamp enemies
+        else if (eOb.name == "Crocodile") {
+            GetComponent<Animator>().SetBool("isCrocodile", true);
+            health = eOb.health;
+        }
     }
 }
