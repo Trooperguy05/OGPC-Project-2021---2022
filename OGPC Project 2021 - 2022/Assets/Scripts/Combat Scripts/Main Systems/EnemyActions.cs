@@ -86,15 +86,14 @@ public class EnemyActions : MonoBehaviour
     //decides what party member is targeted by an enemy
     public string enemyHit(int dmg)
     {
-        int target = 0;
         string character = "";
-        int healthCheck = 0;
-        while (healthCheck < 1)
-        {
-            target = Random.Range(1, 5);
-            if (target == 1)
-            {
-                healthCheck = pS.char1HP;
+        // until the enemy finds a target, loop
+        while (true) {
+            // get a random player character
+            int target = Random.Range(1, 5);
+
+            // if raza is alive, target him
+            if (target == 1 && pS.char1HP > 0) {
                 character = "raza";
                 // deal damage
                 pS.char1HP -= dmg;
@@ -103,9 +102,8 @@ public class EnemyActions : MonoBehaviour
                 // exit loop
                 break;
             }
-            else if (target == 2)
-            {
-                healthCheck = pS.char2HP;
+            // if dorne is alive, target him
+            else if (target == 2 && pS.char2HP > 0) {
                 character = "dorne";
                 // deal damage
                 pS.char2HP -= dmg;
@@ -114,20 +112,18 @@ public class EnemyActions : MonoBehaviour
                 // exit loop
                 break;
             }
-            else if (target == 3)
-            {
-                healthCheck = pS.char3HP;
+            // if smithson is alive, target her
+            else if (target == 3 && pS.char3HP > 0) {
                 character = "smithson";
                 // deal damage
                 pS.char3HP -= dmg;
                 StartCoroutine(hM.dealDamage(hM.smithsonSlider, dmg, 0.01f));
                 pA.smithsonAnimator.SetTrigger("hurt");
                 // exit loop
-                break;
+                break;                
             }
-            else
-            {
-                healthCheck = pS.char4HP;
+            // if zor is alive, target him
+            else if (target == 4 && pS.char4HP > 0) {
                 character = "zor";
                 // deal damage
                 pS.char4HP -= dmg;
