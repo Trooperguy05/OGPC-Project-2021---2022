@@ -17,6 +17,7 @@ public class MusicDetection : MonoBehaviour
     public AudioClip SC;
     public AudioClip MC;
     public AudioClip BC;
+    public AudioClip Play;
 
 
 
@@ -26,6 +27,7 @@ public class MusicDetection : MonoBehaviour
     {
         cM = GameObject.Find("Combat Manager").GetComponent<CombatManager>();
         PP = GameObject.Find("Party Manager").GetComponent<PlayerProgress>();
+
     }
 
     // Update is called once per frame
@@ -33,21 +35,25 @@ public class MusicDetection : MonoBehaviour
     {
         if (!playingMusic){
             if (cM.initiativeNames.Contains("Worm") || cM.initiativeNames.Contains("Mantrap") || cM.initiativeNames.Contains("Giant")){
-                AS.PlayOneShot(MC, 1);
+                Play = MC;
             }
             else if (PP.playerBiome == PlayerProgress.Biome.desert){
-                AS.PlayOneShot(DC, 1);
+                Play = DC;
             }
             else if (PP.playerBiome == PlayerProgress.Biome.swamp){
-                AS.PlayOneShot(SC, 1);
+                Play = SC;
+
             }
             else if (PP.playerBiome == PlayerProgress.Biome.forest){
-                AS.PlayOneShot(FC, 1);
+                Play = FC;
             }
 
             playingMusic = true;
+            AS.clip = Play;
+            AS.Play(0);
 
         }
+        
         
     }
 }

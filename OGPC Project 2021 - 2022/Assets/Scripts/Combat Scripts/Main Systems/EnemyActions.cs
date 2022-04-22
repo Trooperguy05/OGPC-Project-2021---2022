@@ -17,6 +17,25 @@ public class EnemyActions : MonoBehaviour
     private StatusManager sM;
     private HealthbarManager hM;
     private BattleMenuManager bMM;
+    
+    //enemy sfx variables
+    public AudioSource AS;
+    public AudioClip ScorpSting;
+    public AudioClip ScorpSnip;
+    public AudioClip MummyWalk;
+    public AudioClip WormHole;
+    public AudioClip WormBite;
+    public AudioClip SnakeCoil;
+    public AudioClip SnakeBite;
+    public AudioClip CrocSpin;
+    public AudioClip CrocBite;
+    public AudioClip TrapSnap;
+    public AudioClip TrapClamp;
+    public AudioClip Slime;
+    public AudioClip SpiderBite;
+    public AudioClip SpiderWeb;
+    public AudioClip GiantStrike;
+    public AudioClip GiantStomp;
 
     //enemy specific variables
     [Header("Enemy Abilities")]
@@ -174,6 +193,8 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(bMM.typeActionText("scorpion missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
+        AS.PlayOneShot(ScorpSting, 1);
+
     }
 
     ///Pincers\\\
@@ -195,6 +216,7 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(bMM.typeActionText("scorpion missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
+        AS.PlayOneShot(ScorpSnip, 1);
     }
 
     /////Mummy Attacks\\\\\
@@ -217,6 +239,7 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(bMM.typeActionText("mummy missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
+        AS.PlayOneShot(MummyWalk, 1);
     }
 
     /////Desert Miniboss\\\\\
@@ -234,6 +257,7 @@ public class EnemyActions : MonoBehaviour
         Animator animator = findAnimator();
         animator.SetTrigger("act");
         StartCoroutine(animPlaying(animator, "wormCombat_active"));
+        AS.PlayOneShot(WormHole, 1);
     }
 
     ///Sand-stained Maw\\\
@@ -249,6 +273,7 @@ public class EnemyActions : MonoBehaviour
         Animator animator = findAnimator();
         animator.SetTrigger("act");
         StartCoroutine(animPlaying(animator, "wormCombat_active"));
+        AS.PlayOneShot(WormBite, 1);
     }
 
     //////Swamp\\\\\\
@@ -261,6 +286,7 @@ public class EnemyActions : MonoBehaviour
         snakeCoil = true;
         //will lower initiative to minimum on target until the anaconda dies
         enemyDone = true;
+        AS.PlayOneShot(SnakeCoil, 1);
     }
 
     ///Fangs\\\
@@ -291,6 +317,7 @@ public class EnemyActions : MonoBehaviour
             enemyHit(20);
         }
         enemyDone = true;
+        AS.PlayOneShot(SnakeBite, 1);
     }
 
     /////Crocodile Attacks\\\\\
@@ -303,6 +330,7 @@ public class EnemyActions : MonoBehaviour
             enemyHit(30);
         }
         enemyDone = true;
+        AS.PlayOneShot(CrocBite, 1);
     }
 
     ///Death Roll\\\
@@ -312,6 +340,7 @@ public class EnemyActions : MonoBehaviour
         sM.statusAdd(target, "bleed", 3);
         // inflicts bleed condition for 3 turns (5 dmg per turn)
         enemyDone = true;
+        AS.PlayOneShot(CrocSpin, 1);
     }
 
     /////Swamp Miniboss\\\\\
@@ -326,6 +355,7 @@ public class EnemyActions : MonoBehaviour
             //lowers enemy initiative to minimum for 2 turns
         }
         enemyDone = true;
+        AS.PlayOneShot(TrapSnap, 1);
     }
 
     public void trapClamp()
@@ -337,6 +367,7 @@ public class EnemyActions : MonoBehaviour
             //If target is slower than man trap, deal an additional 10 damage
         }
         enemyDone = true;
+        AS.PlayOneShot(TrapClamp, 1);
     }
 
     //////Forest\\\\\\
@@ -352,6 +383,7 @@ public class EnemyActions : MonoBehaviour
             //decreases target initiative by 1
         }
         enemyDone = true;
+        AS.PlayOneShot(Slime, 1);
     }
 
     /////Giant Spider Attacks\\\\\
@@ -367,6 +399,7 @@ public class EnemyActions : MonoBehaviour
             // inflicts poison for 3 turns on the target
         }
         enemyDone = true;
+        AS.PlayOneShot(SpiderBite, 1);
     }
 
     ///Webbing\\\
@@ -379,6 +412,7 @@ public class EnemyActions : MonoBehaviour
             // subtracts 2 from intiative until combat ends
         }
         enemyDone = true;
+        AS.PlayOneShot(SpiderWeb, 1);
     }
 
     /////Forest Miniboss\\\\\
@@ -393,6 +427,7 @@ public class EnemyActions : MonoBehaviour
             enemyHit(50);
         }
         enemyDone = true;
+        AS.PlayOneShot(GiantStrike, 1);
     }
 
     ///Stomp\\\
@@ -400,5 +435,6 @@ public class EnemyActions : MonoBehaviour
     {
         //lowers initiative of all party members by 1
         enemyDone = true;
+        AS.PlayOneShot(GiantStomp, 1);
     }
 }
