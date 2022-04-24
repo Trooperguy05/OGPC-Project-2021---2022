@@ -180,21 +180,21 @@ public class EnemyActions : MonoBehaviour
         int toHit = Random.Range(1, 100);
         if (toHit <= 90)
         {
+            // damage and status effect
             string character = enemyHit(10);
+            sM.statusAdd(character, "poison", 3);
             // action text
             StartCoroutine(bMM.typeActionText("scorpion used sting!", 0.01f));
             // play attack animation
             Animator animator = findAnimator();
             animator.SetTrigger("act");
             StartCoroutine(animPlaying(animator, "scorpionCombat_active"));
-            //sM.statusAdd(character, "poison", 3);
         }
         else {
             StartCoroutine(bMM.typeActionText("scorpion missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
         AS.PlayOneShot(ScorpSting, 1);
-
     }
 
     ///Pincers\\\
@@ -328,8 +328,17 @@ public class EnemyActions : MonoBehaviour
         if (toHit <= 90)
         {
             enemyHit(30);
+            // action text
+            StartCoroutine(bMM.typeActionText("crocodile used bite!", 0.01f));
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "crocodileCombat_active"));
         }
-        enemyDone = true;
+        else {
+            StartCoroutine(bMM.typeActionText("crocodile missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
+        }
         AS.PlayOneShot(CrocBite, 1);
     }
 

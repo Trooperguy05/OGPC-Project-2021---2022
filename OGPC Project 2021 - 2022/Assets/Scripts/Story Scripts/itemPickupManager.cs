@@ -10,7 +10,7 @@ public class itemPickupManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        loadItems();
     }
 
     // save and load item data \\

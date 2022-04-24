@@ -53,6 +53,8 @@ public class CombatManager : MonoBehaviour
     // action scripts to monitor who's done what \\
     public PlayerActions playerActions;
     public EnemyActions enemyActions;
+    // status manager
+    public StatusManager sM;
 
     // load the party stats when the player enters combat
     void Start() {
@@ -290,6 +292,8 @@ public class CombatManager : MonoBehaviour
             tI.updateIndicator();
             // regen some mana for smithson
             StartCoroutine(mM.regenMana(mM.smithsonManabarSlider, 15, 0.01f));
+            // update statuses
+            sM.statusUpdate();
         }
     }
 
@@ -348,7 +352,17 @@ public class CombatManager : MonoBehaviour
                 }
             }
             else if (e2 == null) {
-                e2 = new EnemyCreator();
+                // different enemies based on player biome
+                if (pP.playerBiome == PlayerProgress.Biome.desert) {
+                    int chance = Random.Range(1, 3);
+                    e2 = new EnemyCreator(chance);
+                }
+                else if (pP.playerBiome == PlayerProgress.Biome.swamp) {
+                    int chance = Random.Range(3, 4);
+                    e2 = new EnemyCreator(chance);
+                }
+                //e2 = new EnemyCreator();
+                // create the new enemy
                 if (enemySlotsLeft >= e2.size) {
                     enemySlotsLeft -= e2.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e2.dexterity;
@@ -363,7 +377,17 @@ public class CombatManager : MonoBehaviour
                 }
             }
             else if (e3 == null) {
-                e3 = new EnemyCreator();
+                // different enemies based on player biome
+                if (pP.playerBiome == PlayerProgress.Biome.desert) {
+                    int chance = Random.Range(1, 3);
+                    e3 = new EnemyCreator(chance);
+                }
+                else if (pP.playerBiome == PlayerProgress.Biome.swamp) {
+                    int chance = Random.Range(3, 4);
+                    e3 = new EnemyCreator(chance);
+                }
+                //e3 = new EnemyCreator();
+                // create new enemy
                 if (enemySlotsLeft >= e3.size) {
                     enemySlotsLeft -= e3.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e3.dexterity;
@@ -378,7 +402,17 @@ public class CombatManager : MonoBehaviour
                 }
             }
             else if (e4 == null) {
-                e4 = new EnemyCreator();
+                // different enemies based on player biome
+                if (pP.playerBiome == PlayerProgress.Biome.desert) {
+                    int chance = Random.Range(1, 3);
+                    e4 = new EnemyCreator(chance);
+                }
+                else if (pP.playerBiome == PlayerProgress.Biome.swamp) {
+                    int chance = Random.Range(3, 4);
+                    e4 = new EnemyCreator(chance);
+                }
+                //e4 = new EnemyCreator();
+                // create new enemy
                 if (enemySlotsLeft >= e4.size) {
                     enemySlotsLeft -= e4.size;
                     initiativeCount[4+i] = Random.Range(1, 20) + e4.dexterity;

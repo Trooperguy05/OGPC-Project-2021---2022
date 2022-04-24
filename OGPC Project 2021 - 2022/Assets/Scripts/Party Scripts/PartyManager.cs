@@ -64,19 +64,18 @@ public class PartyManager : MonoBehaviour
     // variable to make sure some actions are only called once
     private bool partyOrderChanged = false;
 
-    // load the player data before everything else
+    // set positions of the wheel and load player data
     void Awake() {
-        // loading the player progress data
-        FindObjectOfType<PlayerProgress>().loadPlayerData();
-    }
-    // caching
-    void Start() {
         // caching the positions for the character visuals
         leadPosition = new Vector3(player.transform.position.x, player.transform.position.y + imageOffset, 0f);
         secondPosition = new Vector3(player.transform.position.x + imageOffset, player.transform.position.y, 0f);
         thirdPosition = new Vector3(player.transform.position.x, player.transform.position.y - imageOffset, 0f);
         fourthPosition = new Vector3(player.transform.position.x - imageOffset, player.transform.position.y, 0f);
-        
+        // loading the player progress data
+        FindObjectOfType<PlayerProgress>().loadPlayerData();
+    }
+    // caching
+    void Start() {        
         // caching the RectTransforms of the character UI elements
         character1RT = character1.GetComponent<RectTransform>();
         character2RT = character2.GetComponent<RectTransform>();

@@ -7057,6 +7057,7 @@ MonoBehaviour:
   mM: {fileID: 2142421440}
   playerActions: {fileID: 1573467614}
   enemyActions: {fileID: 1573467616}
+  sM: {fileID: 1105582664}
 --- !u!114 &1105582663
 MonoBehaviour:
   m_ObjectHideFlags: 0

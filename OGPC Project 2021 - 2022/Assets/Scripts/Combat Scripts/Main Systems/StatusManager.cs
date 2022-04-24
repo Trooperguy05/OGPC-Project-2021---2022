@@ -13,9 +13,11 @@ public class StatusManager : MonoBehaviour
     public List<int> effectDurations = new List<int>();
 
     private PartyStats pM;
+    private HealthbarManager hM;
 
     void Start(){
         pM = GameObject.Find("Party Manager").GetComponent<PartyStats>();
+        hM = GameObject.Find("Healthbar Manager").GetComponent<HealthbarManager>();
     }
 
     /// Adds statuses to lists
@@ -54,18 +56,22 @@ public class StatusManager : MonoBehaviour
         if (nameList[index] == "Raza" && effectDurations[index] != 0){
             effectDurations[index] -= 1;
             pM.char1HP -= dmg;
+            StartCoroutine(hM.dealDamage(hM.razaSlider, dmg, 0.01f));
         }
         if (nameList[index] == "Zor" && effectDurations[index] != 0){
             effectDurations[index] -= 1;
             pM.char4HP -= dmg;
+            StartCoroutine(hM.dealDamage(hM.zorSlider, dmg, 0.01f));
         }
         if (nameList[index] == "Smithson" && effectDurations[index] != 0){
             effectDurations[index] -= 1;
             pM.char3HP -= dmg;
+            StartCoroutine(hM.dealDamage(hM.smithsonSlider, dmg, 0.01f));
         }
         if (nameList[index] == "Dorne" && effectDurations[index] != 0){
             effectDurations[index] -= 1;
             pM.char2HP -= dmg;
+            StartCoroutine(hM.dealDamage(hM.dorneSlider, dmg, 0.01f));
         }
     }
 }
