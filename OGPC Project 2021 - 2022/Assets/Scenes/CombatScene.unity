@@ -8857,6 +8857,7 @@ GameObject:
   - component: {fileID: 1490634641}
   - component: {fileID: 1490634643}
   - component: {fileID: 1490634642}
+  - component: {fileID: 1490634644}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -8903,7 +8904,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 119673dd13222ba439426878ef8852b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42c5a33e15efdfe48a55c529c55d2066, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8921,6 +8922,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490634640}
   m_CullTransparentMesh: 1
+--- !u!114 &1490634644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490634640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32abef941182dac43a654ac0a98dc940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  desertBackground: {fileID: 21300000, guid: 119673dd13222ba439426878ef8852b7, type: 3}
+  swampBackground: {fileID: 21300000, guid: 42c5a33e15efdfe48a55c529c55d2066, type: 3}
+  forestBackground: {fileID: 0}
+  updatedBackground: 0
 --- !u!1 &1495510265
 GameObject:
   m_ObjectHideFlags: 0

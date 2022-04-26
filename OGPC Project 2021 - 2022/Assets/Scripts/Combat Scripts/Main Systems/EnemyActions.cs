@@ -322,11 +322,15 @@ public class EnemyActions : MonoBehaviour
 
     /////Crocodile Attacks\\\\\
     ///Bite\\\
-    public void crocBite()
+    public IEnumerator crocBite()
     {
+        yield return new WaitForSeconds(1f);
+
         int toHit = Random.Range(1, 100);
+        // hit
         if (toHit <= 90)
         {
+            // damage
             enemyHit(30);
             // action text
             StartCoroutine(bMM.typeActionText("crocodile used bite!", 0.01f));
@@ -335,6 +339,7 @@ public class EnemyActions : MonoBehaviour
             animator.SetTrigger("act");
             StartCoroutine(animPlaying(animator, "crocodileCombat_active"));
         }
+        // miss
         else {
             StartCoroutine(bMM.typeActionText("crocodile missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
@@ -343,12 +348,28 @@ public class EnemyActions : MonoBehaviour
     }
 
     ///Death Roll\\\
-    public void crocSpin()
+    public IEnumerator crocSpin()
     {
-        string target = enemyHit(20);
-        sM.statusAdd(target, "bleed", 3);
-        // inflicts bleed condition for 3 turns (5 dmg per turn)
-        enemyDone = true;
+        yield return new WaitForSeconds(1f);
+
+        int toHit = Random.Range(1, 101);
+        // hit
+        if (toHit <= 90) {
+            // damage
+            string target = enemyHit(20);
+            sM.statusAdd(target, "bleed", 3);
+            // action text
+            StartCoroutine(bMM.typeActionText("crocodile used death spin!", 0.01f));
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "crocodileCombat_active"));
+        }
+        // miss
+        else {
+            StartCoroutine(bMM.typeActionText("crocodile missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
+        }
         AS.PlayOneShot(CrocSpin, 1);
     }
 

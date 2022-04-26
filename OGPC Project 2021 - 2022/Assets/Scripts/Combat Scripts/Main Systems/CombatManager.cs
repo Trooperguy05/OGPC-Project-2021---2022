@@ -97,7 +97,7 @@ public class CombatManager : MonoBehaviour
         }
 
         ///   Turn-Based Combat   \\\
-        // if it is one of the player characters' turn
+        // if it is one of the player characters' turn \\
         if (initiativeNames[initiativeIndex] == "Raza") {
             if (pS.char1HP <= 0 || roundNum == playerActions.razaStunRound) {
                 initiativeIndex++;
@@ -150,7 +150,7 @@ public class CombatManager : MonoBehaviour
                 tI.updateIndicator();
             }
         }
-        // if it is one of the enemy's turns
+        // if it is one of the enemy's turns \\
         // if the enemy is a scorpion
         if (initiativeNames[initiativeIndex] == "Scorpion") {
             if (gameObjectsInCombat[initiativeIndex].GetComponent<CombatEnemy>().eOb.health > 0) {
@@ -192,6 +192,34 @@ public class CombatManager : MonoBehaviour
                 initiativeIndex++;
                 newRound();
                 tI.updateIndicator();  
+            }
+            if (enemyActions.enemyDone) {
+                enemyActions.enemyDone = false;
+                tookChoice = false;
+                initiativeIndex++;
+                newRound();
+                tI.updateIndicator();
+            }
+        }
+        // if enemy is a crocodile
+        else if (initiativeNames[initiativeIndex] == "Crocodile") {
+            if (gameObjectsInCombat[initiativeIndex].GetComponent<CombatEnemy>().eOb.health > 0) {
+                if (!tookChoice) {
+                    int choice = Random.Range(1, 3);
+                    if (choice == 1) {
+                        tookChoice = true;
+                        StartCoroutine(enemyActions.crocBite());
+                    }
+                    else if (choice == 2) {
+                        tookChoice = true;
+                        StartCoroutine(enemyActions.crocSpin());
+                    }
+                }
+            }
+            else {
+                initiativeIndex++;
+                newRound();
+                tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
