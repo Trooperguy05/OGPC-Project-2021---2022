@@ -43,6 +43,12 @@ public class CombatEnemy : MonoBehaviour
         // swamp enemies
         else if (eOb.name == "Crocodile") {
             GetComponent<Animator>().SetBool("isCrocodile", true);
+            GetComponent<BoxCollider2D>().size = new Vector2(1.5f, 0.7f);
+            GetComponent<BoxCollider2D>().offset = new Vector2(0, -0.2f);
+            health = eOb.health;
+        }
+        else if (eOb.name == "Snake") {
+            GetComponent<Animator>().SetBool("isSnake", true);
             health = eOb.health;
         }
     }

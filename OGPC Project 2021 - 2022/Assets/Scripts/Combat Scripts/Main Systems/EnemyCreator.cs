@@ -62,6 +62,14 @@ public class EnemyCreator
             name = "Crocodile";
             healthMax = 110;
             manaMax = 0;
+            dexterity = 0;
+            size = 1;
+        }
+        // snake
+        else if (chance == 4) {
+            name = "Snake";
+            healthMax = 65;
+            manaMax = 0;
             dexterity = 2;
             size = 1;
         }
@@ -98,6 +106,14 @@ public class EnemyCreator
         else if (num == 3) {
             name = "Crocodile";
             healthMax = 110;
+            manaMax = 0;
+            dexterity = 0;
+            size = 1;
+        }
+        // snake
+        else if (num == 4) {
+            name = "Snake";
+            healthMax = 65;
             manaMax = 0;
             dexterity = 2;
             size = 1;

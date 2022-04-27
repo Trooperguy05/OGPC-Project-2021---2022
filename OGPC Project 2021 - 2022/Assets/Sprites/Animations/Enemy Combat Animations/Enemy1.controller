@@ -1,5 +1,30 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1101 &-8913344401869646187
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: isSnake
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 754288157976066197}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75
+  m_HasExitTime: 0
+  m_HasFixedDuration: 0
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &-8849213751192770427
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -47,6 +72,28 @@ AnimatorStateTransition:
   m_ExitTime: 0.87603307
   m_HasExitTime: 0
   m_HasFixedDuration: 0
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &-6753338383101375150
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 754288157976066197}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75409836
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -127,6 +174,31 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1101 &-5591743040013741535
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: hurt
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -1768897295363862481}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.87603307
+  m_HasExitTime: 0
+  m_HasFixedDuration: 0
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1102 &-5494481118507473983
 AnimatorState:
   serializedVersion: 6
@@ -179,6 +251,33 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &-4953054542339862302
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: snakeCombat_active
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: -3090429586647635878}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: d05d42c607ee4a544b15836840f4e2d6, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1101 &-4606391618149822063
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -391,43 +490,52 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -4328900760996850807}
-    m_Position: {x: -560, y: -130, z: 0}
+    m_Position: {x: -640, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8528181365591527623}
     m_Position: {x: -80, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6289070217434500907}
-    m_Position: {x: -440, y: -50, z: 0}
+    m_Position: {x: -520, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1677072187475858289}
-    m_Position: {x: -320, y: -130, z: 0}
+    m_Position: {x: -400, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1334241051470450539}
-    m_Position: {x: -270, y: -210, z: 0}
+    m_Position: {x: -580, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2973238514301105065}
-    m_Position: {x: -240, y: -330, z: 0}
+    m_Position: {x: -550, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5720057775823854421}
-    m_Position: {x: -40, y: -280, z: 0}
+    m_Position: {x: -350, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4188636669878440249}
-    m_Position: {x: 180, y: -230, z: 0}
+    m_Position: {x: -380, y: -210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6660952715799127478}
-    m_Position: {x: 30, y: -130, z: 0}
+    m_Position: {x: -530, y: -110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7760015598921890577}
-    m_Position: {x: 320, y: -160, z: 0}
+    m_Position: {x: -240, y: -140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3667686519057316255}
-    m_Position: {x: 230, y: 20, z: 0}
+    m_Position: {x: -140, y: -250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5494481118507473983}
-    m_Position: {x: 270, y: -50, z: 0}
+    m_Position: {x: -100, y: -320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4386717109713024092}
-    m_Position: {x: 460, y: 20, z: 0}
+    m_Position: {x: 90, y: -250, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 754288157976066197}
+    m_Position: {x: 170, y: -90, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -4953054542339862302}
+    m_Position: {x: 300, y: -190, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -1768897295363862481}
+    m_Position: {x: 420, y: -90, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -460,6 +568,28 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1101 &-3090429586647635878
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 754288157976066197}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.87603307
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &-2502129036454604612
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -482,6 +612,33 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &-1768897295363862481
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: snakeCombat_hurt
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: -6753338383101375150}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 61ce8ed6698a6d5499b4893bd85ee9b5, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1101 &-1735209045525781079
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -605,6 +762,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: isSnake
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -618,6 +781,31 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!1101 &265854458971530169
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: act
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -4953054542339862302}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.87603307
+  m_HasExitTime: 0
+  m_HasFixedDuration: 0
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &329858375486132736
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -640,6 +828,34 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &754288157976066197
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: snakeCombat_idle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: 265854458971530169}
+  - {fileID: -5591743040013741535}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 325ae322bcfed20479f2ec9fd3cdf28e, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1101 &895939588290064814
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -910,6 +1126,7 @@ AnimatorState:
   - {fileID: 924510602262801964}
   - {fileID: -870798652578475461}
   - {fileID: 895939588290064814}
+  - {fileID: -8913344401869646187}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0

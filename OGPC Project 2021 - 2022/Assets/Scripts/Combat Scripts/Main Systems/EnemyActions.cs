@@ -40,7 +40,7 @@ public class EnemyActions : MonoBehaviour
     //enemy specific variables
     [Header("Enemy Abilities")]
     public bool snakeCoil = false;
-    public int snakeCoilTarget;
+    public string snakeCoilTarget;
 
     // other important variables for dictating flow of combat \\
     [Header("Other Variables")]
@@ -280,43 +280,85 @@ public class EnemyActions : MonoBehaviour
 
     /////Giant Anaconda Attacks\\\\\
     ///Constrict\\\
-    public void snakeConstrict()
+    public IEnumerator snakeConstrict()
     {
+        yield return new WaitForSeconds(1f);
+
+        int reduceAmt = 1;
+        /// 'coil' the target
         string snakeCoilTarget = enemyHit(0);
         snakeCoil = true;
+        // reduce initiative
+        if (snakeCoilTarget == "raza") {
+            cm.initiativeCount[0] -= reduceAmt;
+        }
+        else if (snakeCoilTarget == "dorne") {
+            cm.initiativeCount[1] -= reduceAmt;
+        }
+        else if (snakeCoilTarget == "smithson") {
+            cm.initiativeCount[2] -= reduceAmt;
+        }
+        else if (snakeCoilTarget == "zor") {
+            cm.initiativeCount[3] -= reduceAmt;
+        }
+        cm.sortInitiative(cm.initiativeCount);
+        
+        // action text
+        StartCoroutine(bMM.typeActionText("anaconda used constrict!", 0.01f));
+        // play attack animation
+        Animator animator = findAnimator();
+        animator.SetTrigger("act");
+        StartCoroutine(animPlaying(animator, "snakeCombat_active"));
         //will lower initiative to minimum on target until the anaconda dies
-        enemyDone = true;
         AS.PlayOneShot(SnakeCoil, 1);
     }
 
     ///Fangs\\\
-    public void snakeBite()
+    public IEnumerator snakeBite()
     {
-        int toHit = Random.Range(1, 100);
+        yield return new WaitForSeconds(1f);
+
+        // if the snake has coiled a target, attack them
         if (snakeCoil)
         {
-            if (snakeCoilTarget == 1)
-            {
+            if (snakeCoilTarget == "raza") {
                 pS.char1HP -= 20;
+                StartCoroutine(hM.dealDamage(hM.razaSlider, 20, 0.01f));
             }
-            else if (snakeCoilTarget == 2)
-            {
+            else if (snakeCoilTarget == "dorne") {
                 pS.char2HP -= 20;
+                StartCoroutine(hM.dealDamage(hM.dorneSlider, 20, 0.01f));
             }
-            else if (snakeCoilTarget == 3)
-            {
+            else if (snakeCoilTarget == "smithson") {
                 pS.char3HP -= 20;
+                StartCoroutine(hM.dealDamage(hM.smithsonSlider, 20, 0.01f));
             }
-            else
-            {
+            else if (snakeCoilTarget == "zor") {
                 pS.char4HP -= 20;
+                StartCoroutine(hM.dealDamage(hM.zorSlider, 20, 0.01f));
+            }
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "snakeCombat_active"));
+        }
+        else {
+            // normal to hit attack
+            int toHit = Random.Range(1, 100);
+            if (toHit <= 90) {
+                enemyHit(20);
+                // action text
+                StartCoroutine(bMM.typeActionText("anaconda used bite!", 0.01f));
+                // play attack animation
+                Animator animator = findAnimator();
+                animator.SetTrigger("act");
+                StartCoroutine(animPlaying(animator, "snakeCombat_active"));
+            }
+            else {
+                StartCoroutine(bMM.typeActionText("anaconda missed!", 0.01f));
+                StartCoroutine(pauseOnMiss(pauseWait));
             }
         }
-        else if (toHit <= 90)
-        {
-            enemyHit(20);
-        }
-        enemyDone = true;
         AS.PlayOneShot(SnakeBite, 1);
     }
 
