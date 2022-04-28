@@ -418,27 +418,88 @@ public class EnemyActions : MonoBehaviour
     /////Swamp Miniboss\\\\\
     /////Man Trap Attacks\\\\\
     ///Snap Shut\\\
-    public void trapSnap()
+    public IEnumerator trapSnap()
     {
+        yield return new WaitForSeconds(1f);
+
+        int reduceAmt = 2;
         int toHit = Random.Range(1, 100);
+        // hit
         if (toHit <= 90)
         {
             string target = enemyHit(25);
-            //lowers enemy initiative to minimum for 2 turns
+            if (target == "raza") {
+                cm.initiativeCount[0] -= reduceAmt;
+            }
+            else if (target == "dorne") {
+                cm.initiativeCount[1] -= reduceAmt;
+            }
+            else if (target == "smithson") {
+                cm.initiativeCount[2] -= reduceAmt;
+            }
+            else if (target == "zor") {
+                cm.initiativeCount[3] -= reduceAmt;
+            }
+            cm.sortInitiative(cm.initiativeCount);
+            // action text
+            StartCoroutine(bMM.typeActionText("man trap used snap shut!", 0.01f));
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "manTrapCombat_active"));
         }
-        enemyDone = true;
+        // miss
+        else {
+            StartCoroutine(bMM.typeActionText("man trap missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
+        }
         AS.PlayOneShot(TrapSnap, 1);
     }
 
-    public void trapClamp()
+    /// Clamp Shut \\\
+    public IEnumerator trapClamp()
     {
+        yield return new WaitForSeconds(1f);
+
         int toHit = Random.Range(1, 100);
+        // hit
         if (toHit <= 90)
         {
-            string target = enemyHit(30);
-            //If target is slower than man trap, deal an additional 10 damage
+            int dmg = 30;
+            int ranChoice = Random.Range(1, 5);
+            // if target is lower in initiative, increase damage
+            if (cm.initiativeCount[ranChoice-1] < cm.initiativeCount[4]) {
+                dmg += 10;
+            }
+            // deal damage
+            if (ranChoice == 1) {
+                pS.char1HP -= dmg;
+                StartCoroutine(hM.dealDamage(hM.razaSlider, dmg, 0.01f));
+            }
+            else if (ranChoice == 2) {
+                pS.char2HP -= dmg;
+                StartCoroutine(hM.dealDamage(hM.dorneSlider, dmg, 0.01f));
+            }
+            else if (ranChoice == 3) {
+                pS.char3HP -= dmg;
+                StartCoroutine(hM.dealDamage(hM.smithsonSlider, dmg, 0.01f));
+            }
+            else if (ranChoice == 4) {
+                pS.char4HP -= dmg;
+                StartCoroutine(hM.dealDamage(hM.zorSlider, dmg, 0.01f));
+            }
+            // action text
+            StartCoroutine(bMM.typeActionText("man trap used clamp!", 0.01f));
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "manTrapCombat_active"));
         }
-        enemyDone = true;
+        // miss
+        else {
+            StartCoroutine(bMM.typeActionText("man trap missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
+        }
         AS.PlayOneShot(TrapClamp, 1);
     }
 

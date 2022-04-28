@@ -51,5 +51,11 @@ public class CombatEnemy : MonoBehaviour
             GetComponent<Animator>().SetBool("isSnake", true);
             health = eOb.health;
         }
+        else if (eOb.name == "Man Trap") {
+            GetComponent<Animator>().SetBool("isManTrap", true);
+            GetComponent<BoxCollider2D>().size = new Vector2(2, 2.5f);
+            GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.2f);
+            health = eOb.health;
+        }
     }
 }

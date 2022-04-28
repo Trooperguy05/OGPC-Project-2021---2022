@@ -126,6 +126,14 @@ public class EnemyCreator
             dexterity = -2;
             size = 4;
         }
+        // man trap miniboss
+        else if (num == 8) {
+            name = "Man Trap";
+            healthMax = 400;
+            manaMax = 0;
+            dexterity = 1;
+            size = 4;
+        }
         health = healthMax;
         mana = manaMax;
     }

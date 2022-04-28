@@ -285,6 +285,34 @@ public class CombatManager : MonoBehaviour
                 tI.updateIndicator();
             }
         }
+        // if enemy is a man trap (miniboss)
+        else if (initiativeNames[initiativeIndex] == "Man Trap") {
+            if (gameObjectsInCombat[initiativeIndex].GetComponent<CombatEnemy>().eOb.health > 0) {
+                if (!tookChoice) {
+                    int choice = Random.Range(1, 3);
+                    if (choice == 1) {
+                        tookChoice = true;
+                        StartCoroutine(enemyActions.trapSnap());
+                    }
+                    else if (choice == 2) {
+                        tookChoice = true;
+                        StartCoroutine(enemyActions.trapClamp());
+                    }
+                }
+            }
+            else {
+                initiativeIndex++;
+                newRound();
+                tI.updateIndicator();
+            }
+            if (enemyActions.enemyDone) {
+                enemyActions.enemyDone = false;
+                tookChoice = false;
+                initiativeIndex++;
+                newRound();
+                tI.updateIndicator();
+            }
+        }
 
         // if initiativeNames[initiativeIndex] = "", continue to next person
         if (combatStarted) {
