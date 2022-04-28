@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class OverworldMusicDetection : MonoBehaviour
+public class OverworldOST : MonoBehaviour
 {
-    private CombatManager cM;
+
     private PlayerProgress PP;
     //Music detection variables
-    private bool playingMusic = false;
+    public bool playingMusic = false;
+
     // Audio source
     public AudioSource AS;
     //Audio Clips
@@ -17,6 +18,7 @@ public class OverworldMusicDetection : MonoBehaviour
     public AudioClip SO;
     public AudioClip PO;
     public AudioClip Play;
+    
 
 
 
@@ -24,12 +26,11 @@ public class OverworldMusicDetection : MonoBehaviour
 
     void Start()
     {
-        cM = GameObject.Find("Combat Manager").GetComponent<CombatManager>();
-        PP = GameObject.Find("Party Manager").GetComponent<PlayerProgress>();
+        PP = GameObject.Find("Party and Player Manager").GetComponent<PlayerProgress>();
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (!playingMusic){
@@ -43,6 +44,7 @@ public class OverworldMusicDetection : MonoBehaviour
             else if (PP.playerBiome == PlayerProgress.Biome.forest){
                 Play = FO;
             }
+
 
             playingMusic = true;
             AS.clip = Play;
