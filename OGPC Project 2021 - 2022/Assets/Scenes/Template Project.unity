@@ -14574,7 +14574,7 @@ MonoBehaviour:
   walkin: {fileID: 0}
   playerDirection: 3
   AS: {fileID: 845773108}
-  Walk: {fileID: 8300000, guid: 596960e85f2968b479cb9f85bc0f7097, type: 3}
+  playing: 0
 --- !u!50 &845773105
 Rigidbody2D:
   serializedVersion: 4
@@ -14643,15 +14643,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 596960e85f2968b479cb9f85bc0f7097, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

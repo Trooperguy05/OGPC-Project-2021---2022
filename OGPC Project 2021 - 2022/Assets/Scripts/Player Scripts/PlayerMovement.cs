@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     // player sound
     public AudioSource AS;
-    public AudioClip Walk;
+    public bool playing = false;
 
     /// Caching Variables \\\
     void Awake() {
@@ -43,14 +43,26 @@ public class PlayerMovement : MonoBehaviour
         if (playerAbleMove) {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
-            if (movement.x != 0 || movement.y != 0){
-                AS.PlayOneShot(Walk);
-            }
-            else{
-                AS.Stop();
-            }
+            if ((movement.x != 0 || movement.y != 0)) {
+                if (!playing && playerAbleMove) {
+                    AS.Play();
+                    playing = true;
+                }
 
+
+            }
+            else {
+                AS.Stop();
+                playing = false;
+            }
         }
+        if (!playerAbleMove)
+        {
+            AS.Stop();
+            playing = false;
+        }
+
+
 
         // change sprite based on movement \\
         // horizontal movement
