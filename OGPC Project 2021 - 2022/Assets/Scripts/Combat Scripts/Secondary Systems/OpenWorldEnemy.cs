@@ -164,6 +164,7 @@ public class OpenWorldEnemy : MonoBehaviour
         FindObjectOfType<itemPickupManager>().saveItems(); // save items
         FindObjectOfType<Inventory>().saveInventory(); //save inventory
         SaveSystem.SaveSpecifiedEnemy(this); // save the specified enemy
-        SceneManager.LoadScene(2); // load the combat scene
+        //SceneManager.LoadScene(2); // load the combat scene
+        SceneLoader.changeScene = true;
     }
 }

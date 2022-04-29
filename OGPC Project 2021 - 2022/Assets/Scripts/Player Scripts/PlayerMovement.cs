@@ -48,8 +48,6 @@ public class PlayerMovement : MonoBehaviour
                     AS.Play();
                     playing = true;
                 }
-
-
             }
             else {
                 AS.Stop();
@@ -61,8 +59,6 @@ public class PlayerMovement : MonoBehaviour
             AS.Stop();
             playing = false;
         }
-
-
 
         // change sprite based on movement \\
         // horizontal movement
@@ -416,6 +412,15 @@ public class PlayerMovement : MonoBehaviour
         }
         else {
             return false;
+        }
+    }
+
+    // if the player collides with an enemy, save player/party and inventory data
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col.gameObject.tag == "Enemy") {
+            pM.GetComponent<PartyStats>().SaveData();
+            pM.GetComponent<PlayerProgress>().savePlayerData();
+            gameObject.GetComponent<Inventory>().saveInventory();
         }
     }
 }
