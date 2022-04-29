@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private PartyManager pM;
     private SpriteRenderer spriteRenderer;
     private bool updatedStartingSprite = false;
+    public OverworldOST walkin;
     public enum direction {
         up,
         right,
@@ -23,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     public direction playerDirection = direction.down;
     // player animator
     private Animator animator;
+    // player sound
+    public AudioSource AS;
+    public bool playing = false;
 
     /// Caching Variables \\\
     void Awake() {
@@ -38,8 +42,27 @@ public class PlayerMovement : MonoBehaviour
     void Update() {
         if (playerAbleMove) {
             movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");  
+            movement.y = Input.GetAxisRaw("Vertical");
+            if ((movement.x != 0 || movement.y != 0)) {
+                if (!playing && playerAbleMove) {
+                    AS.Play();
+                    playing = true;
+                }
+
+
+            }
+            else {
+                AS.Stop();
+                playing = false;
+            }
         }
+        if (!playerAbleMove)
+        {
+            AS.Stop();
+            playing = false;
+        }
+
+
 
         // change sprite based on movement \\
         // horizontal movement
