@@ -18,7 +18,7 @@ public class Item
     public ItemType itemType;
     public int quantity;
     public bool stackable;
-    private bool consumable;
+    public bool consumable;
 
     // item constructor
     public Item(ItemType type, int amount, bool stack, bool consume) {

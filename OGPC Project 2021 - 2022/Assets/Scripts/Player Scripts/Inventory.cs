@@ -167,6 +167,7 @@ public class Inventory : MonoBehaviour
                 btn.onClick.AddListener(btnUseItem);
             }
             else {
+                Debug.Log("h");
                 // create the prefab
                 GameObject temp = Instantiate(nonconsumableItem);
                 RectTransform rt = temp.GetComponent<RectTransform>();

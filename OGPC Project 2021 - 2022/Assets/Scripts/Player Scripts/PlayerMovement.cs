@@ -64,187 +64,41 @@ public class PlayerMovement : MonoBehaviour
         // horizontal movement
         if (movement.x > 0.5f || movement.x < -0.5f) {
             animator.speed = 1f;
-            // if party leader is raza
-            if (pM.leader == PartyManager.PartyLead.Raza) {
-                // reset other animators
-                animator.SetBool("razaUp", false);
-                animator.SetBool("razaDown", false);
-                if (movement.x < -0.5f) {
-                    animator.SetBool("razaLeft", true);
-                    animator.SetBool("razaRight", false);
-                }
-                else if (movement.x > 0.5f) {
-                    animator.SetBool("razaRight", true);
-                    animator.SetBool("razaLeft", false);
-                }
+            animator.SetBool("Up", false);
+            animator.SetBool("Down", false);
+            // right
+            if (movement.x > 0.5f) {
+                animator.SetBool("Right", true);
+                animator.SetBool("Left", false);
             }
-            // if party leader is dorne
-            else if (pM.leader == PartyManager.PartyLead.Dorne) {
-                // reset other animators
-                animator.SetBool("dorneUp", false);
-                animator.SetBool("dorneDown", false);
-                if (movement.x < -0.5f) {
-                    animator.SetBool("dorneLeft", true);
-                    animator.SetBool("dorneRight", false);
-                }
-                else if (movement.x > 0.5f) {
-                    animator.SetBool("dorneRight", true);
-                    animator.SetBool("dorneLeft", false);
-                }
-            }
-             // if party leader is smithson
-            else if (pM.leader == PartyManager.PartyLead.Smithson) {
-                // reset other animators
-                animator.SetBool("smithsonUp", false);
-                animator.SetBool("smithsonDown", false);
-                if (movement.x < -0.5f) {
-                    animator.SetBool("smithsonLeft", true);
-                    animator.SetBool("smithsonRight", false);
-                }
-                else if (movement.x > 0.5f) {
-                    animator.SetBool("smithsonRight", true);
-                    animator.SetBool("smithsonLeft", false);
-                }
-            }
-            // if party leader is zor
-            else if (pM.leader == PartyManager.PartyLead.Zor) {
-                // reset other animators
-                animator.SetBool("zorUp", false);
-                animator.SetBool("zorDown", false);
-                if (movement.x < -0.5f) {
-                    animator.SetBool("zorLeft", true);
-                    animator.SetBool("zorRight", false);
-                }
-                else if (movement.x > 0.5f) {
-                    animator.SetBool("zorRight", true);
-                    animator.SetBool("zorLeft", false);
-                }
+            // left
+            else if (movement.x < -0.5f) {
+                animator.SetBool("Right", false);
+                animator.SetBool("Left", true);
             }
         }
         // vertical movement
         else if (movement.y > 0.5f || movement.y < -0.5f) {
             animator.speed = 1f;
-            // if party leader is raza
-            if (pM.leader == PartyManager.PartyLead.Raza) {
-                // reset other animators
-                animator.SetBool("razaLeft", false);
-                animator.SetBool("razaRight", false);
-                if (movement.y < -0.5f) {
-                    animator.SetBool("razaDown", true);
-                    animator.SetBool("razaUp", false);
-                }
-                else if (movement.y > 0.5f) {
-                    animator.SetBool("razaUp", true);
-                    animator.SetBool("razaDown", false);
-                }
+            animator.SetBool("Right", false);
+            animator.SetBool("Left", false);
+            // right
+            if (movement.y > 0.5f) {
+                animator.SetBool("Up", true);
+                animator.SetBool("Down", false);
             }
-            // if party leader is dorne
-            else if (pM.leader == PartyManager.PartyLead.Dorne) {
-                // reset other animators
-                animator.SetBool("dorneLeft", false);
-                animator.SetBool("dorneRight", false);
-                if (movement.y < -0.5f) {
-                    animator.SetBool("dorneDown", true);
-                    animator.SetBool("dorneUp", false);
-                }
-                else if (movement.y > 0.5f) {
-                    animator.SetBool("dorneUp", true);
-                    animator.SetBool("dorneDown", false);
-                }
-            }
-            // if party leader is smithson
-            else if (pM.leader == PartyManager.PartyLead.Smithson) {
-                // reset other animators
-                animator.SetBool("smithsonLeft", false);
-                animator.SetBool("smithsonRight", false);
-                if (movement.y < -0.5f) {
-                    animator.SetBool("smithsonDown", true);
-                    animator.SetBool("smithsonUp", false);
-                }
-                else if (movement.y > 0.5f) {
-                    animator.SetBool("smithsonUp", true);
-                    animator.SetBool("smithsonDown", false);
-                }
-            }
-            // if party leader is zor
-            else if (pM.leader == PartyManager.PartyLead.Zor) {
-                // reset other animators
-                animator.SetBool("zorLeft", false);
-                animator.SetBool("zorRight", false);
-                if (movement.y < -0.5f) {
-                    animator.SetBool("zorDown", true);
-                    animator.SetBool("zorUp", false);
-                }
-                else if (movement.y > 0.5f) {
-                    animator.SetBool("zorUp", true);
-                    animator.SetBool("zorDown", false);
-                }
+            // left
+            else if (movement.y < -0.5f) {
+                animator.SetBool("Up", false);
+                animator.SetBool("Down", true);
             }
         }
         // if the player is idle \\
         else {
             if (!pM.partyTabOpen && loadingScreenManager.loadingDone) {
-                // if party leader is raza
-                if (pM.leader == PartyManager.PartyLead.Raza) {
-                    if (playerDirection == direction.down) {
-                        animator.SetBool("razaDown", false);
-                    }
-                    else if (playerDirection == direction.left) {
-                        animator.SetBool("razaLeft", false);
-                    }
-                    else if (playerDirection == direction.up) {
-                        animator.SetBool("razaUp", false);
-                    }
-                    else if (playerDirection == direction.right) {
-                        animator.SetBool("razaRight", false);
-                    }
-                }
-                // if party leader is dorne
-                else if (pM.leader == PartyManager.PartyLead.Dorne) {
-                    if (playerDirection == direction.down) {
-                        animator.SetBool("dorneDown", false);
-                    }
-                    else if (playerDirection == direction.left) {
-                        animator.SetBool("dorneLeft", false);
-                    }
-                    else if (playerDirection == direction.up) {
-                        animator.SetBool("dorneUp", false);
-                    }
-                    else if (playerDirection == direction.right) {
-                        animator.SetBool("dorneRight", false);
-                    }
-                }
-                // if the party leader is smithson
-                else if (pM.leader == PartyManager.PartyLead.Smithson) {
-                    if (playerDirection == direction.down) {
-                        animator.SetBool("smithsonDown", false);
-                    }
-                    else if (playerDirection == direction.left) {
-                        animator.SetBool("smithsonLeft", false);
-                    }
-                    else if (playerDirection == direction.up) {
-                        animator.SetBool("smithsonUp", false);
-                    }
-                    else if (playerDirection == direction.right) {
-                        animator.SetBool("smithsonRight", false);
-                    }
-                }
-                // if the party leader is zor
-                else if (pM.leader == PartyManager.PartyLead.Zor) {
-                    if (playerDirection == direction.down) {
-                        animator.SetBool("zorDown", false);
-                    }
-                    else if (playerDirection == direction.left) {
-                        animator.SetBool("zorLeft", false);
-                    }
-                    else if (playerDirection == direction.up) {
-                        animator.SetBool("zorUp", false);
-                    }
-                    else if (playerDirection == direction.right) {
-                        animator.SetBool("zorRight", false);
-                    }
-                }
                 animator.speed = 0f;
+                AnimatorClipInfo[] currentAnimInfo = animator.GetCurrentAnimatorClipInfo(0);
+                animator.Play(currentAnimInfo[0].clip.name, 0, 0);
             }
         }
 
@@ -294,113 +148,59 @@ public class PlayerMovement : MonoBehaviour
     // update the idle sprite when lead member changes \\
     public void updateIdleSprite() {
         animator.speed = 1f;
+        // set the leader based on who is heading the party \\
+        if (pM.leader == PartyManager.PartyLead.Raza) {
+            animator.SetBool("razaLeader", true);
+            animator.SetBool("dorneLeader", false);
+            animator.SetBool("smithsonLeader", false);
+            animator.SetBool("zorLeader", false);
+        }
+        else if (pM.leader == PartyManager.PartyLead.Dorne) {
+            animator.SetBool("razaLeader", false);
+            animator.SetBool("dorneLeader", true);
+            animator.SetBool("smithsonLeader", false);
+            animator.SetBool("zorLeader", false);
+        }
+        else if (pM.leader == PartyManager.PartyLead.Smithson) {
+            animator.SetBool("razaLeader", false);
+            animator.SetBool("dorneLeader", false);
+            animator.SetBool("smithsonLeader", true);
+            animator.SetBool("zorLeader", false);
+        }
+        else if (pM.leader == PartyManager.PartyLead.Zor) {
+            animator.SetBool("razaLeader", false);
+            animator.SetBool("dorneLeader", false);
+            animator.SetBool("smithsonLeader", false);
+            animator.SetBool("zorLeader", true);
+        }
+        // update the direction \\
         // if player is directed down
         if (playerDirection == direction.down) {
-            if (pM.leader == PartyManager.PartyLead.Raza) {
-                animator.SetBool("razaDown", true);
-                animator.SetBool("dorneDown", false);
-                animator.SetBool("smithsonDown", false);
-                animator.SetBool("zorDown", false);
-            }
-            else if (pM.leader == PartyManager.PartyLead.Dorne) {
-                animator.SetBool("razaDown", false);
-                animator.SetBool("dorneDown", true);
-                animator.SetBool("smithsonDown", false);
-                animator.SetBool("zorDown", false);
-            }
-            else if (pM.leader == PartyManager.PartyLead.Smithson) {
-                animator.SetBool("razaDown", false);
-                animator.SetBool("dorneDown", false);
-                animator.SetBool("smithsonDown", true);
-                animator.SetBool("zorDown", false);
-            }
-            else if (pM.leader == PartyManager.PartyLead.Zor) {
-                animator.SetBool("razaDown", false);
-                animator.SetBool("dorneDown", false);
-                animator.SetBool("smithsonDown", false);
-                animator.SetBool("zorDown", true);
-            }
+            animator.SetBool("Down", true);
+            animator.SetBool("Up", false);
+            animator.SetBool("Right", false);
+            animator.SetBool("Left", false);
         }
         // if player is directed up
         else if (playerDirection == direction.up) {
-            if (pM.leader == PartyManager.PartyLead.Raza) {
-                animator.SetBool("razaUp", true);
-                animator.SetBool("dorneUp", false);
-                animator.SetBool("smithsonUp", false);
-                animator.SetBool("zorUp", false);
-            }
-            else if (pM.leader == PartyManager.PartyLead.Dorne) {
-                animator.SetBool("razaUp", false);
-                animator.SetBool("dorneUp", true);
-                animator.SetBool("smithsonUp", false);
-                animator.SetBool("zorUp", false);
-            }
-            else if (pM.leader == PartyManager.PartyLead.Smithson) {
-                animator.SetBool("razaUp", false);
-                animator.SetBool("dorneUp", false);
-                animator.SetBool("smithsonUp", true);
-                animator.SetBool("zorUp", false);
-            }
-            else if (pM.leader == PartyManager.PartyLead.Zor) {
-                animator.SetBool("razaUp", false);
-                animator.SetBool("dorneUp", false);
-                animator.SetBool("smithsonUp", false);
-                animator.SetBool("zorUp", true);
-            }
+            animator.SetBool("Down", false);
+            animator.SetBool("Up", true);
+            animator.SetBool("Right", false);
+            animator.SetBool("Left", false);
         }
         // if player is directed right
         else if (playerDirection == direction.right) {
-            if (pM.leader == PartyManager.PartyLead.Raza) {
-                animator.SetBool("razaRight", true);
-                animator.SetBool("dorneRight", false);
-                animator.SetBool("smithsonRight", false);
-                animator.SetBool("zorRight", false);
-            }
-            else if (pM.leader == PartyManager.PartyLead.Dorne) {
-                animator.SetBool("razaRight", false);
-                animator.SetBool("dorneRight", true);
-                animator.SetBool("smithsonRight", false);
-                animator.SetBool("zorRight", false);
-            }
-            else if (pM.leader == PartyManager.PartyLead.Smithson) {
-                animator.SetBool("razaRight", false);
-                animator.SetBool("dorneRight", false);
-                animator.SetBool("smithsonRight", true);
-                animator.SetBool("zorRight", false);
-            }
-            else if (pM.leader == PartyManager.PartyLead.Zor) {
-                animator.SetBool("razaRight", false);
-                animator.SetBool("dorneRight", false);
-                animator.SetBool("smithsonRight", false);
-                animator.SetBool("zorRight", true);
-            }
+            animator.SetBool("Down", false);
+            animator.SetBool("Up", false);
+            animator.SetBool("Right", true);
+            animator.SetBool("Left", false);
         }
         // if player is direction left
         else if (playerDirection == direction.left) {
-            if (pM.leader == PartyManager.PartyLead.Raza) {
-                animator.SetBool("razaLeft", true);
-                animator.SetBool("dorneLeft", false);
-                animator.SetBool("smithsonLeft", false);
-                animator.SetBool("zorLeft", false);
-            }
-            else if (pM.leader == PartyManager.PartyLead.Dorne) {
-                animator.SetBool("razaLeft", false);
-                animator.SetBool("dorneLeft", true);
-                animator.SetBool("smithsonLeft", false);
-                animator.SetBool("zorLeft", false);
-            }
-            else if (pM.leader == PartyManager.PartyLead.Smithson) {
-                animator.SetBool("razaLeft", false);
-                animator.SetBool("dorneLeft", false);
-                animator.SetBool("smithsonLeft", true);
-                animator.SetBool("zorLeft", false);
-            }
-            else if (pM.leader == PartyManager.PartyLead.Zor) {
-                animator.SetBool("razaLeft", false);
-                animator.SetBool("dorneLeft", false);
-                animator.SetBool("smithsonLeft", false);
-                animator.SetBool("zorLeft", true);
-            }
+            animator.SetBool("Down", false);
+            animator.SetBool("Up", false);
+            animator.SetBool("Right", false);
+            animator.SetBool("Left", true);
         }
         animator.speed = 0f;
     }
@@ -412,15 +212,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else {
             return false;
-        }
-    }
-
-    // if the player collides with an enemy, save player/party and inventory data
-    void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.tag == "Enemy") {
-            pM.GetComponent<PartyStats>().SaveData();
-            pM.GetComponent<PlayerProgress>().savePlayerData();
-            gameObject.GetComponent<Inventory>().saveInventory();
         }
     }
 }
