@@ -325,6 +325,25 @@ public class CombatManager : MonoBehaviour
 
     // method that continues combat to the next round \\
     public void newRound() {
+        // check exit conditions
+        checkExitConditions();
+        /// checking if it's the end of a round
+        if (initiativeIndex > 7) {
+            initiativeIndex = 0;
+            roundNum++;
+            Debug.Log("Round: " + roundNum);
+            playerActions.updatePCVariables();
+            tI.updateIndicator();
+            // regen some mana for smithson
+            StartCoroutine(mM.regenMana(mM.smithsonManabarSlider, 15, 0.01f));
+            // update statuses
+            sM.statusUpdate();
+        }
+    }
+
+    // method that checks for the exit conditions for combat
+    // player wins or loses
+    public void checkExitConditions() {
         /// checking win/lose conditions
         // if player loses
         if (pS.char1HP <= 0 && pS.char2HP <= 0 && pS.char3HP <= 0 && pS.char4HP <= 0) {
@@ -334,7 +353,7 @@ public class CombatManager : MonoBehaviour
             cR.wonLastCombat = true;
             SaveSystem.saveCombatReport(cR);
             // return to the overworld
-            SceneManager.LoadScene(1);
+            SceneLoader.changeScene = true;
         }
         // if player wins
         int numCheck = 0;
@@ -366,18 +385,6 @@ public class CombatManager : MonoBehaviour
             SaveSystem.saveCombatReport(cR);
             // return to overworld
             SceneManager.LoadScene(1);
-        }
-        /// checking if it's the end of a round
-        if (initiativeIndex > 7) {
-            initiativeIndex = 0;
-            roundNum++;
-            Debug.Log("Round: " + roundNum);
-            playerActions.updatePCVariables();
-            tI.updateIndicator();
-            // regen some mana for smithson
-            StartCoroutine(mM.regenMana(mM.smithsonManabarSlider, 15, 0.01f));
-            // update statuses
-            sM.statusUpdate();
         }
     }
 

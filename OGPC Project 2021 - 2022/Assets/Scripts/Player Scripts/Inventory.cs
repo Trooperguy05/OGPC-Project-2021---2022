@@ -12,6 +12,8 @@ public class Inventory : MonoBehaviour
 
     // cheat menu manager \\
     private ConsoleAndAchievementsController cC;
+    // Party Stats
+    private PartyStats pS;
 
     // inventory menu \\
     public GameObject invMenu;
@@ -27,46 +29,13 @@ public class Inventory : MonoBehaviour
     void Start() {
         // get the console controller \\
         cC = GameObject.Find("ConsoleMenuController").GetComponent<ConsoleAndAchievementsController>();
+        pS = GameObject.Find("Party and Player Manager").GetComponent<PartyStats>();
 
         // load the inventory on start up \\
         loadInventory();
 
         // load the inventory in the menu \\
-        prefabs = new GameObject[inventory.Count];
-        buttons = new Button[inventory.Count];
-        for (int i = 0; i < inventory.Count; i++) {
-            if (inventory[i].isConsumable()) {
-                // create the prefab
-                GameObject temp = Instantiate(consumableItem);
-                RectTransform rt = temp.GetComponent<RectTransform>();
-                Button btn = temp.transform.Find("Use Button").GetComponent<Button>();
-                temp.transform.SetParent(scrollableArea.transform, false);
-                rt.transform.localPosition = new Vector3(rt.transform.localPosition.x, 131 - (i * 134), 0);
-                prefabs[i] = temp;
-                buttons[i] = btn;
-                // update the prefab to the item's information
-                temp.name = inventory[i].getName();
-                TextMeshProUGUI itemName = temp.transform.Find("Item Name").GetComponent<TextMeshProUGUI>();
-                TextMeshProUGUI itemQuantity = temp.transform.Find("Quantity").GetComponent<TextMeshProUGUI>();
-                itemName.text = inventory[i].getName();
-                itemQuantity.text = "x" + inventory[i].quantity;
-                btn.onClick.AddListener(btnUseItem);
-            }
-            else {
-                // create the prefab
-                GameObject temp = Instantiate(nonconsumableItem);
-                RectTransform rt = temp.GetComponent<RectTransform>();
-                temp.transform.SetParent(scrollableArea.transform, false);
-                rt.transform.localPosition = new Vector3(rt.transform.localPosition.x, 131 - (i * 134), 0);
-                prefabs[i] = temp;
-                // update the prefab to the item's information
-                temp.name = inventory[i].getName();
-                TextMeshProUGUI itemName = temp.transform.Find("Item Name").GetComponent<TextMeshProUGUI>();
-                TextMeshProUGUI itemQuantity = temp.transform.Find("Quantity").GetComponent<TextMeshProUGUI>();
-                itemName.text = inventory[i].getName();
-                itemQuantity.text = "x" + inventory[i].quantity;
-            }
-        }
+        updateInventoryMenu();
     }
 
     // allow player to access the inventory menu \\
@@ -132,6 +101,18 @@ public class Inventory : MonoBehaviour
     // the inventory is updated
     private void useItem(int index) {
         inventory[index].quantity--;
+        // if item is a health potion
+        if (inventory[index].itemType == Item.ItemType.HealthPotion) {
+            pS.char1HP += 15;
+            pS.char2HP += 15;
+            pS.char3HP += 15;
+            pS.char4HP += 15;
+            if (pS.char1HP > pS.char1HPMax) { pS.char1HP = pS.char1HPMax; }
+            if (pS.char2HP > pS.char2HPMax) { pS.char2HP = pS.char2HPMax; }
+            if (pS.char3HP > pS.char3HPMax) { pS.char3HP = pS.char3HPMax; }
+            if (pS.char4HP > pS.char4HPMax) { pS.char4HP = pS.char4HPMax; }
+        }
+        // if the quantity is 0, remove it from the inventory
         if (inventory[index].quantity <= 0) {
             inventory.RemoveAt(index);
         }

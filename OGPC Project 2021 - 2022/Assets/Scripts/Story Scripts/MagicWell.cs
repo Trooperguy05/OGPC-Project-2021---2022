@@ -55,6 +55,7 @@ public class MagicWell : MonoBehaviour
                     pS.char1HP = pS.char1HPMax;
                     pS.char2HP = pS.char2HPMax;
                     pS.char3HP = pS.char3HPMax;
+                    pS.char3Mana = pS.char3ManaMax;
                     pS.char4HP = pS.char4HPMax;
                     GameObject.Find("Dialogue Manager").GetComponent<DialogueManager>().StartDialogue(pickupNotification);
                 }

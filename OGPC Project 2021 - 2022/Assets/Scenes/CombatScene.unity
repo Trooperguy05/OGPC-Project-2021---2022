@@ -3826,6 +3826,7 @@ GameObject:
   - component: {fileID: 426409689}
   - component: {fileID: 426409691}
   - component: {fileID: 426409692}
+  - component: {fileID: 426409693}
   m_Layer: 0
   m_Name: Dorne
   m_TagString: Untagged
@@ -3943,6 +3944,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &426409693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426409688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b01f09e06bab7647b326d5a7845f290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sR: {fileID: 0}
 --- !u!1 &428423683
 GameObject:
   m_ObjectHideFlags: 0
@@ -5078,6 +5092,7 @@ GameObject:
   - component: {fileID: 697840784}
   - component: {fileID: 697840786}
   - component: {fileID: 697840787}
+  - component: {fileID: 697840788}
   m_Layer: 0
   m_Name: Raza
   m_TagString: Untagged
@@ -5195,6 +5210,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &697840788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697840783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b01f09e06bab7647b326d5a7845f290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sR: {fileID: 0}
 --- !u!1 &740533344
 GameObject:
   m_ObjectHideFlags: 0
@@ -5616,6 +5644,7 @@ GameObject:
   - component: {fileID: 823792486}
   - component: {fileID: 823792488}
   - component: {fileID: 823792489}
+  - component: {fileID: 823792490}
   m_Layer: 0
   m_Name: Zor
   m_TagString: Untagged
@@ -5733,6 +5762,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &823792490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823792485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b01f09e06bab7647b326d5a7845f290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sR: {fileID: 0}
 --- !u!1 &839624947
 GameObject:
   m_ObjectHideFlags: 0
@@ -8483,6 +8525,7 @@ GameObject:
   - component: {fileID: 1451797654}
   - component: {fileID: 1451797656}
   - component: {fileID: 1451797657}
+  - component: {fileID: 1451797658}
   m_Layer: 0
   m_Name: Smithson
   m_TagString: Untagged
@@ -8600,6 +8643,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1451797658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451797653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b01f09e06bab7647b326d5a7845f290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sR: {fileID: 0}
 --- !u!1 &1460547487
 GameObject:
   m_ObjectHideFlags: 0

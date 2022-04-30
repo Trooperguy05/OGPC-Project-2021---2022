@@ -481,6 +481,8 @@ public class PlayerActions : MonoBehaviour
         // play animation
         dorneAnimator.SetTrigger("act");
         StartCoroutine(animPlaying(dorneAnimator, "dorneCombat_active"));
+        // action text
+        StartCoroutine(bMM.typeActionText("dorne used tighten harness!", 0.01f));
         AS.PlayOneShot(tightenHarnessSFX, 1);
     }
     
