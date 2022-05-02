@@ -20,6 +20,7 @@ public class PlayerProgress : MonoBehaviour
     public bool passedTutorial = false;
     public bool destroyedDesertPhylactery = false;
     public bool destroyedSwampPhylactery = false;
+    public bool destroyedForestPhylactery = false;
 
     // save the player progress \\
     public void savePlayerData() {
@@ -44,6 +45,7 @@ public class PlayerProgress : MonoBehaviour
             passedTutorial = data.passedTutorial;
             destroyedDesertPhylactery = data.destroyedDesertPhylactery;
             destroyedSwampPhylactery = data.destroyedSwampPhylactery;
+            destroyedForestPhylactery = data.destroyedForestPhylactery;
         }
     }
 }

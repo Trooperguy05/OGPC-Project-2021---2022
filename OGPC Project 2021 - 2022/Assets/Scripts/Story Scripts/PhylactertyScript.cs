@@ -38,6 +38,9 @@ public class PhylactertyScript : MonoBehaviour
         else if (isSwampPhy && pP.destroyedSwampPhylactery) {
             gameObject.SetActive(false);
         }
+        else if (isForestPhy && pP.destroyedForestPhylactery) {
+            gameObject.SetActive(false);
+        }
     }
 
     // if the phylactery is interactable, the player can destroy it \\
@@ -47,7 +50,6 @@ public class PhylactertyScript : MonoBehaviour
         if (distance <= 5) {
             if (distance <= interact.interactableRange) {
                 interact.changeInteract(true);
-
             }
             else {
                 interact.changeInteract(false);
@@ -64,6 +66,9 @@ public class PhylactertyScript : MonoBehaviour
                 }
                 else if (isSwampPhy) {
                     pP.destroyedSwampPhylactery = true;
+                }
+                else if (isForestPhy) {
+                    pP.destroyedForestPhylactery = true;
                 }
                 StartCoroutine(wait());
             }
