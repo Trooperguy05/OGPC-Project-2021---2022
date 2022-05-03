@@ -126,6 +126,14 @@ public class EnemyCreator
             dexterity = -2;
             size = 2;
         }
+        // spider
+        else if (num == 6) {
+            name = "Spider";
+            healthMax = 130;
+            manaMax = 0;
+            dexterity = 3;
+            size = 2;
+        }
         // worm miniboss
         else if (num == 7) {
             name = "Worm";

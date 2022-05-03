@@ -549,29 +549,68 @@ public class EnemyActions : MonoBehaviour
     /////Giant Spider Attacks\\\\\
     ///Venemous Fangs\\\
     
-    public void spiderBite()
+    public IEnumerator spiderBite()
     {
+        yield return new WaitForSeconds(1f);
+
         int toHit = Random.Range(1, 100);
-        if(toHit <= 90)
+        // hit
+        if (toHit <= 90)
         {
+            // damage
             string target = enemyHit(20);
             sM.statusAdd(target, "poison", 3);
-            // inflicts poison for 3 turns on the target
+            // action text
+            StartCoroutine(bMM.typeActionText("spider used venemous fangs!", 0.01f));
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "spiderCombat_active"));
         }
-        enemyDone = true;
+        // miss
+        else {
+            StartCoroutine(bMM.typeActionText("spider missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
+        }
         AS.PlayOneShot(SpiderBite, 1);
     }
 
     ///Webbing\\\
-    public void spiderWeb()
+    public IEnumerator spiderWeb()
     {
+        yield return new WaitForSeconds(1f);
+
         int toHit = Random.Range(1, 100);
+        // hit
         if (toHit <= 90)
         {
             string target = enemyHit(10);
             // subtracts 2 from intiative until combat ends
+            if (target == "raza") {
+                cm.initiativeCount[0] -= 2;
+            }
+            else if (target == "dorne") {
+                cm.initiativeCount[1] -= 2;
+            }
+            else if (target == "smithson") {
+                cm.initiativeCount[2] -= 2;
+            }
+            else if (target == "zor") {
+                cm.initiativeCount[3] -= 2;
+            }
+            cm.sortInitiative(cm.initiativeCount);
+            // action text
+            StartCoroutine(bMM.typeActionText("spider used webbing!", 0.01f));
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "spiderCombat_active"));
         }
-        enemyDone = true;
+        // miss
+        else {
+            StartCoroutine(bMM.typeActionText("spider missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
+        }
         AS.PlayOneShot(SpiderWeb, 1);
     }
 
