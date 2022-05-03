@@ -150,6 +150,14 @@ public class EnemyCreator
             dexterity = 1;
             size = 4;
         }
+        // giant miniboss
+        else if (num == 9) {
+            name = "Giant";
+            healthMax = 600;
+            manaMax = 0;
+            dexterity = 1;
+            size = 4;
+        }
         health = healthMax;
         mana = manaMax;
     }

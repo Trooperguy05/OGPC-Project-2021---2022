@@ -618,22 +618,46 @@ public class EnemyActions : MonoBehaviour
     /////Giant Attacks\\\\\
     ///Tree Smack\\\
     
-    public void giantWack()
+    public IEnumerator giantWack()
     {
+        yield return new WaitForSeconds(1f);
+
         int toHit = Random.Range(1, 100);
+        // hit
         if (toHit <= 90)
         {
             enemyHit(50);
+            // action text
+            StartCoroutine(bMM.typeActionText("giant used tree smack!", 0.01f));
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "giantCombat_active"));
         }
-        enemyDone = true;
+        // miss
+        else {
+            StartCoroutine(bMM.typeActionText("giant missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
+        }
         AS.PlayOneShot(GiantStrike, 1);
     }
 
     ///Stomp\\\
-    public void giantStomp()
+    public IEnumerator giantStomp()
     {
+        yield return new WaitForSeconds(1f);
         //lowers initiative of all party members by 1
-        enemyDone = true;
+        for (int i = 0; i < 4; i++) {
+            cm.initiativeCount[i] -= 1;
+        }
+        cm.sortInitiative(cm.initiativeCount);
+        // action text
+        StartCoroutine(bMM.typeActionText("giant used stomp!", 0.01f));
+        // play attack animation
+        Animator animator = findAnimator();
+        animator.SetTrigger("act");
+        StartCoroutine(animPlaying(animator, "giantCombat_active"));
+
         AS.PlayOneShot(GiantStomp, 1);
     }
 }

@@ -70,5 +70,11 @@ public class CombatEnemy : MonoBehaviour
             GetComponent<BoxCollider2D>().offset = new Vector2(0.15f, -0.3f);
             health = eOb.health;
         }
+        else if (eOb.name == "Giant") {
+            GetComponent<Animator>().SetBool("isGiant", true);
+            GetComponent<BoxCollider2D>().size = new Vector2(3, 3.5f);
+            GetComponent<BoxCollider2D>().offset = new Vector2(0.2f, 0);
+            health = eOb.health;
+        }
     }
 }

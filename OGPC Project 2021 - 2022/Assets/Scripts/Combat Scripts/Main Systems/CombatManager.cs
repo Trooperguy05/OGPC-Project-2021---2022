@@ -362,6 +362,34 @@ public class CombatManager : MonoBehaviour
                 tI.updateIndicator();
             }
         }
+        // if enemy is the giant (miniboss)
+        else if (initiativeNames[initiativeIndex] == "Giant") {
+            if (gameObjectsInCombat[initiativeIndex].GetComponent<CombatEnemy>().eOb.health > 0) {
+                if (!tookChoice) {
+                    int chance = Random.Range(1, 3);
+                    if (chance == 1) {
+                        tookChoice = true;
+                        StartCoroutine(enemyActions.giantWack());
+                    }
+                    else if (chance == 2) {
+                        tookChoice = true;
+                        StartCoroutine(enemyActions.giantStomp());
+                    }
+                }
+            }
+            else {
+                initiativeIndex++;
+                newRound();
+                tI.updateIndicator();
+            }
+            if (enemyActions.enemyDone) {
+                enemyActions.enemyDone = false;
+                tookChoice = false;
+                initiativeIndex++;
+                newRound();
+                tI.updateIndicator();
+            }
+        }
 
         // if initiativeNames[initiativeIndex] = "", continue to next person
         if (combatStarted) {

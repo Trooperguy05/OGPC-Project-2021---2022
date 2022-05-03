@@ -8961,7 +8961,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 42c5a33e15efdfe48a55c529c55d2066, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc574b036860df14387fe92cf5fbe809, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8993,7 +8993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desertBackground: {fileID: 21300000, guid: 119673dd13222ba439426878ef8852b7, type: 3}
   swampBackground: {fileID: 21300000, guid: 42c5a33e15efdfe48a55c529c55d2066, type: 3}
-  forestBackground: {fileID: 0}
+  forestBackground: {fileID: 21300000, guid: fc574b036860df14387fe92cf5fbe809, type: 3}
   updatedBackground: 0
 --- !u!1 &1495510265
 GameObject:

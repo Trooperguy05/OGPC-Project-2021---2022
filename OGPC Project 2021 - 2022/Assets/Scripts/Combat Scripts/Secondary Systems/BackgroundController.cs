@@ -32,6 +32,9 @@ public class BackgroundController : MonoBehaviour
             else if (pP.playerBiome == PlayerProgress.Biome.swamp) {
                 GetComponent<Image>().sprite = swampBackground;
             }
+            else if (pP.playerBiome == PlayerProgress.Biome.forest) {
+                GetComponent<Image>().sprite = forestBackground;
+            }
             updatedBackground = true;
         }
     }
