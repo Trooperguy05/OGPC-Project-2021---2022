@@ -257,6 +257,27 @@ public class CombatManager : MonoBehaviour
                 tI.updateIndicator();
             }
         }
+        // if enemy is a slime
+        else if (initiativeNames[initiativeIndex] == "Slime") {
+            if (gameObjectsInCombat[initiativeIndex].GetComponent<CombatEnemy>().eOb.health > 0) {
+                if (!tookChoice) {
+                    tookChoice = true;
+                    StartCoroutine(enemyActions.slimeEat());
+                }
+            }
+            else {
+                initiativeIndex++;
+                newRound();
+                tI.updateIndicator();
+            }
+            if (enemyActions.enemyDone) {
+                enemyActions.enemyDone = false;
+                tookChoice = false;
+                initiativeIndex++;
+                newRound();
+                tI.updateIndicator();
+            }
+        }
         // if enemy is the worm (miniboss)
         else if (initiativeNames[initiativeIndex] == "Worm") {
             if (gameObjectsInCombat[initiativeIndex].GetComponent<CombatEnemy>().eOb.health > 0) {
@@ -428,6 +449,10 @@ public class CombatManager : MonoBehaviour
                     int chance = Random.Range(3, 5);
                     e1 = new EnemyCreator(chance);
                 }
+                else if (pP.playerBiome == PlayerProgress.Biome.forest) {
+                    int chance = Random.Range(5, 6);
+                    e1 = new EnemyCreator(chance);
+                }
                 // create the enemy
                 if (enemySlotsLeft >= e1.size) {
                     enemySlotsLeft -= e1.size;
@@ -450,6 +475,10 @@ public class CombatManager : MonoBehaviour
                 }
                 else if (pP.playerBiome == PlayerProgress.Biome.swamp) {
                     int chance = Random.Range(3, 5);
+                    e2 = new EnemyCreator(chance);
+                }
+                else if (pP.playerBiome == PlayerProgress.Biome.forest) {
+                    int chance = Random.Range(5, 6);
                     e2 = new EnemyCreator(chance);
                 }
                 //e2 = new EnemyCreator();
@@ -477,6 +506,10 @@ public class CombatManager : MonoBehaviour
                     int chance = Random.Range(3, 5);
                     e3 = new EnemyCreator(chance);
                 }
+                else if (pP.playerBiome == PlayerProgress.Biome.forest) {
+                    int chance = Random.Range(5, 6);
+                    e3 = new EnemyCreator(chance);
+                }
                 //e3 = new EnemyCreator();
                 // create new enemy
                 if (enemySlotsLeft >= e3.size) {
@@ -500,6 +533,10 @@ public class CombatManager : MonoBehaviour
                 }
                 else if (pP.playerBiome == PlayerProgress.Biome.swamp) {
                     int chance = Random.Range(3, 5);
+                    e4 = new EnemyCreator(chance);
+                }
+                else if (pP.playerBiome == PlayerProgress.Biome.forest) {
+                    int chance = Random.Range(5, 6);
                     e4 = new EnemyCreator(chance);
                 }
                 //e4 = new EnemyCreator();

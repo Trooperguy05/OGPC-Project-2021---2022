@@ -507,15 +507,42 @@ public class EnemyActions : MonoBehaviour
     /////Giant SLime Attacks\\\\\
     ///Envelop\\\
     
-    public void slimeEat()
+    public IEnumerator slimeEat()
     {
+        yield return new WaitForSeconds(1f);
+        
         int toHit = Random.Range(1, 100);
+        // hit
         if (toHit <= 90)
         {
+            // deal damage
             string target = enemyHit(30);
             //decreases target initiative by 1
+            if (target == "raza") {
+                cm.initiativeCount[0] -= 1;
+            }
+            else if (target == "dorne") {
+                cm.initiativeCount[1] -= 1;
+            }
+            else if (target == "smithson") {
+                cm.initiativeCount[2] -= 1;
+            }
+            else if (target == "zor") {
+                cm.initiativeCount[3] -= 1;
+            }
+            cm.sortInitiative(cm.initiativeCount);
+            // action text
+            StartCoroutine(bMM.typeActionText("slime used envelop!", 0.01f));
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "slimeCombat_active"));
         }
-        enemyDone = true;
+        // miss
+        else {
+            StartCoroutine(bMM.typeActionText("slime missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));
+        }
         AS.PlayOneShot(Slime, 1);
     }
 

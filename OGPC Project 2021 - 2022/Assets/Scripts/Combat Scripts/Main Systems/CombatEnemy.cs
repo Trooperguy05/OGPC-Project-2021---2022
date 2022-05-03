@@ -57,5 +57,12 @@ public class CombatEnemy : MonoBehaviour
             GetComponent<BoxCollider2D>().offset = new Vector2(0f, -0.2f);
             health = eOb.health;
         }
+        // forest enemies
+        else if (eOb.name == "Slime") {
+            GetComponent<Animator>().SetBool("isSlime", true);
+            GetComponent<BoxCollider2D>().size = new Vector2(1.65f, 1.5f);
+            GetComponent<BoxCollider2D>().offset = new Vector2(0.05f, 0);
+            health = eOb.health;
+        }
     }
 }

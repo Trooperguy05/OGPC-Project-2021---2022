@@ -118,6 +118,14 @@ public class EnemyCreator
             dexterity = 2;
             size = 1;
         }
+        // slime
+        else if (num == 5) {
+            name = "Slime";
+            healthMax = 150;
+            manaMax = 0;
+            dexterity = -2;
+            size = 2;
+        }
         // worm miniboss
         else if (num == 7) {
             name = "Worm";
