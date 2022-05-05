@@ -9274,22 +9274,22 @@ MonoBehaviour:
   smithsonAnimator: {fileID: 1451797657}
   zorAnimator: {fileID: 823792489}
   AS: {fileID: 1573467617}
-  razaFireSFX: {fileID: 8300000, guid: b024f2d5cfa03e7429a41694469e74d8, type: 3}
-  razaAimSFX: {fileID: 8300000, guid: 09986dc0305edc04685092434e463380, type: 3}
-  razaMarkSFX: {fileID: 8300000, guid: b738c6fdb793b404da734c38a7877034, type: 3}
-  razaGambleSFX: {fileID: 8300000, guid: d588b84bea03f294195edcae6e0fe38f, type: 3}
-  dorneStrikeSFX: {fileID: 8300000, guid: f91abed3a538a2a4dbc1675a85313ceb, type: 3}
-  dorneMageSFX: {fileID: 0}
-  dorneChargeSFX: {fileID: 8300000, guid: f77b773e8e8404c45a69e7050a518728, type: 3}
-  tightenHarnessSFX: {fileID: 8300000, guid: ca056d4afe5e74498a0798f16e0e866d, type: 3}
-  smithsonGrabSFX: {fileID: 8300000, guid: e93d5cbd4a12fe540a2b627c99c00b85, type: 3}
-  smithsonLifeStealSFX: {fileID: 8300000, guid: a3ff8a98bf8e5ab4fa7f8b085fb35dd4, type: 3}
-  smithsonChillOfTheGraveSFX: {fileID: 8300000, guid: c7e572b255e311b479005985ed7f4ba2, type: 3}
+  razaFireSFX: {fileID: 8300000, guid: 449139225114bf548b395a5d5ac68d57, type: 3}
+  razaAimSFX: {fileID: 8300000, guid: 8cab97bf4a2dc8e4b88e9c2adccf5fcd, type: 3}
+  razaMarkSFX: {fileID: 8300000, guid: 2450a2ae504833a448e3807b2d494b00, type: 3}
+  razaGambleSFX: {fileID: 8300000, guid: ba1ef98f4f29c7240ab63f9d7d0f7796, type: 3}
+  dorneStrikeSFX: {fileID: 8300000, guid: ee602465e87e31c4982ad94b45fd5186, type: 3}
+  dorneMageSFX: {fileID: 8300000, guid: fe1df7a0ee228c043814c007517053a3, type: 3}
+  dorneChargeSFX: {fileID: 8300000, guid: 2d5f7e2e87ddb4349861e63860f82cf0, type: 3}
+  tightenHarnessSFX: {fileID: 8300000, guid: ae8a3091cd0d39f4aa5e0d0e1ccf305a, type: 3}
+  smithsonGrabSFX: {fileID: 8300000, guid: a4f2e4fa067e0f643a3dcf08ac21d323, type: 3}
+  smithsonLifeStealSFX: {fileID: 8300000, guid: 1ee0d6290635e9444aaacc79cbaf665b, type: 3}
+  smithsonChillOfTheGraveSFX: {fileID: 8300000, guid: 109b853f05f7b7146a616a993c01226f, type: 3}
   smithsonCleanWoundsSFX: {fileID: 8300000, guid: 231838d2fb47a164abec5fb8cf049b6a, type: 3}
-  zorCleaveSFX: {fileID: 8300000, guid: f30f5cb6ad803914688cdd4e88b30ba1, type: 3}
-  zorAngySFX: {fileID: 8300000, guid: 6a81ca39e09d6664f98792766a5ffb74, type: 3}
-  zorZapSFX: {fileID: 8300000, guid: 68b1cd0f24df06d4d93e30fb6f956d82, type: 3}
-  zorAOESFX: {fileID: 8300000, guid: 678ce39e67d76d040a732f601bcb0571, type: 3}
+  zorCleaveSFX: {fileID: 8300000, guid: 21c965c48c7d12642b0e69b5df3e3a60, type: 3}
+  zorAngySFX: {fileID: 8300000, guid: fd79c8e4bb27d974899cf936a2dd25b7, type: 3}
+  zorZapSFX: {fileID: 8300000, guid: 28800f35ff669a44b8a7fcab7fcea263, type: 3}
+  zorAOESFX: {fileID: 8300000, guid: e07e46241856ce543bcc595b01bf78f4, type: 3}
   charDone: 0
   pauseWait: 2.5
   critIncreaseMin: 5
