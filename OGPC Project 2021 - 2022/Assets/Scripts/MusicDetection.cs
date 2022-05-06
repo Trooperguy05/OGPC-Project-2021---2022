@@ -34,7 +34,11 @@ public class MusicDetection : MonoBehaviour
     void Update()
     {
         if (!playingMusic){
-            if (cM.initiativeNames.Contains("Worm") || cM.initiativeNames.Contains("Mantrap") || cM.initiativeNames.Contains("Giant")){
+            if (cM.initiativeNames.Contains("Dragon")) {
+                Play = BC;
+                Debug.Log("h");
+            }
+            else if (cM.initiativeNames.Contains("Worm") || cM.initiativeNames.Contains("Man Trap") || cM.initiativeNames.Contains("Giant")){
                 Play = MC;
             }
             else if (PP.playerBiome == PlayerProgress.Biome.desert){
@@ -42,7 +46,6 @@ public class MusicDetection : MonoBehaviour
             }
             else if (PP.playerBiome == PlayerProgress.Biome.swamp){
                 Play = SC;
-
             }
             else if (PP.playerBiome == PlayerProgress.Biome.forest){
                 Play = FC;

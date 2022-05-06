@@ -18,6 +18,7 @@ public class CombatManager : MonoBehaviour
     public int roundNum = 1;
     public bool combatStarted = false;
     private bool tookChoice = false;
+    private int tookChoiceNum = 0;
 
     // enemies \\
     [Header("Enemies")]
@@ -38,7 +39,7 @@ public class CombatManager : MonoBehaviour
     // enemy field slots
     private int enemySlotsLeft = 4;
     // specified enemies
-    private int specifiedEnemy;
+    public int specifiedEnemy;
     [Header("Other Scripts")]
     // party stats script
     public PartyStats pS;
@@ -391,6 +392,45 @@ public class CombatManager : MonoBehaviour
             }
         }
 
+        // if enemy is valazak (final boss)
+        else if (initiativeNames[initiativeIndex] == "Dragon") {
+            if (gameObjectsInCombat[initiativeIndex].GetComponent<CombatEnemy>().eOb.health > 0) {
+                if (!tookChoice) {
+                    int choice = Random.Range(1, 4);
+                    if (choice == 1) {
+                        tookChoice = true;
+                        StartCoroutine(enemyActions.dragonSlash());
+                    }
+                    else if (choice == 2) {
+                        tookChoice = true;
+                        StartCoroutine(enemyActions.dragonBreathWeapon());
+
+                    }
+                    else if (choice == 3) {
+                        tookChoice = true;
+                        StartCoroutine(enemyActions.dragonTailSwipe());
+                    }
+                    tookChoiceNum++;
+                }
+            }
+            else {
+                initiativeIndex++;
+                newRound();
+                tI.updateIndicator();
+            }
+            if (enemyActions.enemyDone && tookChoiceNum < 2) {
+                enemyActions.enemyDone = false;
+                tookChoice = false;
+            }
+            else if (enemyActions.enemyDone) {
+                enemyActions.enemyDone = false;
+                tookChoice = false;
+                initiativeIndex++;
+                newRound();
+                tI.updateIndicator();
+            }
+        }
+
         // if initiativeNames[initiativeIndex] = "", continue to next person
         if (combatStarted) {
             if (initiativeNames[initiativeIndex] == "") {
@@ -486,6 +526,22 @@ public class CombatManager : MonoBehaviour
             e1 = new EnemyCreator(specifiedEnemy);
             enemySlotsLeft -= e1.size;
             initiativeCount[4] = Random.Range(1, 21) + e1.dexterity;
+            // if the specified enemy is the dragon, reduce HP by amt of phylacteries destroyed
+            if (specifiedEnemy == 10) {
+                int reduceAmt = 0;
+                if (pP.destroyedDesertPhylactery) {
+                    reduceAmt += 150;
+                }
+                if (pP.destroyedSwampPhylactery) {
+                    reduceAmt += 150;
+                }
+                if (pP.destroyedForestPhylactery) {
+                    reduceAmt += 150;
+                }
+                e1.healthMax -= reduceAmt;
+                e1.health = e1.healthMax;
+            }
+            // set up other stuff
             hM.enemy1Slider.maxValue = e1.healthMax;
             hM.enemy1Slider.value = hM.enemy1Slider.maxValue;
             e1combat.eOb = e1;

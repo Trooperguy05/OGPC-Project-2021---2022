@@ -76,5 +76,12 @@ public class CombatEnemy : MonoBehaviour
             GetComponent<BoxCollider2D>().offset = new Vector2(0.2f, 0);
             health = eOb.health;
         }
+        // final boss
+        else if (eOb.name == "Dragon") {
+            GetComponent<Animator>().SetBool("isDragon", true);
+            GetComponent<BoxCollider2D>().size = new Vector2(6, 4);
+            GetComponent<BoxCollider2D>().offset = new Vector2(0, -0.2f);
+            health = eOb.health;
+        }
     }
 }

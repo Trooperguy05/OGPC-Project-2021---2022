@@ -158,6 +158,14 @@ public class EnemyCreator
             dexterity = 1;
             size = 4;
         }
+        // valazak final boss
+        else if (num == 10) {
+            name = "Dragon";
+            healthMax = 1000;
+            manaMax = 0;
+            dexterity = 2;
+            size = 4;
+        }
         health = healthMax;
         mana = manaMax;
     }

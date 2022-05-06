@@ -9,16 +9,19 @@ public class BackgroundController : MonoBehaviour
     public Sprite desertBackground;
     public Sprite swampBackground;
     public Sprite forestBackground;
+    public Sprite forestBackground_noRiver;
 
     // if the script has updated the background or not
     public bool updatedBackground;
 
     // the player progress script
     private PlayerProgress pP;
+    private CombatManager cM;
 
     // caching the player progress
     void Start() {
         pP = GameObject.Find("Party Manager").GetComponent<PlayerProgress>();
+        cM = GameObject.Find("Combat Manager").GetComponent<CombatManager>();
     }
 
     // Update is called once per frame
@@ -26,7 +29,10 @@ public class BackgroundController : MonoBehaviour
     {
         // update the background
         if (!updatedBackground) {
-            if (pP.playerBiome == PlayerProgress.Biome.desert) {
+            if (cM.specifiedEnemy == 10) {
+                GetComponent<Image>().sprite = forestBackground_noRiver;
+            }
+            else if (pP.playerBiome == PlayerProgress.Biome.desert) {
                 GetComponent<Image>().sprite = desertBackground;
             }
             else if (pP.playerBiome == PlayerProgress.Biome.swamp) {

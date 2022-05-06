@@ -17,6 +17,7 @@ public class EnemyActions : MonoBehaviour
     private StatusManager sM;
     private HealthbarManager hM;
     private BattleMenuManager bMM;
+    private VirusMeterManager vMM;
     
     //enemy sfx variables
     public AudioSource AS;
@@ -59,6 +60,8 @@ public class EnemyActions : MonoBehaviour
         sM = GameObject.Find("Combat Manager").GetComponent<StatusManager>();
         // healthbar manager
         hM = GameObject.Find("Healthbar Manager").GetComponent<HealthbarManager>();
+        // virus meter manager
+        vMM = GameObject.Find("Healthbar Manager").GetComponent<VirusMeterManager>();
         // battle menu manager
         bMM = GameObject.Find("Battle Menu").GetComponent<BattleMenuManager>();
         // player actions
@@ -659,5 +662,94 @@ public class EnemyActions : MonoBehaviour
         StartCoroutine(animPlaying(animator, "giantCombat_active"));
 
         AS.PlayOneShot(GiantStomp, 1);
+    }
+
+    ///// Final Boss Valazak \\\\\
+    // slash
+    public IEnumerator dragonSlash() {
+        yield return new WaitForSeconds(1f);
+
+        int hit = Random.Range(0, 100);
+        // hit
+        if (hit <= 90) {
+            enemyHit(45);
+            // action text
+            StartCoroutine(bMM.typeActionText("valazak used slash!", 0.01f));
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "valazakCombat_active"));
+        }
+        // miss
+        else {
+            StartCoroutine(bMM.typeActionText("valazak missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));    
+        }
+    }
+
+    // breath weapon
+    public IEnumerator dragonBreathWeapon() {
+        yield return new WaitForSeconds(1f);
+
+        // hit everyone, boost their virus meter
+        enemyAll(5);
+        StartCoroutine(vMM.updateMeter(Random.Range(20, 51), vMM.razaSlider, "raza"));
+        StartCoroutine(vMM.updateMeter(Random.Range(20, 51), vMM.dorneSlider, "dorne"));
+        StartCoroutine(vMM.updateMeter(Random.Range(20, 51), vMM.smithsonSlider, "smithson"));
+        StartCoroutine(vMM.updateMeter(Random.Range(20, 51), vMM.zorSlider, "zor"));
+
+        // action text
+        StartCoroutine(bMM.typeActionText("valazak used virus breath!", 0.01f));
+
+        yield return new WaitForSeconds(1f);
+        // if their meter is greater than or equal to 100, stun them
+        if (pS.char1VMeter >= 100) {
+            pS.char1VMeter -= 100;
+            StartCoroutine(vMM.updateMeter(-100, vMM.razaSlider, "raza"));
+            pA.razaStunRound = cm.roundNum;
+        }
+        if (pS.char2VMeter >= 100) {
+            pS.char2VMeter -= 100;
+            StartCoroutine(vMM.updateMeter(-100, vMM.dorneSlider, "dorne"));
+            pA.dorneStunRound = cm.roundNum;
+        }
+        if (pS.char3VMeter >= 100) {
+            pS.char3VMeter -= 100;
+            StartCoroutine(vMM.updateMeter(-100, vMM.smithsonSlider, "smithson"));
+            pA.smithsonStunRound = cm.roundNum;
+        }
+        if (pS.char4VMeter >= 100) {
+            pS.char4VMeter -= 100;
+            StartCoroutine(vMM.updateMeter(-100, vMM.zorSlider, "zor"));
+            pA.zorStunRound = cm.roundNum;
+        }
+        // play attack animation
+        Animator animator = findAnimator();
+        animator.SetTrigger("act");
+        StartCoroutine(animPlaying(animator, "valazakCombat_active"));
+    }
+
+    // tail swipe
+    public IEnumerator dragonTailSwipe() {
+        yield return new WaitForSeconds(1f);
+
+        int hit = Random.Range(0, 100);
+        // hit
+        if (hit <= 85) {
+            enemyHit(30);
+            enemyHit(30);
+
+            // action text
+            StartCoroutine(bMM.typeActionText("valazak used tail swipe!", 0.01f));
+            // play attack animation
+            Animator animator = findAnimator();
+            animator.SetTrigger("act");
+            StartCoroutine(animPlaying(animator, "valazakCombat_active"));
+        }
+        // miss
+        else {
+            StartCoroutine(bMM.typeActionText("valazak missed!", 0.01f));
+            StartCoroutine(pauseOnMiss(pauseWait));  
+        }
     }
 }

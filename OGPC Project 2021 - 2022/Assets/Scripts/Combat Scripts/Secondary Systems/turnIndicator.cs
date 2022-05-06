@@ -46,19 +46,19 @@ public class turnIndicator : MonoBehaviour
             if (cM.gameObjectsInCombat[cM.initiativeIndex] != null) {
                 if (cM.gameObjectsInCombat[cM.initiativeIndex].name == gameObjects[4].name) {
                     indicatorRenderer.sprite = enemyIndicator;
-                    indicator.transform.position = new Vector2(gameObjects[4].transform.position.x - indicatorOffset, gameObjects[4].transform.position.y);
+                    indicator.transform.position = new Vector2(gameObjects[4].transform.position.x - (gameObjects[4].GetComponent<BoxCollider2D>().size.x/2), gameObjects[4].transform.position.y);
                 }
                 else if (cM.gameObjectsInCombat[cM.initiativeIndex].name == gameObjects[5].name) {
                     indicatorRenderer.sprite = enemyIndicator;
-                    indicator.transform.position = new Vector2(gameObjects[5].transform.position.x - indicatorOffset, gameObjects[5].transform.position.y);
+                    indicator.transform.position = new Vector2(gameObjects[5].transform.position.x - (gameObjects[5].GetComponent<BoxCollider2D>().size.x/2), gameObjects[5].transform.position.y);
                 }
                 else if (cM.gameObjectsInCombat[cM.initiativeIndex].name == gameObjects[6].name) {
                     indicatorRenderer.sprite = enemyIndicator;
-                    indicator.transform.position = new Vector2(gameObjects[6].transform.position.x - indicatorOffset, gameObjects[6].transform.position.y);
+                    indicator.transform.position = new Vector2(gameObjects[6].transform.position.x - (gameObjects[6].GetComponent<BoxCollider2D>().size.x/2), gameObjects[6].transform.position.y);
                 }
                 else if (cM.gameObjectsInCombat[cM.initiativeIndex].name == gameObjects[7].name) {
                     indicatorRenderer.sprite = enemyIndicator;
-                    indicator.transform.position = new Vector2(gameObjects[7].transform.position.x - indicatorOffset, gameObjects[7].transform.position.y);
+                    indicator.transform.position = new Vector2(gameObjects[7].transform.position.x - (gameObjects[7].GetComponent<BoxCollider2D>().size.x/2), gameObjects[7].transform.position.y);
                 }   
             }
         }
