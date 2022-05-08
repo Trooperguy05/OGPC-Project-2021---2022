@@ -59,11 +59,17 @@ public class VirusMeterManager : MonoBehaviour
             if (pS.char1VMeter > 100) {
                 pS.char1VMeter = 100;
             }
+            else if (pS.char1VMeter < 0) {
+                pS.char1VMeter = 0;
+            }
         }
         if (name == "dorne") {
             pS.char2VMeter += amt;
             if (pS.char2VMeter > 100) {
                 pS.char2VMeter = 100;
+            }
+            else if (pS.char2VMeter < 0) {
+                pS.char2VMeter = 0;
             }
         }
         if (name == "smithson") {
@@ -71,11 +77,17 @@ public class VirusMeterManager : MonoBehaviour
             if (pS.char3VMeter > 100) {
                 pS.char3VMeter = 100;
             }
+            else if (pS.char3VMeter < 0) {
+                pS.char3VMeter = 0;
+            }
         }
         if (name == "zor") {
             pS.char4VMeter += amt;
             if (pS.char4VMeter > 100) {
                 pS.char4VMeter = 100;
+            }
+            else if (pS.char4VMeter < 0) {
+                pS.char4VMeter = 0;
             }
         }
         // add to the visual meter

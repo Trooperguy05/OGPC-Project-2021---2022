@@ -704,22 +704,18 @@ public class EnemyActions : MonoBehaviour
         yield return new WaitForSeconds(1f);
         // if their meter is greater than or equal to 100, stun them
         if (pS.char1VMeter >= 100) {
-            pS.char1VMeter -= 100;
             StartCoroutine(vMM.updateMeter(-100, vMM.razaSlider, "raza"));
             pA.razaStunRound = cm.roundNum;
         }
         if (pS.char2VMeter >= 100) {
-            pS.char2VMeter -= 100;
             StartCoroutine(vMM.updateMeter(-100, vMM.dorneSlider, "dorne"));
             pA.dorneStunRound = cm.roundNum;
         }
         if (pS.char3VMeter >= 100) {
-            pS.char3VMeter -= 100;
             StartCoroutine(vMM.updateMeter(-100, vMM.smithsonSlider, "smithson"));
             pA.smithsonStunRound = cm.roundNum;
         }
         if (pS.char4VMeter >= 100) {
-            pS.char4VMeter -= 100;
             StartCoroutine(vMM.updateMeter(-100, vMM.zorSlider, "zor"));
             pA.zorStunRound = cm.roundNum;
         }

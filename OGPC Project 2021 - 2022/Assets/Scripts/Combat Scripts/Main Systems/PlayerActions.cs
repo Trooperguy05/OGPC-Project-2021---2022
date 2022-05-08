@@ -160,6 +160,7 @@ public class PlayerActions : MonoBehaviour
         yield return new WaitForSeconds(1f);
         charDone = true;
         hM.updateHealthbarValues();
+        mM.updateManabar();
     }
 
     // method that plays the hurt animation of the enemy hit \\
@@ -183,14 +184,14 @@ public class PlayerActions : MonoBehaviour
     /// Action Wrappers \\\
     public void execute_razaFire() {
         StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
-        StartCoroutine(ts.waitForClick(razaFire));
+        StartCoroutine(ts.waitForClick(razaFire, "Enemy"));
     }
     public void execute_razaAim() {
         razaAim();
     }
     public void execute_razaMark() {
         StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
-        StartCoroutine(ts.waitForClick(razaMark));
+        StartCoroutine(ts.waitForClick(razaMark, "Enemy"));
     }
     public void execute_razaGamble() {
         razaGamble();
@@ -351,15 +352,15 @@ public class PlayerActions : MonoBehaviour
     /// Action Wrappers \\\
     public void execute_dorneStrike() {
         StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
-        StartCoroutine(ts.waitForClick(dorneStrike));
+        StartCoroutine(ts.waitForClick(dorneStrike, "Enemy"));
     }
     public void execute_dorneMage() {
         StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
-        StartCoroutine(ts.waitForClick(dorneMage));
+        StartCoroutine(ts.waitForClick(dorneMage, "Enemy"));
     }
     public void execute_dorneCharge() {
         StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
-        StartCoroutine(ts.waitForClick(dorneCharge));
+        StartCoroutine(ts.waitForClick(dorneCharge, "Enemy"));
     }
     public void execute_dorneSpeedUp() {
         dorneSpeedUp();
@@ -490,18 +491,18 @@ public class PlayerActions : MonoBehaviour
     /// Action Wrappers \\\
     public void execute_smithsonGrab() {
         StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
-        StartCoroutine(ts.waitForClick(smithsonGrab));
+        StartCoroutine(ts.waitForClick(smithsonGrab, "Enemy"));
     }
     public void execute_smithsonSteal() {
         StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
-        StartCoroutine(ts.waitForClick(smithsonSteal));
+        StartCoroutine(ts.waitForClick(smithsonSteal, "Enemy"));
     }
     public void execute_smithsonAOE() {
         smithsonAOE();
     }
     public void execute_smithsonHeal() {
         StartCoroutine(bMM.typeHelperActionText("select one ally", 0.01f));
-        StartCoroutine(ts.waitForClick(smithsonHeal));
+        StartCoroutine(ts.waitForClick(smithsonHeal, "Player"));
     }
     // Actions \\
     //  Bony Grasp  \\
@@ -704,14 +705,14 @@ public class PlayerActions : MonoBehaviour
     /// Action Wrappers \\\
     public void execute_zorCleave() {
         StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
-        StartCoroutine(ts.waitForClick(zorCleave));
+        StartCoroutine(ts.waitForClick(zorCleave, "Enemy"));
     }
     public void execute_zorAngy() {
         zorAngy();
     }
     public void execute_zorZap() {
         StartCoroutine(bMM.typeHelperActionText("select two enemies", 0.01f));
-        StartCoroutine(ts.waitForClick(zorZap, 2));
+        StartCoroutine(ts.waitForClick(zorZap, 2, "Enemy"));
     }
     public void execute_zorAOE() {
         zorAOE();

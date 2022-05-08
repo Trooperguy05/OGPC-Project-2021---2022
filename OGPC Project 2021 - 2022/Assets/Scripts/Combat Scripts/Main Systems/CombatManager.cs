@@ -452,7 +452,7 @@ public class CombatManager : MonoBehaviour
             playerActions.updatePCVariables();
             tI.updateIndicator();
             // regen some mana for smithson
-            StartCoroutine(mM.regenMana(mM.smithsonManabarSlider, 15, 0.01f));
+            StartCoroutine(mM.regenMana(mM.smithsonManabarSlider, 30, 0.01f));
             // update statuses
             sM.statusUpdate();
         }

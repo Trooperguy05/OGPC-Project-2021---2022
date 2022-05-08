@@ -68,7 +68,7 @@ public class HealthbarManager : MonoBehaviour
         razaHealthbar.GetComponent<RectTransform>().position = new Vector2(raza.transform.position.x-1.5f, raza.transform.position.y+0.25f);
         dorneHealthbar.GetComponent<RectTransform>().position = new Vector2(dorne.transform.position.x-1.5f, dorne.transform.position.y+0.25f);
         smithsonHealthbar.GetComponent<RectTransform>().position = new Vector2(smithson.transform.position.x-1.5f, smithson.transform.position.y+0.25f);
-        zorHealthbar.GetComponent<RectTransform>().position = new Vector2(zor.transform.position.x-1.5f, zor.transform.position.y+0.25f); 
+        zorHealthbar.GetComponent<RectTransform>().position = new Vector2(zor.transform.position.x-1.5f, zor.transform.position.y+0.25f);
     }
 
     // updates the healthbar values to the exact health of the enemy/player character \\
@@ -93,6 +93,20 @@ public class HealthbarManager : MonoBehaviour
                     enemy4Slider.value = enemy.GetComponent<CombatEnemy>().eOb.health;
                 }
             } 
+        }
+ 
+        // also update player health stats so if they are less than 0, change it to 0
+        if (pS.char1HP < 0) {
+            pS.char1HP = 0;
+        }
+        if (pS.char2HP < 0) {
+            pS.char2HP = 0;
+        }
+        if (pS.char3HP < 0) {
+            pS.char3HP = 0;
+        }
+        if (pS.char4HP < 0) {
+            pS.char4HP = 0;
         }
     }
 

@@ -33,10 +33,10 @@ public class MusicDetection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (!playingMusic){
             if (cM.initiativeNames.Contains("Dragon")) {
                 Play = BC;
-                Debug.Log("h");
             }
             else if (cM.initiativeNames.Contains("Worm") || cM.initiativeNames.Contains("Man Trap") || cM.initiativeNames.Contains("Giant")){
                 Play = MC;
@@ -54,9 +54,36 @@ public class MusicDetection : MonoBehaviour
             playingMusic = true;
             AS.clip = Play;
             AS.Play(0);
-
         }
-        
-        
+        */
+        if (!playingMusic) {
+            StartCoroutine(wait());
+        }
+    }
+
+    IEnumerator wait() {
+        yield return new WaitForSeconds(0.01f);
+
+        if (!playingMusic){
+            if (cM.initiativeNames.Contains("Dragon")) {
+                Play = BC;
+            }
+            else if (cM.initiativeNames.Contains("Worm") || cM.initiativeNames.Contains("Man Trap") || cM.initiativeNames.Contains("Giant")){
+                Play = MC;
+            }
+            else if (PP.playerBiome == PlayerProgress.Biome.desert){
+                Play = DC;
+            }
+            else if (PP.playerBiome == PlayerProgress.Biome.swamp){
+                Play = SC;
+            }
+            else if (PP.playerBiome == PlayerProgress.Biome.forest){
+                Play = FC;
+            }
+
+            playingMusic = true;
+            AS.clip = Play;
+            AS.Play(0);
+        }
     }
 }

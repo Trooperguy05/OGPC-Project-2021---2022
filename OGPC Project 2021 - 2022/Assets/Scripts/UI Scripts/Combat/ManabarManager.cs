@@ -11,12 +11,22 @@ public class ManabarManager : MonoBehaviour
     public GameObject smithsonManabar;
     public Slider smithsonManabarSlider;
 
+    // access to other script
+    private PartyStats pS;
+
     // set-up \\
     void Start() {
+        // party stats
+        pS = GameObject.Find("Party Manager").GetComponent<PartyStats>();
         // get the sliders
         smithsonManabarSlider = smithsonManabar.GetComponent<Slider>();
         // move the manabars
         smithsonManabar.GetComponent<RectTransform>().position = new Vector2(smithson.transform.position.x-1.5f, smithson.transform.position.y);
+    }
+
+    // method that updates the manabar to match the mana in party stats \\
+    public void updateManabar() {
+        smithsonManabarSlider.value = pS.char3Mana;
     }
 
     // method that shows mana depletion \\

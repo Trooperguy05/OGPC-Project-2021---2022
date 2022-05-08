@@ -39,6 +39,27 @@ public class TargetingSystem
         if (callback != null) callback();
     }
 
+    // method that waits for the player to click certain objects \\
+    public IEnumerator waitForClick(Action callback, string tag) {
+        if (target != null) {
+            target = null;
+        }
+
+        while (target == null) {
+            if (Input.GetMouseButtonDown(0)) {
+                target = this.onClick();
+                if (target.tag == tag) {
+                    yield return target;
+                }
+                else {
+                    target = null;
+                }
+            }
+            yield return null;
+        }
+        if (callback != null) callback();
+    }
+
     // method that waits for the player to click on multiple 'things' \\
     public IEnumerator waitForClick(Action callback, int num) {
         // reset
@@ -58,6 +79,40 @@ public class TargetingSystem
                     target = this.onClick();
                     targetList.Add(target);
                     yield return target;
+                }
+                yield return null;
+            }
+            target = null;
+        }
+
+        // callback to player action functions
+        if (callback != null) callback();
+    }
+
+    // method that waits for the player to click on multiple 'certain' 'things' \\
+    public IEnumerator waitForClick(Action callback, int num, string tag) {
+        // reset
+        if (target != null) {
+            target = null;
+        }
+        if (targetList.Count != -1) {
+            for (int i = 0; i < targetList.Count; i++) {
+                targetList.RemoveAt(0);
+            }
+        }
+
+        // main checking
+        for (int i = 0; i < num; i++) {
+            while (target == null) {
+                if (Input.GetMouseButtonDown(0)) {
+                    target = this.onClick();
+                    if (target.tag == tag) {
+                        targetList.Add(target);
+                        yield return target;
+                    }
+                    else {
+                        target = null;
+                    }
                 }
                 yield return null;
             }
