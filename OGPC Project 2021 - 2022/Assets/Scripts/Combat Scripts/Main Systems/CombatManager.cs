@@ -452,6 +452,10 @@ public class CombatManager : MonoBehaviour
             playerActions.updatePCVariables();
             tI.updateIndicator();
             // regen some mana for smithson
+            pS.char3Mana += 30;
+            if (pS.char3Mana > pS.char3ManaMax) {
+                pS.char3Mana = pS.char3ManaMax;
+            }
             StartCoroutine(mM.regenMana(mM.smithsonManabarSlider, 30, 0.01f));
             // update statuses
             sM.statusUpdate();
