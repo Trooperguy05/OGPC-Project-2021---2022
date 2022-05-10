@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Credits : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Credits : MonoBehaviour
     public Rigidbody2D croc;
     public GameObject cam1;
     public GameObject crocObject;
+    public Rigidbody2D ThanksForPlaying;
 
     // Update is called once per frame
     void Start()
@@ -40,5 +42,15 @@ public class Credits : MonoBehaviour
         yield return new WaitForSeconds(5);
         croc.isKinematic = false;
         croc.AddForce(new Vector2(0f, 350f));
+
+        yield return new WaitForSeconds(2);
+        while (ThanksForPlaying.position.y > 4) {
+            ThanksForPlaying.MovePosition(ThanksForPlaying.position + new Vector2(0f, -0.05f));
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(10);
+        SceneManager.LoadScene(0);
+
     }
 }

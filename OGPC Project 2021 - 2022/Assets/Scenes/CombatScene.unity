@@ -634,6 +634,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &28561362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,6 +782,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1465400502}
         m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
         m_MethodName: execute_hideActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2067,6 +2091,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &155548553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2521,6 +2557,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &252945515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2950,6 +2998,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &327081065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3161,6 +3221,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1465400502}
         m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
         m_MethodName: execute_hideActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3649,6 +3721,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1465400502}
         m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
         m_MethodName: execute_hideActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4165,6 +4249,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &428423686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4421,6 +4517,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1465400502}
         m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
         m_MethodName: execute_hideActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4909,6 +5017,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1465400502}
         m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
         m_MethodName: execute_hideActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5581,6 +5701,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &751545837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6118,6 +6250,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1465400502}
         m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
         m_MethodName: execute_hideActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7128,6 +7272,7 @@ GameObject:
   - component: {fileID: 1105582664}
   - component: {fileID: 1105582665}
   - component: {fileID: 1105582666}
+  - component: {fileID: 1105582667}
   m_Layer: 0
   m_Name: Combat Manager
   m_TagString: Untagged
@@ -7267,6 +7412,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wonLastCombat: 0
+--- !u!114 &1105582667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105582660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51da6b239c35302458f2b7deb81df29c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPressed: {fileID: 8300000, guid: c721367d5bec91d4b879878d92e1427c, type: 3}
+  AS: {fileID: 101187082}
 --- !u!1 &1110061215
 GameObject:
   m_ObjectHideFlags: 0
@@ -8865,6 +9024,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1460547490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10172,6 +10343,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1743771008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10548,6 +10731,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1465400502}
         m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
         m_MethodName: execute_hideActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11469,6 +11664,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1465400502}
         m_TargetAssemblyTypeName: BattleMenuManager, Assembly-CSharp
         m_MethodName: execute_hideActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1105582667}
+        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+        m_MethodName: buttonPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
