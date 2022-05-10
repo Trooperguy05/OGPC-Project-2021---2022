@@ -49,8 +49,8 @@ public class PartyInfoManager : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) {
                 cycleBackwards();
             }
-            //cycleFwdButton.SetActive(true);
-            //cycleBwdButton.SetActive(true);
+            cycleFwdButton.SetActive(true);
+            cycleBwdButton.SetActive(true);
             // raza page
             if (currentPage == 1) {
                 razaMenu.SetActive(true);
@@ -93,12 +93,13 @@ public class PartyInfoManager : MonoBehaviour
             }
         }
         else {
-            //cycleFwdButton.SetActive(false);
-            //cycleBwdButton.SetActive(false);
+            cycleFwdButton.SetActive(false);
+            cycleBwdButton.SetActive(false);
             razaMenu.SetActive(false);
             dorneMenu.SetActive(false);
             smithsonMenu.SetActive(false);
             zorMenu.SetActive(false);
+            partyStatsMenu.SetActive(false);
         }
     }
 
