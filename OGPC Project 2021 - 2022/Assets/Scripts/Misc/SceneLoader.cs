@@ -19,6 +19,9 @@ public class SceneLoader : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == "MainMenu") {
             StartCoroutine(loadOverworldScene());
         }
+        else if (SceneManager.GetActiveScene().name == "Credits") {
+            StartCoroutine(loadMainMenu());
+        }
     }
 
     // load the main menu

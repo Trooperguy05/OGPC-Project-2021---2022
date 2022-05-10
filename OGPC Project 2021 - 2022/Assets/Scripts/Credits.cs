@@ -50,7 +50,6 @@ public class Credits : MonoBehaviour
         }
 
         yield return new WaitForSeconds(10);
-        SceneManager.LoadScene(0);
-
+        SceneLoader.changeScene = true;
     }
 }
