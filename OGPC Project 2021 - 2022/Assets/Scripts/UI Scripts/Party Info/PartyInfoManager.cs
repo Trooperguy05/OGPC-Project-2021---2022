@@ -107,6 +107,7 @@ public class PartyInfoManager : MonoBehaviour
     public void updateStatInfo() {
         TextMeshProUGUI text = statInfoText.GetComponent<TextMeshProUGUI>();
 
+        text.text = "";
         // raza info
         text.text += "raza - " + pS.char1HP + "/" + pS.char1HPMax + " hp";
         text.text += "\n\n";
