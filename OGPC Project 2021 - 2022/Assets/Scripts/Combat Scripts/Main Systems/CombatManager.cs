@@ -58,12 +58,14 @@ public class CombatManager : MonoBehaviour
     public StatusManager sM;
 
     // load the party stats when the player enters combat
+    void Awake()
+    {
+        getSpecifiedEnemy();
+    }
+
     void Start() {
         FindObjectOfType<PartyStats>().LoadData();
         pP.loadPlayerData();
-
-        // load specified enemy
-        getSpecifiedEnemy();
 
         // grabbing the enemy objects
         e1combat = enemy1.GetComponent<CombatEnemy>();

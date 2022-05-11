@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     public static bool changeScene = false;
+    public CombatManager cM;
     // load a scene based on where the player is
     void Start()
     {
@@ -15,6 +16,14 @@ public class SceneLoader : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "CombatScene") {
             StartCoroutine(loadOverworldScene());
+            if (cM.specifiedEnemy == 10)
+            {
+                StartCoroutine(loadCreditScene());
+            }
+            else
+            {
+                StartCoroutine(loadOverworldScene());
+            }
         }
         else if (SceneManager.GetActiveScene().name == "MainMenu") {
             StartCoroutine(loadOverworldScene());
@@ -57,6 +66,21 @@ public class SceneLoader : MonoBehaviour
 
         while (!aO.isDone) {
             if (changeScene) {
+                aO.allowSceneActivation = true;
+            }
+            yield return null;
+        }
+    }
+    // load credits
+    public IEnumerator loadCreditScene()
+    {
+        AsyncOperation aO = SceneManager.LoadSceneAsync("Credits");
+        aO.allowSceneActivation = false;
+
+        while (!aO.isDone)
+        {
+            if (changeScene)
+            {
                 aO.allowSceneActivation = true;
             }
             yield return null;

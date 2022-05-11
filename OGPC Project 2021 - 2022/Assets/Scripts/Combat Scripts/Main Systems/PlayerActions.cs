@@ -356,7 +356,7 @@ public class PlayerActions : MonoBehaviour
     }
     public void execute_dorneMage() {
         StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
-        StartCoroutine(ts.waitForClick(dorneMage, "Enemy"));
+        StartCoroutine(ts.waitForClick(dorneRoulette, 2, "Enemy"));
     }
     public void execute_dorneCharge() {
         StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
@@ -409,32 +409,37 @@ public class PlayerActions : MonoBehaviour
         }
         AS.PlayOneShot(dorneStrikeSFX, 1);
     }
-    //  Arcane Counter  \\
-    // Lowers the mana of the target (though this applies to few enemies).
-    public void dorneMage(){
-        // wait for target to return
-        GameObject target = ts.target;
-        EnemyCreator enemy = getEnemy(target.name);
-        // act on target
+    //  Roulette  \\
+    // Deals a random amount of damage to two enemies, though this deals no damage to Dorne
+    public void dorneRoulette()
+    {
+        //chance to hit
         int chanceToHit = Random.Range(1, 100);
-        if (chanceToHit <= 90) {
-            enemy.health -= 25;
-            // reduces enemy mana
-            enemy.mana -= 35;
-            if (enemy.mana < 0) {
-                enemy.mana = 0;
-            } 
-            // play animation
+        if (chanceToHit <= 90)
+        {
             dorneAnimator.SetTrigger("act");
-            StartCoroutine(updateGameField(dorneAnimator, "dorneCombat_active", target, 25));
+            for (int i = 0; i < 2; i++)
+            {
+                //hits two enemies
+                getEnemy(ts.targetList[i].name).health -= Random.Range(20, 50);
+                hurtEnemy(ts.targetList[i], 25);
+            }
+            // play animation
+            StartCoroutine(animPlaying(dorneAnimator, "dorneCombat_active"));
+            // update battle menu with action text
+            StartCoroutine(bMM.typeActionText("dorne used roulette!", 0.01f));
         }
         // on miss
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("dorne missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
+
+
         AS.PlayOneShot(dorneMageSFX, 1);
     }
+    
     //  Cavalier Charge \\
     // Deals a random amount of damage 3 times over to one enemy, while
     // doing a lower amount of random damage to Dorne.

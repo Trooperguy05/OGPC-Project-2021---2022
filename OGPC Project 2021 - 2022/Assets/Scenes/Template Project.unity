@@ -7088,15 +7088,16 @@ MonoBehaviour:
   m_text: 'strike - basic attack that deals moderate damage
 
 
-    n/a
+    roulette - a less
+    risky variant of charge that deals less damage but strikes two enemies, leaving
+    dorne intact
 
 
-    charge
-    - deals a range of damage while also dealing damage to himself
+    charge - deals a range of damage while also dealing damage
+    to himself
 
 
-    tighten
-    harness - increase his order in the initiative'
+    tighten harness - increase his order in the initiative'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8701256e4b1f4054393248f48b262dae, type: 2}
   m_sharedMaterial: {fileID: -5563330468852190828, guid: 8701256e4b1f4054393248f48b262dae, type: 2}
@@ -7123,8 +7124,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8
-  m_fontSizeBase: 8
+  m_fontSize: 6
+  m_fontSizeBase: 6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -100081,6 +100082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fd50453a71ca24d8ecc6b7a68591e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cM: {fileID: 0}
 --- !u!4 &1342107543
 Transform:
   m_ObjectHideFlags: 0
