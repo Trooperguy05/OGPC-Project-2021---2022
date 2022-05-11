@@ -9601,7 +9601,7 @@ MonoBehaviour:
   ScorpSting: {fileID: 8300000, guid: ff2583602146f2844b682cc2c0afefd0, type: 3}
   ScorpSnip: {fileID: 8300000, guid: dcf0d536dd005c44689f77236505b7cb, type: 3}
   MummyWalk: {fileID: 8300000, guid: 90d3dfca7ea7666488f786c157c7a60d, type: 3}
-  WormHole: {fileID: 0}
+  WormHole: {fileID: 8300000, guid: de55b653cb708d84d9441b430b49d252, type: 3}
   WormBite: {fileID: 8300000, guid: 0e15540bded65ef468f421d219fe0764, type: 3}
   SnakeCoil: {fileID: 8300000, guid: 9232a1b665755554b8a585ef3fec7c5b, type: 3}
   SnakeBite: {fileID: 8300000, guid: 03dcebc2f14ab6842889f3eb2bd05534, type: 3}
@@ -9614,6 +9614,9 @@ MonoBehaviour:
   SpiderWeb: {fileID: 8300000, guid: cd4af984d554ed44696953c4c0fda096, type: 3}
   GiantStrike: {fileID: 8300000, guid: 9ef7b230be56d064a9ff5508c1066b7e, type: 3}
   GiantStomp: {fileID: 8300000, guid: c6be626277fbf6a4abcca0fa020c566b, type: 3}
+  ValBreath: {fileID: 8300000, guid: eeddd951cd94a034dbc9aeefc79bca1a, type: 3}
+  ValSwipe: {fileID: 8300000, guid: 6054aa4166d5a854a9b995f2181aef99, type: 3}
+  ValSlash: {fileID: 8300000, guid: 7e29b9f2cff8c6d4b86382eb52a7e9d8, type: 3}
   snakeCoil: 0
   snakeCoilTarget: 0
   enemyDone: 0
@@ -9743,6 +9746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fd50453a71ca24d8ecc6b7a68591e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cM: {fileID: 0}
 --- !u!4 &1647986341
 Transform:
   m_ObjectHideFlags: 0

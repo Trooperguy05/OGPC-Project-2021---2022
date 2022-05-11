@@ -37,6 +37,9 @@ public class EnemyActions : MonoBehaviour
     public AudioClip SpiderWeb;
     public AudioClip GiantStrike;
     public AudioClip GiantStomp;
+    public AudioClip ValBreath;
+    public AudioClip ValSwipe;
+    public AudioClip ValSlash;
 
     //enemy specific variables
     [Header("Enemy Abilities")]
@@ -685,6 +688,7 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(bMM.typeActionText("valazak missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));    
         }
+        AS.PlayOneShot(ValSlash, 1);
     }
 
     // breath weapon
@@ -723,6 +727,7 @@ public class EnemyActions : MonoBehaviour
         Animator animator = findAnimator();
         animator.SetTrigger("act");
         StartCoroutine(animPlaying(animator, "valazakCombat_active"));
+        AS.PlayOneShot(ValBreath, 1);
     }
 
     // tail swipe
@@ -747,5 +752,6 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(bMM.typeActionText("valazak missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));  
         }
+        AS.PlayOneShot(ValSwipe, 1);
     }
 }
