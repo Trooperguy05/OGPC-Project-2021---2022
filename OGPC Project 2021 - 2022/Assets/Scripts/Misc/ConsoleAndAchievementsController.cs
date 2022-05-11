@@ -39,7 +39,7 @@ public class ConsoleAndAchievementsController : MonoBehaviour
         consoleText = consoleText.ToUpper();
         // Displays the help menu for the console in the console log
         if (consoleText.Equals("HELP")) {
-            consoleLog.GetComponent<TextMeshProUGUI>().text += "\n-----------------------------------------------------------\n'switchscene' - switches the scene (must input scene name).\n'skipturn' - skips an enemies turn during combat.\n'healparty' - heals all party members.\n'endcombat' - ends the current combat.\n'help' - shows this menu.\n'goto' - moves the player character to a location (e.g temple, well)\ncommands are not case sensitive.\n-----------------------------------------------------------";
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\n-----------------------------------------------------------\n'switchscene' - switches the scene (must input scene name).\n'healparty' - heals all party members.\n'endcombat' - ends the current combat.\n'help' - shows this menu.\n'goto' - moves the player character to a location (e.g temple, well)\ncommands are not case sensitive.\n-----------------------------------------------------------";
         }
         // Switchs the scene based on what scene name is entered with the commands
         else if (consoleText == "SWITCHSCENE MAINMENU") {
@@ -62,6 +62,10 @@ public class ConsoleAndAchievementsController : MonoBehaviour
         else if (consoleText == "GOTO WELL") {
             player.transform.position = new Vector2((float)-19.3, (float)-99.2);
             consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to well";
+        }
+        // Ends combat
+        else if (consoleText == "ENDCOMBAT" && SceneManager.GetActiveScene().name == "CombatScene") {
+            SceneLoader.changeScene = true;
         }
         // Displays that an invalid command is entered in the console
         else {

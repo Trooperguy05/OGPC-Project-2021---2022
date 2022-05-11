@@ -14,6 +14,7 @@ public class PartyInfoManager : MonoBehaviour
 
     // party stats
     private PartyStats pS;
+    private ConsoleAndAchievementsController cC;
 
     // PC info pages
     [Header("Menus")]
@@ -27,12 +28,13 @@ public class PartyInfoManager : MonoBehaviour
     // cache access to PartyStats
     void Start() {
         pS = GameObject.Find("Party and Player Manager").GetComponent<PartyStats>();
+        cC = GameObject.Find("Console Manager").GetComponent<ConsoleAndAchievementsController>();
     }
 
     // info logic
     void Update() {
         // turning menu off and on
-        if (loadingScreenManager.loadingDone && !DialogueManager.InDialogue && !Inventory.invMenuOpen) {
+        if (loadingScreenManager.loadingDone && !DialogueManager.InDialogue && !Inventory.invMenuOpen && !cC.consoleIsActive) {
             if (Input.GetKeyDown(KeyCode.E)) {
                 menuOpen = !menuOpen;
                 PlayerMovement.playerAbleMove = !PlayerMovement.playerAbleMove;
