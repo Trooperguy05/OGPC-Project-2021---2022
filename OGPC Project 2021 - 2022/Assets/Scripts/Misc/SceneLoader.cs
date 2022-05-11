@@ -15,7 +15,6 @@ public class SceneLoader : MonoBehaviour
             StartCoroutine(loadCombatScene());
         }
         else if (SceneManager.GetActiveScene().name == "CombatScene") {
-            StartCoroutine(loadOverworldScene());
             if (cM.specifiedEnemy == 10)
             {
                 StartCoroutine(loadCreditScene());

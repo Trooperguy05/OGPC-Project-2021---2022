@@ -417,14 +417,15 @@ public class PlayerActions : MonoBehaviour
         int chanceToHit = Random.Range(1, 100);
         if (chanceToHit <= 90)
         {
-            dorneAnimator.SetTrigger("act");
             for (int i = 0; i < 2; i++)
             {
                 //hits two enemies
-                getEnemy(ts.targetList[i].name).health -= Random.Range(20, 50);
-                hurtEnemy(ts.targetList[i], 25);
+                int dmg = Random.Range(20, 51);
+                getEnemy(ts.targetList[i].name).health -= dmg;
+                hurtEnemy(ts.targetList[i], dmg);
             }
             // play animation
+            dorneAnimator.SetTrigger("act");
             StartCoroutine(animPlaying(dorneAnimator, "dorneCombat_active"));
             // update battle menu with action text
             StartCoroutine(bMM.typeActionText("dorne used roulette!", 0.01f));
@@ -806,13 +807,13 @@ public class PlayerActions : MonoBehaviour
             //chance to hit
             int chanceToHit = Random.Range(1, 100);
             if (chanceToHit <= 90) {
-                zorAnimator.SetTrigger("act");
                 for(int i = 0; i < 2; i++){
                     //hits two enemies
                     getEnemy(ts.targetList[i].name).health -= 25;
                     hurtEnemy(ts.targetList[i], 25);
                 }
                 // play animation
+                zorAnimator.SetTrigger("act");
                 StartCoroutine(animPlaying(zorAnimator, "zorCombat_active"));
                 // update battle menu with action text
                 StartCoroutine(bMM.typeActionText("zor used barbaric bolt!", 0.01f));

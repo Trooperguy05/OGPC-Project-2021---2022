@@ -340,6 +340,8 @@ public class EnemyActions : MonoBehaviour
                 pS.char4HP -= 20;
                 StartCoroutine(hM.dealDamage(hM.zorSlider, 20, 0.01f));
             }
+            // action text
+            StartCoroutine(bMM.typeActionText("anaconda used bite!", 0.01f));
             // play attack animation
             Animator animator = findAnimator();
             animator.SetTrigger("act");
@@ -654,6 +656,7 @@ public class EnemyActions : MonoBehaviour
             cm.initiativeCount[i] -= 1;
         }
         cm.sortInitiative(cm.initiativeCount);
+        enemyAll(15);
         // action text
         StartCoroutine(bMM.typeActionText("giant used stomp!", 0.01f));
         // play attack animation

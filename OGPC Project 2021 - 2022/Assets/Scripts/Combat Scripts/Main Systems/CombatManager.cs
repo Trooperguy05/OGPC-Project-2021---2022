@@ -427,6 +427,7 @@ public class CombatManager : MonoBehaviour
             else if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
+                tookChoiceNum = 0;
                 initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
