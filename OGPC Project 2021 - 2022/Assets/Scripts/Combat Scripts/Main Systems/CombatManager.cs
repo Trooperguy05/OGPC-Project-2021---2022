@@ -508,7 +508,7 @@ public class CombatManager : MonoBehaviour
             cR.wonLastCombat = true;
             SaveSystem.saveCombatReport(cR);
             // return to overworld
-            SceneManager.LoadScene(1);
+            SceneLoader.changeScene = true;
         }
     }
 

@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour
     // on start-up things \\
     void Start() {
         // get the console controller \\
-        cC = GameObject.Find("ConsoleMenuController").GetComponent<ConsoleAndAchievementsController>();
+        cC = GameObject.Find("Console Manager").GetComponent<ConsoleAndAchievementsController>();
         pS = GameObject.Find("Party and Player Manager").GetComponent<PartyStats>();
 
         // load the inventory on start up \\

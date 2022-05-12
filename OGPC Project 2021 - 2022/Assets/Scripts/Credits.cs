@@ -50,6 +50,7 @@ public class Credits : MonoBehaviour
         }
 
         yield return new WaitForSeconds(10);
+        SaveSystem.deleteSaveData();
         SceneLoader.changeScene = true;
     }
 }
