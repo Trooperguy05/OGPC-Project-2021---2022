@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -18,5 +19,10 @@ public class PauseMenu : MonoBehaviour
                 PlayerMovement.playerAbleMove = !pauseMenuOpen;
            }
         } 
+    }
+
+    // method for main menu button (returns player back to main menu)
+    public void returnToMainMenu() {
+        SceneManager.LoadScene(0);
     }
 }
