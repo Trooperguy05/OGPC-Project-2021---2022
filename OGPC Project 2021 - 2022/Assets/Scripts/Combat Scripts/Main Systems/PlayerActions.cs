@@ -355,7 +355,7 @@ public class PlayerActions : MonoBehaviour
         StartCoroutine(ts.waitForClick(dorneStrike, "Enemy"));
     }
     public void execute_dorneMage() {
-        StartCoroutine(bMM.typeHelperActionText("select one enemy", 0.01f));
+        StartCoroutine(bMM.typeHelperActionText("select two enemies", 0.01f));
         StartCoroutine(ts.waitForClick(dorneRoulette, 2, "Enemy"));
     }
     public void execute_dorneCharge() {

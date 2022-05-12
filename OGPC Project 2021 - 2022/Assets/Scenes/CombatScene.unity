@@ -337,7 +337,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: tempestuous fury
+  m_text: rage
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8701256e4b1f4054393248f48b262dae, type: 2}
   m_sharedMaterial: {fileID: -5563330468852190828, guid: 8701256e4b1f4054393248f48b262dae, type: 2}
@@ -10425,7 +10425,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2e146fcfcc0c87240bc2a97d25c732d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 48f2aace7c45717429ba6ec31b1f5834, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
