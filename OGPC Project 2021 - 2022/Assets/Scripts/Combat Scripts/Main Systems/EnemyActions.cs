@@ -712,6 +712,7 @@ public class EnemyActions : MonoBehaviour
             cm.initiativeCount[i] -= 1;
         }
         cm.sortInitiative(cm.initiativeCount);
+        enemyAll(15);
         // action text
         StartCoroutine(bMM.typeActionText("giant used stomp!", 0.01f));
         // play attack animation

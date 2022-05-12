@@ -580,7 +580,7 @@ public class PlayerActions : MonoBehaviour
                 heal += 10;
             }
             pS.char3HP += heal;
-            pS.char3Mana -= 15;
+            pS.char3Mana -= 35;
 
             // make sure the player isn't overhealed
             if (pS.char3HP > pS.char3HPMax) {
@@ -589,7 +589,7 @@ public class PlayerActions : MonoBehaviour
 
             // animations
             StartCoroutine(hM.giveHeal(hM.smithsonSlider, heal, 0.01f));
-            StartCoroutine(mM.depleteMana(mM.smithsonManabarSlider, 15, 0.01f));
+            StartCoroutine(mM.depleteMana(mM.smithsonManabarSlider, 35, 0.01f));
             smithsonAnimator.SetTrigger("act");
             StartCoroutine(updateGameField(smithsonAnimator, "smithsonCombat_active", target, 50));
 
@@ -662,8 +662,8 @@ public class PlayerActions : MonoBehaviour
 
         // check for mana
         if (pS.char3Mana >= 10){
-            pS.char3Mana -= 10;
-            StartCoroutine(mM.depleteMana(mM.smithsonManabarSlider, 10, 0.01f));
+            pS.char3Mana -= 25;
+            StartCoroutine(mM.depleteMana(mM.smithsonManabarSlider, 25, 0.01f));
             GameObject target = ts.target;
             if (target.name == "Raza"){
                 pS.char1HP += 35;

@@ -117,7 +117,7 @@ public class PartyInfoManager : MonoBehaviour
         text.text += "dorne - " + pS.char2HP + "/" + pS.char2HPMax + " hp";
         text.text += "\n\n";
         // smithson info
-        text.text += "smithson - " + pS.char3HP + "/" + pS.char2HPMax + " hp\n";
+        text.text += "smithson - " + pS.char3HP + "/" + pS.char3HPMax + " hp\n";
         text.text += "                 " + pS.char3Mana + "/" + pS.char3ManaMax + " mana";
         text.text += "\n\n";
         // zor info
