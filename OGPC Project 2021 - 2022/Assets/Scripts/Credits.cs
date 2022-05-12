@@ -44,7 +44,7 @@ public class Credits : MonoBehaviour
         croc.AddForce(new Vector2(0f, 350f));
 
         yield return new WaitForSeconds(2);
-        while (ThanksForPlaying.position.y > 4) {
+        while (ThanksForPlaying.position.y > 0) {
             ThanksForPlaying.MovePosition(ThanksForPlaying.position + new Vector2(0f, -0.05f));
             yield return null;
         }
