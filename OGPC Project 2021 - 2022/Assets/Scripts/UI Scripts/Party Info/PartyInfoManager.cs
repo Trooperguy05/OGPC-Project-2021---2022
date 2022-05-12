@@ -34,7 +34,7 @@ public class PartyInfoManager : MonoBehaviour
     // info logic
     void Update() {
         // turning menu off and on
-        if (loadingScreenManager.loadingDone && !DialogueManager.InDialogue && !Inventory.invMenuOpen && !cC.consoleIsActive) {
+        if (loadingScreenManager.loadingDone && !DialogueManager.InDialogue && !Inventory.invMenuOpen && !cC.consoleIsActive && !achievementListManager.listOpen && !PartyManager.partyTabOpen) {
             if (Input.GetKeyDown(KeyCode.E)) {
                 menuOpen = !menuOpen;
                 PlayerMovement.playerAbleMove = !PlayerMovement.playerAbleMove;

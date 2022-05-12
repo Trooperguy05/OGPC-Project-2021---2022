@@ -41,10 +41,12 @@ public class Inventory : MonoBehaviour
     // allow player to access the inventory menu \\
     void Update() {
         // if the player presses 'i', show the inventory menu
-        if (Input.GetKeyDown(KeyCode.I) && !cC.consoleIsActive && loadingScreenManager.loadingDone) {
-            invMenuOpen = !invMenuOpen;
-            invMenu.SetActive(invMenuOpen);
-            PlayerMovement.playerAbleMove = !invMenuOpen;
+        if (!cC.consoleIsActive && loadingScreenManager.loadingDone && !DialogueManager.InDialogue && !achievementListManager.listOpen && !PartyManager.partyTabOpen) {
+            if (Input.GetKeyDown(KeyCode.I)) {
+                invMenuOpen = !invMenuOpen;
+                invMenu.SetActive(invMenuOpen);
+                PlayerMovement.playerAbleMove = !invMenuOpen;
+            }
         }
 
         // prints items in inventory

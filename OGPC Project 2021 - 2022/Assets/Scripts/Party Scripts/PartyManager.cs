@@ -12,7 +12,7 @@ public class PartyManager : MonoBehaviour
     [Header("Party Menu Logic")]
     public GameObject partyMenu;
     public GameObject player;
-    public bool partyTabOpen = false;
+    public static bool partyTabOpen = false;
     private SpriteRenderer playerSR;
 
     // rotating the party "tagging in" visual

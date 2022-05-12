@@ -16,6 +16,11 @@ public class ConsoleAndAchievementsController : MonoBehaviour
     public GameObject achievements;
     public static bool achievementsIsActive;
     public GameObject player;
+    private achievements achs;
+
+    void Start() {
+        achs = achievements.GetComponent<achievements>();
+    }
 
     void Update() {
         // Opens and closes the console \\
@@ -35,6 +40,7 @@ public class ConsoleAndAchievementsController : MonoBehaviour
 
     // Checks if a valid command has been entered \\
     private void checkCommand() {
+        achs.updateCrocSpin();
         // Forces the stored input into full uppercase
         consoleText = consoleText.ToUpper();
         // Displays the help menu for the console in the console log

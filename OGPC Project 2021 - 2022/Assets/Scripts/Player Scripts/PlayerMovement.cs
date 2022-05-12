@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         }
         // if the player is idle \\
         else {
-            if (!pM.partyTabOpen && loadingScreenManager.loadingDone) {
+            if (!PartyManager.partyTabOpen && loadingScreenManager.loadingDone) {
                 animator.speed = 0f;
                 AnimatorClipInfo[] currentAnimInfo = animator.GetCurrentAnimatorClipInfo(0);
                 animator.Play(currentAnimInfo[0].clip.name, 0, 0);
