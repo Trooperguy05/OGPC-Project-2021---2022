@@ -8,13 +8,20 @@ public class MainMenu : MonoBehaviour
     public GameObject controlsMenu;
     public bool controlsIsActive;
 
+    // play the game
     public void playGame() {
-        SceneManager.LoadScene(1);
+        SceneLoader.changeScene = true;
     }
 
+    // open the controls menu
     public void openControlsMenu()
     {
         controlsIsActive = !controlsIsActive;
         controlsMenu.SetActive(controlsIsActive);
+    }
+
+    // quit the game
+    public void exitGame() {
+        Application.Quit();
     }
 }
