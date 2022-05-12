@@ -18,7 +18,7 @@ public class EnemyActions : MonoBehaviour
     private HealthbarManager hM;
     private BattleMenuManager bMM;
     private VirusMeterManager vMM;
-    
+
     //enemy sfx variables
     public AudioSource AS;
     public AudioClip ScorpSting;
@@ -37,6 +37,9 @@ public class EnemyActions : MonoBehaviour
     public AudioClip SpiderWeb;
     public AudioClip GiantStrike;
     public AudioClip GiantStomp;
+    public AudioClip ValBreath;
+    public AudioClip ValSwipe;
+    public AudioClip ValSlash;
 
     //enemy specific variables
     [Header("Enemy Abilities")]
@@ -70,11 +73,14 @@ public class EnemyActions : MonoBehaviour
     }
 
     // method that checks if the animation is done playing before passing the turn \\
-    public IEnumerator animPlaying(Animator animator, string anim) {
-        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(anim)) {
+    public IEnumerator animPlaying(Animator animator, string anim)
+    {
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(anim))
+        {
             yield return null;
         }
-        while (animator.GetCurrentAnimatorStateInfo(0).IsName(anim)) {
+        while (animator.GetCurrentAnimatorStateInfo(0).IsName(anim))
+        {
             yield return null;
         }
         yield return new WaitForSeconds(1f);
@@ -83,23 +89,29 @@ public class EnemyActions : MonoBehaviour
     }
 
     // method that pauses the flow of combat when the enemy misses before passing the turn \\
-    public IEnumerator pauseOnMiss(float wait) {
+    public IEnumerator pauseOnMiss(float wait)
+    {
         yield return new WaitForSeconds(wait);
         enemyDone = true;
     }
- 
+
     // method that finds the animator of the current enemy (whose turn it is) \\
-    public Animator findAnimator() {
-        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy1") {
+    public Animator findAnimator()
+    {
+        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy1")
+        {
             return e1Animator;
         }
-        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy2") {
+        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy2")
+        {
             return e2Animator;
         }
-        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy3") {
+        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy3")
+        {
             return e3Animator;
         }
-        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy4") {
+        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy4")
+        {
             return e4Animator;
         }
         return null;
@@ -110,12 +122,14 @@ public class EnemyActions : MonoBehaviour
     {
         string character = "";
         // until the enemy finds a target, loop
-        while (true) {
+        while (true)
+        {
             // get a random player character
             int target = Random.Range(1, 5);
 
             // if raza is alive, target him
-            if (target == 1 && pS.char1HP > 0) {
+            if (target == 1 && pS.char1HP > 0)
+            {
                 character = "raza";
                 // deal damage
                 pS.char1HP -= dmg;
@@ -125,7 +139,8 @@ public class EnemyActions : MonoBehaviour
                 break;
             }
             // if dorne is alive, target him
-            else if (target == 2 && pS.char2HP > 0) {
+            else if (target == 2 && pS.char2HP > 0)
+            {
                 character = "dorne";
                 // deal damage
                 pS.char2HP -= dmg;
@@ -135,17 +150,19 @@ public class EnemyActions : MonoBehaviour
                 break;
             }
             // if smithson is alive, target her
-            else if (target == 3 && pS.char3HP > 0) {
+            else if (target == 3 && pS.char3HP > 0)
+            {
                 character = "smithson";
                 // deal damage
                 pS.char3HP -= dmg;
                 StartCoroutine(hM.dealDamage(hM.smithsonSlider, dmg, 0.01f));
                 pA.smithsonAnimator.SetTrigger("hurt");
                 // exit loop
-                break;                
+                break;
             }
             // if zor is alive, target him
-            else if (target == 4 && pS.char4HP > 0) {
+            else if (target == 4 && pS.char4HP > 0)
+            {
                 character = "zor";
                 // deal damage
                 pS.char4HP -= dmg;
@@ -193,7 +210,8 @@ public class EnemyActions : MonoBehaviour
             animator.SetTrigger("act");
             StartCoroutine(animPlaying(animator, "scorpionCombat_active"));
         }
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("scorpion missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
@@ -215,7 +233,8 @@ public class EnemyActions : MonoBehaviour
             animator.SetTrigger("act");
             StartCoroutine(animPlaying(animator, "scorpionCombat_active"));
         }
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("scorpion missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
@@ -238,7 +257,8 @@ public class EnemyActions : MonoBehaviour
             animator.SetTrigger("act");
             StartCoroutine(animPlaying(animator, "mummyCombat_active"));
         }
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("mummy missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
@@ -252,7 +272,7 @@ public class EnemyActions : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         enemyAll(15);
-        
+
         // action text
         StartCoroutine(bMM.typeActionText("sandworm used sinkhole!", 0.01f));
 
@@ -292,20 +312,24 @@ public class EnemyActions : MonoBehaviour
         string snakeCoilTarget = enemyHit(0);
         snakeCoil = true;
         // reduce initiative
-        if (snakeCoilTarget == "raza") {
+        if (snakeCoilTarget == "raza")
+        {
             cm.initiativeCount[0] -= reduceAmt;
         }
-        else if (snakeCoilTarget == "dorne") {
+        else if (snakeCoilTarget == "dorne")
+        {
             cm.initiativeCount[1] -= reduceAmt;
         }
-        else if (snakeCoilTarget == "smithson") {
+        else if (snakeCoilTarget == "smithson")
+        {
             cm.initiativeCount[2] -= reduceAmt;
         }
-        else if (snakeCoilTarget == "zor") {
+        else if (snakeCoilTarget == "zor")
+        {
             cm.initiativeCount[3] -= reduceAmt;
         }
         cm.sortInitiative(cm.initiativeCount);
-        
+
         // action text
         StartCoroutine(bMM.typeActionText("anaconda used constrict!", 0.01f));
         // play attack animation
@@ -324,33 +348,37 @@ public class EnemyActions : MonoBehaviour
         // if the snake has coiled a target, attack them
         if (snakeCoil)
         {
-            if (snakeCoilTarget == "raza") {
+            if (snakeCoilTarget == "raza")
+            {
                 pS.char1HP -= 20;
                 StartCoroutine(hM.dealDamage(hM.razaSlider, 20, 0.01f));
             }
-            else if (snakeCoilTarget == "dorne") {
+            else if (snakeCoilTarget == "dorne")
+            {
                 pS.char2HP -= 20;
                 StartCoroutine(hM.dealDamage(hM.dorneSlider, 20, 0.01f));
             }
-            else if (snakeCoilTarget == "smithson") {
+            else if (snakeCoilTarget == "smithson")
+            {
                 pS.char3HP -= 20;
                 StartCoroutine(hM.dealDamage(hM.smithsonSlider, 20, 0.01f));
             }
-            else if (snakeCoilTarget == "zor") {
+            else if (snakeCoilTarget == "zor")
+            {
                 pS.char4HP -= 20;
                 StartCoroutine(hM.dealDamage(hM.zorSlider, 20, 0.01f));
             }
-            // action text
-            StartCoroutine(bMM.typeActionText("anaconda used bite!", 0.01f));
             // play attack animation
             Animator animator = findAnimator();
             animator.SetTrigger("act");
             StartCoroutine(animPlaying(animator, "snakeCombat_active"));
         }
-        else {
+        else
+        {
             // normal to hit attack
             int toHit = Random.Range(1, 100);
-            if (toHit <= 90) {
+            if (toHit <= 90)
+            {
                 enemyHit(20);
                 // action text
                 StartCoroutine(bMM.typeActionText("anaconda used bite!", 0.01f));
@@ -359,7 +387,8 @@ public class EnemyActions : MonoBehaviour
                 animator.SetTrigger("act");
                 StartCoroutine(animPlaying(animator, "snakeCombat_active"));
             }
-            else {
+            else
+            {
                 StartCoroutine(bMM.typeActionText("anaconda missed!", 0.01f));
                 StartCoroutine(pauseOnMiss(pauseWait));
             }
@@ -387,7 +416,8 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(animPlaying(animator, "crocodileCombat_active"));
         }
         // miss
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("crocodile missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
@@ -401,7 +431,8 @@ public class EnemyActions : MonoBehaviour
 
         int toHit = Random.Range(1, 101);
         // hit
-        if (toHit <= 90) {
+        if (toHit <= 90)
+        {
             // damage
             string target = enemyHit(20);
             sM.statusAdd(target, "bleed", 3);
@@ -413,7 +444,8 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(animPlaying(animator, "crocodileCombat_active"));
         }
         // miss
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("crocodile missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
@@ -433,16 +465,20 @@ public class EnemyActions : MonoBehaviour
         if (toHit <= 90)
         {
             string target = enemyHit(25);
-            if (target == "raza") {
+            if (target == "raza")
+            {
                 cm.initiativeCount[0] -= reduceAmt;
             }
-            else if (target == "dorne") {
+            else if (target == "dorne")
+            {
                 cm.initiativeCount[1] -= reduceAmt;
             }
-            else if (target == "smithson") {
+            else if (target == "smithson")
+            {
                 cm.initiativeCount[2] -= reduceAmt;
             }
-            else if (target == "zor") {
+            else if (target == "zor")
+            {
                 cm.initiativeCount[3] -= reduceAmt;
             }
             cm.sortInitiative(cm.initiativeCount);
@@ -454,7 +490,8 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(animPlaying(animator, "manTrapCombat_active"));
         }
         // miss
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("man trap missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
@@ -473,23 +510,28 @@ public class EnemyActions : MonoBehaviour
             int dmg = 30;
             int ranChoice = Random.Range(1, 5);
             // if target is lower in initiative, increase damage
-            if (cm.initiativeCount[ranChoice-1] < cm.initiativeCount[4]) {
+            if (cm.initiativeCount[ranChoice - 1] < cm.initiativeCount[4])
+            {
                 dmg += 10;
             }
             // deal damage
-            if (ranChoice == 1) {
+            if (ranChoice == 1)
+            {
                 pS.char1HP -= dmg;
                 StartCoroutine(hM.dealDamage(hM.razaSlider, dmg, 0.01f));
             }
-            else if (ranChoice == 2) {
+            else if (ranChoice == 2)
+            {
                 pS.char2HP -= dmg;
                 StartCoroutine(hM.dealDamage(hM.dorneSlider, dmg, 0.01f));
             }
-            else if (ranChoice == 3) {
+            else if (ranChoice == 3)
+            {
                 pS.char3HP -= dmg;
                 StartCoroutine(hM.dealDamage(hM.smithsonSlider, dmg, 0.01f));
             }
-            else if (ranChoice == 4) {
+            else if (ranChoice == 4)
+            {
                 pS.char4HP -= dmg;
                 StartCoroutine(hM.dealDamage(hM.zorSlider, dmg, 0.01f));
             }
@@ -501,7 +543,8 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(animPlaying(animator, "manTrapCombat_active"));
         }
         // miss
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("man trap missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
@@ -511,11 +554,11 @@ public class EnemyActions : MonoBehaviour
     //////Forest\\\\\\
     /////Giant SLime Attacks\\\\\
     ///Envelop\\\
-    
+
     public IEnumerator slimeEat()
     {
         yield return new WaitForSeconds(1f);
-        
+
         int toHit = Random.Range(1, 100);
         // hit
         if (toHit <= 90)
@@ -523,16 +566,20 @@ public class EnemyActions : MonoBehaviour
             // deal damage
             string target = enemyHit(30);
             //decreases target initiative by 1
-            if (target == "raza") {
+            if (target == "raza")
+            {
                 cm.initiativeCount[0] -= 1;
             }
-            else if (target == "dorne") {
+            else if (target == "dorne")
+            {
                 cm.initiativeCount[1] -= 1;
             }
-            else if (target == "smithson") {
+            else if (target == "smithson")
+            {
                 cm.initiativeCount[2] -= 1;
             }
-            else if (target == "zor") {
+            else if (target == "zor")
+            {
                 cm.initiativeCount[3] -= 1;
             }
             cm.sortInitiative(cm.initiativeCount);
@@ -544,7 +591,8 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(animPlaying(animator, "slimeCombat_active"));
         }
         // miss
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("slime missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
@@ -553,7 +601,7 @@ public class EnemyActions : MonoBehaviour
 
     /////Giant Spider Attacks\\\\\
     ///Venemous Fangs\\\
-    
+
     public IEnumerator spiderBite()
     {
         yield return new WaitForSeconds(1f);
@@ -573,7 +621,8 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(animPlaying(animator, "spiderCombat_active"));
         }
         // miss
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("spider missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
@@ -591,16 +640,20 @@ public class EnemyActions : MonoBehaviour
         {
             string target = enemyHit(10);
             // subtracts 2 from intiative until combat ends
-            if (target == "raza") {
+            if (target == "raza")
+            {
                 cm.initiativeCount[0] -= 2;
             }
-            else if (target == "dorne") {
+            else if (target == "dorne")
+            {
                 cm.initiativeCount[1] -= 2;
             }
-            else if (target == "smithson") {
+            else if (target == "smithson")
+            {
                 cm.initiativeCount[2] -= 2;
             }
-            else if (target == "zor") {
+            else if (target == "zor")
+            {
                 cm.initiativeCount[3] -= 2;
             }
             cm.sortInitiative(cm.initiativeCount);
@@ -612,7 +665,8 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(animPlaying(animator, "spiderCombat_active"));
         }
         // miss
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("spider missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
@@ -622,7 +676,7 @@ public class EnemyActions : MonoBehaviour
     /////Forest Miniboss\\\\\
     /////Giant Attacks\\\\\
     ///Tree Smack\\\
-    
+
     public IEnumerator giantWack()
     {
         yield return new WaitForSeconds(1f);
@@ -640,7 +694,8 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(animPlaying(animator, "giantCombat_active"));
         }
         // miss
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("giant missed!", 0.01f));
             StartCoroutine(pauseOnMiss(pauseWait));
         }
@@ -652,11 +707,11 @@ public class EnemyActions : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         //lowers initiative of all party members by 1
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++)
+        {
             cm.initiativeCount[i] -= 1;
         }
         cm.sortInitiative(cm.initiativeCount);
-        enemyAll(15);
         // action text
         StartCoroutine(bMM.typeActionText("giant used stomp!", 0.01f));
         // play attack animation
@@ -669,12 +724,14 @@ public class EnemyActions : MonoBehaviour
 
     ///// Final Boss Valazak \\\\\
     // slash
-    public IEnumerator dragonSlash() {
+    public IEnumerator dragonSlash()
+    {
         yield return new WaitForSeconds(1f);
 
         int hit = Random.Range(0, 100);
         // hit
-        if (hit <= 90) {
+        if (hit <= 90)
+        {
             enemyHit(45);
             // action text
             StartCoroutine(bMM.typeActionText("valazak used slash!", 0.01f));
@@ -684,14 +741,17 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(animPlaying(animator, "valazakCombat_active"));
         }
         // miss
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("valazak missed!", 0.01f));
-            StartCoroutine(pauseOnMiss(pauseWait));    
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
+        AS.PlayOneShot(ValSlash, 1);
     }
 
     // breath weapon
-    public IEnumerator dragonBreathWeapon() {
+    public IEnumerator dragonBreathWeapon()
+    {
         yield return new WaitForSeconds(1f);
 
         // hit everyone, boost their virus meter
@@ -706,19 +766,23 @@ public class EnemyActions : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         // if their meter is greater than or equal to 100, stun them
-        if (pS.char1VMeter >= 100) {
+        if (pS.char1VMeter >= 100)
+        {
             StartCoroutine(vMM.updateMeter(-100, vMM.razaSlider, "raza"));
             pA.razaStunRound = cm.roundNum;
         }
-        if (pS.char2VMeter >= 100) {
+        if (pS.char2VMeter >= 100)
+        {
             StartCoroutine(vMM.updateMeter(-100, vMM.dorneSlider, "dorne"));
             pA.dorneStunRound = cm.roundNum;
         }
-        if (pS.char3VMeter >= 100) {
+        if (pS.char3VMeter >= 100)
+        {
             StartCoroutine(vMM.updateMeter(-100, vMM.smithsonSlider, "smithson"));
             pA.smithsonStunRound = cm.roundNum;
         }
-        if (pS.char4VMeter >= 100) {
+        if (pS.char4VMeter >= 100)
+        {
             StartCoroutine(vMM.updateMeter(-100, vMM.zorSlider, "zor"));
             pA.zorStunRound = cm.roundNum;
         }
@@ -726,15 +790,18 @@ public class EnemyActions : MonoBehaviour
         Animator animator = findAnimator();
         animator.SetTrigger("act");
         StartCoroutine(animPlaying(animator, "valazakCombat_active"));
+        AS.PlayOneShot(ValBreath, 1);
     }
 
     // tail swipe
-    public IEnumerator dragonTailSwipe() {
+    public IEnumerator dragonTailSwipe()
+    {
         yield return new WaitForSeconds(1f);
 
         int hit = Random.Range(0, 100);
         // hit
-        if (hit <= 85) {
+        if (hit <= 85)
+        {
             enemyHit(30);
             enemyHit(30);
 
@@ -746,9 +813,11 @@ public class EnemyActions : MonoBehaviour
             StartCoroutine(animPlaying(animator, "valazakCombat_active"));
         }
         // miss
-        else {
+        else
+        {
             StartCoroutine(bMM.typeActionText("valazak missed!", 0.01f));
-            StartCoroutine(pauseOnMiss(pauseWait));  
+            StartCoroutine(pauseOnMiss(pauseWait));
         }
+        AS.PlayOneShot(ValSwipe, 1);
     }
 }
