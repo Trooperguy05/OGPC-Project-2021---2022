@@ -38,6 +38,7 @@ public class BattleMenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // show the action depending on the player character
         if (cM.combatStarted && cM.gameObjectsInCombat[cM.initiativeIndex] != null && !hidingActions) {
             if (cM.gameObjectsInCombat[cM.initiativeIndex].name == "Raza") {
                 actionText.text = "";

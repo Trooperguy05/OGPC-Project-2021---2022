@@ -7,7 +7,7 @@ public class itemPickupManager : MonoBehaviour
     // all pickup items
     public GameObject[] items;
 
-    // Start is called before the first frame update
+    // load the item data
     void Start()
     {
         loadItems();

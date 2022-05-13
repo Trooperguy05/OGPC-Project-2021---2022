@@ -7,7 +7,7 @@ public class StoryDialogueManager : MonoBehaviour
     // all story dialogue triggers
     public GameObject[] triggers;
 
-    // Start is called before the first frame update
+    // load the dialogue data
     void Start()
     {
         loadDialogueTriggers();

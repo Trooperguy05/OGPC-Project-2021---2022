@@ -13,6 +13,7 @@ public class achievementListManager : MonoBehaviour
     public GameObject crocSpin_image;
     public GameObject fileRemover_image;
 
+    // if the achievement list is open
     public static bool listOpen = false;
 
     // Start is called before the first frame update

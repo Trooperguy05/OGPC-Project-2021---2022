@@ -7,6 +7,7 @@ public class SceneLoader : MonoBehaviour
 {
     public static bool changeScene = false;
     public CombatManager cM;
+    
     // load a scene based on where the player is
     void Start()
     {

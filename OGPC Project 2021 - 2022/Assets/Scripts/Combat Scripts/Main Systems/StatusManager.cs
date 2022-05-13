@@ -4,10 +4,8 @@ using UnityEngine;
 
 //////Status (usually damage over time) manager\\\\\\
 
-public class StatusManager : MonoBehaviour
-
-/// Variables
-{
+public class StatusManager : MonoBehaviour {
+    /// Variables
     public List<string> nameList = new List<string>();
     public List<string> effectList = new List<string>();
     public List<int> effectDurations = new List<int>();
@@ -15,6 +13,7 @@ public class StatusManager : MonoBehaviour
     private PartyStats pM;
     private HealthbarManager hM;
 
+    // caching
     void Start(){
         pM = GameObject.Find("Party Manager").GetComponent<PartyStats>();
         hM = GameObject.Find("Healthbar Manager").GetComponent<HealthbarManager>();

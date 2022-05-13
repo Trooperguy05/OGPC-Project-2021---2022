@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Credits : MonoBehaviour
 {
 
+    // different credits
     public Rigidbody2D name1;
     public Rigidbody2D name2;
     public Rigidbody2D name3;
@@ -22,6 +23,7 @@ public class Credits : MonoBehaviour
         
     }
 
+    // animation
     public IEnumerator gravityON() {
         while (name1.position.y <= 2) {
             name1.MovePosition(name1.position + new Vector2(0f, 0.05f));

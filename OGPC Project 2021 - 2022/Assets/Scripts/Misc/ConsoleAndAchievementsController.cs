@@ -18,6 +18,7 @@ public class ConsoleAndAchievementsController : MonoBehaviour
     public GameObject player;
     private achievements achs;
 
+    // caching
     void Start() {
         achs = achievements.GetComponent<achievements>();
     }

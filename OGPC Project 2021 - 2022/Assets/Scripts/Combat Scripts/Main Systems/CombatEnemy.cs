@@ -11,6 +11,7 @@ public class CombatEnemy : MonoBehaviour
     // the sprite renderer of the enemy
     public SpriteRenderer sr;
 
+    // show the health from the eOb
     void Update() {
         if (health != 0) {
             health = eOb.health;

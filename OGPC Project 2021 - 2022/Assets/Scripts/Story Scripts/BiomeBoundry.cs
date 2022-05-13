@@ -12,7 +12,7 @@ public class BiomeBoundry : MonoBehaviour
     public bool isSwamp = false;
     public bool isForest = false;
 
-    // Start is called before the first frame update
+    // caching
     void Start()
     {
         pP = GameObject.Find("Party and Player Manager").GetComponent<PlayerProgress>();

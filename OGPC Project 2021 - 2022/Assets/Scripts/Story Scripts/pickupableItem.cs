@@ -15,7 +15,7 @@ public class pickupableItem : MonoBehaviour
     private Animator interactNoticeAnimator;
     public Dialogue pickupNotification;
 
-    // Start is called before the first frame update
+    // caching
     void Start()
     {
         interact = new interactable(2);

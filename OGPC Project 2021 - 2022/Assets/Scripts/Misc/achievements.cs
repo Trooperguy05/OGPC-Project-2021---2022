@@ -28,6 +28,7 @@ public class achievements : MonoBehaviour
     // Achievement counters \\
     public int pausePwnerCount;
     
+    // load the achievenment data
     void Start() {
         loadAchievementData();
     }
@@ -42,10 +43,12 @@ public class achievements : MonoBehaviour
         }
     }
 
+    // method that updates the file remover achievement
     public void fileRemoverCheck() {
         fileRemover = true;
     }
 
+    // method that updates the crocspin achievement
     public void updateCrocSpin() {
         crocSpin = true;
     }

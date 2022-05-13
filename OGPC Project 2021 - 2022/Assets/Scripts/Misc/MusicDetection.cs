@@ -19,10 +19,7 @@ public class MusicDetection : MonoBehaviour
     public AudioClip BC;
     public AudioClip Play;
 
-
-
-    // Start is called before the first frame update
-
+    // cache
     void Start()
     {
         cM = GameObject.Find("Combat Manager").GetComponent<CombatManager>();
@@ -30,37 +27,15 @@ public class MusicDetection : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    // update the music to play
     void Update()
     {
-        /*
-        if (!playingMusic){
-            if (cM.initiativeNames.Contains("Dragon")) {
-                Play = BC;
-            }
-            else if (cM.initiativeNames.Contains("Worm") || cM.initiativeNames.Contains("Man Trap") || cM.initiativeNames.Contains("Giant")){
-                Play = MC;
-            }
-            else if (PP.playerBiome == PlayerProgress.Biome.desert){
-                Play = DC;
-            }
-            else if (PP.playerBiome == PlayerProgress.Biome.swamp){
-                Play = SC;
-            }
-            else if (PP.playerBiome == PlayerProgress.Biome.forest){
-                Play = FC;
-            }
-
-            playingMusic = true;
-            AS.clip = Play;
-            AS.Play(0);
-        }
-        */
         if (!playingMusic) {
             StartCoroutine(wait());
         }
     }
 
+    // wait 0.01 seconds before updating the music
     IEnumerator wait() {
         yield return new WaitForSeconds(0.01f);
 

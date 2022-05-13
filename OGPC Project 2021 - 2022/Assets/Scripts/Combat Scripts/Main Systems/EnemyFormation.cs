@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyFormation : MonoBehaviour
 {
+    // other scripts
     private CombatManager cM;
     private HealthbarManager hM;
 
@@ -19,6 +20,7 @@ public class EnemyFormation : MonoBehaviour
     };
     private Vector2 oneEnemyPosition = new Vector2(4, 1.9f);
 
+    // caching
     void Start() {
         // grabbing the combat manager
         cM = GameObject.Find("Combat Manager").GetComponent<CombatManager>();

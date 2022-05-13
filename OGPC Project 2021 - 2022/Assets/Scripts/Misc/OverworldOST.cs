@@ -5,7 +5,6 @@ using System.Linq;
 
 public class OverworldOST : MonoBehaviour
 {
-
     private PlayerProgress PP;
     //Music detection variables
     public bool playingMusic = false;
@@ -19,18 +18,13 @@ public class OverworldOST : MonoBehaviour
     public AudioClip PO;
     public AudioClip Play;
     
-
-
-
-    // Start is called before the first frame update
-
+    // caching
     void Start()
     {
         PP = GameObject.Find("Party and Player Manager").GetComponent<PlayerProgress>();
-
     }
 
-
+    // update the music base on the biome the player is in
     void Update()
     {
         if (!playingMusic){
@@ -45,13 +39,9 @@ public class OverworldOST : MonoBehaviour
                 Play = FO;
             }
 
-
             playingMusic = true;
             AS.clip = Play;
             AS.Play(0);
-
-        }
-        
-        
+        }   
     }
 }

@@ -11,6 +11,7 @@ public class MainMenuAudio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // play funny easter egg or regular music
         float percentChance = Random.Range(0,1001);
         if (percentChance == 1) {
             AS.PlayOneShot(kazooMenu, 1);

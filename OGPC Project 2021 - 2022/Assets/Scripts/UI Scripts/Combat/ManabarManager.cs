@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ManabarManager : MonoBehaviour
 {
+    // manabar variables \\
     [Header("PC Objects")]
     public GameObject smithson;
     [Header("Manabars")]
