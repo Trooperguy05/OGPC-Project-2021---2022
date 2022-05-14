@@ -41,9 +41,12 @@ public class ConsoleAndAchievementsController : MonoBehaviour
 
     // Checks if a valid command has been entered \\
     private void checkCommand() {
-        achs.updateCrocSpin();
+        if (SceneManager.GetActiveScene().name == "Template Project") {
+            achs.updateCrocSpin();
+        }
         // Forces the stored input into full uppercase
         consoleText = consoleText.ToUpper();
+        Debug.Log(consoleText);
         // Displays the help menu for the console in the console log
         if (consoleText.Equals("HELP")) {
             consoleLog.GetComponent<TextMeshProUGUI>().text += "\n-----------------------------------------------------------\n'switchscene' - switches the scene (must input scene name).\n'healparty' - heals all party members.\n'endcombat' - ends the current combat.\n'help' - shows this menu.\n'goto' - moves the player character to a location (e.g temple, well)\ncommands are not case sensitive.\n-----------------------------------------------------------";
