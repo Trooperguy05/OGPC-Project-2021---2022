@@ -48,8 +48,10 @@ public class TargetingSystem
         while (target == null) {
             if (Input.GetMouseButtonDown(0)) {
                 target = this.onClick();
-                if (target.tag == tag) {
-                    yield return target;
+                if (target != null) {
+                    if (target.tag == tag) {
+                        yield return target;
+                    }
                 }
                 else {
                     target = null;
@@ -106,9 +108,11 @@ public class TargetingSystem
             while (target == null) {
                 if (Input.GetMouseButtonDown(0)) {
                     target = this.onClick();
-                    if (target.tag == tag) {
-                        targetList.Add(target);
-                        yield return target;
+                    if (target != null) {
+                        if (target.tag == tag) {
+                            targetList.Add(target);
+                            yield return target;
+                        }
                     }
                     else {
                         target = null;
