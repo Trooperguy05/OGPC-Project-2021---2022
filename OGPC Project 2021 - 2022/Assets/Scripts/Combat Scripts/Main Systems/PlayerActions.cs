@@ -617,7 +617,6 @@ public class PlayerActions : MonoBehaviour
             StartCoroutine(mM.depleteMana(mM.smithsonManabarSlider, 40, 0.01f));
             // Targets all enenies, dealing damage and reducing their initiative order
             List<GameObject> targets = ts.targetList;
-            smithsonAnimator.SetTrigger("act");
             if (cm.e1 != null){
                 cm.e1.health -= 25;
                 cm.initiativeCount[4] -= 1;
@@ -641,6 +640,7 @@ public class PlayerActions : MonoBehaviour
             cm.sortInitiative(cm.initiativeCount);
 
             // play animation
+            smithsonAnimator.SetTrigger("act");
             StartCoroutine(animPlaying(smithsonAnimator, "smithsonCombat_active"));
 
             // update battle menu with action text
