@@ -98,21 +98,27 @@ public class EnemyActions : MonoBehaviour
     // method that finds the animator of the current enemy (whose turn it is) \\
     public Animator findAnimator()
     {
-        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy1")
-        {
-            return e1Animator;
-        }
-        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy2")
-        {
-            return e2Animator;
-        }
-        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy3")
-        {
-            return e3Animator;
-        }
-        if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy4")
-        {
-            return e4Animator;
+        if (cm.gameObjectsInCombat[cm.initiativeIndex] != null) {
+            // enemy 1
+            if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy1")
+            {
+                return e1Animator;
+            }
+            // enemy 2
+            if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy2")
+            {
+                return e2Animator;
+            }
+            // enemy 3
+            if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy3")
+            {
+                return e3Animator;
+            }
+            // enemy 4
+            if (cm.gameObjectsInCombat[cm.initiativeIndex].name == "Enemy4")
+            {
+                return e4Animator;
+            }
         }
         return null;
     }
