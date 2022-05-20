@@ -39,7 +39,6 @@ public class MagicWell : MonoBehaviour
             else {
                 interactable.changeInteract(false);
             }
-            Debug.Log(interactable.isInteractable());
             notificationAnimator.SetBool("open", interactable.isInteractable());
         }
 

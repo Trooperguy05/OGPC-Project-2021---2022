@@ -436,7 +436,7 @@ public class CombatManager : MonoBehaviour
 
         // if initiativeNames[initiativeIndex] = "", continue to next person
         if (combatStarted) {
-            if (initiativeNames[initiativeIndex] == "") {
+            while (initiativeNames[initiativeIndex] == "") {
                 initiativeIndex++;
                 newRound();
             }

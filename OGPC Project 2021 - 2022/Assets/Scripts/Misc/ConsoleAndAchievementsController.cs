@@ -65,17 +65,49 @@ public class ConsoleAndAchievementsController : MonoBehaviour
             SceneManager.LoadScene(4);
         }
         // Teleports the player to important locations
-        else if (consoleText == "GOTO TEMPLE") {
-            player.transform.position = new Vector2(-18, -57);
-            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to temple";
+        else if (consoleText == "GOTO DESERT") {
+            player.transform.position = new Vector2(-0.45f, 0f);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to desert";
         }
-        else if (consoleText == "GOTO WELL") {
-            player.transform.position = new Vector2((float)-19.3, (float)-99.2);
-            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to well";
+        else if (consoleText == "GOTO DESERT TEMPLE") {
+            player.transform.position = new Vector2(-18, -57);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to desert temple";
+        }
+        else if (consoleText == "GOTO DESERT WELL") {
+            player.transform.position = new Vector2(4.8f, -86.2f);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to desert well";
+        }
+        else if (consoleText == "GOTO SWAMP") {
+            player.transform.position = new Vector2(36.87f, -86.2f);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to swamp";   
+        }
+        else if (consoleText == "GOTO SWAMP TEMPLE") {
+            player.transform.position = new Vector2(74.35f, -89.77f);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to swamp temple";
+        }
+        else if (consoleText == "GOTO SWAMP WELL") {
+            player.transform.position = new Vector2(55.36f, -108.4f);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to swamp well";
+        }
+        else if (consoleText == "GOTO FOREST") {
+            player.transform.position = new Vector2(88.05f, -119.3f);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to forest";
+        }
+        else if (consoleText == "GOTO FOREST TEMPLE") {
+            player.transform.position = new Vector2(61.31f, -166.67f);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to forest temple";
+        }
+        else if (consoleText == "GOTO FOREST WELL") {
+            player.transform.position = new Vector2(54.92f, -129.9f);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to forest well";
         }
         // Ends combat
         else if (consoleText == "ENDCOMBAT" && SceneManager.GetActiveScene().name == "CombatScene") {
             SceneLoader.changeScene = true;
+        }
+        // skips turns in combat
+        else if (consoleText == "SKIPTURN" && SceneManager.GetActiveScene().name == "CombatScene") {
+            GameObject.Find("Combat Manager").GetComponent<CombatManager>().initiativeIndex++;
         }
         // Displays that an invalid command is entered in the console
         else {

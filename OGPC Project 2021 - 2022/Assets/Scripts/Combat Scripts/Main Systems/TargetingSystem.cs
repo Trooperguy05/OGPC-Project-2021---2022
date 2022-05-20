@@ -69,7 +69,8 @@ public class TargetingSystem
             target = null;
         }
         if (targetList.Count != -1) {
-            for (int i = 0; i < targetList.Count; i++) {
+            int loops = targetList.Count;
+            for (int i = 0; i < loops; i++) {
                 targetList.RemoveAt(0);
             }
         }
@@ -98,7 +99,8 @@ public class TargetingSystem
             target = null;
         }
         if (targetList.Count != -1) {
-            for (int i = 0; i < targetList.Count; i++) {
+            int loops = targetList.Count;
+            for (int i = 0; i < loops; i++) {
                 targetList.RemoveAt(0);
             }
         }
