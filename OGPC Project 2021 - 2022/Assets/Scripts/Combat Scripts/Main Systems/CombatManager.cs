@@ -155,7 +155,7 @@ public class CombatManager : MonoBehaviour
         }
         // if it is one of the enemy's turns \\
         // if the enemy is a scorpion
-        if (initiativeNames[initiativeIndex] == "Scorpion") {
+        else if (initiativeNames[initiativeIndex] == "Scorpion") {
             if (gameObjectsInCombat[initiativeIndex].GetComponent<CombatEnemy>().eOb.health > 0) {
                 int choice = Random.Range(1, 3);
                 if (!tookChoice) {
