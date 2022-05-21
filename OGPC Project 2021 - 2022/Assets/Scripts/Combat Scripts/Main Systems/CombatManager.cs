@@ -103,7 +103,6 @@ public class CombatManager : MonoBehaviour
         // if it is one of the player characters' turn \\
         if (initiativeNames[initiativeIndex] == "Raza") {
             if (pS.char1HP <= 0 || roundNum <= playerActions.razaStunRound) {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
                 if (roundNum <= playerActions.razaStunRound) {
@@ -112,14 +111,12 @@ public class CombatManager : MonoBehaviour
             }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Dorne") {
             if (pS.char2HP <= 0 || roundNum <= playerActions.dorneStunRound) {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
                 if (roundNum <= playerActions.dorneStunRound) {
@@ -128,14 +125,12 @@ public class CombatManager : MonoBehaviour
             }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Smithson") {
             if (pS.char3HP <= 0 || roundNum <= playerActions.smithsonStunRound) {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
                 if (roundNum <= playerActions.smithsonStunRound) {
@@ -144,14 +139,12 @@ public class CombatManager : MonoBehaviour
             }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Zor") {
             if (pS.char4HP <= 0 || roundNum <= playerActions.zorStunRound) {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
                 if (roundNum <= playerActions.zorStunRound) {
@@ -160,7 +153,6 @@ public class CombatManager : MonoBehaviour
             }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
@@ -183,14 +175,12 @@ public class CombatManager : MonoBehaviour
                 }
             }
             else {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();     
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
@@ -204,14 +194,12 @@ public class CombatManager : MonoBehaviour
                 }
             }
             else {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();  
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
@@ -232,14 +220,12 @@ public class CombatManager : MonoBehaviour
                 }
             }
             else {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
@@ -260,14 +246,12 @@ public class CombatManager : MonoBehaviour
                 }
             }
             else {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
@@ -281,14 +265,12 @@ public class CombatManager : MonoBehaviour
                 }
             }
             else {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
@@ -309,14 +291,12 @@ public class CombatManager : MonoBehaviour
                 }
             }
             else {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
@@ -337,14 +317,12 @@ public class CombatManager : MonoBehaviour
                 }  
             }
             else {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
@@ -365,14 +343,12 @@ public class CombatManager : MonoBehaviour
                 }
             }
             else {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
@@ -393,14 +369,12 @@ public class CombatManager : MonoBehaviour
                 }
             }
             else {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
@@ -428,7 +402,6 @@ public class CombatManager : MonoBehaviour
                 }
             }
             else {
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
@@ -440,7 +413,6 @@ public class CombatManager : MonoBehaviour
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 tookChoiceNum = 0;
-                initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
             }
@@ -449,7 +421,6 @@ public class CombatManager : MonoBehaviour
         // if initiativeNames[initiativeIndex] = "", continue to next person
         if (combatStarted) {
             while (initiativeNames[initiativeIndex] == "") {
-                initiativeIndex++;
                 newRound();
             }
         }
@@ -457,6 +428,10 @@ public class CombatManager : MonoBehaviour
 
     // method that continues combat to the next round \\
     public void newRound() {
+        // sort the initiative if the order has changed
+        sortInitiative(initiativeCount);
+        // next turn
+        initiativeIndex++;
         // check exit conditions
         checkExitConditions();
         /// checking if it's the end of a round

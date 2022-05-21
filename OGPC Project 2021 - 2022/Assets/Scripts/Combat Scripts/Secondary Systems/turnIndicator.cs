@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class turnIndicator : MonoBehaviour
 {
-    // VAriables \\
+    // game object variables \\
+    [Header("GameObject Variables")]
+    public GameObject raza;
+    public GameObject dorne;
+    public GameObject smithson;
+    public GameObject zor;
+    // Variables \\
+    [Header("Logic Variables")]
     public Sprite playerIndicator;
     public Sprite enemyIndicator;
     public GameObject indicator;
@@ -22,10 +29,6 @@ public class turnIndicator : MonoBehaviour
     // method that updates where the turn indicator points to \\
     public void updateIndicator() {
         // if it's one of the player's turn
-        GameObject raza = GameObject.Find("Raza");
-        GameObject dorne = GameObject.Find("Dorne");
-        GameObject smithson = GameObject.Find("Smithson");
-        GameObject zor = GameObject.Find("Zor");
         if (cM.initiativeNames[cM.initiativeIndex] == "Raza") {
             indicatorRenderer.sprite = playerIndicator;
             indicator.transform.position = new Vector2(raza.transform.position.x + indicatorOffset, raza.transform.position.y);

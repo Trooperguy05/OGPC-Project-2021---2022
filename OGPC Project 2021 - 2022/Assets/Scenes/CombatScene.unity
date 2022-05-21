@@ -8148,6 +8148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6ad16b124c9a64ea8ec0288875004e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raza: {fileID: 697840783}
+  dorne: {fileID: 426409688}
+  smithson: {fileID: 1451797653}
+  zor: {fileID: 823792485}
   playerIndicator: {fileID: 21300000, guid: 2a0aa69cd401a65478ad8a9852973467, type: 3}
   enemyIndicator: {fileID: 21300000, guid: 7913b00a5e1699a49a830d4cd513b05a, type: 3}
   indicator: {fileID: 23601706}

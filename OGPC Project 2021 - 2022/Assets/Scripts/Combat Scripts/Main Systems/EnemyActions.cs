@@ -334,7 +334,6 @@ public class EnemyActions : MonoBehaviour
         {
             cm.initiativeCount[3] -= reduceAmt;
         }
-        cm.sortInitiative(cm.initiativeCount);
 
         // action text
         StartCoroutine(bMM.typeActionText("anaconda used constrict!", 0.01f));
@@ -487,7 +486,7 @@ public class EnemyActions : MonoBehaviour
             {
                 cm.initiativeCount[3] -= reduceAmt;
             }
-            cm.sortInitiative(cm.initiativeCount);
+
             // action text
             StartCoroutine(bMM.typeActionText("man trap used snap shut!", 0.01f));
             // play attack animation
@@ -588,7 +587,7 @@ public class EnemyActions : MonoBehaviour
             {
                 cm.initiativeCount[3] -= 1;
             }
-            cm.sortInitiative(cm.initiativeCount);
+
             // action text
             StartCoroutine(bMM.typeActionText("slime used envelop!", 0.01f));
             // play attack animation
@@ -662,7 +661,7 @@ public class EnemyActions : MonoBehaviour
             {
                 cm.initiativeCount[3] -= 2;
             }
-            cm.sortInitiative(cm.initiativeCount);
+
             // action text
             StartCoroutine(bMM.typeActionText("spider used webbing!", 0.01f));
             // play attack animation
@@ -717,7 +716,7 @@ public class EnemyActions : MonoBehaviour
         {
             cm.initiativeCount[i] -= 1;
         }
-        cm.sortInitiative(cm.initiativeCount);
+
         enemyAll(15);
         // action text
         StartCoroutine(bMM.typeActionText("giant used stomp!", 0.01f));

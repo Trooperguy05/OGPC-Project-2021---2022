@@ -485,8 +485,6 @@ public class PlayerActions : MonoBehaviour
 
         // increases dorne's speed in initiative
         cm.initiativeCount[1] = cm.initiativeCount[1] + 2;
-        // then resort the initiative order
-        cm.sortInitiative(cm.initiativeCount);
         
         // play animation
         dorneAnimator.SetTrigger("act");
@@ -640,7 +638,6 @@ public class PlayerActions : MonoBehaviour
                 cm.initiativeCount[7] -= 1;
                 hurtEnemy(cm.enemy4, 25);
             }
-            cm.sortInitiative(cm.initiativeCount);
 
             // play animation
             smithsonAnimator.SetTrigger("act");
