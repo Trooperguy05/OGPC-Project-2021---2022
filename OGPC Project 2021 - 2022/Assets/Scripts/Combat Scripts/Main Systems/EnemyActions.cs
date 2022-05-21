@@ -776,22 +776,22 @@ public class EnemyActions : MonoBehaviour
         if (pS.char1VMeter >= 100)
         {
             StartCoroutine(vMM.updateMeter(-100, vMM.razaSlider, "raza"));
-            pA.razaStunRound = cm.roundNum;
+            pA.razaStunRound = cm.roundNum + 1;
         }
         if (pS.char2VMeter >= 100)
         {
             StartCoroutine(vMM.updateMeter(-100, vMM.dorneSlider, "dorne"));
-            pA.dorneStunRound = cm.roundNum;
+            pA.dorneStunRound = cm.roundNum + 1;
         }
         if (pS.char3VMeter >= 100)
         {
             StartCoroutine(vMM.updateMeter(-100, vMM.smithsonSlider, "smithson"));
-            pA.smithsonStunRound = cm.roundNum;
+            pA.smithsonStunRound = cm.roundNum + 1;
         }
         if (pS.char4VMeter >= 100)
         {
             StartCoroutine(vMM.updateMeter(-100, vMM.zorSlider, "zor"));
-            pA.zorStunRound = cm.roundNum;
+            pA.zorStunRound = cm.roundNum + 1;
         }
         // play attack animation
         Animator animator = findAnimator();

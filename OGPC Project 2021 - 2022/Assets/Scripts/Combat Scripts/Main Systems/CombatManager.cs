@@ -102,10 +102,13 @@ public class CombatManager : MonoBehaviour
         ///   Turn-Based Combat   \\\
         // if it is one of the player characters' turn \\
         if (initiativeNames[initiativeIndex] == "Raza") {
-            if (pS.char1HP <= 0 || roundNum == playerActions.razaStunRound) {
+            if (pS.char1HP <= 0 || roundNum <= playerActions.razaStunRound) {
                 initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
+                if (roundNum <= playerActions.razaStunRound) {
+                    playerActions.razaStunRound = -1;
+                }
             }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
@@ -115,10 +118,13 @@ public class CombatManager : MonoBehaviour
             }
         }
         else if (initiativeNames[initiativeIndex] == "Dorne") {
-            if (pS.char2HP <= 0 || roundNum == playerActions.dorneStunRound) {
+            if (pS.char2HP <= 0 || roundNum <= playerActions.dorneStunRound) {
                 initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
+                if (roundNum <= playerActions.dorneStunRound) {
+                    playerActions.dorneStunRound = -1;
+                }
             }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
@@ -128,10 +134,13 @@ public class CombatManager : MonoBehaviour
             }
         }
         else if (initiativeNames[initiativeIndex] == "Smithson") {
-            if (pS.char3HP <= 0 || roundNum == playerActions.smithsonStunRound) {
+            if (pS.char3HP <= 0 || roundNum <= playerActions.smithsonStunRound) {
                 initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
+                if (roundNum <= playerActions.smithsonStunRound) {
+                    playerActions.smithsonStunRound = -1;
+                }
             }
             if (playerActions.charDone) {
                 playerActions.charDone = false;
@@ -141,10 +150,13 @@ public class CombatManager : MonoBehaviour
             }
         }
         else if (initiativeNames[initiativeIndex] == "Zor") {
-            if (pS.char4HP <= 0 || roundNum == playerActions.zorStunRound) {
+            if (pS.char4HP <= 0 || roundNum <= playerActions.zorStunRound) {
                 initiativeIndex++;
                 newRound();
                 tI.updateIndicator();
+                if (roundNum <= playerActions.zorStunRound) {
+                    playerActions.zorStunRound = -1;
+                }
             }
             if (playerActions.charDone) {
                 playerActions.charDone = false;

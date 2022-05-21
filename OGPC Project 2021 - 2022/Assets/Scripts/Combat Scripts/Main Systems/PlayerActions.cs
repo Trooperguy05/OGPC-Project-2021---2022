@@ -234,7 +234,7 @@ public class PlayerActions : MonoBehaviour
         /// act on target
         // Checks if trick shot is active
         if (Gamble){
-            int chance = Random.Range(1,2);
+            int chance = Random.Range(1,3);
             // hits the gamble shot
             if (chance == 2){
                 enemy.health -= dmg;
@@ -413,6 +413,9 @@ public class PlayerActions : MonoBehaviour
     // Deals a random amount of damage to two enemies, though this deals no damage to Dorne
     public void dorneRoulette()
     {
+        // add to virus meter
+        StartCoroutine(vMM.updateMeter(Random.Range(critIncreaseMin, critIncreaseMax), vMM.dorneSlider, "dorne"));
+
         //chance to hit
         int chanceToHit = Random.Range(1, 100);
         if (chanceToHit <= 90)
