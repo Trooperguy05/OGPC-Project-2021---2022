@@ -98,8 +98,8 @@ public class PartyStats : MonoBehaviour
             PartyManager.partyOrder[2] = data.partyOrder[2];
             PartyManager.partyOrder[3] = data.partyOrder[3];
             // update the visuals based on the loaded data
-            if (SceneManager.GetActiveScene().name == "Template Project") {
-                PartyManager pM = GameObject.Find("Party and Player Manager").GetComponent<PartyManager>();
+            if (SceneManager.GetActiveScene().name == "Template Project" || SceneManager.GetActiveScene().name == "OverworldScene") {
+                PartyManager pM = FindObjectOfType<PartyManager>();
                 pM.updatePlayerSprite();
                 pM.updatePartyWheel();
                 if (PartyManager.partyOrder[0] == "Raza") {
@@ -115,7 +115,7 @@ public class PartyStats : MonoBehaviour
                     playerAnimator.SetBool("zorLeader", true);
                 }
                 FindObjectOfType<PlayerMovement>().updateIdleSprite();
-            }
+            }  
         }
         else {
             playerAnimator.SetBool("razaLeader", true);

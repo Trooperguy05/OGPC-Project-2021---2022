@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             if (!PartyManager.partyTabOpen && loadingScreenManager.loadingDone) {
                 animator.speed = 0f;
                 AnimatorClipInfo[] currentAnimInfo = animator.GetCurrentAnimatorClipInfo(0);
-                if (currentAnimInfo.Length > 0) animator.Play(currentAnimInfo[0].clip.name, 0, 0);
+                if (currentAnimInfo != null && currentAnimInfo.Length > 0) animator.Play(currentAnimInfo[0].clip.name, 0, 0);
             }
         }
 

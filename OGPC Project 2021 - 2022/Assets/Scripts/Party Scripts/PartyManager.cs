@@ -254,7 +254,6 @@ public class PartyManager : MonoBehaviour
             playerAnimator.SetBool("smithsonLeader", false);
             playerAnimator.SetBool("zorLeader", true);
         }
-        Debug.Log(partyOrder[0]);
     }
 
     // updates the partyWheel after loading a save \\
