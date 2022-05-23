@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     // play the game
     public void playGame() {
         SceneLoader.changeScene = true;
+        PartyManager.partyOrder = new string[] {"", "", "", ""};
     }
 
     // open the controls menu

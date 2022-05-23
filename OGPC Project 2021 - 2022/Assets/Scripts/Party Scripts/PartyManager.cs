@@ -267,8 +267,7 @@ public class PartyManager : MonoBehaviour
     // delets player and party save \\
     public void deleteSave() {
         Debug.Log("Deleting Save Data");
+        partyOrder = new string[] {"", "", "", ""};
         SaveSystem.deleteSaveData();
     }
-
-
 }

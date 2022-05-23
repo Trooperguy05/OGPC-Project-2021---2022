@@ -13,6 +13,7 @@ public class SceneLoader : MonoBehaviour
     {
         changeScene = false;
         if (SceneManager.GetActiveScene().name == "Template Project") {
+            loadingScreenManager.loadingDone = false;
             StartCoroutine(loadCombatScene());
         }
         else if (SceneManager.GetActiveScene().name == "CombatScene") {
@@ -27,6 +28,7 @@ public class SceneLoader : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "MainMenu") {
             StartCoroutine(loadOverworldScene());
+            loadingScreenManager.loadingDone = false;
         }
         else if (SceneManager.GetActiveScene().name == "Credits") {
             StartCoroutine(loadMainMenu());
