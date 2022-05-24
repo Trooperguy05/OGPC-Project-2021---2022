@@ -11,6 +11,7 @@ public class CombatManager : MonoBehaviour
     // arrays for tracking initiative \\
     [Header("Initiative")]
     public string[] initiativeNames = new string[8];
+    public int[] initiativeCountPrevious = new int[8];
     public int[] initiativeCount = new int[8];
     public List<GameObject> enemiesInCombat = new List<GameObject>();
     public GameObject[] gameObjectsInCombat = new GameObject[8];
@@ -429,7 +430,16 @@ public class CombatManager : MonoBehaviour
     // method that continues combat to the next round \\
     public void newRound() {
         // sort the initiative if the order has changed
-        sortInitiative(initiativeCount);
+        bool initiativeChanged = false;
+        for (int i = 0; i < initiativeCount.Length; i++) {
+            if (initiativeCount[i] != initiativeCountPrevious[i]) initiativeChanged = true;
+        }
+        if (initiativeChanged) {
+            sortInitiative(initiativeCount);
+            for (int i = 0; i < initiativeCount.Length; i++) {
+                initiativeCountPrevious[i] = initiativeCount[i];
+            }
+        }
         // next turn
         initiativeIndex++;
         // check exit conditions
@@ -677,6 +687,10 @@ public class CombatManager : MonoBehaviour
             str += initiativeCount[j] + ", ";
         }
         Debug.Log(str);
+
+        for (int j = 0; j < initiativeCount.Length; j++) {
+            initiativeCountPrevious[j] = initiativeCount[j];
+        }
 
         combatStarted = true;
     }
