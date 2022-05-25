@@ -103,48 +103,84 @@ public class CombatManager : MonoBehaviour
         ///   Turn-Based Combat   \\\
         // if it is one of the player characters' turn \\
         if (initiativeNames[initiativeIndex] == "Raza") {
-            if (pS.char1HP <= 0 || roundNum <= playerActions.razaStunRound) {
-                newRound();
-                if (roundNum <= playerActions.razaStunRound) {
-                    playerActions.razaStunRound = -1;
+            // if PC is dead
+            if (pS.char1HP <= 0) newRound();
+            // if PC is stunned
+            if (roundNum <= playerActions.razaStunRound) {
+                if (roundNum < playerActions.razaStunRound) {
+                    for (int i = initiativeIndex; i >= 0; i--) {
+                        if (initiativeNames[i] == "Dragon") newRound();
+                    }
                 }
+                else if (roundNum == playerActions.razaStunRound) {
+                    newRound();
+                }
+                playerActions.razaStunRound = -1;
             }
+            // if PC is done
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 newRound();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Dorne") {
-            if (pS.char2HP <= 0 || roundNum <= playerActions.dorneStunRound) {
-                newRound();
-                if (roundNum <= playerActions.dorneStunRound) {
-                    playerActions.dorneStunRound = -1;
+            // if PC is dead
+            if (pS.char2HP <= 0) newRound();
+            // if PC is stunned
+            if (roundNum <= playerActions.dorneStunRound) {
+                if (roundNum < playerActions.dorneStunRound) {
+                    for (int i = initiativeIndex; i >= 0; i--) {
+                        if (initiativeNames[i] == "Dragon") newRound();
+                    }
                 }
+                else if (roundNum == playerActions.dorneStunRound) {
+                    newRound();
+                }
+                playerActions.dorneStunRound = -1;
             }
+            // if PC is done
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 newRound();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Smithson") {
-            if (pS.char3HP <= 0 || roundNum <= playerActions.smithsonStunRound) {
-                newRound();
-                if (roundNum <= playerActions.smithsonStunRound) {
-                    playerActions.smithsonStunRound = -1;
+            // if PC is dead
+            if (pS.char3HP <= 0) newRound();
+            // if PC is stunned
+            if (roundNum <= playerActions.smithsonStunRound) {
+                if (roundNum < playerActions.smithsonStunRound) {
+                    for (int i = initiativeIndex; i >= 0; i--) {
+                        if (initiativeNames[i] == "Dragon") newRound();
+                    }
                 }
+                else if (roundNum == playerActions.smithsonStunRound) {
+                    newRound();
+                }
+                playerActions.smithsonStunRound = -1;
             }
+            // if PC is done
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 newRound();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Zor") {
-            if (pS.char4HP <= 0 || roundNum <= playerActions.zorStunRound) {
-                newRound();
-                if (roundNum <= playerActions.zorStunRound) {
-                    playerActions.zorStunRound = -1;
+            // if PC is dead
+            if (pS.char4HP <= 0) newRound();
+            // if PC is stunned
+            if (roundNum <= playerActions.zorStunRound) {
+                if (roundNum < playerActions.zorStunRound) {
+                    for (int i = initiativeIndex; i >= 0; i--) {
+                        if (initiativeNames[i] == "Dragon") newRound();
+                    }
                 }
+                else if (roundNum == playerActions.zorStunRound) {
+                    newRound();
+                }
+                playerActions.zorStunRound = -1;
             }
+            // if PC is done
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 newRound();
@@ -404,7 +440,6 @@ public class CombatManager : MonoBehaviour
         while (hM.healthUpdating) {
             yield return null;
         }
-        Debug.Log("h");
         checkExitConditions();
         initiativeIndex++;
         tI.updateIndicator();

@@ -79,6 +79,10 @@ public class ConsoleAndAchievementsController : MonoBehaviour
             player.transform.position = new Vector2(4.8f, -86.2f);
             consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to desert well";
         }
+        else if (consoleText == "GOTO DESERT BOSS") {
+            player.transform.position = new Vector2(28.15f, -86.26f);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to desert boss";
+        }
         else if (consoleText == "GOTO SWAMP") {
             player.transform.position = new Vector2(36.87f, -86.2f);
             consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to swamp";   
@@ -91,6 +95,10 @@ public class ConsoleAndAchievementsController : MonoBehaviour
             player.transform.position = new Vector2(55.36f, -108.4f);
             consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to swamp well";
         }
+        else if (consoleText == "GOTO SWAMP BOSS") {
+            player.transform.position = new Vector2(88.72f, -113.29f);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to swamp boss";
+        }
         else if (consoleText == "GOTO FOREST") {
             player.transform.position = new Vector2(88.05f, -119.3f);
             consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to forest";
@@ -102,6 +110,14 @@ public class ConsoleAndAchievementsController : MonoBehaviour
         else if (consoleText == "GOTO FOREST WELL") {
             player.transform.position = new Vector2(54.92f, -129.9f);
             consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to forest well";
+        }
+        else if (consoleText == "GOTO FOREST BOSS") {
+            player.transform.position = new Vector2(31, -157.91f);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to forest boss";
+        }
+        else if (consoleText == "GOTO FINAL BOSS") {
+            player.transform.position = new Vector2(-9.01f, -159.77f);
+            consoleLog.GetComponent<TextMeshProUGUI>().text += "\nmoved player to final boss";
         }
         // Ends combat
         else if (consoleText == "ENDCOMBAT" && SceneManager.GetActiveScene().name == "CombatScene") {
