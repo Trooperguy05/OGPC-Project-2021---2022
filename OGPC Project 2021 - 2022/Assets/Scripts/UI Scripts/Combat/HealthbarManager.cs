@@ -32,6 +32,9 @@ public class HealthbarManager : MonoBehaviour
     public Slider enemy3Slider;
     public Slider enemy4Slider;
 
+    // variable to tells if the healthbar manager is working
+    public bool healthUpdating = false;
+
     // access to other scripts
     private CombatManager cM;
     private PartyStats pS;
@@ -112,17 +115,23 @@ public class HealthbarManager : MonoBehaviour
 
     // method that shows damage to healthbar \\
     public IEnumerator dealDamage(Slider slider, int amt, float wait) {
+        healthUpdating = true;
         for (int i = 0; i < amt; i++) {
             slider.value -= 1;
+            if (slider.value <= 0) break;
             yield return new WaitForSeconds(wait);
         }
+        healthUpdating = false;
     }
 
     // method that shows healing to healthbar \\
     public IEnumerator giveHeal(Slider slider, int amt, float wait) {
+        healthUpdating = true;
         for (int i = 0; i < amt; i++) {
             slider.value += 1;
+            if (slider.value >= slider.maxValue) break;
             yield return new WaitForSeconds(wait);
         }
+        healthUpdating = false;
     }
 }
