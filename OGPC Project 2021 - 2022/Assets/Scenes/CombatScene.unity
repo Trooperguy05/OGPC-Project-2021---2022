@@ -3066,6 +3066,8 @@ MonoBehaviour:
   consoleLog: {fileID: 270892617}
   achievements: {fileID: 0}
   player: {fileID: 0}
+  pS: {fileID: 100334155}
+  vMM: {fileID: 2142421441}
 --- !u!4 &292918277
 Transform:
   m_ObjectHideFlags: 0
@@ -8077,6 +8079,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  initiativeCountPrevious: 0000000000000000000000000000000000000000000000000000000000000000
   initiativeCount: 0000000000000000000000000000000000000000000000000000000000000000
   enemiesInCombat: []
   gameObjectsInCombat:
@@ -13246,6 +13249,7 @@ MonoBehaviour:
   enemy2Slider: {fileID: 974216515}
   enemy3Slider: {fileID: 459321647}
   enemy4Slider: {fileID: 79576473}
+  healthUpdating: 0
 --- !u!4 &2142421439
 Transform:
   m_ObjectHideFlags: 0
