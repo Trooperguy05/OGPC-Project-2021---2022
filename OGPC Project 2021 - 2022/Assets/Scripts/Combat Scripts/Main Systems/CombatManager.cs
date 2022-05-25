@@ -105,6 +105,7 @@ public class CombatManager : MonoBehaviour
         if (initiativeNames[initiativeIndex] == "Raza") {
             if (pS.char1HP <= 0 || roundNum <= playerActions.razaStunRound) {
                 newRound();
+                tI.updateIndicator();
                 if (roundNum <= playerActions.razaStunRound) {
                     playerActions.razaStunRound = -1;
                 }
@@ -112,11 +113,13 @@ public class CombatManager : MonoBehaviour
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 newRound();
+                tI.updateIndicator();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Dorne") {
             if (pS.char2HP <= 0 || roundNum <= playerActions.dorneStunRound) {
                 newRound();
+                tI.updateIndicator();
                 if (roundNum <= playerActions.dorneStunRound) {
                     playerActions.dorneStunRound = -1;
                 }
@@ -124,11 +127,13 @@ public class CombatManager : MonoBehaviour
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 newRound();
+                tI.updateIndicator();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Smithson") {
             if (pS.char3HP <= 0 || roundNum <= playerActions.smithsonStunRound) {
                 newRound();
+                tI.updateIndicator();
                 if (roundNum <= playerActions.smithsonStunRound) {
                     playerActions.smithsonStunRound = -1;
                 }
@@ -136,11 +141,13 @@ public class CombatManager : MonoBehaviour
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 newRound();
+                tI.updateIndicator();
             }
         }
         else if (initiativeNames[initiativeIndex] == "Zor") {
             if (pS.char4HP <= 0 || roundNum <= playerActions.zorStunRound) {
                 newRound();
+                tI.updateIndicator();
                 if (roundNum <= playerActions.zorStunRound) {
                     playerActions.zorStunRound = -1;
                 }
@@ -148,6 +155,7 @@ public class CombatManager : MonoBehaviour
             if (playerActions.charDone) {
                 playerActions.charDone = false;
                 newRound();
+                tI.updateIndicator();
             }
         }
         // if it is one of the enemy's turns \\
@@ -168,12 +176,14 @@ public class CombatManager : MonoBehaviour
                 }
             }
             else {
-                newRound();   
+                newRound();
+                tI.updateIndicator();     
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 newRound();
+                tI.updateIndicator();
             }
         }
         // if enemy is a mummy
@@ -186,11 +196,13 @@ public class CombatManager : MonoBehaviour
             }
             else {
                 newRound();
+                tI.updateIndicator();  
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 newRound();
+                tI.updateIndicator();
             }
         }
         // if enemy is a crocodile
@@ -210,11 +222,13 @@ public class CombatManager : MonoBehaviour
             }
             else {
                 newRound();
+                tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 newRound();
+                tI.updateIndicator();
             }
         }
         // if enemy is the snake
@@ -234,11 +248,13 @@ public class CombatManager : MonoBehaviour
             }
             else {
                 newRound();
+                tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 newRound();
+                tI.updateIndicator();
             }
         }
         // if enemy is a slime
@@ -251,11 +267,13 @@ public class CombatManager : MonoBehaviour
             }
             else {
                 newRound();
+                tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 newRound();
+                tI.updateIndicator();
             }
         }
         // if enemy is a spider
@@ -275,11 +293,13 @@ public class CombatManager : MonoBehaviour
             }
             else {
                 newRound();
+                tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 newRound();
+                tI.updateIndicator();
             }
         }
         // if enemy is the worm (miniboss)
@@ -299,11 +319,13 @@ public class CombatManager : MonoBehaviour
             }
             else {
                 newRound();
+                tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 newRound();
+                tI.updateIndicator();
             }
         }
         // if enemy is a man trap (miniboss)
@@ -323,11 +345,13 @@ public class CombatManager : MonoBehaviour
             }
             else {
                 newRound();
+                tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 newRound();
+                tI.updateIndicator();
             }
         }
         // if enemy is the giant (miniboss)
@@ -347,11 +371,13 @@ public class CombatManager : MonoBehaviour
             }
             else {
                 newRound();
+                tI.updateIndicator();
             }
             if (enemyActions.enemyDone) {
                 enemyActions.enemyDone = false;
                 tookChoice = false;
                 newRound();
+                tI.updateIndicator();
             }
         }
 
@@ -378,6 +404,7 @@ public class CombatManager : MonoBehaviour
             }
             else {
                 newRound();
+                tI.updateIndicator();
             }
             if (enemyActions.enemyDone && tookChoiceNum < 2) {
                 enemyActions.enemyDone = false;
@@ -388,6 +415,7 @@ public class CombatManager : MonoBehaviour
                 tookChoice = false;
                 tookChoiceNum = 0;
                 newRound();
+                tI.updateIndicator();
             }
         }
 
@@ -397,17 +425,6 @@ public class CombatManager : MonoBehaviour
                 newRound();
             }
         }
-    }
-
-    // method that waits for the healthbar manager to stop updating before changing the turn \\
-    public IEnumerator waitForHM() {
-        while (hM.healthUpdating) {
-            yield return null;
-        }
-        Debug.Log("h");
-        checkExitConditions();
-        initiativeIndex++;
-        tI.updateIndicator();
     }
 
     // method that continues combat to the next round \\
@@ -424,7 +441,9 @@ public class CombatManager : MonoBehaviour
             }
         }
         // next turn
-        StartCoroutine(waitForHM());
+        initiativeIndex++;
+        // check exit conditions
+        checkExitConditions();
         /// checking if it's the end of a round
         if (initiativeIndex > 7) {
             initiativeIndex = 0;

@@ -49,14 +49,6 @@ public class VirusMeterManager : MonoBehaviour
         zorSlider.value = pS.char4VMeter;
     }
 
-    // method that sets the VMeters of all PC's to what their VMeter in the Party Stats says
-    public void updatedMeter() {
-        razaSlider.value = pS.char1VMeter;
-        dorneSlider.value = pS.char2VMeter;
-        smithsonSlider.value = pS.char3VMeter;
-        zorSlider.value = pS.char4VMeter;
-    }
-
     // method that updates the virus meter based on the value given \\
     // negative amt --> subtract from meter
     // positive amt --> add to meter

@@ -17,8 +17,6 @@ public class ConsoleAndAchievementsController : MonoBehaviour
     public static bool achievementsIsActive;
     public GameObject player;
     private achievements achs;
-    public PartyStats pS;
-    public VirusMeterManager vMM;
 
     // caching
     void Start() {
@@ -110,14 +108,6 @@ public class ConsoleAndAchievementsController : MonoBehaviour
         // skips turns in combat
         else if (consoleText == "SKIPTURN" && SceneManager.GetActiveScene().name == "CombatScene") {
             GameObject.Find("Combat Manager").GetComponent<CombatManager>().initiativeIndex++;
-        }
-        // gives all PC's max virus meter
-        else if (consoleText == "GIVEMETER" && SceneManager.GetActiveScene().name == "CombatScene") {
-            pS.char1VMeter = 100;
-            pS.char2VMeter = 100;
-            pS.char3VMeter = 100;
-            pS.char4VMeter = 100;
-            vMM.updatedMeter();
         }
         // Displays that an invalid command is entered in the console
         else {
