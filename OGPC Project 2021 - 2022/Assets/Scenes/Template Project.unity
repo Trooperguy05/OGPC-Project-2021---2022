@@ -103111,9 +103111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae38a33fa62a1b40a538b7cce2e93ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specifiedEnemy: 0
+  specifiedEnemy: -1
   moveCircle: 1
-  moveLeftRight: 1
+  moveLeftRight: 0
   moveUpDown: 0
   moveTick: 1
   timeBetweenMove: 5
@@ -105495,6 +105495,8 @@ MonoBehaviour:
   consoleLog: {fileID: 1068054102}
   achievements: {fileID: 1289651753}
   player: {fileID: 845773100}
+  pS: {fileID: 0}
+  vMM: {fileID: 0}
 --- !u!114 &1639168357
 MonoBehaviour:
   m_ObjectHideFlags: 0
