@@ -8,17 +8,23 @@ public class MainMenuAudio : MonoBehaviour
     public AudioSource AS;
     public AudioClip regularMenu;
     public AudioClip kazooMenu;
+    public AudioClip play;
     // Start is called before the first frame update
     void Start()
     {
         // play funny easter egg or regular music
         float percentChance = Random.Range(0,1001);
         if (percentChance == 1) {
-            AS.PlayOneShot(kazooMenu, 1);
+            play = kazooMenu;
+            //AS.PlayOneShot(kazooMenu, 1);
         }
         else {
-            AS.PlayOneShot(regularMenu, 1);
+            play = regularMenu;
+            //AS.PlayOneShot(regularMenu, 1);
         }
+
+        AS.clip = play;
+        AS.Play(0);
         
     }
 
