@@ -13,7 +13,8 @@ public class MainMenuAudio : MonoBehaviour
     void Start()
     {
         // play funny easter egg or regular music
-        float percentChance = Random.Range(0,1001);
+        float percentChance = Random.Range(1, 11);
+        //Debug.Log(percentChance);
         if (percentChance == 1) {
             play = kazooMenu;
             //AS.PlayOneShot(kazooMenu, 1);
