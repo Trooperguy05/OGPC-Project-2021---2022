@@ -159,7 +159,6 @@ public class PlayerActions : MonoBehaviour
         // pass the turn
         yield return new WaitForSeconds(1f);
         charDone = true;
-        hM.updateHealthbarValues();
         mM.updateManabar();
     }
 

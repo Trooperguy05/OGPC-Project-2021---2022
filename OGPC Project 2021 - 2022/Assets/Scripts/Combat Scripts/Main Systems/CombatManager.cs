@@ -441,8 +441,8 @@ public class CombatManager : MonoBehaviour
             yield return null;
         }
         checkExitConditions();
-        initiativeIndex++;
-        tI.updateIndicator();
+        if (!SceneLoader.changeScene) tI.updateIndicator();
+        hM.updateHealthbarValues();
     }
 
     // method that continues combat to the next round \\
@@ -523,6 +523,9 @@ public class CombatManager : MonoBehaviour
             // return to overworld
             SceneLoader.changeScene = true;
         }
+
+        // if none of those conditions are fulfilled, continue with combat
+        initiativeIndex++;
     }
 
     // method that "rolls" for combat initiative \\
