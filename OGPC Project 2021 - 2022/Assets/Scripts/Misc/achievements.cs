@@ -35,7 +35,7 @@ public class achievements : MonoBehaviour
 
     void Update() {
         // Checks if the player pressed the escape key
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Alpha1)) {
             pausePwnerCount++;
             if (pausePwnerCount >= 60 && !pausePwner) {
                 pausePwner = true;
